@@ -2,8 +2,9 @@ import { NextResponse } from "next/server";
 import { Resend } from "resend";
 
 const resend = new Resend(process.env.RESEND_API_KEY);
-const fallbackTo = process.env.RESEND_TO ?? "info@hostpropanama.com";
-const fromEmail = process.env.RESEND_FROM ?? "HostPro Panama <info@hostpropanama.com>";
+const fallbackTo = process.env.RESEND_TO ?? "contacto@hostpropamama.com";
+const fromEmail =
+  process.env.RESEND_FROM ?? "HostPro Panama <contacto@hostpropamama.com>";
 
 export async function POST(request: Request) {
   try {
@@ -14,11 +15,11 @@ export async function POST(request: Request) {
       from: fromEmail,
       to: [fallbackTo],
       replyTo: email,
-      subject: `Nueva aplicación de talento - ${name}`,
+      subject: `Nueva aplicacion de talento - ${name}`,
       text: [
         `Nombre: ${name}`,
         `Email: ${email}`,
-        `Teléfono: ${phone}`,
+        `Telefono: ${phone}`,
         `Ciudad: ${city}`,
         `Rol: ${role}`,
         `Idiomas: ${languages}`,
@@ -30,7 +31,7 @@ export async function POST(request: Request) {
   } catch (error) {
     console.error("TALENT_FORM_ERROR", error);
     return NextResponse.json(
-      { error: "No se pudo enviar la aplicación" },
+      { error: "No se pudo enviar la aplicacion" },
       { status: 500 },
     );
   }

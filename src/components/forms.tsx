@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { useForm } from "react-hook-form";
+import { useForm, type UseFormRegister } from "react-hook-form";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Loader2, CheckCircle, AlertTriangle, Send } from "lucide-react";
@@ -53,7 +53,7 @@ function TextInput(props: {
   label: string;
   name: string;
   placeholder?: string;
-  register: ReturnType<typeof useForm>["register"];
+  register: UseFormRegister<any>;
   error?: string;
   type?: string;
 }) {
@@ -76,7 +76,7 @@ function TextArea(props: {
   label: string;
   name: string;
   placeholder?: string;
-  register: ReturnType<typeof useForm>["register"];
+  register: UseFormRegister<any>;
   error?: string;
   rows?: number;
 }) {

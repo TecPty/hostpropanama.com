@@ -2,8 +2,9 @@ import { NextResponse } from "next/server";
 import { Resend } from "resend";
 
 const resend = new Resend(process.env.RESEND_API_KEY);
-const fallbackTo = process.env.RESEND_TO ?? "info@hostpropanama.com";
-const fromEmail = process.env.RESEND_FROM ?? "HostPro Panama <info@hostpropanama.com>";
+const fallbackTo = process.env.RESEND_TO ?? "contacto@hostpropamama.com";
+const fromEmail =
+  process.env.RESEND_FROM ?? "HostPro Panama <contacto@hostpropamama.com>";
 
 export async function POST(request: Request) {
   try {
@@ -19,7 +20,7 @@ export async function POST(request: Request) {
         `Nombre: ${name}`,
         `Empresa: ${company}`,
         `Email: ${email}`,
-        `Teléfono: ${phone}`,
+        `Telefono: ${phone}`,
         `Tipo de evento: ${eventType}`,
         `Fecha: ${date ?? "No indicada"}`,
         `Mensaje: ${message}`,

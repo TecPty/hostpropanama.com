@@ -9,21 +9,21 @@ import { Loader2, CheckCircle, AlertTriangle, Send } from "lucide-react";
 const leadSchema = z.object({
   name: z.string().min(2, "Nombre requerido"),
   company: z.string().min(2, "Empresa requerida"),
-  email: z.string().email("Email inválido"),
-  phone: z.string().min(6, "Teléfono requerido"),
+  email: z.string().email("Email invalido"),
+  phone: z.string().min(6, "Telefono requerido"),
   eventType: z.string().min(2, "Tipo de evento requerido"),
   date: z.string().optional(),
-  message: z.string().min(5, "Cuéntanos más del evento"),
+  message: z.string().min(5, "Cuentanos mas del evento"),
 });
 
 const talentSchema = z.object({
   name: z.string().min(2, "Nombre requerido"),
-  email: z.string().email("Email inválido"),
-  phone: z.string().min(6, "Teléfono requerido"),
+  email: z.string().email("Email invalido"),
+  phone: z.string().min(6, "Telefono requerido"),
   city: z.string().min(2, "Ciudad requerida"),
-  role: z.string().min(2, "Rol o posición"),
+  role: z.string().min(2, "Rol o posicion"),
   languages: z.string().min(2, "Idiomas"),
-  portfolio: z.string().url("Link inválido").optional().or(z.literal("")),
+  portfolio: z.string().url("Link invalido").optional().or(z.literal("")),
 });
 
 type LeadFormData = z.infer<typeof leadSchema>;
@@ -126,7 +126,7 @@ export function LeadForm() {
   };
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
+    <form onSubmit={handleSubmit(onSubmit)} className="flex min-h-full flex-col gap-4">
       <div className="grid gap-4 md:grid-cols-2">
         <TextInput
           label="Nombre completo"
@@ -153,7 +153,7 @@ export function LeadForm() {
           type="email"
         />
         <TextInput
-          label="Teléfono / WhatsApp"
+          label="Telefono / WhatsApp"
           name="phone"
           register={register}
           error={errors.phone?.message}
@@ -177,14 +177,14 @@ export function LeadForm() {
         />
       </div>
       <TextArea
-        label="Cuéntanos sobre el evento"
+        label="Cuentanos sobre el evento"
         name="message"
         register={register}
         error={errors.message?.message}
         rows={4}
-        placeholder="Número de personas, horarios, dress code, idioma, ubicación..."
+        placeholder="Numero de personas, horarios, dress code, idioma, ubicacion..."
       />
-      <div className="flex items-center justify-between">
+      <div className="mt-auto flex items-center justify-between pt-2">
         <StatusBadge state={state} />
         <button
           type="submit"
@@ -237,15 +237,22 @@ export function TalentForm() {
   };
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
-      <TextInput
-        label="Nombre completo"
-        name="name"
-        register={register}
-        error={errors.name?.message}
-        placeholder="Nombre y apellido"
-      />
+    <form onSubmit={handleSubmit(onSubmit)} className="flex min-h-full flex-col gap-4">
       <div className="grid gap-4 md:grid-cols-2">
+        <TextInput
+          label="Nombre completo"
+          name="name"
+          register={register}
+          error={errors.name?.message}
+          placeholder="Nombre y apellido"
+        />
+        <TextInput
+          label="Telefono / WhatsApp"
+          name="phone"
+          register={register}
+          error={errors.phone?.message}
+          placeholder="+507 ..."
+        />
         <TextInput
           label="Email"
           name="email"
@@ -254,15 +261,6 @@ export function TalentForm() {
           placeholder="correo@ejemplo.com"
           type="email"
         />
-        <TextInput
-          label="Teléfono / WhatsApp"
-          name="phone"
-          register={register}
-          error={errors.phone?.message}
-          placeholder="+507 ..."
-        />
-      </div>
-      <div className="grid gap-4 md:grid-cols-2">
         <TextInput
           label="Ciudad"
           name="city"
@@ -277,14 +275,14 @@ export function TalentForm() {
           error={errors.role?.message}
           placeholder="Azafata, host, brand ambassador..."
         />
+        <TextInput
+          label="Idiomas"
+          name="languages"
+          register={register}
+          error={errors.languages?.message}
+          placeholder="Espanol / Ingles / Otros"
+        />
       </div>
-      <TextInput
-        label="Idiomas"
-        name="languages"
-        register={register}
-        error={errors.languages?.message}
-        placeholder="Español / Inglés / Otros"
-      />
       <TextInput
         label="Link a portafolio o Instagram"
         name="portfolio"
@@ -292,12 +290,12 @@ export function TalentForm() {
         error={errors.portfolio?.message}
         placeholder="https://..."
       />
-      <div className="flex items-center justify-between">
+      <div className="mt-auto flex items-center justify-between pt-2">
         <StatusBadge state={state} />
         <button
           type="submit"
           disabled={state === "loading"}
-          className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-black/60 px-5 py-3 text-sm font-semibold text-white transition hover:border-[#d4b200] hover:text-[#d4b200] disabled:opacity-70"
+          className="inline-flex items-center gap-2 rounded-full bg-[#d4b200] px-5 py-3 text-sm font-semibold text-black transition hover:bg-[#e6c700] disabled:opacity-70"
         >
           {state === "loading" ? (
             <>
@@ -305,7 +303,7 @@ export function TalentForm() {
             </>
           ) : (
             <>
-              Enviar aplicación <Send className="h-4 w-4" />
+              Enviar aplicacion <Send className="h-4 w-4" />
             </>
           )}
         </button>

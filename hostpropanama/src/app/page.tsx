@@ -8,6 +8,9 @@ import {
   Clock3,
   Sparkles,
   MessageCircle,
+  Instagram,
+  Linkedin,
+  Music2,
 } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
@@ -15,7 +18,7 @@ import { LeadForm, TalentForm } from "@/components/forms";
 
 const services = [
   {
-    title: "Azafatas y azafatos corporativos",
+    title: "Azafatas y modelos corporativos",
     description:
       "Presencia impecable para ferias, congresos, lanzamientos y eventos premium.",
   },
@@ -45,7 +48,7 @@ const process = [
 const faqs = [
   {
     q: "En cuanto tiempo responden una solicitud?",
-    a: "Respondemos en menos de 1 hora habil. Para urgencias, tienes WhatsApp directo.",
+    a: "Respondemos en menos de 1 hora habil. Para urgencias, tienes WhatsApp directo +507 .",
   },
   {
     q: "Cuentan con talento bilingue?",
@@ -96,6 +99,7 @@ const talent = [
     languages: "Espanol / Ingles",
     photo: "/talent/camila.png",
   },
+  
 ];
 
 const gallery = [
@@ -117,21 +121,13 @@ export default function Home() {
             <Image
               src="/logo.png"
               alt="HostPro Panama"
-              width={70}
-              height={70}
+              width={98}
+              height={98}
               className="rounded-lg"
               priority
             />
-            <div>
-              <p className="font-semibold uppercase tracking-[0.08em] text-[#d4b200]">
-                HostPro Panama
-              </p>
-              <p className="text-sm text-white/70">
-                Staff premium para eventos corporativos
-              </p>
-            </div>
           </div>
-          <div className="hidden gap-3 text-sm font-medium md:flex">
+          <div className="hidden gap-6 text-base font-semibold md:flex">
             <a href="#servicios" className="hover:text-[#d4b200] transition-colors">
               Servicios
             </a>
@@ -147,10 +143,18 @@ export default function Home() {
           </div>
           <div className="flex items-center gap-3">
             <Link
-              href="https://wa.me/50769801194"
-              className="hidden rounded-full border border-white/10 px-4 py-2 text-sm font-semibold text-white/80 transition hover:border-[#d4b200]/60 hover:text-[#d4b200] md:block"
+              href="https://instagram.com/hostpropanama"
+              aria-label="Instagram"
+              className="flex h-10 w-10 items-center justify-center rounded-full border border-white/10 text-white transition hover:border-[#d4b200] hover:text-[#d4b200]"
             >
-              WhatsApp
+              <Instagram className="h-5 w-5" />
+            </Link>
+            <Link
+              href="https://www.tiktok.com/@hostpropanama"
+              aria-label="TikTok"
+              className="flex h-10 w-10 items-center justify-center rounded-full border border-white/10 text-white transition hover:border-[#d4b200] hover:text-[#d4b200]"
+            >
+              <Music2 className="h-5 w-5" />
             </Link>
             <Link
               href="#contacto"
@@ -163,8 +167,9 @@ export default function Home() {
       </header>
 
       <main className="relative mx-auto max-w-6xl px-6 pb-24 pt-10">
-        <section className="relative overflow-hidden rounded-3xl border border-white/5 bg-gradient-to-br from-[#0c0c0c] via-[#111111] to-[#1b1400] px-6 py-12 md:px-10">
-          <div className="absolute inset-0 bg-[radial-gradient(circle_at_20%_20%,rgba(212,178,0,0.12),transparent_35%),radial-gradient(circle_at_80%_10%,rgba(255,255,255,0.06),transparent_30%),radial-gradient(circle_at_60%_80%,rgba(212,178,0,0.1),transparent_35%)]" />
+        <section className="relative overflow-hidden rounded-3xl border border-white/5 bg-gradient-to-br from-[#0e0f11] via-[#101014] to-[#0c0c0f] px-6 py-12 md:px-10">
+          <div className="absolute inset-0 bg-[radial-gradient(circle_at_20%_20%,rgba(212,178,0,0.12),transparent_35%),radial-gradient(circle_at_80%_10%,rgba(255,255,255,0.08),transparent_30%),radial-gradient(circle_at_60%_80%,rgba(212,178,0,0.1),transparent_35%)]" />
+          <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_65%_30%,rgba(125,211,252,0.14),transparent_40%)]" />
           <div className="grid gap-10 lg:grid-cols-2 lg:items-center">
             <div className="relative z-10 space-y-6">
               <div className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-4 py-2 text-xs font-semibold uppercase tracking-[0.25em] text-[#d4b200]">
@@ -206,31 +211,19 @@ export default function Home() {
                   Imagen impecable
                 </div>
               </div>
-              <div className="flex gap-8 text-sm text-white/80">
-                <div>
-                  <p className="text-3xl font-bold text-[#d4b200]">24/7</p>
-                  <p>Soporte directo</p>
-                </div>
-                <div>
-                  <p className="text-3xl font-bold text-[#d4b200]">+150</p>
-                  <p>Eventos atendidos</p>
-                </div>
-                <div>
-                  <p className="text-3xl font-bold text-[#d4b200]">98%</p>
-                  <p>Satisfaccion</p>
-                </div>
-              </div>
             </div>
 
-            <div className="relative z-10 flex items-center justify-center">
-              <div className="relative h-[520px] w-full max-w-[480px]">
+            <div className="relative z-10 flex items-end justify-center">
+              <div className="relative h-[420px] w-full max-w-[360px] sm:h-[500px] sm:max-w-[440px] md:h-[560px] md:max-w-[520px]">
                 <div className="absolute left-8 top-10 h-72 w-72 rounded-full bg-[#d4b200]/22 blur-[130px]" />
+                <div className="absolute right-6 top-16 h-72 w-72 rounded-full bg-[#7dd3fc]/18 blur-[140px]" />
+                <div className="absolute inset-0 rounded-[32px] bg-[radial-gradient(circle_at_60%_40%,rgba(125,211,252,0.35),transparent_45%),radial-gradient(circle_at_40%_70%,rgba(255,255,255,0.28),transparent_55%)] blur-[60px]" />
                 <div className="absolute inset-0 overflow-visible">
                   <Image
                     src="/hero-image.png"
                     alt="Equipo HostPro Panama"
                     fill
-                    className="object-contain drop-shadow-[0_28px_70px_rgba(0,0,0,0.55)] scale-150"
+                    className="object-contain drop-shadow-[0_28px_70px_rgba(0,0,0,0.5)] scale-[1.2] translate-y-[4%] sm:scale-[1.35] sm:translate-y-[0%] md:scale-[1.5] md:translate-y-[-1%]"
                     priority
                   />
                 </div>
@@ -411,7 +404,7 @@ export default function Home() {
         </section>
 
         <section id="contacto" className="mt-16 grid gap-8 lg:grid-cols-2 lg:items-start">
-          <div className="space-y-4">
+          <div className="flex h-full flex-col space-y-4">
             <p className="text-sm uppercase tracking-[0.3em] text-[#d4b200]">
               Solicita propuesta
             </p>
@@ -422,9 +415,9 @@ export default function Home() {
               Respuesta en menos de 1 hora habil. Tambien puedes escribir a{" "}
               <Link
                 className="font-semibold text-[#d4b200] hover:underline"
-                href="mailto:info@hostpropanama.com"
+                href="mailto:contacto@hostpropamama.com"
               >
-                info@hostpropanama.com
+                contacto@hostpropamama.com
               </Link>{" "}
               o WhatsApp al{" "}
               <Link
@@ -435,18 +428,20 @@ export default function Home() {
               </Link>
               .
             </p>
-            <div className="rounded-3xl border border-white/10 bg-black/60 p-6">
+            <div className="flex h-full flex-1 flex-col rounded-3xl border border-white/10 bg-black/60 p-6">
               <LeadForm />
             </div>
           </div>
-          <div className="space-y-4 rounded-3xl border border-white/10 bg-white/5 p-6">
+          <div className="flex h-full flex-col space-y-4">
             <p className="text-sm uppercase tracking-[0.3em] text-[#d4b200]">Talento</p>
             <h3 className="text-2xl font-semibold">Unete al equipo HostPro.</h3>
             <p className="text-white/70">
               Staff con presencia impecable, puntualidad y actitud proactiva. Envia tu
               aplicacion y te contactamos.
             </p>
-            <TalentForm />
+            <div className="flex h-full flex-1 flex-col rounded-3xl border border-white/10 bg-white/5 p-6">
+              <TalentForm />
+            </div>
           </div>
         </section>
 
@@ -486,15 +481,28 @@ export default function Home() {
           </div>
           <div className="space-y-3 text-sm">
             <p className="text-xs uppercase tracking-[0.3em] text-[#d4b200]">Contacto</p>
-            <Link href="mailto:info@hostpropanama.com" className="block text-white/80 hover:text-[#d4b200]">
-              info@hostpropanama.com
+            <Link href="mailto:contacto@hostpropamama.com" className="block text-white/80 hover:text-[#d4b200]">
+              contacto@hostpropamama.com
             </Link>
             <Link href="tel:+50769801194" className="block text-white/80 hover:text-[#d4b200]">
               +507 6980-1194
             </Link>
-            <Link href="https://instagram.com/hostpropanama" className="block text-white/80 hover:text-[#d4b200]">
-              Instagram @hostpropanama
-            </Link>
+            <div className="flex gap-3 pt-2">
+              <Link
+                href="https://instagram.com/hostpropanama"
+                className="flex h-10 w-10 items-center justify-center rounded-full border border-white/10 text-white transition hover:border-[#d4b200] hover:text-[#d4b200]"
+                aria-label="Instagram"
+              >
+                <Instagram className="h-5 w-5" />
+              </Link>
+              <Link
+                href="https://www.tiktok.com/@hostpropanama"
+                className="flex h-10 w-10 items-center justify-center rounded-full border border-white/10 text-white transition hover:border-[#d4b200] hover:text-[#d4b200]"
+                aria-label="TikTok"
+              >
+                <Music2 className="h-5 w-5" />
+              </Link>
+            </div>
             <Link href="https://wa.me/50769801194" className="block text-white/80 hover:text-[#d4b200]">
               WhatsApp directo
             </Link>

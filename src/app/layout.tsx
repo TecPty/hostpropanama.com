@@ -32,7 +32,9 @@ export const metadata: Metadata = {
     type: "website",
     images: [
       {
-        url: "/logo.png",
+        url: "/og-image.png",
+        width: 1200,
+        height: 630,
         alt: "HostPro Panamá - Staff premium para eventos corporativos",
       },
     ],
@@ -42,7 +44,7 @@ export const metadata: Metadata = {
     title: "HOSTPRO PANAMÁ | Staff premium para eventos corporativos",
     description:
       "Azafatas, promotores y brand ambassadors verificados para marcas exigentes.",
-    images: ["/logo.png"],
+    images: ["/og-image.png"],
   },
 };
 

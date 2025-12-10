@@ -17,6 +17,11 @@ export const metadata: Metadata = {
   description:
     "Agencia de modelos y azafatas para eventos corporativos de lujo en Panamá. Talento verificado, respuesta inmediata y presencia impecable.",
   metadataBase: new URL("https://hostpropanama.com"),
+  icons: {
+    icon: "/favicon.ico",
+    shortcut: "/favicon.ico",
+    apple: "/favicon.ico",
+  },
   openGraph: {
     title: "HOSTPRO PANAMÁ | Staff premium para eventos corporativos",
     description:
@@ -25,6 +30,19 @@ export const metadata: Metadata = {
     siteName: "HostPro Panamá",
     locale: "es_PA",
     type: "website",
+    images: [
+      {
+        url: "/logo.png",
+        alt: "HostPro Panamá - Staff premium para eventos corporativos",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "HOSTPRO PANAMÁ | Staff premium para eventos corporativos",
+    description:
+      "Azafatas, promotores y brand ambassadors verificados para marcas exigentes.",
+    images: ["/logo.png"],
   },
 };
 

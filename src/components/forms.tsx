@@ -1,7 +1,12 @@
 "use client";
 
 import { useState } from "react";
-import { useForm, type UseFormRegister } from "react-hook-form";
+import {
+  useForm,
+  type FieldValues,
+  type Path,
+  type UseFormRegister,
+} from "react-hook-form";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Loader2, CheckCircle, AlertTriangle, Send } from "lucide-react";
@@ -49,14 +54,16 @@ function StatusBadge({ state }: { state: FormState }) {
   return null;
 }
 
-function TextInput(props: {
+type BaseInputProps<T extends FieldValues> = {
   label: string;
-  name: string;
+  name: Path<T>;
   placeholder?: string;
-  register: UseFormRegister<any>;
+  register: UseFormRegister<T>;
   error?: string;
   type?: string;
-}) {
+};
+
+function TextInput<T extends FieldValues>(props: BaseInputProps<T>) {
   const { label, name, placeholder, register, error, type = "text" } = props;
   return (
     <label className="space-y-2">
@@ -72,14 +79,16 @@ function TextInput(props: {
   );
 }
 
-function TextArea(props: {
+type TextAreaProps<T extends FieldValues> = {
   label: string;
-  name: string;
+  name: Path<T>;
   placeholder?: string;
-  register: UseFormRegister<any>;
+  register: UseFormRegister<T>;
   error?: string;
   rows?: number;
-}) {
+};
+
+function TextArea<T extends FieldValues>(props: TextAreaProps<T>) {
   const { label, name, placeholder, register, error, rows = 4 } = props;
   return (
     <label className="space-y-2">
@@ -128,14 +137,14 @@ export function LeadForm() {
   return (
     <form onSubmit={handleSubmit(onSubmit)} className="flex min-h-full flex-col gap-4">
       <div className="grid gap-4 md:grid-cols-2">
-        <TextInput
+        <TextInput<LeadFormData>
           label="Nombre completo"
           name="name"
           register={register}
           error={errors.name?.message}
           placeholder="Nombre y apellido"
         />
-        <TextInput
+        <TextInput<LeadFormData>
           label="Empresa"
           name="company"
           register={register}
@@ -144,7 +153,7 @@ export function LeadForm() {
         />
       </div>
       <div className="grid gap-4 md:grid-cols-2">
-        <TextInput
+        <TextInput<LeadFormData>
           label="Email"
           name="email"
           register={register}
@@ -152,7 +161,7 @@ export function LeadForm() {
           placeholder="correo@empresa.com"
           type="email"
         />
-        <TextInput
+        <TextInput<LeadFormData>
           label="Telefono / WhatsApp"
           name="phone"
           register={register}
@@ -161,14 +170,14 @@ export function LeadForm() {
         />
       </div>
       <div className="grid gap-4 md:grid-cols-2">
-        <TextInput
+        <TextInput<LeadFormData>
           label="Tipo de evento"
           name="eventType"
           register={register}
           error={errors.eventType?.message}
           placeholder="Congreso, feria, lanzamiento..."
         />
-        <TextInput
+        <TextInput<LeadFormData>
           label="Fecha tentativa"
           name="date"
           register={register}
@@ -176,7 +185,7 @@ export function LeadForm() {
           placeholder="dd/mm/aaaa"
         />
       </div>
-      <TextArea
+      <TextArea<LeadFormData>
         label="Cuentanos sobre el evento"
         name="message"
         register={register}
@@ -239,21 +248,21 @@ export function TalentForm() {
   return (
     <form onSubmit={handleSubmit(onSubmit)} className="flex min-h-full flex-col gap-4">
       <div className="grid gap-4 md:grid-cols-2">
-        <TextInput
+        <TextInput<TalentFormData>
           label="Nombre completo"
           name="name"
           register={register}
           error={errors.name?.message}
           placeholder="Nombre y apellido"
         />
-        <TextInput
+        <TextInput<TalentFormData>
           label="Telefono / WhatsApp"
           name="phone"
           register={register}
           error={errors.phone?.message}
           placeholder="+507 ..."
         />
-        <TextInput
+        <TextInput<TalentFormData>
           label="Email"
           name="email"
           register={register}
@@ -261,21 +270,21 @@ export function TalentForm() {
           placeholder="correo@ejemplo.com"
           type="email"
         />
-        <TextInput
+        <TextInput<TalentFormData>
           label="Ciudad"
           name="city"
           register={register}
           error={errors.city?.message}
           placeholder="Ciudad donde resides"
         />
-        <TextInput
+        <TextInput<TalentFormData>
           label="Rol deseado"
           name="role"
           register={register}
           error={errors.role?.message}
           placeholder="Azafata, host, brand ambassador..."
         />
-        <TextInput
+        <TextInput<TalentFormData>
           label="Idiomas"
           name="languages"
           register={register}
@@ -283,7 +292,7 @@ export function TalentForm() {
           placeholder="Espanol / Ingles / Otros"
         />
       </div>
-      <TextInput
+      <TextInput<TalentFormData>
         label="Link a portafolio o Instagram"
         name="portfolio"
         register={register}

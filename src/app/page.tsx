@@ -9,7 +9,6 @@ import {
   Sparkles,
   MessageCircle,
   Instagram,
-  Linkedin,
   Music2,
 } from "lucide-react";
 import Image from "next/image";
@@ -342,23 +341,33 @@ export default function Home() {
         <section className="mt-16 grid gap-6 lg:grid-cols-[1.2fr,0.8fr]">
           <div className="space-y-4">
             <p className="text-sm uppercase tracking-[0.3em] text-[#d4b200]">
-              Testimonios
+              Garantia HostPro
             </p>
-            <div className="rounded-3xl border border-white/10 bg-gradient-to-br from-[#d4b200]/10 via-black to-black px-8 py-6 shadow-lg">
-              <p className="text-lg text-white/90">
-                "Talento puntual, buena actitud y cuidaron cada detalle del protocolo. En
-                menos de 24 horas teniamos el equipo listo."
-              </p>
-              <div className="mt-4 text-sm text-white/70">
-                Cliente corporativo (placeholder) - Panama
+            <div className="grid gap-4 md:grid-cols-2">
+              <div className="rounded-3xl border border-white/10 bg-gradient-to-br from-[#d4b200]/10 via-black to-black px-6 py-5 shadow-lg">
+                <p className="text-lg font-semibold text-white">Respuesta &lt; 1 hora</p>
+                <p className="mt-2 text-sm text-white/70">
+                  Canal directo para solicitudes urgentes y confirmacion rapida.
+                </p>
               </div>
-            </div>
-            <div className="rounded-3xl border border-white/10 bg-black/60 px-8 py-6 shadow-lg">
-              <p className="text-lg text-white/90">
-                "El equipo bilingue hizo que nuestros invitados internacionales se
-                sintieran atendidos y acompanados. Excelente coordinacion."
-              </p>
-              <div className="mt-4 text-sm text-white/70">Agencia BTL (placeholder)</div>
+              <div className="rounded-3xl border border-white/10 bg-gradient-to-br from-[#d4b200]/10 via-black to-black px-6 py-5 shadow-lg">
+                <p className="text-lg font-semibold text-white">Staff verificado</p>
+                <p className="mt-2 text-sm text-white/70">
+                  Identidad, presencia y puntualidad validadas antes de cada evento.
+                </p>
+              </div>
+              <div className="rounded-3xl border border-white/10 bg-gradient-to-br from-[#d4b200]/10 via-black to-black px-6 py-5 shadow-lg">
+                <p className="text-lg font-semibold text-white">Equipo listo &lt; 24h</p>
+                <p className="mt-2 text-sm text-white/70">
+                  Cobertura express para lanzamientos, ferias y activaciones.
+                </p>
+              </div>
+              <div className="rounded-3xl border border-white/10 bg-gradient-to-br from-[#d4b200]/10 via-black to-black px-6 py-5 shadow-lg">
+                <p className="text-lg font-semibold text-white">Cobertura nacional</p>
+                <p className="mt-2 text-sm text-white/70">
+                  Coordinamos transporte, dress code y briefing segun tu marca.
+                </p>
+              </div>
             </div>
           </div>
           <div

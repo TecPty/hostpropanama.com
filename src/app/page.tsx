@@ -92,14 +92,14 @@ export default function Home() {
           {/* Background Image with Blur */}
           <div className="absolute inset-0 z-0">
             <Image
-              src="/images/hero-image.png"
+              src="/images/hero-image-background.png"
               alt="Hero Background"
               fill
               className="object-cover"
               priority
             />
             {/* Blur Effect Layer */}
-            <div className="absolute inset-0 backdrop-blur-[14px]" />
+            <div className="absolute inset-0 backdrop-blur-[10px]" />
             {/* Dark Overlay */}
             <div className="absolute inset-0 bg-black/40" />
           </div>

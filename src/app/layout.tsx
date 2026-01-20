@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { Playfair_Display, Montserrat } from "next/font/google";
-import "./globals.css";
+import "@/styles/globals.css";
 
 const display = Playfair_Display({
   variable: "--font-display",
@@ -32,7 +32,7 @@ export const metadata: Metadata = {
     type: "website",
     images: [
       {
-        url: "/og-image.png",
+        url: "/seo/og-image.png",
         width: 1200,
         height: 630,
         alt: "HostPro Panamá - Staff premium para eventos corporativos",
@@ -44,7 +44,7 @@ export const metadata: Metadata = {
     title: "HOSTPRO PANAMÁ | Staff premium para eventos corporativos",
     description:
       "Azafatas, promotores y brand ambassadors verificados para marcas exigentes.",
-    images: ["/og-image.png"],
+    images: ["/seo/og-image.png"],
   },
 };
 

@@ -36,27 +36,29 @@ export default function Home() {
       <header className="fixed top-0 left-0 right-0 z-50 backdrop-blur-md border-b border-white/5 bg-black/70">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
           <Link href="/" className="flex items-center gap-2">
-            <Image src="/logos/logo.png" alt="HostPro Panamá - Staff premium para eventos corporativos" width={40} height={40} className="rounded" />
+            <Image src="/logos/logo.png" alt="HostPro Panamá - Staff premium para eventos corporativos" width={80} height={80} className="rounded" />
           </Link>
           
-          <nav className="hidden md:flex items-center gap-12">
-            <Link href="#galeria" className="text-sm font-bold uppercase tracking-widest hover:text-[#d4b200] transition-colors py-3 px-4 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#d4b200] focus-visible:rounded-md">Experiencias</Link>
-            <Link href="#servicios" className="text-sm font-bold uppercase tracking-widest hover:text-[#d4b200] transition-colors py-3 px-4 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#d4b200] focus-visible:rounded-md">Servicios</Link>
-            <Link href="#planes" className="text-sm font-bold uppercase tracking-widest hover:text-[#d4b200] transition-colors py-3 px-4 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#d4b200] focus-visible:rounded-md">Planes</Link>
-            <Link href="#contacto" className="text-sm font-bold uppercase tracking-widest hover:text-[#d4b200] transition-colors py-3 px-4 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#d4b200] focus-visible:rounded-md">Contacto</Link>
-          </nav>
+          <div className="flex items-center gap-12">
+            <nav className="hidden md:flex items-center gap-12">
+              <Link href="#galeria" className="text-sm font-bold uppercase tracking-widest hover:text-[#d4b200] transition-colors py-3 px-4 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#d4b200] focus-visible:rounded-md">Experiencias</Link>
+              <Link href="#servicios" className="text-sm font-bold uppercase tracking-widest hover:text-[#d4b200] transition-colors py-3 px-4 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#d4b200] focus-visible:rounded-md">Servicios</Link>
+              <Link href="#planes" className="text-sm font-bold uppercase tracking-widest hover:text-[#d4b200] transition-colors py-3 px-4 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#d4b200] focus-visible:rounded-md">Planes</Link>
+              <Link href="#contacto" className="text-sm font-bold uppercase tracking-widest hover:text-[#d4b200] transition-colors py-3 px-4 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#d4b200] focus-visible:rounded-md">Contacto</Link>
+            </nav>
 
-          <div className="flex items-center gap-4">
-            <Link href="https://instagram.com/hostpropanama" className="text-sm font-bold hover:text-[#d4b200] transition-colors p-2 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#d4b200] focus-visible:rounded-md" aria-label="Instagram de HostPro Panamá">
-              <Instagram className="h-5 w-5" />
-            </Link>
-            <motion.button
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-              className="bg-[#d4b200] text-black px-6 py-2 rounded-lg font-black text-xs uppercase tracking-wider"
-            >
-              <Link href="#contacto">Empieza Ahora</Link>
-            </motion.button>
+            <div className="flex items-center gap-4">
+              <Link href="https://instagram.com/hostpropanama" className="text-sm font-bold hover:text-[#d4b200] transition-colors p-2 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#d4b200] focus-visible:rounded-md" aria-label="Instagram de HostPro Panamá">
+                <Instagram className="h-5 w-5" />
+              </Link>
+              <motion.button
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+                className="bg-[#d4b200] text-black px-6 py-2 rounded-lg font-black text-xs uppercase tracking-wider"
+              >
+                <Link href="#contacto">Empieza Ahora</Link>
+              </motion.button>
+            </div>
           </div>
         </div>
       </header>
@@ -528,7 +530,7 @@ export default function Home() {
             <div className="grid grid-cols-2 md:grid-cols-4 gap-8 mb-12">
               <div className="col-span-2 md:col-span-1">
               <Link href="/" className="flex items-center gap-2 mb-6">
-                <Image src="/logos/logo.png" alt="HostPro Panamá - Staff premium para eventos corporativos" width={48} height={48} className="rounded" />
+                <Image src="/logos/logo.png" alt="HostPro Panamá - Staff premium para eventos corporativos" width={96} height={96} className="rounded" />
               </Link>
                 <p className="text-slate-400 text-sm leading-relaxed mb-6">
                   Líderes en staffing profesional para eventos corporativos y experiencias de impacto en Panamá.

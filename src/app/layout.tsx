@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Playfair_Display, Montserrat } from "next/font/google";
+import Script from "next/script";
 import "@/styles/globals.css";
 
 const display = Playfair_Display({
@@ -55,6 +56,21 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="es">
+      <head>
+        {/* Google Analytics */}
+        <Script
+          src="https://www.googletagmanager.com/gtag/js?id=G-78GZFZHZY9"
+          strategy="afterInteractive"
+        />
+        <Script id="google-analytics" strategy="afterInteractive">
+          {`
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', 'G-78GZFZHZY9');
+          `}
+        </Script>
+      </head>
       <body className={`${display.variable} ${montserrat.variable} antialiased`}>
         {children}
       </body>

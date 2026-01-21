@@ -4,19 +4,23 @@ export const services = [
     title: "Azafatas y modelos corporativos",
     description:
       "Presencia impecable para ferias, congresos, lanzamientos y eventos premium.",
+    image: "/images/azafatas-modelos-corporativos.png",
   },
   {
-    title: "Staff bilingue VIP",
-    description: "Talento capacitado en protocolo y atencion a invitados internacionales.",
+    title: "Staff bilingüe VIP",
+    description: "Talento capacitado en protocolo y atención a invitados internacionales.",
+    image: "/images/staff-bilingue.png",
   },
   {
     title: "Brand ambassadors y promotores",
     description: "Perfiles que comunican tu marca con seguridad y elegancia.",
+    image: "/images/brand-ambassadors.png",
   },
   {
     title: "Registro y hospitality",
     description:
-      "Recepcion, check-in, control de accesos y acompanamiento con calidez y precision.",
+      "Recepción, check-in, control de accesos y acompañamiento con calidez y precisión.",
+    image: "/images/registro.png",
   },
 ];
 
@@ -32,24 +36,24 @@ export const process = [
 // FAQs
 export const faqs = [
   {
-    q: "En cuanto tiempo responden una solicitud?",
-    a: "Respondemos en menos de 1 hora habil. Para urgencias, tienes WhatsApp directo +507 .",
+    q: "¿En cuánto tiempo responden una solicitud?",
+    a: "Respondemos en menos de 1 hora hábil. Para urgencias, tienes WhatsApp directo +507 6980-1194.",
   },
   {
-    q: "Cuentan con talento bilingue?",
-    a: "Si. Bilingue y perfiles con experiencia en protocolo, hospitality y marcas premium.",
+    q: "¿Cuentan con talento bilingüe?",
+    a: "Sí. Bilingüe y perfiles con experiencia en protocolo, hospitality y marcas premium.",
   },
   {
-    q: "Trabajan en todo Panama?",
-    a: "Cobertura nacional. Coordinamos transporte y uniformes segun el evento.",
+    q: "¿Trabajan en todo Panamá?",
+    a: "Cobertura nacional. Coordinamos transporte y uniformes según el evento.",
   },
   {
-    q: "Como manejan uniformes y dress code?",
-    a: "Nos adaptamos a tu guia. Podemos proveer propuestas de vestuario y briefing previo.",
+    q: "¿Cómo manejan uniformes y dress code?",
+    a: "Nos adaptamos a tu guía. Podemos proveer propuestas de vestuario y briefing previo.",
   },
   {
-    q: "Emiten factura y contratos?",
-    a: "Si. Facturacion y acuerdos de confidencialidad disponibles para clientes corporativos.",
+    q: "¿Emiten factura y contratos?",
+    a: "Sí. Facturación y acuerdos de confidencialidad disponibles para clientes corporativos.",
   },
 ];
 
@@ -58,31 +62,31 @@ export const talent = [
   {
     name: "Ghazi",
     role: "Host corporativo",
-    languages: "Espanol / Ingles",
+    languages: "Español / Inglés",
     photo: "/talent/ghazi.png",
   },
   {
     name: "Jean",
     role: "Brand ambassador",
-    languages: "Espanol / Ingles",
+    languages: "Español / Inglés",
     photo: "/talent/jean.png",
   },
   {
     name: "Vanessa",
     role: "Hospitality / Protocolo",
-    languages: "Espanol / Ingles",
+    languages: "Español / Inglés",
     photo: "/talent/vanessa.png",
   },
   {
     name: "Sofia",
     role: "Promotora premium",
-    languages: "Espanol",
+    languages: "Español",
     photo: "/talent/sofia.png",
   },
   {
     name: "Camila",
-    role: "Recepcion y check-in",
-    languages: "Espanol / Ingles",
+    role: "Recepción y check-in",
+    languages: "Español / Inglés",
     photo: "/talent/camila.png",
   },
 ];
@@ -100,42 +104,42 @@ export const gallery = [
 // Planes de servicio
 export const plans = [
   {
-    name: "Básico",
-    description: "Para eventos pequeños",
-    price: "A consultar",
+    name: "Pack 1",
+    description: "Evento Corporativo Básico",
+    price: "Desde $280",
     features: [
-      { name: "1-3 personas", included: true },
-      { name: "Evento puntual", included: true },
-      { name: "Uniforme básico", included: true },
-      { name: "Protocolo estándar", included: false },
-      { name: "Cobertura nacional", included: false },
+      { name: "2 modelos / staff profesional", included: true },
+      { name: "Jornada estándar (4-6 horas)", included: true },
+      { name: "Briefing previo + supervisión en sitio", included: true },
+      { name: "Uniforme corporativo incluido", included: true },
+      { name: "Respuesta en menos de 1 hora", included: true },
     ],
     cta: "Cotizar",
   },
   {
-    name: "Premium",
-    description: "Recomendado para corporativos",
-    price: "A consultar",
+    name: "Pack 2",
+    description: "Activación / BTL",
+    price: "Desde $480",
     featured: true,
     features: [
-      { name: "4-8 personas", included: true },
-      { name: "Multiples eventos", included: true },
-      { name: "Uniformes personalizados", included: true },
-      { name: "Protocolo VIP", included: true },
-      { name: "Cobertura nacional", included: true },
+      { name: "3-4 talentos especializados", included: true },
+      { name: "Capacitación previa del producto/servicio", included: true },
+      { name: "Imagen alineada a tu marca", included: true },
+      { name: "Coordinación completa y logística", included: true },
+      { name: "Reporte post-evento con métricas", included: true },
     ],
     cta: "Solicitar propuesta",
   },
   {
-    name: "Enterprise",
-    description: "Para marcas exigentes",
-    price: "Personalizado",
+    name: "Pack 3",
+    description: "Audiovisual / Spot",
+    price: "Desde $700",
     features: [
-      { name: "Staff ilimitado", included: true },
-      { name: "Eventos continuos", included: true },
-      { name: "Diseño de vestuario", included: true },
-      { name: "Protocolo + seguridad", included: true },
-      { name: "Soporte 24/7", included: true },
+      { name: "Casting dirigido personalizado", included: true },
+      { name: "1-3 modelos / actores profesionales", included: true },
+      { name: "Derechos de uso comercial incluidos", included: true },
+      { name: "Coordinación directa con productora", included: true },
+      { name: "Experiencia en producciones audiovisuales", included: true },
     ],
     cta: "Hablar directo",
   },

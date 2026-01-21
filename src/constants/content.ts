@@ -106,7 +106,7 @@ export const plans = [
   {
     name: "Pack 1",
     description: "Evento Corporativo Básico",
-    price: "Desde $280",
+    price: "$280",
     features: [
       { name: "2 modelos / staff profesional", included: true },
       { name: "Jornada estándar (4-6 horas)", included: true },
@@ -119,7 +119,7 @@ export const plans = [
   {
     name: "Pack 2",
     description: "Activación / BTL",
-    price: "Desde $480",
+    price: "$480",
     featured: true,
     features: [
       { name: "3-4 talentos especializados", included: true },
@@ -133,7 +133,7 @@ export const plans = [
   {
     name: "Pack 3",
     description: "Audiovisual / Spot",
-    price: "Desde $700",
+    price: "$700",
     features: [
       { name: "Casting dirigido personalizado", included: true },
       { name: "1-3 modelos / actores profesionales", included: true },

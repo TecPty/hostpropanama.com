@@ -15,7 +15,7 @@ const montserrat = Montserrat({
 export const metadata: Metadata = {
   title: "HOSTPRO PANAMÁ | Staff premium para eventos corporativos",
   description:
-    "Agencia de modelos y azafatas para eventos corporativos de lujo en Panamá. Talento verificado, respuesta inmediata y presencia impecable.",
+    "Staff profesional para eventos en Panamá: azafatas bilingües, hosts corporativos y promotores verificados. Respuesta en 1 hora. ¡Cotiza gratis tu evento ahora!",
   metadataBase: new URL("https://hostpropanama.com"),
   icons: {
     icon: "/favicon.ico",
@@ -25,7 +25,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "HOSTPRO PANAMÁ | Staff premium para eventos corporativos",
     description:
-      "Azafatas, promotores y brand ambassadors verificados para marcas exigentes.",
+      "Staff profesional bilingüe para eventos en Panamá. Azafatas, promotores y brand ambassadors verificados. Respuesta garantizada en 1 hora.",
     url: "https://hostpropanama.com",
     siteName: "HostPro Panamá",
     locale: "es_PA",
@@ -43,7 +43,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "HOSTPRO PANAMÁ | Staff premium para eventos corporativos",
     description:
-      "Azafatas, promotores y brand ambassadors verificados para marcas exigentes.",
+      "Staff profesional bilingüe para eventos en Panamá. Respuesta en 1 hora. Cotiza gratis tu evento.",
     images: ["/seo/og-image.png"],
   },
 };

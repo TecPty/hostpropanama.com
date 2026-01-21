@@ -14,21 +14,21 @@ import { Loader2, CheckCircle, AlertTriangle, Send } from "lucide-react";
 const leadSchema = z.object({
   name: z.string().min(2, "Nombre requerido"),
   company: z.string().min(2, "Empresa requerida"),
-  email: z.string().email("Email invalido"),
-  phone: z.string().min(6, "Telefono requerido"),
+  email: z.string().email("Email inválido"),
+  phone: z.string().min(6, "Teléfono requerido"),
   eventType: z.string().min(2, "Tipo de evento requerido"),
   date: z.string().optional(),
-  message: z.string().min(5, "Cuentanos mas del evento"),
+  message: z.string().min(5, "Cuéntanos más del evento"),
 });
 
 const talentSchema = z.object({
   name: z.string().min(2, "Nombre requerido"),
-  email: z.string().email("Email invalido"),
-  phone: z.string().min(6, "Telefono requerido"),
+  email: z.string().email("Email inválido"),
+  phone: z.string().min(6, "Teléfono requerido"),
   city: z.string().min(2, "Ciudad requerida"),
-  role: z.string().min(2, "Rol o posicion"),
+  role: z.string().min(2, "Rol o posición"),
   languages: z.string().min(2, "Idiomas"),
-  portfolio: z.string().url("Link invalido").optional().or(z.literal("")),
+  portfolio: z.string().url("Link inválido").optional().or(z.literal("")),
 });
 
 type LeadFormData = z.infer<typeof leadSchema>;
@@ -67,7 +67,9 @@ function TextInput<T extends FieldValues>(props: BaseInputProps<T>) {
   const { label, name, placeholder, register, error, type = "text" } = props;
   return (
     <label className="space-y-2">
-      <span className="text-sm text-white/80">{label}</span>
+      <span className="text-sm text-white/80">
+        {label} <span className="text-[#d4b200]">*</span>
+      </span>
       <input
         type={type}
         {...register(name)}
@@ -92,7 +94,9 @@ function TextArea<T extends FieldValues>(props: TextAreaProps<T>) {
   const { label, name, placeholder, register, error, rows = 4 } = props;
   return (
     <label className="space-y-2">
-      <span className="text-sm text-white/80">{label}</span>
+      <span className="text-sm text-white/80">
+        {label} <span className="text-[#d4b200]">*</span>
+      </span>
       <textarea
         {...register(name)}
         placeholder={placeholder}
@@ -162,7 +166,7 @@ export function LeadForm() {
           type="email"
         />
         <TextInput<LeadFormData>
-          label="Telefono / WhatsApp"
+          label="Teléfono / WhatsApp"
           name="phone"
           register={register}
           error={errors.phone?.message}
@@ -186,13 +190,16 @@ export function LeadForm() {
         />
       </div>
       <TextArea<LeadFormData>
-        label="Cuentanos sobre el evento"
+        label="Cuéntanos sobre el evento"
         name="message"
         register={register}
         error={errors.message?.message}
         rows={4}
-        placeholder="Numero de personas, horarios, dress code, idioma, ubicacion..."
+        placeholder="Ej: Necesito 4 azafatas bilingües para congreso médico el 15 de marzo, de 9am a 6pm, en Hotel Riu Plaza. Dress code: traje ejecutivo negro. Audiencia internacional."
       />
+      <p className="text-xs text-slate-400 italic mt-2">
+        <span className="text-[#d4b200]">*</span> Campos obligatorios
+      </p>
       <div className="mt-auto flex items-center justify-between pt-2">
         <StatusBadge state={state} />
         <button
@@ -206,7 +213,7 @@ export function LeadForm() {
             </>
           ) : (
             <>
-              Enviar solicitud <Send className="h-4 w-4" />
+              Solicitar Cotización <Send className="h-4 w-4" />
             </>
           )}
         </button>
@@ -256,7 +263,7 @@ export function TalentForm() {
           placeholder="Nombre y apellido"
         />
         <TextInput<TalentFormData>
-          label="Telefono / WhatsApp"
+          label="Teléfono / WhatsApp"
           name="phone"
           register={register}
           error={errors.phone?.message}
@@ -299,6 +306,9 @@ export function TalentForm() {
         error={errors.portfolio?.message}
         placeholder="https://..."
       />
+      <p className="text-xs text-slate-400 italic">
+        <span className="text-[#d4b200]">*</span> Campos obligatorios (excepto portafolio)
+      </p>
       <div className="mt-auto flex items-center justify-between pt-2">
         <StatusBadge state={state} />
         <button
@@ -312,7 +322,7 @@ export function TalentForm() {
             </>
           ) : (
             <>
-              Enviar aplicacion <Send className="h-4 w-4" />
+              Aplicar Ahora <Send className="h-4 w-4" />
             </>
           )}
         </button>

@@ -477,7 +477,7 @@ export default function Home() {
                   <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent z-10 group-hover:from-black/60 transition-all" />
                   <Image
                     src={photo}
-                    alt={`Staff profesional HostPro en evento corporativo - Portafolio ${idx + 1}`}
+                    alt={`Staff profesional HostPro en evento corporativo de alto nivel en Panamá`}
                     fill
                     sizes="(max-width: 768px) 50vw, (max-width: 1200px) 33vw, 25vw"
                     className="w-full h-full object-cover"

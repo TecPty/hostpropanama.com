@@ -20,7 +20,7 @@ export const services = [
     title: "Registro y hospitality",
     description:
       "Recepción, check-in, control de accesos y acompañamiento con calidez y precisión.",
-    image: "/images/registro.png",
+    image: "/images/register.png",
   },
 ];
 

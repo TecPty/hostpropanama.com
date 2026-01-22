@@ -69,7 +69,7 @@ export default function Home() {
           {/* Background Image with Blur */}
           <div className="absolute inset-0 z-0">
             <Image
-              src="/images/hero-image-background.png"
+              src="/images/hero-image.png"
               alt="Staff profesional de HostPro en evento corporativo de lujo en Panamá"
               fill
               className="object-cover"

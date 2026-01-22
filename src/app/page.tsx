@@ -239,8 +239,7 @@ export default function Home() {
 
                   <div>
                     <p className="text-4xl font-black text-white">
-                      <span className="text-xl align-top text-[#d4b200]">$</span>{plan.price.replace('$', '').split('/')[0]}
-                      <span className="text-sm text-slate-500 font-normal">/{plan.price.split('/')[1] || 'año'}</span>
+                      {plan.price}
                     </p>
                   </div>
 

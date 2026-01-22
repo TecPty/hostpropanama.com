@@ -4,17 +4,17 @@ export const services = [
     title: "Azafatas y modelos corporativos",
     description:
       "Presencia impecable para ferias, congresos, lanzamientos y eventos premium.",
-    image: "/images/azafatas-modelos-corporativos.png",
+    image: "/images/azafatas.png",
   },
   {
     title: "Staff bilingüe VIP",
     description: "Talento capacitado en protocolo y atención a invitados internacionales.",
-    image: "/images/staff-bilingue.png",
+    image: "/images/staff.png",
   },
   {
     title: "Brand ambassadors y promotores",
     description: "Perfiles que comunican tu marca con seguridad y elegancia.",
-    image: "/images/brand-ambassadors.png",
+    image: "/images/brand.png",
   },
   {
     title: "Registro y hospitality",

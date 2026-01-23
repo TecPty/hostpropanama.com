@@ -97,7 +97,7 @@ export default function Home() {
               transition={{ delay: 0.15 }}
               className="text-lg md:text-xl text-slate-300 max-w-2xl mx-auto mb-8"
             >
-              Staff profesional bilingüe para eventos corporativos en Panamá. Respuesta garantizada en menos de 1 hora.
+              Azafatas, modelos y staff profesional bilingüe para eventos corporativos, ferias y congresos en Ciudad de Panamá. Respuesta garantizada en menos de 1 hora.
             </motion.p>
 
             <motion.div
@@ -141,7 +141,7 @@ export default function Home() {
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="text-center mb-12">
               <span className="text-[#d4b200] font-bold uppercase tracking-[0.2em] text-xs">Servicios</span>
-              <h2 className="text-3xl md:text-4xl font-black uppercase tracking-tighter text-white mt-4">Staff Profesional para Eventos Corporativos en Panamá</h2>
+              <h2 className="text-3xl md:text-4xl font-black uppercase tracking-tighter text-white mt-4">Azafatas, Modelos y Staff Profesional para Eventos Corporativos, Ferias y Congresos en Panamá</h2>
             </div>
             
             <div className="space-y-20">

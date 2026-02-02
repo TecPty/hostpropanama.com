@@ -1,0 +1,28 @@
+Nombre,Descripción,Tipo,Prioridad,Estado,Estimación,Sprint,Dependencias,Categoría
+Crear lib/gtm.ts,Google Tag Manager centralizado con dataLayer y eventos personalizados,📝 Crear,🔴 Crítica,⏳ Pendiente,1.5,Sprint 1,,Tracking & Analytics
+Migrar GA de layout.tsx a GTM,Mover tracking de GA4 a GTM container,✏️ Actualizar,🔴 Crítica,⏳ Pendiente,1,Sprint 1,#1,Tracking & Analytics
+Crear lib/facebook-pixel.ts,Facebook Pixel con consentimiento GDPR y eventos personalizados,📝 Crear,🔴 Crítica,⏳ Pendiente,2,Sprint 2,#1,Tracking & Analytics
+Agregar variables de entorno,NEXT_PUBLIC_GTM_ID y NEXT_PUBLIC_META_PIXEL_ID en .env.local,🛠️ Implementar,🟠 Alta,⏳ Pendiente,0.5,Sprint 1,,Tracking & Analytics
+Implementar eventos de formulario,Track form_start form_submit form_success en LeadForm y TalentForm,🛠️ Implementar,🟠 Alta,⏳ Pendiente,1.5,Sprint 2,"#1, #2",Tracking & Analytics
+Implementar eventos de CTA,Track button_click con categorías para todos los CTAs,🛠️ Implementar,🟠 Alta,⏳ Pendiente,1,Sprint 2,#1,Tracking & Analytics
+Tracking de scroll depth,Eventos de scroll en 25% 50% 75% 100%,🛠️ Implementar,🟡 Media,⏳ Pendiente,1,Sprint 3,#1,Tracking & Analytics
+Tracking de WhatsApp clicks,outbound_link event para botones de WhatsApp,🛠️ Implementar,🟡 Media,⏳ Pendiente,0.5,Sprint 3,#1,Tracking & Analytics
+Crear app/sitemap.ts,Sitemap.xml dinámico para Next.js con todas las páginas,📝 Crear,🔴 Crítica,⏳ Pendiente,1,Sprint 1,,SEO Técnico
+Crear app/robots.ts,Robots.txt con reglas SEO y referencia a sitemap,📝 Crear,🔴 Crítica,⏳ Pendiente,0.5,Sprint 1,,SEO Técnico
+Crear lib/seo-schema.ts,Schema.org JSON-LD: Organization Service LocalBusiness,📝 Crear,🔴 Crítica,⏳ Pendiente,2,Sprint 1,,SEO Técnico
+Agregar canonical URLs,Agregar canonical en metadata de layout.tsx,✏️ Actualizar,🟠 Alta,⏳ Pendiente,0.5,Sprint 1,,SEO Técnico
+Crear schema para eventos,Event schema para servicios corporativos,📝 Crear,🟠 Alta,⏳ Pendiente,1.5,Sprint 3,#11,SEO Técnico
+Crear breadcrumbs schema,BreadcrumbList JSON-LD para navegación,📝 Crear,🟡 Media,⏳ Pendiente,1,Sprint 3,#11,SEO Técnico
+Optimizar meta descriptions,Revisar longitud 150-160 caracteres y keywords,🛠️ Implementar,🟡 Media,⏳ Pendiente,0.5,Sprint 3,,SEO Técnico
+Crear components/cookie-consent.tsx,Banner de cookies GDPR compliant con preferencias,📝 Crear,🔴 Crítica,⏳ Pendiente,2,Sprint 2,,Consentimiento & Cookies
+Integrar consentimiento con GTM,Disparar tags solo con consentimiento del usuario,🛠️ Implementar,🔴 Crítica,⏳ Pendiente,1.5,Sprint 2,"#1, #16",Consentimiento & Cookies
+Crear página de política de cookies,Página /cookies con detalle completo de tracking,📝 Crear,🟠 Alta,⏳ Pendiente,1,Sprint 3,#16,Consentimiento & Cookies
+Configurar Facebook Conversions API,Server-side tracking para formularios con Resend,🛠️ Implementar,🟠 Alta,⏳ Pendiente,2.5,Sprint 4,#3,Conversiones & Remarketing
+Implementar enhanced conversions GA4,Email hashing para mejor tracking de conversiones,🛠️ Implementar,🟠 Alta,⏳ Pendiente,1.5,Sprint 4,#2,Conversiones & Remarketing
+Configurar audiencias personalizadas,Para remarketing en Facebook y Google Ads,🛠️ Implementar,🟡 Media,⏳ Pendiente,1,Sprint 4,"#3, #5",Conversiones & Remarketing
+Testing GTM con preview mode,Validar todos los eventos en GTM preview,🧪 Testing,🟠 Alta,⏳ Pendiente,1,Sprint 5,"#1-8",Testing & Validación
+Validar Schema.org,Google Rich Results Test para todos los schemas,🧪 Testing,🟠 Alta,⏳ Pendiente,0.5,Sprint 5,"#11-14",Testing & Validación
+Lighthouse SEO audit,Score mayor a 90 en todas las métricas,🧪 Testing,🟠 Alta,⏳ Pendiente,1,Sprint 5,"#9-15",Testing & Validación
+Testing Meta Pixel Helper,Validar eventos de Facebook con extensión,🧪 Testing,🟡 Media,⏳ Pendiente,0.5,Sprint 5,"#3, #19",Testing & Validación
+Crear docs/TRACKING_GUIDE.md,Documentar eventos configuración y estructura GTM,📚 Documentación,🟡 Media,⏳ Pendiente,1,Sprint 5,"#1-8",Documentación
+Crear docs/SEO_CHECKLIST.md,Checklist de SEO para futuras páginas,📚 Documentación,🟡 Media,⏳ Pendiente,0.5,Sprint 5,"#9-15",Documentación

@@ -51,6 +51,9 @@ export default function Home() {
               <Link href="https://instagram.com/hostpropanama" className="text-sm font-bold hover:text-[#d4b200] transition-colors p-2 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#d4b200] focus-visible:rounded-md" aria-label="Instagram de HostPro Panamá">
                 <Instagram className="h-5 w-5" />
               </Link>
+              <Link href="https://tiktok.com/@hostpropanama" className="text-sm font-bold hover:text-[#d4b200] transition-colors p-2 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#d4b200] focus-visible:rounded-md" aria-label="TikTok de HostPro Panamá">
+                <Music2 className="h-5 w-5" />
+              </Link>
               <motion.button
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
@@ -110,7 +113,7 @@ export default function Home() {
                 Solicitar Staff
                 <ArrowRight className="h-4 w-4" />
               </Link>
-              <Link href="https://wa.me/50769801194" className="border-2 border-[#d4b200] text-[#d4b200] px-8 py-4 rounded-full font-black uppercase text-sm tracking-wider hover:bg-[#d4b200]/10 transition-colors inline-flex items-center justify-center gap-2 focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-[#d4b200]/50">
+              <Link href="https://wa.me/50769801194" className="bg-black text-[#d4b200] px-8 py-4 rounded-full font-black uppercase text-sm tracking-wider hover:scale-105 transition-transform inline-flex items-center justify-center gap-2 focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-[#d4b200]/50 border-2 border-[#d4b200]">
                 WhatsApp
                 <ArrowRight className="h-4 w-4" />
               </Link>

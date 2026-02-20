@@ -13,7 +13,6 @@
   --color-gold: var(--gold);
   --color-card: var(--card);
   --font-sans: var(--font-sans);
-  --font-display: var(--font-display);
 }
 
 body {
@@ -24,12 +23,13 @@ body {
 }
 
 .font-display {
-  font-family: var(--font-display), "Playfair Display", serif;
-  letter-spacing: -0.01em;
+  font-family: var(--font-sans), "Inter", sans-serif;
+  letter-spacing: -0.02em;
+  font-weight: 800;
 }
 
 .font-sans {
-  font-family: var(--font-sans), "Montserrat", sans-serif;
+  font-family: var(--font-sans), "Inter", sans-serif;
 }
 
 .container-tight {

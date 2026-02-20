@@ -7,17 +7,17 @@ export const services = [
     image: "/images/azafatas.png",
   },
   {
-    title: "Talento para Eventos Corporativos",
+    title: "Eventos Corporativos",
     description: "Perfiles bilingües especializados en protocolo, atención VIP y hospitalidad para invitados internacionales.",
     image: "/images/staff.png",
   },
   {
-    title: "Talento para Activaciones BTL",
+    title: "Activaciones BTL",
     description: "Brand ambassadors y promotores que comunican tu marca con autenticidad, seguridad y carisma.",
     image: "/images/brand.png",
   },
   {
-    title: "Talento para Producción Audiovisual",
+    title: "Producción Audiovisual",
     description:
       "Modelos, actores y presentadores profesionales para spots publicitarios, contenido digital y campañas de video.",
     image: "/images/register.png",

@@ -89,10 +89,10 @@ export default function Home() {
   return (
     <div className="relative overflow-hidden bg-[#0a0a0a] text-white">
       {/* HEADER */}
-      <header className="fixed top-0 left-0 right-0 z-50 backdrop-blur-md border-b border-white/5 bg-black/70">
+      <header className="fixed top-0 left-0 right-0 z-50 backdrop-blur-md border-b border-white/5">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
           <Link href="/" className="flex items-center gap-2">
-            <Image src="/logos/logo.png" alt="HostPro Panamá - Agencia de Talento para Experiencias de Marca y Eventos" width={80} height={80} className="rounded" />
+            <Image src="/logos/hostpro-logo.png" alt="HostPro Panamá - Agencia de Talento para Experiencias de Marca y Eventos" width={80} height={80} className="rounded" />
           </Link>
           
           <div className="flex items-center gap-12">
@@ -128,13 +128,13 @@ export default function Home() {
           {/* Background Image with Blur */}
           <div className="absolute inset-0 z-0">
             <Image
-              src="/images/hero-image.png"
+              src="/images/talent-hero.png"
               alt="Talento profesional de HostPro en evento corporativo de lujo en Panamá"
               fill
               className="object-cover"
               priority
             />
-            <div className="absolute inset-0 backdrop-blur-[10px]" />
+            <div className="absolute inset-0 backdrop-blur-[2.5px]" />
             <div className="absolute inset-0 bg-black/50" />
           </div>
 
@@ -159,7 +159,7 @@ export default function Home() {
               transition={{ delay: 0.15 }}
               className="text-lg md:text-xl text-slate-300 max-w-3xl mx-auto mb-8"
             >
-              Conectamos marcas con talento profesional verificado para crear experiencias memorables que generan resultados.
+              Conectamos marcas con profesionales verificados para crear experiencias memorables que generan resultados.
             </motion.p>
 
             <motion.div
@@ -169,7 +169,7 @@ export default function Home() {
               className="flex flex-col sm:flex-row gap-6 justify-center"
             >
               <Link href="#contacto" className="bg-[#d4b200] text-black px-8 py-4 rounded-full font-black uppercase text-sm tracking-wider hover:scale-105 transition-transform inline-flex items-center justify-center gap-2 focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-[#d4b200]/50">
-                Contratar Talento
+                Solicitar Cotización
                 <ArrowRight className="h-4 w-4" />
               </Link>
               <Link href="https://wa.me/50769801194" className="bg-black text-[#d4b200] px-8 py-4 rounded-full font-black uppercase text-sm tracking-wider hover:scale-105 transition-transform inline-flex items-center justify-center gap-2 focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-[#d4b200]/50 border-2 border-[#d4b200]">
@@ -188,7 +188,7 @@ export default function Home() {
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="text-center mb-12">
               <span className="text-[#d4b200] font-bold uppercase tracking-[0.2em] text-xs">Servicios</span>
-              <h2 className="text-3xl md:text-4xl font-black uppercase tracking-tighter text-white mt-4">Soluciones de Talento que Generan Resultados</h2>
+              <h2 className="text-3xl md:text-4xl font-black uppercase tracking-tighter text-white mt-4">Servicios que Generan Resultados</h2>
               <p className="text-lg text-slate-400 mt-6 max-w-3xl mx-auto">
                 Conectamos a tu marca con profesionales verificados especializados en experiencias de marca, eventos corporativos y producción audiovisual para generar impacto real.
               </p>
@@ -213,7 +213,7 @@ export default function Home() {
                     <ul className="space-y-3">
                       <li className="flex items-center gap-3 text-slate-300">
                         <Check className="h-5 w-5 text-[#d4b200] flex-shrink-0" />
-                        Talento verificado y capacitado
+                        Profesionales verificados y capacitados
                       </li>
                       <li className="flex items-center gap-3 text-slate-300">
                         <Check className="h-5 w-5 text-[#d4b200] flex-shrink-0" />
@@ -384,7 +384,7 @@ export default function Home() {
             </div>
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
               {[
-                { title: "Análisis", desc: "Analizamos tu proyecto para identificar el talento ideal que necesitas." },
+                { title: "Análisis", desc: "Analizamos tu proyecto para identificar los perfiles ideales que necesitas." },
                 { title: "Casting", desc: "Selección rigurosa de perfiles alineados a tu marca y objetivos." },
                 { title: "Preparación", desc: "Capacitación y briefing personalizado para garantizar excelencia." },
                 { title: "Ejecución", desc: "Gestión completa con supervisión en sitio y seguimiento de resultados." },
@@ -512,7 +512,7 @@ export default function Home() {
                     Trabaja con las Mejores Marcas de Panamá
                   </h2>
                   <p className="text-slate-300">
-                    Buscamos talento con presencia profesional, actitud proactiva y pasión por crear experiencias memorables. ¿Te unes?
+                    Buscamos profesionales con presencia impecable, actitud proactiva y pasión por crear experiencias memorables. ¿Te unes?
                   </p>
                 </div>
                 <div className="rounded-3xl border border-white/10 bg-slate-900 p-8">
@@ -534,7 +534,7 @@ export default function Home() {
             >
               <p className="text-sm uppercase tracking-[0.3em] text-[#d4b200] font-semibold">Galería</p>
               <h2 className="text-2xl md:text-4xl font-black text-white">
-                Nuestro Talento en Acción
+                Nuestro Equipo en Acción
               </h2>
             </motion.div>
 
@@ -608,7 +608,7 @@ export default function Home() {
             <div className="grid grid-cols-2 md:grid-cols-4 gap-8 mb-12">
               <div className="col-span-2 md:col-span-1">
               <Link href="/" className="flex items-center gap-2 mb-6">
-                <Image src="/logos/logo.png" alt="HostPro Panamá - Agencia de Talento para Experiencias de Marca" width={96} height={96} className="rounded" />
+                <Image src="/logos/hostpro-logo.png" alt="HostPro Panamá - Agencia de Talento para Experiencias de Marca" width={96} height={96} className="rounded" />
               </Link>
                 <p className="text-slate-400 text-sm leading-relaxed mb-6">
                   Agencia líder en talento profesional para experiencias de marca, eventos corporativos y producción audiovisual en Panamá.

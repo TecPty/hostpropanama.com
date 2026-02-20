@@ -1,5 +1,6 @@
 "use client";
 
+import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import {
   ArrowRight,
@@ -36,9 +37,10 @@ const VisionMisionTabs = () => {
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-12">
           {/* Visión */}
           <motion.div
-            initial={{ opacity: 0, x: -20 }}
+            initial={{ opacity: 0, x: -100 }}
             whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
+            transition={{ duration: 1.8, ease: "easeOut" }}
+            viewport={{ once: false, amount: 0.3 }}
             className="bg-black/40 border border-white/10 rounded-2xl p-8 lg:p-10 hover:border-[#d4b200]/50 transition-all duration-300 hover:shadow-lg hover:shadow-[#d4b200]/10"
           >
             <div className="mb-6">
@@ -59,9 +61,10 @@ const VisionMisionTabs = () => {
 
           {/* Misión */}
           <motion.div
-            initial={{ opacity: 0, x: 20 }}
+            initial={{ opacity: 0, x: 100 }}
             whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
+            transition={{ duration: 1.8, ease: "easeOut", delay: 0.3 }}
+            viewport={{ once: false, amount: 0.3 }}
             className="bg-black/40 border border-white/10 rounded-2xl p-8 lg:p-10 hover:border-[#d4b200]/50 transition-all duration-300 hover:shadow-lg hover:shadow-[#d4b200]/10"
           >
             <div className="mb-6">
@@ -86,169 +89,227 @@ const VisionMisionTabs = () => {
 };
 
 export default function Home() {
+  const [activeTab, setActiveTab] = useState<'booking' | 'activaciones'>('booking');
+  const [showNav, setShowNav] = useState(true);
+  const [lastScrollY, setLastScrollY] = useState(0);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const currentScrollY = window.scrollY;
+      
+      if (currentScrollY < 10) {
+        // Always show navbar at the top
+        setShowNav(true);
+      } else if (currentScrollY > lastScrollY) {
+        // Scrolling down - hide navbar
+        setShowNav(false);
+      } else {
+        // Scrolling up - show navbar
+        setShowNav(true);
+      }
+      
+      setLastScrollY(currentScrollY);
+    };
+
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+    };
+  }, [lastScrollY]);
+
   return (
     <div className="relative overflow-hidden bg-[#0a0a0a] text-white">
       {/* HEADER */}
-      <header className="fixed top-0 left-0 right-0 z-50 backdrop-blur-md border-b border-white/5">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+      <header className={`fixed top-0 left-0 right-0 z-50 transition-transform duration-300 ${
+        showNav ? 'translate-y-0' : '-translate-y-full'
+      }`}>
+        <div className="max-w-7xl mx-auto px-6 md:px-12 h-24 flex items-center justify-between">
+          {/* Logo - PNG */}
           <Link href="/" className="flex items-center gap-2">
-            <Image src="/logos/hostpro-logo.png" alt="HostPro Panamá - Agencia de Talento para Experiencias de Marca y Eventos" width={80} height={80} className="rounded" />
+            <Image 
+              src="/logos/hostpro-logo-horizontal.png" 
+              alt="HostPro Panamá" 
+              width={540} 
+              height={135} 
+              className="h-[108px] md:h-[126px] w-auto"
+            />
           </Link>
           
-          <div className="flex items-center gap-12">
-            <nav className="hidden md:flex items-center gap-12">
-              <Link href="#galeria" className="text-sm font-bold uppercase tracking-widest hover:text-[#d4b200] transition-colors py-3 px-4 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#d4b200] focus-visible:rounded-md">Experiencias</Link>
-              <Link href="#servicios" className="text-sm font-bold uppercase tracking-widest hover:text-[#d4b200] transition-colors py-3 px-4 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#d4b200] focus-visible:rounded-md">Servicios</Link>
-              <Link href="#planes" className="text-sm font-bold uppercase tracking-widest hover:text-[#d4b200] transition-colors py-3 px-4 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#d4b200] focus-visible:rounded-md">Planes</Link>
-              <Link href="#contacto" className="text-sm font-bold uppercase tracking-widest hover:text-[#d4b200] transition-colors py-3 px-4 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#d4b200] focus-visible:rounded-md">Contacto</Link>
+          <div className="flex items-center gap-8">
+            {/* Navigation */}
+            <nav className="hidden lg:flex items-center gap-8">
+              <Link href="#galeria" className="text-xs font-bold uppercase tracking-[0.15em] text-white/70 hover:text-white transition-colors">Modelos</Link>
+              <Link href="#servicios" className="text-xs font-bold uppercase tracking-[0.15em] text-white/70 hover:text-white transition-colors">Servicios</Link>
+              <Link href="#planes" className="text-xs font-bold uppercase tracking-[0.15em] text-white/70 hover:text-white transition-colors">Planes</Link>
+              <Link href="#contacto" className="text-xs font-bold uppercase tracking-[0.15em] text-white/70 hover:text-white transition-colors">Contacto</Link>
             </nav>
 
-            <div className="flex items-center gap-4">
-              <Link href="https://instagram.com/hostpropanama" className="text-sm font-bold hover:text-[#d4b200] transition-colors p-2 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#d4b200] focus-visible:rounded-md" aria-label="Instagram de HostPro Panamá">
-                <Instagram className="h-5 w-5" />
-              </Link>
-              <Link href="https://tiktok.com/@hostpropanama" className="text-sm font-bold hover:text-[#d4b200] transition-colors p-2 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#d4b200] focus-visible:rounded-md" aria-label="TikTok de HostPro Panamá">
-                <Music2 className="h-5 w-5" />
-              </Link>
-              <motion.button
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-                className="bg-[#d4b200] text-black px-6 py-2 rounded-lg font-black text-xs uppercase tracking-wider"
-              >
-                <Link href="#contacto">Empieza Ahora</Link>
-              </motion.button>
-            </div>
+            {/* CTA Button */}
+            <Link 
+              href="#contacto"
+              className="bg-[#d4b200] text-black px-6 py-3 font-black uppercase text-xs tracking-[0.15em] hover:bg-white transition-colors"
+            >
+              Cotizar
+            </Link>
           </div>
         </div>
       </header>
 
       <main className="relative">
         {/* HERO SECTION */}
-        <section className="relative h-screen flex items-center justify-center overflow-hidden px-6 pt-16">
-          {/* Background Image with Blur */}
-          <div className="absolute inset-0 z-0">
+        <section className="relative h-screen flex items-center justify-center overflow-hidden">
+          {/* Background Image - Mobile */}
+          <div className="absolute inset-0 z-0 md:hidden">
             <Image
-              src="/images/talent-hero.png"
+              src="/images/hero-mobile.png"
               alt="Talento profesional de HostPro en evento corporativo de lujo en Panamá"
               fill
               className="object-cover"
               priority
+              quality={100}
             />
-            <div className="absolute inset-0 backdrop-blur-[2.5px]" />
-            <div className="absolute inset-0 bg-black/50" />
+            <div className="absolute inset-0 bg-black/5" />
           </div>
 
-          {/* Content - Centered */}
-          <div className="relative z-10 max-w-5xl mx-auto w-full text-center">
+          {/* Background Image - Desktop */}
+          <div className="absolute inset-0 z-0 hidden md:block">
+            <Image
+              src="/images/hero-desktop.png"
+              alt="Talento profesional de HostPro en evento corporativo de lujo en Panamá"
+              fill
+              className="object-cover"
+              priority
+              quality={100}
+            />
+            <div className="absolute inset-0 bg-black/5" />
+          </div>
+
+          {/* Content - Left Aligned */}
+          <div className="relative z-10 max-w-7xl mx-auto w-full px-6 md:px-12">
             <motion.div
-              initial={{ opacity: 0, y: 20 }}
+              initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
-              className="mb-6"
+              transition={{ duration: 0.8 }}
             >
-              <h1 className="font-display text-2xl md:text-3xl lg:text-4xl font-black uppercase leading-tight tracking-tight mb-8">
-                <span className="block text-white">Somos una agencia de talento para</span>
-                <span className="block text-[#d4b200]">experiencia de marca,</span>
-                <span className="block text-white">eventos corporativos y</span>
-                <span className="block text-[#d4b200]">producción audiovisual.</span>
+              {/* Main Title - Ultra Bold */}
+              <h1 className="font-black uppercase leading-[0.85] mb-12 translate-y-[20%]">
+                <span className="block text-white text-[48px] md:text-[78px] lg:text-[105px] tracking-tight">HOSTPRO</span>
+                <span className="block text-[#d4b200] text-[48px] md:text-[78px] lg:text-[105px] tracking-tight">PANAMÁ</span>
               </h1>
-            </motion.div>
 
-            <motion.p
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.15 }}
-              className="text-lg md:text-xl text-slate-300 max-w-3xl mx-auto mb-8"
-            >
-              Conectamos marcas con profesionales verificados para crear experiencias memorables que generan resultados.
-            </motion.p>
+              {/* Subtitle - Bold with spacing */}
+              <motion.p
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ delay: 0.3, duration: 0.8 }}
+                className="text-[#d4b200] text-base md:text-lg lg:text-xl font-black uppercase tracking-tight mb-12 max-w-3xl border-l-4 border-[#d4b200] pl-6"
+              >
+                Somos una agencia de talento para experiencia de marca, eventos corporativos y producción audiovisual.
+              </motion.p>
 
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.25 }}
-              className="flex flex-col sm:flex-row gap-6 justify-center"
-            >
-              <Link href="#contacto" className="bg-[#d4b200] text-black px-8 py-4 rounded-full font-black uppercase text-sm tracking-wider hover:scale-105 transition-transform inline-flex items-center justify-center gap-2 focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-[#d4b200]/50">
-                Solicitar Cotización
-                <ArrowRight className="h-4 w-4" />
-              </Link>
-              <Link href="https://wa.me/50769801194" className="bg-black text-[#d4b200] px-8 py-4 rounded-full font-black uppercase text-sm tracking-wider hover:scale-105 transition-transform inline-flex items-center justify-center gap-2 focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-[#d4b200]/50 border-2 border-[#d4b200]">
-                WhatsApp
-                <ArrowRight className="h-4 w-4" />
-              </Link>
+              {/* Description */}
+              <motion.p
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ delay: 0.5, duration: 0.8 }}
+                className="text-white/80 text-sm md:text-base max-w-2xl mb-16 leading-relaxed"
+              >
+                Conectamos marcas con profesionales verificados para crear experiencias memorables que generan resultados.
+              </motion.p>
+
+              {/* CTA Button */}
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.7 }}
+              >
+                <Link 
+                  href="#contacto" 
+                  className="inline-flex items-center gap-3 bg-[#d4b200] text-black px-10 py-5 font-black uppercase text-xs md:text-sm tracking-[0.15em] hover:scale-105 transition-transform focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-[#d4b200]/50"
+                >
+                  Cotizar ahora
+                  <ArrowRight className="h-5 w-5" />
+                </Link>
+              </motion.div>
             </motion.div>
           </div>
+
+          {/* Scroll Indicator */}
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ delay: 1.2 }}
+            className="absolute bottom-8 left-1/2 -translate-x-1/2 z-10"
+          >
+            <div className="flex flex-col items-center gap-2">
+              <span className="text-white/60 text-xs uppercase tracking-widest">Scroll</span>
+              <div className="w-[1px] h-16 bg-gradient-to-b from-white/60 to-transparent" />
+            </div>
+          </motion.div>
         </section>
 
         {/* VISIÓN Y MISIÓN SECTION - TABS */}
         <VisionMisionTabs />
 
         {/* SERVICIOS SECTION */}
-        <section id="servicios" className="py-16 bg-black">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="text-center mb-12">
+        <section id="servicios" className="py-32 bg-black border-t border-white/10">
+          <div className="max-w-7xl mx-auto px-6 md:px-12">
+            {/* Section Header */}
+            <div className="mb-20">
               <span className="text-[#d4b200] font-bold uppercase tracking-[0.2em] text-xs">Servicios</span>
-              <h2 className="text-3xl md:text-4xl font-black uppercase tracking-tighter text-white mt-4">Servicios que Generan Resultados</h2>
-              <p className="text-lg text-slate-400 mt-6 max-w-3xl mx-auto">
-                Conectamos a tu marca con profesionales verificados especializados en experiencias de marca, eventos corporativos y producción audiovisual para generar impacto real.
-              </p>
+              <h2 className="text-4xl md:text-6xl font-black uppercase tracking-tight text-white mt-4 leading-[0.9]">
+                SOLUCIÓN INTEGRAL<br />
+                <span className="text-[#d4b200]">360°</span>
+              </h2>
             </div>
             
-            <div className="space-y-20">
+            {/* Services Grid */}
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-16">
               {services.map((service, idx) => (
                 <motion.div
                   key={service.title}
-                  className={`flex flex-col ${idx % 2 === 1 ? 'md:flex-row-reverse' : 'md:flex-row'} items-center gap-8 lg:gap-16`}
-                  initial={{ opacity: 0, y: 20 }}
+                  initial={{ opacity: 0, y: 30 }}
                   whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true, amount: 0.3 }}
-                  transition={{ duration: 0.6 }}
+                  viewport={{ once: true, amount: 0.2 }}
+                  transition={{ duration: 0.6, delay: idx * 0.1 }}
+                  className="group border-l-2 border-[#d4b200] pl-6 hover:border-white transition-colors"
                 >
-                  <div className="flex-1 space-y-6">
-                    <div className="inline-block bg-[#d4b200] text-black font-black px-4 py-2 text-lg rounded-md">
-                      {String(idx + 1).padStart(2, "0")}
-                    </div>
-                    <h3 className="text-2xl md:text-3xl font-black text-white uppercase tracking-tight">{service.title}</h3>
-                    <p className="text-slate-300 text-lg leading-relaxed">{service.description}</p>
-                    <ul className="space-y-3">
-                      <li className="flex items-center gap-3 text-slate-300">
-                        <Check className="h-5 w-5 text-[#d4b200] flex-shrink-0" />
-                        Profesionales verificados y capacitados
-                      </li>
-                      <li className="flex items-center gap-3 text-slate-300">
-                        <Check className="h-5 w-5 text-[#d4b200] flex-shrink-0" />
-                        Perfiles alineados a tu marca
-                      </li>
-                      <li className="flex items-center gap-3 text-slate-300">
-                        <Check className="h-5 w-5 text-[#d4b200] flex-shrink-0" />
-                        Resultados medibles y garantizados
-                      </li>
-                    </ul>
-                    <Link 
-                      href="#contacto" 
-                      className="inline-flex items-center gap-2 text-[#d4b200] font-bold uppercase text-sm tracking-wider hover:gap-4 transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#d4b200] focus-visible:rounded-md py-2"
-                    >
-                      Ver detalles <ArrowRight className="h-4 w-4" />
-                    </Link>
+                  {/* Number */}
+                  <span className="text-white/20 font-black text-5xl md:text-6xl leading-none">
+                    {String(idx + 1).padStart(2, "0")}
+                  </span>
+
+                  {/* Title */}
+                  <h3 className="text-2xl md:text-3xl font-black text-white uppercase tracking-tight mt-4 mb-4 leading-tight">
+                    {service.title}
+                  </h3>
+
+                  {/* Description */}
+                  <p className="text-white/60 text-sm leading-relaxed mb-6">
+                    {service.description}
+                  </p>
+
+                  {/* Benefits - Simplified */}
+                  <div className="space-y-2 mb-6">
+                    {service.benefits.map((benefit, benefitIdx) => (
+                      <div key={benefitIdx} className="flex items-center gap-2 text-white/80 text-xs">
+                        <div className="w-1 h-1 bg-[#d4b200]" />
+                        {benefit}
+                      </div>
+                    ))}
                   </div>
-                  
-                  <motion.div 
-                    className="flex-1 w-full"
-                    initial={{ opacity: 0, scale: 0.95 }}
-                    whileInView={{ opacity: 1, scale: 1 }}
-                    viewport={{ once: true }}
-                  >
-                    <div className="aspect-video rounded-3xl overflow-hidden border border-white/10 bg-slate-900 relative group">
-                      <Image
-                        src={service.image}
-                        alt={`${service.title} - Talento profesional de HostPro Panamá en acción`}
-                        fill
-                        sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 600px"
-                        className="w-full h-full object-cover opacity-80 group-hover:scale-105 transition-transform duration-700"
-                      />
-                      <div className="absolute inset-0 bg-gradient-to-tr from-black/60 to-transparent"></div>
-                    </div>
-                  </motion.div>
+
+                  {/* Image - Hidden on mobile for cleaner look */}
+                  <div className="hidden md:block aspect-[4/3] relative overflow-hidden bg-white/5 mt-8 group-hover:scale-[1.02] transition-transform duration-500">
+                    <Image
+                      src={service.image}
+                      alt={service.title}
+                      fill
+                      sizes="(max-width: 768px) 100vw, 50vw"
+                      className="object-cover opacity-60 group-hover:opacity-80 transition-opacity"
+                    />
+                  </div>
                 </motion.div>
               ))}
             </div>
@@ -350,29 +411,44 @@ export default function Home() {
         </section>
 
         {/* CTA SECTION */}
-        <section className="bg-[#d4b200] py-16 overflow-hidden relative">
-          <div className="max-w-7xl mx-auto px-4 text-center">
+        <section className="min-h-screen flex items-center justify-center overflow-hidden relative bg-black">
+          {/* Background Image */}
+          <div className="absolute inset-0 z-0">
+            <Image
+              src="/images/talent-model.avif"
+              alt="Talento profesional HostPro Panamá"
+              fill
+              className="object-cover opacity-40"
+            />
+          </div>
+
+          {/* Content - Centered with space distribution */}
+          <div className="relative z-10 max-w-6xl mx-auto px-6 md:px-12 text-center">
             <motion.div
-              initial={{ opacity: 0, y: 20 }}
+              initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, amount: 0.3 }}
-              className="space-y-8"
+              transition={{ duration: 0.8 }}
             >
-              <h2 className="text-2xl md:text-4xl font-black text-black uppercase mb-6 leading-tight">
-                No uses a tus colaboradores. Usa los modelos de HostPro Panamá y conectarás mejor con tu consumidor.
+              {/* Main CTA Title - Ultra Bold */}
+              <h2 className="text-2xl md:text-4xl lg:text-5xl font-black text-white uppercase leading-[1.1] mb-16 tracking-tight">
+                No uses a tus colaboradores. <br className="hidden md:block" />
+                Usa los modelos de <span className="text-[#d4b200]">HostPro Panamá</span> y conectarás mejor con tu consumidor.
               </h2>
-              <p className="text-black/80 font-medium mb-10 max-w-xl mx-auto text-lg">
-                Agendemos una reunión estratégica.
-              </p>
+
+              {/* CTA Button - Premium Style */}
               <Link 
                 href="#contacto"
-                className="bg-black text-white px-10 py-5 rounded-full font-black uppercase tracking-widest hover:scale-105 transition-transform inline-flex items-center gap-2 focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-black/30"
+                className="inline-flex items-center gap-4 bg-[#d4b200] text-black px-12 py-6 font-black uppercase text-xs md:text-sm tracking-[0.2em] hover:bg-white transition-colors mt-8"
               >
-                Solicitar Cotización Gratis
+                Agendemos una reunión estratégica
                 <ArrowRight className="h-5 w-5" />
               </Link>
             </motion.div>
           </div>
+
+          {/* Decorative Line */}
+          <div className="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-[#d4b200] to-transparent" />
         </section>
 
         {/* METODOLOGÍA SECTION */}
@@ -407,162 +483,283 @@ export default function Home() {
         </section>
 
         {/* CONTACTO SECTION */}
-        <section id="contacto" className="py-16 bg-slate-900/30 border-y border-white/5">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-              <motion.div
-                initial={{ opacity: 0, x: -20 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                viewport={{ once: true }}
+        <section id="contacto" className="py-32 bg-[#f5f5f5]">
+          <div className="max-w-7xl mx-auto px-6 md:px-12">
+            {/* Tabs Header */}
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-12">
+              <button
+                onClick={() => setActiveTab('booking')}
+                className={`py-8 px-6 font-black text-xl md:text-2xl uppercase tracking-tight transition-all duration-300 ${
+                  activeTab === 'booking'
+                    ? 'bg-[#d4b200] text-black border-2 border-[#d4b200] scale-105 shadow-2xl shadow-[#d4b200]/40'
+                    : 'bg-black/5 text-black/40 border-2 border-black/10 hover:border-[#d4b200]/50 hover:bg-black/10 scale-100'
+                }`}
               >
-                <h2 className="text-3xl md:text-4xl font-black uppercase mb-6 text-white">
-                  Contacto
-                </h2>
-                <p className="text-xl text-slate-300 mb-8 max-w-md italic">
-                  Agendemos una reunión estratégica.
-                </p>
-                <div className="space-y-4 text-slate-300">
-                  <div className="flex items-center gap-4">
-                    <Mail className="h-5 w-5 text-[#d4b200] bg-[#d4b200]/10 p-2 rounded-lg" style={{width: '32px', height: '32px'}} />
-                    <span>contacto@hostpropanama.com</span>
-                  </div>
-                  <div className="flex items-center gap-4">
-                    <Phone className="h-5 w-5 text-[#d4b200] bg-[#d4b200]/10 p-2 rounded-lg" style={{width: '32px', height: '32px'}} />
-                    <span>+507 6980-1194</span>
-                  </div>
-                  <div className="flex items-center gap-4 pt-2">
-                    <Instagram className="h-5 w-5 text-[#d4b200] bg-[#d4b200]/10 p-2 rounded-lg" style={{width: '32px', height: '32px'}} />
-                    <a href="https://instagram.com/hostpropanama" target="_blank" rel="noopener noreferrer" className="hover:text-[#d4b200] transition-colors">
-                      @hostpropanama
+                <span className="block mb-1">BOOKING</span>
+                <span className={`block text-xs font-semibold tracking-[0.15em] ${
+                  activeTab === 'booking' ? 'text-black/80' : 'text-black/30'
+                }`}>
+                  BAILARÍN, MODERADOR, MODELO
+                </span>
+              </button>
+
+              <button
+                onClick={() => setActiveTab('activaciones')}
+                className={`py-8 px-6 font-black text-xl md:text-2xl uppercase tracking-tight transition-all duration-300 ${
+                  activeTab === 'activaciones'
+                    ? 'bg-[#d4b200] text-black border-2 border-[#d4b200] scale-105 shadow-2xl shadow-[#d4b200]/40'
+                    : 'bg-black/5 text-black/40 border-2 border-black/10 hover:border-[#d4b200]/50 hover:bg-black/10 scale-100'
+                }`}
+              >
+                <span className="block mb-1">ACTIVACIONES BTL</span>
+                <span className={`block text-xs font-semibold tracking-[0.15em] ${
+                  activeTab === 'activaciones' ? 'text-black/80' : 'text-black/30'
+                }`}>
+                  TIPO DE EVENTO, LOCACIÓN, TIPO DE ACTIVACIÓN
+                </span>
+              </button>
+            </div>
+
+            {/* Form Content */}
+            <div className="grid grid-cols-1 lg:grid-cols-3 gap-12">
+              {/* Left Column - Contact Info */}
+              <div className="border-l-4 border-[#d4b200] pl-6">
+                <h3 className="text-2xl font-black uppercase mb-6 text-black">
+                  DIRECT CONTACT
+                </h3>
+                
+                <div className="space-y-6">
+                  <div>
+                    <p className="text-xs uppercase tracking-[0.2em] text-[#a0a0a0] font-bold mb-2">
+                      BOOKING DESK
+                    </p>
+                    <a 
+                      href="mailto:contacto@hostpropanama.com"
+                      className="text-base font-black text-black hover:text-[#d4b200] transition-colors"
+                    >
+                      contacto@hostpropanama.com
                     </a>
                   </div>
-                </div>
-              </motion.div>
-              
-              <motion.div
-                initial={{ opacity: 0, x: 20 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                viewport={{ once: true }}
-                className="bg-slate-900 p-8 md:p-12 rounded-[2rem] border border-white/10"
-              >
-                <LeadForm />
-              </motion.div>
-            </div>
-          </div>
-        </section>
 
-        {/* TALENTO SECTION */}
-        <section className="py-16 bg-black">
-          <div className="max-w-7xl mx-auto px-4">
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-              {/* Talento */}
-              <motion.div 
-                initial={{ opacity: 0, x: -20 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                viewport={{ once: true }}
-                id="talento"
-                className="rounded-3xl border border-white/10 bg-slate-900 p-8"
-              >
-                <div className="flex items-center gap-2 mb-6">
-                  <Sparkles className="h-5 w-5 text-[#d4b200]" />
-                  <p className="text-sm uppercase tracking-[0.3em] text-[#d4b200] font-semibold">
-                    Talento destacado
-                  </p>
-                </div>
-                <div className="space-y-3">
-                  {talent.map((person) => (
-                    <motion.div
-                      key={person.name}
-                      initial={{ opacity: 0, y: 10 }}
-                      whileInView={{ opacity: 1, y: 0 }}
-                      whileHover={{ x: 4 }}
-                      className="flex items-center gap-4 rounded-2xl border border-white/10 bg-black/40 px-4 py-3 hover:border-[#d4b200]/30 transition-all"
+                  <div>
+                    <p className="text-xs uppercase tracking-[0.2em] text-[#a0a0a0] font-bold mb-2">
+                      WHATSAPP
+                    </p>
+                    <a 
+                      href="https://wa.me/50769801194"
+                      className="text-xl font-black text-black hover:text-[#d4b200] transition-colors"
                     >
-                      <div className="relative h-14 w-14 overflow-hidden rounded-full border border-[#d4b200]/40 bg-black/60 shrink-0">
-                        <Image
-                          src={`/talent/${person.name.toLowerCase()}.png`}
-                          alt={`${person.name} - ${person.role} bilingüe de HostPro Panamá`}
-                          fill
-                          className="w-full h-full object-cover"
-                          sizes="56px"
+                      +507 6980-1194
+                    </a>
+                  </div>
+
+                  <div className="pt-4 border-t border-black/10">
+                    <p className="text-xs uppercase tracking-[0.2em] text-[#a0a0a0] font-bold mb-3">
+                      CERTIFICACIÓN
+                    </p>
+                    <p className="text-sm text-black/70 leading-relaxed">
+                      Trabajamos exclusivamente con talento profesional verificado.
+                      Facturación inmediata.
+                    </p>
+                  </div>
+                </div>
+              </div>
+
+              {/* Right Column - Form */}
+              <div className="lg:col-span-2">
+                {/* Banner Indicador */}
+                <div className="bg-[#f9f3d9] border-l-4 border-[#d4b200] px-6 py-4 mb-8 flex items-center gap-3">
+                  <div className="bg-black rounded-full p-2">
+                    <svg className="w-5 h-5 text-[#d4b200]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                    </svg>
+                  </div>
+                  <span className="text-sm font-black uppercase tracking-wide text-black">
+                    {activeTab === 'booking' ? 'COTIZANDO BOOKING DE TALENTO' : 'COTIZANDO ACTIVACIÓN BTL'}
+                  </span>
+                </div>
+
+                {/* Form */}
+                <form className="space-y-6">
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div>
+                      <label htmlFor="marca" className="block text-xs font-black uppercase tracking-[0.15em] text-black mb-3">
+                        MARCA / CLIENTE *
+                      </label>
+                      <input
+                        id="marca"
+                        type="text"
+                        required
+                        className="w-full bg-white border-2 border-black/20 px-4 py-3 text-black focus:border-[#d4b200] focus:outline-none transition-colors"
+                      />
+                    </div>
+
+                    <div>
+                      <label htmlFor="email" className="block text-xs font-black uppercase tracking-[0.15em] text-black mb-3">
+                        EMAIL DE CONTACTO *
+                      </label>
+                      <input
+                        id="email"
+                        type="email"
+                        required
+                        className="w-full bg-white border-2 border-black/20 px-4 py-3 text-black focus:border-[#d4b200] focus:outline-none transition-colors"
+                      />
+                    </div>
+                  </div>
+
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div>
+                      <label htmlFor="telefono" className="block text-xs font-black uppercase tracking-[0.15em] text-black mb-3">
+                        TELÉFONO / CELULAR *
+                      </label>
+                      <input
+                        id="telefono"
+                        type="tel"
+                        required
+                        className="w-full bg-white border-2 border-black/20 px-4 py-3 text-black focus:border-[#d4b200] focus:outline-none transition-colors"
+                      />
+                    </div>
+
+                    <div>
+                      <label htmlFor="tipo" className="block text-xs font-black uppercase tracking-[0.15em] text-black mb-3">
+                        {activeTab === 'booking' ? 'TIPO DE TALENTO' : 'TIPO DE EVENTO'}
+                      </label>
+                      <select id="tipo" className="w-full bg-white border-2 border-black/20 px-4 py-3 text-black focus:border-[#d4b200] focus:outline-none transition-colors">
+                        {activeTab === 'booking' ? (
+                          <>
+                            <option>Bailarín</option>
+                            <option>Moderador</option>
+                            <option>Modelo</option>
+                          </>
+                        ) : (
+                          <>
+                            <option>Lanzamiento de producto</option>
+                            <option>Evento corporativo</option>
+                            <option>Feria comercial</option>
+                            <option>Promoción en punto de venta</option>
+                          </>
+                        )}
+                      </select>
+                    </div>
+                  </div>
+
+                  {activeTab === 'activaciones' && (
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                      <div>
+                        <label htmlFor="locacion" className="block text-xs font-black uppercase tracking-[0.15em] text-black mb-3">
+                          LOCACIÓN
+                        </label>
+                        <input
+                          id="locacion"
+                          type="text"
+                          placeholder="Ciudad de Panamá, Colón, etc."
+                          className="w-full bg-white border-2 border-black/20 px-4 py-3 text-black focus:border-[#d4b200] focus:outline-none transition-colors"
                         />
                       </div>
-                      <div className="flex-1 min-w-0">
-                        <p className="text-sm font-semibold text-white">{person.name}</p>
-                        <p className="text-xs text-white/70">{person.role}</p>
-                        <p className="text-xs uppercase tracking-[0.2em] text-[#d4b200]">
-                          {person.languages}
-                        </p>
-                      </div>
-                    </motion.div>
-                  ))}
-                </div>
-              </motion.div>
 
-              {/* Unirse al equipo */}
-              <motion.div 
-                initial={{ opacity: 0, x: 20 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                viewport={{ once: true }}
-                className="space-y-6"
-              >
-                <div className="space-y-3">
-                  <p className="text-sm uppercase tracking-[0.3em] text-[#d4b200] font-semibold">Únete al equipo</p>
-                  <h2 className="text-2xl font-black text-white">
-                    Trabaja con las Mejores Marcas de Panamá
-                  </h2>
-                  <p className="text-slate-300">
-                    Buscamos profesionales con presencia impecable, actitud proactiva y pasión por crear experiencias memorables. ¿Te unes?
-                  </p>
-                </div>
-                <div className="rounded-3xl border border-white/10 bg-slate-900 p-8">
-                  <TalentForm />
-                </div>
-              </motion.div>
+                      <div>
+                        <label htmlFor="activacion" className="block text-xs font-black uppercase tracking-[0.15em] text-black mb-3">
+                          TIPO DE ACTIVACIÓN
+                        </label>
+                        <select id="activacion" className="w-full bg-white border-2 border-black/20 px-4 py-3 text-black focus:border-[#d4b200] focus:outline-none transition-colors">
+                          <option>Sampling</option>
+                          <option>Demostración</option>
+                          <option>Experiencial</option>
+                          <option>Roadshow</option>
+                        </select>
+                      </div>
+                    </div>
+                  )}
+
+                  <div>
+                    <label htmlFor="brief" className="block text-xs font-black uppercase tracking-[0.15em] text-black mb-3">
+                      BRIEF CREATIVO / VOLUMEN
+                    </label>
+                    <textarea
+                      id="brief"
+                      rows={4}
+                      placeholder="Describe cantidad de personal, estética buscada, fechas, etc..."
+                      className="w-full bg-white border-2 border-black/20 px-4 py-3 text-black focus:border-[#d4b200] focus:outline-none transition-colors resize-none"
+                    />
+                  </div>
+
+                  <button
+                    type="submit"
+                    className="w-full bg-black text-white py-4 px-8 font-black uppercase text-sm tracking-[0.15em] hover:bg-[#d4b200] hover:text-black transition-all"
+                  >
+                    Enviar solicitud
+                  </button>
+                </form>
+              </div>
             </div>
           </div>
         </section>
 
         {/* GALERÍA SECTION */}
-        <section id="galeria" className="py-16 px-6 overflow-hidden bg-slate-900/30">
-          <div className="max-w-7xl mx-auto">
+        <section id="galeria" className="py-32 bg-black border-t border-white/10">
+          <div className="max-w-7xl mx-auto px-6 md:px-12">
+            {/* Section Header */}
             <motion.div 
-              className="space-y-3 mb-16 text-center"
+              className="mb-16"
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
             >
-              <p className="text-sm uppercase tracking-[0.3em] text-[#d4b200] font-semibold">Galería</p>
-              <h2 className="text-2xl md:text-4xl font-black text-white">
-                Nuestro Equipo en Acción
+              <p className="text-xs uppercase tracking-[0.2em] text-[#d4b200] font-bold mb-4">Portfolio</p>
+              <h2 className="text-4xl md:text-6xl font-black text-white uppercase tracking-tight leading-[0.9]">
+                NEW<br />
+                <span className="text-[#d4b200]">FACES</span>
               </h2>
             </motion.div>
 
-            <div className="grid gap-3 md:gap-4 grid-cols-2 md:grid-cols-3 lg:grid-cols-4 auto-rows-[200px] md:auto-rows-[250px]">
+            {/* Grid - Premium Style */}
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6">
               {gallery.map((photo, idx) => (
                 <motion.div
                   key={idx}
-                  initial={{ opacity: 0, scale: 0.9 }}
-                  whileInView={{ opacity: 1, scale: 1 }}
-                  transition={{ delay: idx * 0.05 }}
-                  viewport={{ once: true }}
-                  className="group relative overflow-hidden rounded-xl md:rounded-2xl border border-white/10 bg-black/40 hover:border-[#d4b200]/40 transition-all"
-                  style={{
-                    gridColumn: idx === 0 ? "span 2" : idx === 1 ? "span 1" : undefined,
-                    gridRow: idx === 0 ? "span 2" : undefined,
-                  }}
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  transition={{ delay: idx * 0.05, duration: 0.5 }}
+                  viewport={{ once: true, amount: 0.2 }}
+                  className="group relative aspect-[3/4] overflow-hidden bg-white/5"
                 >
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent z-10 group-hover:from-black/60 transition-all" />
+                  {/* Image */}
                   <Image
                     src={photo}
-                    alt={`Staff profesional HostPro en evento corporativo de alto nivel en Panamá`}
+                    alt={`Talento profesional HostPro`}
                     fill
-                    sizes="(max-width: 768px) 50vw, (max-width: 1200px) 33vw, 25vw"
-                    className="w-full h-full object-cover"
+                    sizes="(max-width: 768px) 50vw, 25vw"
+                    className="object-cover grayscale group-hover:grayscale-0 group-hover:scale-105 transition-all duration-700"
                   />
+                  
+                  {/* Overlay - Minimal */}
+                  <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-all duration-500" />
+                  
+                  {/* Number Badge - Top Right */}
+                  <div className="absolute top-4 right-4 bg-black/80 backdrop-blur-sm px-3 py-1">
+                    <span className="text-white font-black text-xs tracking-wider">
+                      {String(idx + 1).padStart(2, "0")}
+                    </span>
+                  </div>
                 </motion.div>
               ))}
             </div>
+
+            {/* View All Link */}
+            <motion.div
+              initial={{ opacity: 0 }}
+              whileInView={{ opacity: 1 }}
+              viewport={{ once: true }}
+              className="mt-12 text-center"
+            >
+              <Link 
+                href="#contacto"
+                className="inline-flex items-center gap-3 text-white/60 hover:text-white uppercase text-xs tracking-[0.15em] font-bold transition-colors"
+              >
+                Ver catálogo completo
+                <ArrowRight className="h-4 w-4" />
+              </Link>
+            </motion.div>
           </div>
         </section>
 

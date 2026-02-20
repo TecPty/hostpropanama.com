@@ -14,10 +14,10 @@ const montserrat = Montserrat({
 });
 
 export const metadata: Metadata = {
-  title: "Azafatas y Staff para Eventos en Panamá | HOSTPRO",
+  title: "Agencia de Talento para Experiencias de Marca y Eventos | HostPro Panamá",
   description:
-    "Contratar azafatas, modelos y staff profesional para eventos corporativos en Ciudad de Panamá. Personal bilingüe verificado para ferias, congresos y lanzamientos. Respuesta en 1 hora. ¡Cotiza gratis!",
-  keywords: ["azafatas panamá", "staff eventos panamá", "modelos corporativos panamá", "personal para eventos", "azafatas bilingües", "staff ferias panamá", "promotores panama", "brand ambassadors", "eventos corporativos"],
+    "Agencia líder en talento profesional para experiencias de marca, eventos corporativos y producción audiovisual en Panamá. Conectamos tu marca con talento verificado y especializado. Respuesta en 1 hora. ¡Cotiza gratis!",
+  keywords: ["agencia talento panamá", "talento eventos panamá", "experiencias de marca", "producción audiovisual", "eventos corporativos panamá", "modelos profesionales", "brand ambassadors", "casting panamá", "talento corporativo"],
   metadataBase: new URL("https://hostpropanama.com"),
   icons: {
     icon: "/favicon.ico",
@@ -25,9 +25,9 @@ export const metadata: Metadata = {
     apple: "/favicon.ico",
   },
   openGraph: {
-    title: "Azafatas y Staff para Eventos Corporativos en Panamá | HOSTPRO",
+    title: "Agencia de Talento Profesional en Panamá | HostPro",
     description:
-      "Contratar azafatas profesionales, modelos y staff bilingüe para eventos corporativos, ferias y congresos en Ciudad de Panamá. Personal verificado con respuesta en 1 hora.",
+      "Conectamos tu marca con talento profesional para experiencias de marca, eventos corporativos y producción audiovisual. Perfiles verificados y resultados garantizados.",
     url: "https://hostpropanama.com",
     siteName: "HostPro Panamá",
     locale: "es_PA",
@@ -37,15 +37,15 @@ export const metadata: Metadata = {
         url: "/seo/og-image.png",
         width: 1200,
         height: 630,
-        alt: "HostPro Panamá - Staff premium para eventos corporativos",
+        alt: "HostPro Panamá - Agencia de Talento Profesional para Experiencias de Marca",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "HOSTPRO PANAMÁ | Staff premium para eventos corporativos",
+    title: "HostPro Panamá | Agencia de Talento Profesional",
     description:
-      "Staff profesional bilingüe para eventos en Panamá. Respuesta en 1 hora. Cotiza gratis tu evento.",
+      "Talento profesional para experiencias de marca, eventos corporativos y producción audiovisual. Respuesta en 1 hora. Cotiza gratis.",
     images: ["/seo/og-image.png"],
   },
 };

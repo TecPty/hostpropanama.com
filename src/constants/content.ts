@@ -1,25 +1,25 @@
 // Servicios
 export const services = [
   {
-    title: "Azafatas y modelos corporativos",
+    title: "Talento para Experiencias de Marca",
     description:
-      "Presencia impecable para ferias, congresos, lanzamientos y eventos premium.",
+      "Profesionales capacitados para representar tu marca en ferias, congresos, lanzamientos y eventos premium con presencia impecable.",
     image: "/images/azafatas.png",
   },
   {
-    title: "Staff bilingüe VIP",
-    description: "Talento capacitado en protocolo y atención a invitados internacionales.",
+    title: "Talento para Eventos Corporativos",
+    description: "Perfiles bilingües especializados en protocolo, atención VIP y hospitalidad para invitados internacionales.",
     image: "/images/staff.png",
   },
   {
-    title: "Brand ambassadors y promotores",
-    description: "Perfiles que comunican tu marca con seguridad y elegancia.",
+    title: "Talento para Activaciones BTL",
+    description: "Brand ambassadors y promotores que comunican tu marca con autenticidad, seguridad y carisma.",
     image: "/images/brand.png",
   },
   {
-    title: "Registro y hospitality",
+    title: "Talento para Producción Audiovisual",
     description:
-      "Recepción, check-in, control de accesos y acompañamiento con calidez y precisión.",
+      "Modelos, actores y presentadores profesionales para spots publicitarios, contenido digital y campañas de video.",
     image: "/images/register.png",
   },
 ];
@@ -108,10 +108,10 @@ export const plans = [
     description: "Evento Corporativo Básico",
     price: "$280",
     features: [
-      { name: "2 modelos / staff profesional", included: true },
+      { name: "2 talentos profesionales verificados", included: true },
       { name: "Jornada estándar (4-6 horas)", included: true },
       { name: "Briefing previo + supervisión en sitio", included: true },
-      { name: "Uniforme corporativo incluido", included: true },
+      { name: "Imagen alineada a tu marca", included: true },
       { name: "Respuesta en menos de 1 hora", included: true },
     ],
     cta: "Cotizar",
@@ -124,7 +124,7 @@ export const plans = [
     features: [
       { name: "3-4 talentos especializados", included: true },
       { name: "Capacitación previa del producto/servicio", included: true },
-      { name: "Imagen alineada a tu marca", included: true },
+      { name: "Perfiles alineados a identidad de marca", included: true },
       { name: "Coordinación completa y logística", included: true },
       { name: "Reporte post-evento con métricas", included: true },
     ],
@@ -136,7 +136,7 @@ export const plans = [
     price: "$700",
     features: [
       { name: "Casting dirigido personalizado", included: true },
-      { name: "1-3 modelos / actores profesionales", included: true },
+      { name: "1-3 talentos profesionales (modelos/actores)", included: true },
       { name: "Derechos de uso comercial incluidos", included: true },
       { name: "Coordinación directa con productora", included: true },
       { name: "Experiencia en producciones audiovisuales", included: true },

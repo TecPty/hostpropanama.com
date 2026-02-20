@@ -29,6 +29,62 @@ const ChevronIcon = () => (
   <ChevronDown className="h-5 w-5 group-open:rotate-180 transition-transform duration-300" />
 );
 
+const VisionMisionTabs = () => {
+  return (
+    <section className="py-20 bg-slate-900/30 border-y border-white/5">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-12">
+          {/* Visión */}
+          <motion.div
+            initial={{ opacity: 0, x: -20 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            className="bg-black/40 border border-white/10 rounded-2xl p-8 lg:p-10 hover:border-[#d4b200]/50 transition-all duration-300 hover:shadow-lg hover:shadow-[#d4b200]/10"
+          >
+            <div className="mb-6">
+              <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-[#d4b200]/10 border-2 border-[#d4b200] mb-4">
+                <Star className="w-8 h-8 text-[#d4b200]" />
+              </div>
+              <span className="text-[#d4b200] font-bold uppercase tracking-[0.2em] text-xs block mb-3">
+                Nuestra Visión
+              </span>
+              <h2 className="text-xl md:text-2xl font-black uppercase leading-tight text-white mb-4">
+                Convertirnos en la agencia de referencia en Panamá para la gestión de talento operativo
+              </h2>
+            </div>
+            <p className="text-slate-300 leading-relaxed">
+              En eventos, contenido y experiencias de marca. Reconocida por elevar el estándar de representación profesional y por construir relaciones sostenibles entre marcas y talento.
+            </p>
+          </motion.div>
+
+          {/* Misión */}
+          <motion.div
+            initial={{ opacity: 0, x: 20 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            className="bg-black/40 border border-white/10 rounded-2xl p-8 lg:p-10 hover:border-[#d4b200]/50 transition-all duration-300 hover:shadow-lg hover:shadow-[#d4b200]/10"
+          >
+            <div className="mb-6">
+              <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-[#d4b200]/10 border-2 border-[#d4b200] mb-4">
+                <Zap className="w-8 h-8 text-[#d4b200]" />
+              </div>
+              <span className="text-[#d4b200] font-bold uppercase tracking-[0.2em] text-xs block mb-3">
+                Nuestra Misión
+              </span>
+              <h3 className="text-xl md:text-2xl font-black uppercase leading-tight text-white mb-4">
+                Garantizar que las marcas se representen de forma profesional, coherente y confiable
+              </h3>
+            </div>
+            <p className="text-slate-300 leading-relaxed">
+              En cada punto de contacto con el público, mediante la selección, preparación y gestión de talento operativo alineado a su identidad, mensaje y contexto.
+            </p>
+          </motion.div>
+        </div>
+      </div>
+    </section>
+  );
+};
+
 export default function Home() {
   return (
     <div className="relative overflow-hidden bg-[#0a0a0a] text-white">
@@ -36,7 +92,7 @@ export default function Home() {
       <header className="fixed top-0 left-0 right-0 z-50 backdrop-blur-md border-b border-white/5 bg-black/70">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
           <Link href="/" className="flex items-center gap-2">
-            <Image src="/logos/logo.png" alt="HostPro Panamá - Staff premium para eventos corporativos" width={80} height={80} className="rounded" />
+            <Image src="/logos/logo.png" alt="HostPro Panamá - Agencia de Talento para Experiencias de Marca y Eventos" width={80} height={80} className="rounded" />
           </Link>
           
           <div className="flex items-center gap-12">
@@ -73,7 +129,7 @@ export default function Home() {
           <div className="absolute inset-0 z-0">
             <Image
               src="/images/hero-image.png"
-              alt="Staff profesional de HostPro en evento corporativo de lujo en Panamá"
+              alt="Talento profesional de HostPro en evento corporativo de lujo en Panamá"
               fill
               className="object-cover"
               priority
@@ -84,23 +140,26 @@ export default function Home() {
 
           {/* Content - Centered */}
           <div className="relative z-10 max-w-5xl mx-auto w-full text-center">
-            <motion.h1
+            <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              className="font-display text-4xl md:text-5xl lg:text-6xl font-black uppercase italic leading-tight tracking-tighter mb-6"
+              className="mb-6"
             >
-              <span className="block text-white">NO IMPROVISAMOS</span>
-              <span className="block text-[#d4b200]">EXPERIENCIAS,</span>
-              <span className="block text-white">LAS DISEÑAMOS</span>
-            </motion.h1>
+              <h1 className="font-display text-2xl md:text-3xl lg:text-4xl font-black uppercase leading-tight tracking-tight mb-8">
+                <span className="block text-white">Somos una agencia de talento para</span>
+                <span className="block text-[#d4b200]">experiencia de marca,</span>
+                <span className="block text-white">eventos corporativos y</span>
+                <span className="block text-[#d4b200]">producción audiovisual.</span>
+              </h1>
+            </motion.div>
 
             <motion.p
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.15 }}
-              className="text-lg md:text-xl text-slate-300 max-w-2xl mx-auto mb-8"
+              className="text-lg md:text-xl text-slate-300 max-w-3xl mx-auto mb-8"
             >
-              Azafatas, modelos y staff profesional bilingüe para eventos corporativos, ferias y congresos en Ciudad de Panamá. Respuesta garantizada en menos de 1 hora.
+              Conectamos marcas con talento profesional verificado para crear experiencias memorables que generan resultados.
             </motion.p>
 
             <motion.div
@@ -110,7 +169,7 @@ export default function Home() {
               className="flex flex-col sm:flex-row gap-6 justify-center"
             >
               <Link href="#contacto" className="bg-[#d4b200] text-black px-8 py-4 rounded-full font-black uppercase text-sm tracking-wider hover:scale-105 transition-transform inline-flex items-center justify-center gap-2 focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-[#d4b200]/50">
-                Solicitar Staff
+                Contratar Talento
                 <ArrowRight className="h-4 w-4" />
               </Link>
               <Link href="https://wa.me/50769801194" className="bg-black text-[#d4b200] px-8 py-4 rounded-full font-black uppercase text-sm tracking-wider hover:scale-105 transition-transform inline-flex items-center justify-center gap-2 focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-[#d4b200]/50 border-2 border-[#d4b200]">
@@ -121,30 +180,18 @@ export default function Home() {
           </div>
         </section>
 
-        {/* VISIÓN SECTION */}
-        <section className="py-16 bg-slate-900/30 border-y border-white/5">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              className="space-y-6"
-            >
-              <span className="text-[#d4b200] font-bold uppercase tracking-[0.2em] text-xs">Nuestra Visión</span>
-              <h2 className="text-2xl md:text-4xl font-black uppercase italic leading-tight max-w-4xl mx-auto text-white">
-                Diseñamos <span className="text-[#d4b200]">experiencias de impacto</span> con staff de clase mundial.
-              </h2>
-              <div className="h-1 w-24 bg-[#d4b200] mx-auto"></div>
-            </motion.div>
-          </div>
-        </section>
+        {/* VISIÓN Y MISIÓN SECTION - TABS */}
+        <VisionMisionTabs />
 
         {/* SERVICIOS SECTION */}
         <section id="servicios" className="py-16 bg-black">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="text-center mb-12">
               <span className="text-[#d4b200] font-bold uppercase tracking-[0.2em] text-xs">Servicios</span>
-              <h2 className="text-3xl md:text-4xl font-black uppercase tracking-tighter text-white mt-4">Azafatas, Modelos y Staff Profesional para Eventos Corporativos, Ferias y Congresos en Panamá</h2>
+              <h2 className="text-3xl md:text-4xl font-black uppercase tracking-tighter text-white mt-4">Soluciones de Talento que Generan Resultados</h2>
+              <p className="text-lg text-slate-400 mt-6 max-w-3xl mx-auto">
+                Conectamos a tu marca con profesionales verificados especializados en experiencias de marca, eventos corporativos y producción audiovisual para generar impacto real.
+              </p>
             </div>
             
             <div className="space-y-20">
@@ -166,15 +213,15 @@ export default function Home() {
                     <ul className="space-y-3">
                       <li className="flex items-center gap-3 text-slate-300">
                         <Check className="h-5 w-5 text-[#d4b200] flex-shrink-0" />
-                        Personal verificado y capacitado
+                        Talento verificado y capacitado
                       </li>
                       <li className="flex items-center gap-3 text-slate-300">
                         <Check className="h-5 w-5 text-[#d4b200] flex-shrink-0" />
-                        Disponibilidad inmediata
+                        Perfiles alineados a tu marca
                       </li>
                       <li className="flex items-center gap-3 text-slate-300">
                         <Check className="h-5 w-5 text-[#d4b200] flex-shrink-0" />
-                        Atención al detalle garantizada
+                        Resultados medibles y garantizados
                       </li>
                     </ul>
                     <Link 
@@ -194,7 +241,7 @@ export default function Home() {
                     <div className="aspect-video rounded-3xl overflow-hidden border border-white/10 bg-slate-900 relative group">
                       <Image
                         src={service.image}
-                        alt={`${service.title} - Staff profesional de HostPro Panamá en acción durante evento corporativo`}
+                        alt={`${service.title} - Talento profesional de HostPro Panamá en acción`}
                         fill
                         sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 600px"
                         className="w-full h-full object-cover opacity-80 group-hover:scale-105 transition-transform duration-700"
@@ -279,6 +326,29 @@ export default function Home() {
           </div>
         </section>
 
+        {/* VALUE PROPOSITION SECTION */}
+        <section className="py-20 bg-gradient-to-br from-slate-900 to-black border-y border-white/10">
+          <div className="max-w-6xl mx-auto px-4 text-center">
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, amount: 0.3 }}
+              className="space-y-8"
+            >
+              <div className="inline-flex items-center gap-2 bg-[#d4b200]/10 px-6 py-3 rounded-full border border-[#d4b200]/20">
+                <Shield className="h-5 w-5 text-[#d4b200]" />
+                <span className="text-[#d4b200] font-bold uppercase tracking-wider text-sm">Garantía de Excelencia</span>
+              </div>
+              <h2 className="text-3xl md:text-5xl font-black text-white leading-tight max-w-4xl mx-auto">
+                Si <span className="text-[#d4b200]">HostPro</span> está en tu proyecto,
+              </h2>
+              <p className="text-2xl md:text-3xl text-slate-300 font-medium max-w-3xl mx-auto italic">
+                la experiencia humana no será un problema, todo fluirá con excelencia.
+              </p>
+            </motion.div>
+          </div>
+        </section>
+
         {/* CTA SECTION */}
         <section className="bg-[#d4b200] py-16 overflow-hidden relative">
           <div className="max-w-7xl mx-auto px-4 text-center">
@@ -289,10 +359,10 @@ export default function Home() {
               className="space-y-8"
             >
               <h2 className="text-2xl md:text-4xl font-black text-black uppercase mb-6 leading-tight">
-                ¿LISTO PARA GARANTIZAR EL ÉXITO DE TU EVENTO?
+                No uses a tus colaboradores. Usa los modelos de HostPro Panamá y conectarás mejor con tu consumidor.
               </h2>
               <p className="text-black/80 font-medium mb-10 max-w-xl mx-auto text-lg">
-                Confía tu staffing a profesionales verificados y enfócate en crear una experiencia memorable para tus invitados.
+                Agendemos una reunión estratégica.
               </p>
               <Link 
                 href="#contacto"
@@ -314,10 +384,10 @@ export default function Home() {
             </div>
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
               {[
-                { title: "Análisis", desc: "Analizamos cada evento para diseñar la arquitectura de staff ideal." },
-                { title: "Diseño", desc: "Diseñamos perfiles personalizados pensados en tus objetivos." },
-                { title: "Estrategia", desc: "Implementamos soluciones tácticas que optimizan resultados." },
-                { title: "Ejecución", desc: "Despliegue ágil con monitoreo proactivo durante todo el evento." },
+                { title: "Análisis", desc: "Analizamos tu proyecto para identificar el talento ideal que necesitas." },
+                { title: "Casting", desc: "Selección rigurosa de perfiles alineados a tu marca y objetivos." },
+                { title: "Preparación", desc: "Capacitación y briefing personalizado para garantizar excelencia." },
+                { title: "Ejecución", desc: "Gestión completa con supervisión en sitio y seguimiento de resultados." },
               ].map((item, idx) => (
                 <motion.div
                   key={item.title}
@@ -345,11 +415,11 @@ export default function Home() {
                 whileInView={{ opacity: 1, x: 0 }}
                 viewport={{ once: true }}
               >
-                <h2 className="text-3xl md:text-4xl font-black uppercase mb-6 italic text-white">
-                  Cotiza tu evento <br/><span className="text-[#d4b200] italic">en menos de 1 hora</span>
+                <h2 className="text-3xl md:text-4xl font-black uppercase mb-6 text-white">
+                  Contacto
                 </h2>
-                <p className="text-slate-300 mb-8 max-w-md">
-                  Envíanos tus requerimientos y nuestro equipo se pondrá en contacto en menos de 1 hora.
+                <p className="text-xl text-slate-300 mb-8 max-w-md italic">
+                  Agendemos una reunión estratégica.
                 </p>
                 <div className="space-y-4 text-slate-300">
                   <div className="flex items-center gap-4">
@@ -359,6 +429,12 @@ export default function Home() {
                   <div className="flex items-center gap-4">
                     <Phone className="h-5 w-5 text-[#d4b200] bg-[#d4b200]/10 p-2 rounded-lg" style={{width: '32px', height: '32px'}} />
                     <span>+507 6980-1194</span>
+                  </div>
+                  <div className="flex items-center gap-4 pt-2">
+                    <Instagram className="h-5 w-5 text-[#d4b200] bg-[#d4b200]/10 p-2 rounded-lg" style={{width: '32px', height: '32px'}} />
+                    <a href="https://instagram.com/hostpropanama" target="_blank" rel="noopener noreferrer" className="hover:text-[#d4b200] transition-colors">
+                      @hostpropanama
+                    </a>
                   </div>
                 </div>
               </motion.div>
@@ -436,7 +512,7 @@ export default function Home() {
                     Trabaja con las Mejores Marcas de Panamá
                   </h2>
                   <p className="text-slate-300">
-                    Staff con presencia impecable, puntualidad y actitud proactiva. Envía tu aplicación.
+                    Buscamos talento con presencia profesional, actitud proactiva y pasión por crear experiencias memorables. ¿Te unes?
                   </p>
                 </div>
                 <div className="rounded-3xl border border-white/10 bg-slate-900 p-8">
@@ -458,7 +534,7 @@ export default function Home() {
             >
               <p className="text-sm uppercase tracking-[0.3em] text-[#d4b200] font-semibold">Galería</p>
               <h2 className="text-2xl md:text-4xl font-black text-white">
-                Nuestro Staff en Eventos Corporativos Reales
+                Nuestro Talento en Acción
               </h2>
             </motion.div>
 
@@ -500,7 +576,7 @@ export default function Home() {
               viewport={{ once: true }}
             >
               <p className="text-sm uppercase tracking-[0.3em] text-[#d4b200] font-semibold">Soporte</p>
-              <h2 className="text-3xl font-black text-white">Preguntas Frecuentes sobre Nuestro Staff</h2>
+              <h2 className="text-3xl font-black text-white">Preguntas Frecuentes sobre Nuestros Servicios</h2>
             </motion.div>
 
             <div className="max-w-4xl mx-auto space-y-4">
@@ -532,10 +608,10 @@ export default function Home() {
             <div className="grid grid-cols-2 md:grid-cols-4 gap-8 mb-12">
               <div className="col-span-2 md:col-span-1">
               <Link href="/" className="flex items-center gap-2 mb-6">
-                <Image src="/logos/logo.png" alt="HostPro Panamá - Staff premium para eventos corporativos" width={96} height={96} className="rounded" />
+                <Image src="/logos/logo.png" alt="HostPro Panamá - Agencia de Talento para Experiencias de Marca" width={96} height={96} className="rounded" />
               </Link>
                 <p className="text-slate-400 text-sm leading-relaxed mb-6">
-                  Líderes en staffing profesional para eventos corporativos y experiencias de impacto en Panamá.
+                  Agencia líder en talento profesional para experiencias de marca, eventos corporativos y producción audiovisual en Panamá.
                 </p>
                 <div className="flex gap-4">
                   <Link 
@@ -568,10 +644,10 @@ export default function Home() {
               <div>
                 <h4 className="font-black uppercase text-sm mb-6 text-white">Servicios</h4>
                 <ul className="space-y-4 text-sm text-slate-300">
-                  <li><a className="hover:text-[#d4b200] transition-colors focus-visible:outline-none focus-visible:text-[#d4b200] focus-visible:underline" href="#servicios">Staffing Corporativo</a></li>
-                  <li><a className="hover:text-[#d4b200] transition-colors focus-visible:outline-none focus-visible:text-[#d4b200] focus-visible:underline" href="#servicios">Eventos Premium</a></li>
-                  <li><a className="hover:text-[#d4b200] transition-colors focus-visible:outline-none focus-visible:text-[#d4b200] focus-visible:underline" href="#servicios">Lanzamientos</a></li>
-                  <li><a className="hover:text-[#d4b200] transition-colors focus-visible:outline-none focus-visible:text-[#d4b200] focus-visible:underline" href="#talento">Talento</a></li>
+                  <li><a className="hover:text-[#d4b200] transition-colors focus-visible:outline-none focus-visible:text-[#d4b200] focus-visible:underline" href="#servicios">Experiencias de Marca</a></li>
+                  <li><a className="hover:text-[#d4b200] transition-colors focus-visible:outline-none focus-visible:text-[#d4b200] focus-visible:underline" href="#servicios">Eventos Corporativos</a></li>
+                  <li><a className="hover:text-[#d4b200] transition-colors focus-visible:outline-none focus-visible:text-[#d4b200] focus-visible:underline" href="#servicios">Producción Audiovisual</a></li>
+                  <li><a className="hover:text-[#d4b200] transition-colors focus-visible:outline-none focus-visible:text-[#d4b200] focus-visible:underline" href="#talento">Únete al Equipo</a></li>
                 </ul>
               </div>
 

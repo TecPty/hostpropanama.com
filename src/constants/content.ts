@@ -5,22 +5,42 @@ export const services = [
     description:
       "Profesionales capacitados para representar tu marca en ferias, congresos, lanzamientos y eventos premium con presencia impecable.",
     image: "/images/azafatas.png",
+    benefits: [
+      "Profesionales verificados",
+      "Perfiles AAA",
+      "Resultados garantizados"
+    ]
   },
   {
     title: "Eventos Corporativos",
     description: "Perfiles bilingües especializados en protocolo, atención VIP y hospitalidad para invitados internacionales.",
     image: "/images/staff.png",
+    benefits: [
+      "Protocolo y hospitalidad",
+      "Perfiles bilingües certificados",
+      "Atención VIP especializada"
+    ]
   },
   {
     title: "Activaciones BTL",
-    description: "Brand ambassadors y promotores que comunican tu marca con autenticidad, seguridad y carisma.",
+    description: "Entendemos que una activación no es solo presencia. Es percepción, experiencia y conversión. Ejecutamos activaciones en supermercados, retail, eventos corporativos, lanzamientos y eventos masivos, garantizando una experiencia coherente, profesional y orientada a objetivos. No improvisamos presencia. Diseñamos impacto.",
     image: "/images/brand.png",
+    benefits: [
+      "Ejecución en punto de venta",
+      "Brand ambassadors capacitados",
+      "Conversión medible"
+    ]
   },
   {
-    title: "Producción Audiovisual",
+    title: "Producciones audiovisuales",
     description:
-      "Modelos, actores y presentadores profesionales para spots publicitarios, contenido digital y campañas de video.",
+      "Cada talento es previamente evaluado en imagen, actitud, expresión y profesionalismo. Porque en producción audiovisual, la imagen no es un detalle. Es el mensaje. Seleccionamos cuidadosamente cada perfil según el concepto creativo, identidad de marca y requerimientos técnicos de la producción.",
     image: "/images/register.png",
+    benefits: [
+      "Casting especializado",
+      "Derechos de imagen incluidos",
+      "Experiencia en cámara"
+    ]
   },
 ];
 

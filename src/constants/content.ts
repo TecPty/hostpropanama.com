@@ -9,7 +9,8 @@ export const services = [
       "Profesionales verificados",
       "Perfiles AAA",
       "Resultados garantizados"
-    ]
+    ],
+    whatsappContext: "service-experiencias" as const,
   },
   {
     title: "Eventos Corporativos",
@@ -19,7 +20,8 @@ export const services = [
       "Protocolo y hospitalidad",
       "Perfiles bilingües certificados",
       "Atención VIP especializada"
-    ]
+    ],
+    whatsappContext: "service-corporativo" as const,
   },
   {
     title: "Activaciones BTL",
@@ -29,7 +31,8 @@ export const services = [
       "Ejecución en punto de venta",
       "Brand ambassadors capacitados",
       "Conversión medible"
-    ]
+    ],
+    whatsappContext: "service-btl" as const,
   },
   {
     title: "Producciones audiovisuales",
@@ -40,7 +43,8 @@ export const services = [
       "Casting especializado",
       "Derechos de imagen incluidos",
       "Experiencia en cámara"
-    ]
+    ],
+    whatsappContext: "service-audiovisual" as const,
   },
 ];
 
@@ -71,54 +75,244 @@ export const faqs = [
     q: "¿Cómo manejan uniformes y dress code?",
     a: "Nos adaptamos a tu guía. Podemos proveer propuestas de vestuario y briefing previo.",
   },
-  {
-    q: "¿Emiten factura y contratos?",
-    a: "Sí. Facturación y acuerdos de confidencialidad disponibles para clientes corporativos.",
-  },
+
 ];
 
 // Talento
-export const talent = [
+export type TalentGender = "mujer" | "hombre";
+export type TalentStatus = "disponible" | "reservada";
+
+type TalentAvailability = {
+  schedule: string;
+  canTravel: boolean;
+};
+
+type TalentPhysicalProfile = {
+  height?: string;
+  weight?: string;
+  hairColor?: string;
+  eyeColor?: string;
+  shirtSize?: string;
+  pantsSize?: string;
+  shoeSize?: string;
+};
+
+type TalentSocial = {
+  instagram?: string;
+  tiktok?: string;
+};
+
+type TalentMedia = {
+  gallery: string[];
+};
+
+export type TalentModel = {
+  name: string;
+  slug: string;
+  role: string;
+  languages: string;
+  status: TalentStatus;
+  updatedAt: string;
+  city: string;
+  experienceSummary: string;
+  skills: string[];
+  eventTypes: string[];
+  availability: TalentAvailability;
+  physical: TalentPhysicalProfile;
+  social?: TalentSocial;
+  gender: TalentGender;
+  photo: string;
+  media: TalentMedia;
+};
+
+export const talent: TalentModel[] = [
   {
-    name: "Ghazi",
-    role: "Host corporativo",
-    languages: "Español / Inglés",
-    photo: "/talent/ghazi.png",
-  },
-  {
-    name: "Jean",
-    role: "Brand ambassador",
-    languages: "Español / Inglés",
-    photo: "/talent/jean.png",
-  },
-  {
-    name: "Vanessa",
-    role: "Hospitality / Protocolo",
-    languages: "Español / Inglés",
-    photo: "/talent/vanessa.png",
-  },
-  {
-    name: "Sofia",
-    role: "Promotora premium",
+    name: "Johana Hoyos",
+    slug: "johana-hoyos",
+    role: "Azafata protocolo y contenido comercial",
     languages: "Español",
-    photo: "/talent/sofia.png",
+    status: "disponible",
+    updatedAt: "2026-02-27",
+    city: "Ciudad de Panamá",
+    experienceSummary: "Experiencia en protocolo, impulso, degustación y grabación para comerciales.",
+    skills: ["Trabajo en equipo", "Toma de decisiones", "Comunicación con público"],
+    eventTypes: ["Eventos corporativos", "Activaciones BTL", "Producción audiovisual"],
+    availability: {
+      schedule: "Semana y fines de semana",
+      canTravel: true,
+    },
+    physical: {
+      height: "1.70 m",
+      weight: "65 kg",
+      hairColor: "Castaño oscuro",
+      eyeColor: "Café",
+      shirtSize: "M o S",
+      pantsSize: "10 o M",
+      shoeSize: "39",
+    },
+    social: {
+      instagram: "@johanahoyos4193",
+      tiktok: "@johana.hoyos5",
+    },
+    gender: "mujer",
+    photo: "/talent/mujeres/johana-hoyos.png",
+    media: {
+      gallery: ["/talent/mujeres/johana-hoyos.png"],
+    },
   },
   {
-    name: "Camila",
-    role: "Recepción y check-in",
-    languages: "Español / Inglés",
-    photo: "/talent/camila.png",
+    name: "Isabella Acevedo",
+    slug: "isabella-acevedo",
+    role: "Servicio al cliente y protocolo",
+    languages: "Español",
+    status: "disponible",
+    updatedAt: "2026-02-27",
+    city: "Ciudad de Panamá",
+    experienceSummary: "Atención al cliente en eventos y apoyo operativo en protocolo.",
+    skills: ["Servicio al cliente", "Atención de público", "Adaptación en sitio"],
+    eventTypes: ["Eventos corporativos", "Registro y hospitality"],
+    availability: {
+      schedule: "Todos los días con coordinación previa",
+      canTravel: true,
+    },
+    physical: {
+      height: "1.67 m",
+      weight: "50 kg",
+      hairColor: "Negro",
+      eyeColor: "Cafés",
+      shirtSize: "Small",
+      pantsSize: "3",
+      shoeSize: "36.5",
+    },
+    gender: "mujer",
+    photo: "/talent/mujeres/isabella-acevedo.png",
+    media: {
+      gallery: ["/talent/mujeres/isabella-acevedo.png"],
+    },
+  },
+  {
+    name: "Genesis Gonsales",
+    slug: "genesis-gonsales",
+    role: "Modelo para activaciones y eventos",
+    languages: "Español",
+    status: "disponible",
+    updatedAt: "2026-02-27",
+    city: "Ciudad de Panamá",
+    experienceSummary: "Perfil para representación de marca en puntos de alto tráfico.",
+    skills: ["Presencia de marca", "Interacción con público"],
+    eventTypes: ["Activaciones BTL", "Lanzamientos"],
+    availability: {
+      schedule: "Coordinación por agenda",
+      canTravel: true,
+    },
+    physical: {},
+    gender: "mujer",
+    photo: "/talent/mujeres/genesis-gonsales.png",
+    media: {
+      gallery: ["/talent/mujeres/genesis-gonsales.png"],
+    },
+  },
+  {
+    name: "Marianne Diaz",
+    slug: "marianne-diaz",
+    role: "Modelo para protocolo corporativo",
+    languages: "Español",
+    status: "disponible",
+    updatedAt: "2026-02-27",
+    city: "Ciudad de Panamá",
+    experienceSummary: "Perfil orientado a protocolo y hospitalidad en eventos ejecutivos.",
+    skills: ["Protocolo", "Hospitalidad", "Imagen corporativa"],
+    eventTypes: ["Eventos corporativos", "Hospitality VIP"],
+    availability: {
+      schedule: "Coordinación por agenda",
+      canTravel: true,
+    },
+    physical: {},
+    gender: "mujer",
+    photo: "/talent/mujeres/marianne-diaz.png",
+    media: {
+      gallery: ["/talent/mujeres/marianne-diaz.png"],
+    },
+  },
+  {
+    name: "Sofia Sanchez",
+    slug: "sofia-sanchez",
+    role: "Modelo para hospitalidad y recepción",
+    languages: "Español",
+    status: "disponible",
+    updatedAt: "2026-02-27",
+    city: "Ciudad de Panamá",
+    experienceSummary: "Atención de recepción y acompañamiento de invitados en eventos.",
+    skills: ["Recepción", "Hospitalidad", "Relación con clientes"],
+    eventTypes: ["Registro", "Ferias", "Hospitality"],
+    availability: {
+      schedule: "Coordinación por agenda",
+      canTravel: true,
+    },
+    physical: {},
+    gender: "mujer",
+    photo: "/talent/mujeres/sofia-sanchez.png",
+    media: {
+      gallery: ["/talent/mujeres/sofia-sanchez.png"],
+    },
+  },
+  {
+    name: "Valeria Ortega",
+    slug: "valeria-ortega",
+    role: "Modelo para brand experiences",
+    languages: "Español",
+    status: "disponible",
+    updatedAt: "2026-02-27",
+    city: "Ciudad de Panamá",
+    experienceSummary: "Perfil comercial para activaciones y experiencias de marca.",
+    skills: ["Imagen de marca", "Activaciones", "Protocolo"],
+    eventTypes: ["Experiencias de marca", "Lanzamientos"],
+    availability: {
+      schedule: "Coordinación por agenda",
+      canTravel: true,
+    },
+    physical: {},
+    gender: "mujer",
+    photo: "/talent/mujeres/valeria-ortega.png",
+    media: {
+      gallery: ["/talent/mujeres/valeria-ortega.png"],
+    },
+  },
+  {
+    name: "Irving Rios",
+    slug: "irving-rios",
+    role: "Modelo masculino para activaciones y protocolo",
+    languages: "Español",
+    status: "disponible",
+    updatedAt: "2026-02-27",
+    city: "Ciudad de Panamá",
+    experienceSummary: "Modelo masculino para eventos corporativos y campañas visuales.",
+    skills: ["Protocolo", "Presencia comercial", "Atención en eventos"],
+    eventTypes: ["Eventos corporativos", "Activaciones", "Audiovisual"],
+    availability: {
+      schedule: "Coordinación por agenda",
+      canTravel: true,
+    },
+    physical: {},
+    gender: "hombre",
+    photo: "/talent/hombres/irving-rios.png",
+    media: {
+      gallery: ["/talent/hombres/irving-rios.png"],
+    },
   },
 ];
 
+export const getTalentByGender = (gender: TalentGender): TalentModel[] => {
+  return talent.filter((model) => model.gender === gender);
+};
+
+export const getTalentBySlug = (slug: string): TalentModel | undefined => {
+  return talent.find((model) => model.slug === slug);
+};
+
 // Galería
 export const gallery = [
-  "/talent/jean.png",
-  "/talent/ghazi.png",
-  "/talent/vanessa.png",
-  "/talent/sofia.png",
-  "/talent/camila.png",
-  "/images/hero-image.png",
+  ...talent.map((model) => model.photo),
 ];
 
 // Planes de servicio
@@ -134,7 +328,8 @@ export const plans = [
       { name: "Imagen alineada a tu marca", included: true },
       { name: "Respuesta en menos de 1 hora", included: true },
     ],
-    cta: "Cotizar",
+    cta: "Cotizar por WhatsApp",
+    whatsappContext: "plan-basic" as const,
   },
   {
     name: "Pack 2",
@@ -149,6 +344,7 @@ export const plans = [
       { name: "Reporte post-evento con métricas", included: true },
     ],
     cta: "Solicitar propuesta",
+    whatsappContext: "plan-btl" as const,
   },
   {
     name: "Pack 3",
@@ -161,6 +357,7 @@ export const plans = [
       { name: "Coordinación directa con productora", included: true },
       { name: "Experiencia en producciones audiovisuales", included: true },
     ],
-    cta: "Hablar directo",
+    cta: "Hablar con especialista",
+    whatsappContext: "plan-audiovisual" as const,
   },
 ];

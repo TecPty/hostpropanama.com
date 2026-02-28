@@ -4,8 +4,19 @@ import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { MessageCircle, X } from "lucide-react";
 import Link from "next/link";
+import { getWhatsAppLink, type WhatsAppContext } from "@/utils/whatsapp";
 
-export function WhatsAppButton() {
+interface WhatsAppButtonProps {
+  context?: WhatsAppContext;
+  message?: string;
+  className?: string;
+}
+
+export function WhatsAppButton({ 
+  context = "general",
+  message,
+  className 
+}: WhatsAppButtonProps = {}) {
   const [isExpanded, setIsExpanded] = useState(false);
   const [showTooltip, setShowTooltip] = useState(true);
 
@@ -15,8 +26,13 @@ export function WhatsAppButton() {
     return () => clearTimeout(timer);
   }, []);
 
+  // Generar link con mensaje contextual
+  const whatsappLink = message 
+    ? `https://wa.me/50769801194?text=${encodeURIComponent(message)}`
+    : getWhatsAppLink(context);
+
   return (
-    <div className="fixed bottom-6 right-6 z-50 flex flex-col items-end gap-3">
+    <div className={`fixed bottom-6 right-6 z-50 flex flex-col items-end gap-3 ${className || ''}`}>
       {/* Tooltip expandido */}
       <AnimatePresence>
         {(isExpanded || showTooltip) && (
@@ -48,7 +64,7 @@ export function WhatsAppButton() {
                   Chatea con nosotros. Respuesta en menos de 1 hora.
                 </p>
                 <Link
-                  href="https://wa.me/50769801194?text=Hola%2C%20necesito%20cotizar%20staff%20para%20un%20evento"
+                  href={whatsappLink}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="block w-full bg-[#25D366] text-white text-center py-2 px-4 rounded-lg font-bold text-xs hover:bg-[#1ebe5b] transition-colors"
@@ -81,7 +97,7 @@ export function WhatsAppButton() {
 
         {/* Botón */}
         <Link
-          href="https://wa.me/50769801194?text=Hola%2C%20necesito%20cotizar%20staff%20para%20un%20evento"
+          href={whatsappLink}
           target="_blank"
           rel="noopener noreferrer"
           onClick={() => setIsExpanded(false)}

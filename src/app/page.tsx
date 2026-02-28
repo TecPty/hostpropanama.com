@@ -24,7 +24,7 @@ import {
 import Image from "next/image";
 import Link from "next/link";
 import { LeadForm, TalentForm } from "@/components/forms";
-import { services, process, faqs, talent, gallery, plans } from "@/constants/content";
+import { services, process, faqs, getTalentByGender, plans } from "@/constants/content";
 
 const ChevronIcon = () => (
   <ChevronDown className="h-5 w-5 group-open:rotate-180 transition-transform duration-300" />
@@ -118,6 +118,11 @@ export default function Home() {
     };
   }, [lastScrollY]);
 
+  const femaleTalent = getTalentByGender("mujer");
+  const maleTalent = getTalentByGender("hombre");
+  const featuredWomen = femaleTalent.filter((model) => model.slug !== "sofia-sanchez").slice(0, 5);
+  const featuredTalent = [...featuredWomen, ...maleTalent.slice(0, 1)];
+
   return (
     <div className="relative overflow-hidden bg-[#0a0a0a] text-white">
       {/* HEADER */}
@@ -139,7 +144,28 @@ export default function Home() {
           <div className="flex items-center gap-8">
             {/* Navigation */}
             <nav className="hidden lg:flex items-center gap-8">
-              <Link href="#galeria" className="text-xs font-bold uppercase tracking-[0.15em] text-white/70 hover:text-white transition-colors">Modelos</Link>
+              <div className="relative group">
+                <Link href="/modelos/mujeres" className="inline-flex items-center gap-1 text-xs font-bold uppercase tracking-[0.15em] text-white/70 hover:text-white transition-colors">
+                  Modelos
+                  <ChevronDown className="h-3.5 w-3.5 transition-transform duration-300 group-hover:rotate-180" />
+                </Link>
+                <div className="absolute left-0 top-full pt-3 opacity-0 pointer-events-none group-hover:opacity-100 group-hover:pointer-events-auto group-focus-within:opacity-100 group-focus-within:pointer-events-auto transition-all duration-200">
+                  <div className="w-44 bg-black/95 border border-white/10 backdrop-blur-sm p-2 space-y-1">
+                    <Link
+                      href="/modelos/mujeres"
+                      className="block px-3 py-2 text-xs font-bold uppercase tracking-[0.12em] text-white/70 hover:text-[#d4b200] hover:bg-white/5 transition-colors"
+                    >
+                      Mujeres
+                    </Link>
+                    <Link
+                      href="/modelos/hombres"
+                      className="block px-3 py-2 text-xs font-bold uppercase tracking-[0.12em] text-white/70 hover:text-[#d4b200] hover:bg-white/5 transition-colors"
+                    >
+                      Hombres
+                    </Link>
+                  </div>
+                </div>
+              </div>
               <Link href="#servicios" className="text-xs font-bold uppercase tracking-[0.15em] text-white/70 hover:text-white transition-colors">Servicios</Link>
               <Link href="#planes" className="text-xs font-bold uppercase tracking-[0.15em] text-white/70 hover:text-white transition-colors">Planes</Link>
               <Link href="#contacto" className="text-xs font-bold uppercase tracking-[0.15em] text-white/70 hover:text-white transition-colors">Contacto</Link>
@@ -159,30 +185,48 @@ export default function Home() {
       <main className="relative">
         {/* HERO SECTION */}
         <section className="relative h-screen flex items-center justify-center overflow-hidden">
-          {/* Background Image - Mobile */}
+          {/* Background Image - Mobile & Tablet */}
           <div className="absolute inset-0 z-0 md:hidden">
+            {/* Background base */}
             <Image
-              src="/images/hero-mobile.png"
-              alt="Talento profesional de HostPro en evento corporativo de lujo en Panamá"
+              src="/images/background-hero.png"
+              alt="Fondo evento corporativo HostPro Panamá"
               fill
               className="object-cover"
               priority
               quality={100}
             />
-            <div className="absolute inset-0 bg-black/5" />
+            {/* Talento en primer plano - Versión Mobile */}
+            <Image
+              src="/images/woman-background-mobile.png"
+              alt="Talento profesional de HostPro en evento corporativo de lujo en Panamá"
+              fill
+              className="object-cover object-center"
+              priority
+              quality={100}
+            />
           </div>
 
           {/* Background Image - Desktop */}
           <div className="absolute inset-0 z-0 hidden md:block">
+            {/* Background base */}
             <Image
-              src="/images/hero-desktop.png"
-              alt="Talento profesional de HostPro en evento corporativo de lujo en Panamá"
+              src="/images/background-hero.png"
+              alt="Fondo evento corporativo HostPro Panamá"
               fill
               className="object-cover"
               priority
               quality={100}
             />
-            <div className="absolute inset-0 bg-black/5" />
+            {/* Talento en primer plano - Versión Desktop */}
+            <Image
+              src="/images/woman-background.png"
+              alt="Talento profesional de HostPro en evento corporativo de lujo en Panamá"
+              fill
+              className="object-cover object-right"
+              priority
+              quality={100}
+            />
           </div>
 
           {/* Content - Left Aligned */}
@@ -194,8 +238,8 @@ export default function Home() {
             >
               {/* Main Title - Ultra Bold */}
               <h1 className="font-black uppercase leading-[0.85] mb-12 translate-y-[20%]">
-                <span className="block text-white text-[48px] md:text-[78px] lg:text-[105px] tracking-tight">HOSTPRO</span>
-                <span className="block text-[#d4b200] text-[48px] md:text-[78px] lg:text-[105px] tracking-tight">PANAMÁ</span>
+                <span className="block text-white text-[40px] md:text-[60px] lg:text-[90px] tracking-tight">HOSTPRO</span>
+                <span className="block text-[#d4b200] text-[40px] md:text-[60px] lg:text-[90px] tracking-tight">PANAMÁ</span>
               </h1>
 
               {/* Subtitle - Bold with spacing */}
@@ -710,36 +754,43 @@ export default function Home() {
                 NEW<br />
                 <span className="text-[#d4b200]">FACES</span>
               </h2>
+              <p className="text-white/60 text-sm mt-6 max-w-2xl">
+                Muestra destacada de perfiles activos. Para ver el catálogo completo por categoría, usa el menú de modelos.
+              </p>
             </motion.div>
 
-            {/* Grid - Premium Style */}
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6">
-              {gallery.map((photo, idx) => (
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 md:gap-6">
+              {featuredTalent.map((model, idx) => (
                 <motion.div
-                  key={idx}
+                  key={model.slug}
                   initial={{ opacity: 0, y: 20 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   transition={{ delay: idx * 0.05, duration: 0.5 }}
                   viewport={{ once: true, amount: 0.2 }}
-                  className="group relative aspect-[3/4] overflow-hidden bg-white/5"
+                  className="group relative aspect-[3/4] [perspective:1200px]"
                 >
-                  {/* Image */}
-                  <Image
-                    src={photo}
-                    alt={`Talento profesional HostPro`}
-                    fill
-                    sizes="(max-width: 768px) 50vw, 25vw"
-                    className="object-cover grayscale group-hover:grayscale-0 group-hover:scale-105 transition-all duration-700"
-                  />
-                  
-                  {/* Overlay - Minimal */}
-                  <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-all duration-500" />
-                  
-                  {/* Number Badge - Top Right */}
-                  <div className="absolute top-4 right-4 bg-black/80 backdrop-blur-sm px-3 py-1">
-                    <span className="text-white font-black text-xs tracking-wider">
-                      {String(idx + 1).padStart(2, "0")}
-                    </span>
+                  <div className="relative h-full w-full [transform-style:preserve-3d] transition-transform duration-700 group-hover:[transform:rotateY(180deg)] group-focus-within:[transform:rotateY(180deg)]">
+                    <div className="absolute inset-0 overflow-hidden border border-white/10 bg-white/5 [backface-visibility:hidden]">
+                      <Image
+                        src={model.photo}
+                        alt={`${model.name} - HostPro Panamá`}
+                        fill
+                        sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                        className="object-contain p-3 md:p-4"
+                      />
+                    </div>
+
+                    <div className="absolute inset-0 border border-[#d4b200]/40 bg-black/95 p-5 flex flex-col justify-end [transform:rotateY(180deg)] [backface-visibility:hidden]">
+                      <p className="text-white font-black uppercase tracking-[0.08em] text-lg">{model.name}</p>
+                      <p className="text-[#d4b200] text-xs uppercase tracking-[0.1em] font-bold mt-2">{model.languages}</p>
+                      <p className="text-white/80 text-sm mt-1">{model.physical.height ?? "Estatura por confirmar"}</p>
+                      <Link
+                        href={`/modelos/${model.slug}`}
+                        className="inline-flex mt-5 w-fit bg-[#d4b200] text-black px-4 py-2 text-[11px] uppercase tracking-[0.12em] font-black hover:bg-[#e6c700] transition-colors"
+                      >
+                        Ver portafolio
+                      </Link>
+                    </div>
                   </div>
                 </motion.div>
               ))}
@@ -753,10 +804,10 @@ export default function Home() {
               className="mt-12 text-center"
             >
               <Link 
-                href="#contacto"
+                href="/modelos/mujeres"
                 className="inline-flex items-center gap-3 text-white/60 hover:text-white uppercase text-xs tracking-[0.15em] font-bold transition-colors"
               >
-                Ver catálogo completo
+                Ver catálogo por categoría
                 <ArrowRight className="h-4 w-4" />
               </Link>
             </motion.div>

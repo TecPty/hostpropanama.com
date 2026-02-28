@@ -10,25 +10,50 @@ import {
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Loader2, CheckCircle, AlertTriangle, Send } from "lucide-react";
+import { motion, AnimatePresence } from "framer-motion";
 
 const leadSchema = z.object({
-  name: z.string().min(2, "Nombre requerido"),
-  company: z.string().min(2, "Empresa requerida"),
-  email: z.string().email("Email inválido"),
-  phone: z.string().min(6, "Teléfono requerido"),
-  eventType: z.string().min(2, "Tipo de evento requerido"),
-  date: z.string().optional(),
-  message: z.string().min(5, "Cuéntanos más del evento"),
+  name: z.string().min(2, "Nombre debe tener al menos 2 caracteres").max(100, "Nombre muy largo"),
+  company: z.string().min(2, "Empresa debe tener al menos 2 caracteres").max(100, "Nombre muy largo"),
+  email: z.string().email("Email inválido. Ej: correo@empresa.com"),
+  phone: z.string()
+    .min(8, "Teléfono debe tener al menos 8 dígitos")
+    .max(20, "Teléfono muy largo")
+    .regex(/^[\d\s\+\-\(\)]*$/, "Solo números, espacios y símbolos + - ( )"),
+  eventType: z.string().min(3, "Especifica el tipo de evento (mín. 3 caracteres)"),
+  date: z.string()
+    .optional()
+    .refine((val) => {
+      if (!val || val === "") return true;
+      // Validar formato fecha DD/MM/YYYY o YYYY-MM-DD
+      const dateRegex = /^(\d{2}\/\d{2}\/\d{4})|(\d{4}-\d{2}-\d{2})$/;
+      return dateRegex.test(val);
+    }, "Formato: DD/MM/YYYY o YYYY-MM-DD"),
+  message: z.string()
+    .min(10, "Cuéntanos más detalles del evento (mín. 10 caracteres)")
+    .max(1000, "Mensaje muy largo (máx. 1000 caracteres)"),
 });
 
 const talentSchema = z.object({
-  name: z.string().min(2, "Nombre requerido"),
-  email: z.string().email("Email inválido"),
-  phone: z.string().min(6, "Teléfono requerido"),
+  name: z.string().min(2, "Nombre debe tener al menos 2 caracteres").max(100, "Nombre muy largo"),
+  email: z.string().email("Email inválido. Ej: correo@ejemplo.com"),
+  phone: z.string()
+    .min(8, "Teléfono debe tener al menos 8 dígitos")
+    .max(20, "Teléfono muy largo")
+    .regex(/^[\d\s\+\-\(\)]*$/, "Solo números, espacios y símbolos + - ( )"),
   city: z.string().min(2, "Ciudad requerida"),
-  role: z.string().min(2, "Rol o posición"),
-  languages: z.string().min(2, "Idiomas"),
-  portfolio: z.string().url("Link inválido").optional().or(z.literal("")),
+  role: z.string().min(3, "Especifica tu rol deseado (mín. 3 caracteres)"),
+  languages: z.string().min(2, "Especifica los idiomas que dominas"),
+  portfolio: z.string()
+    .refine((val) => {
+      if (!val || val === "") return true;
+      // Validar URL o Instagram handle
+      const urlRegex = /^https?:\/\/.+/;
+      const igRegex = /^@?[a-zA-Z0-9._]+$/;
+      return urlRegex.test(val) || igRegex.test(val);
+    }, "URL completa (https://...) o usuario de Instagram (@usuario)")
+    .optional()
+    .or(z.literal("")),
 });
 
 type LeadFormData = z.infer<typeof leadSchema>;
@@ -39,16 +64,26 @@ type FormState = "idle" | "loading" | "success" | "error";
 function StatusBadge({ state }: { state: FormState }) {
   if (state === "success") {
     return (
-      <div className="flex items-center gap-2 text-sm font-semibold text-emerald-400">
-        <CheckCircle className="h-4 w-4" /> Enviado
-      </div>
+      <motion.div
+        initial={{ opacity: 0, y: -10 }}
+        animate={{ opacity: 1, y: 0 }}
+        exit={{ opacity: 0 }}
+        className="flex items-center gap-2 rounded-lg bg-emerald-500/10 border border-emerald-500/20 px-3 py-2 text-sm font-semibold text-emerald-400"
+      >
+        <CheckCircle className="h-4 w-4" /> ¡Enviado exitosamente!
+      </motion.div>
     );
   }
   if (state === "error") {
     return (
-      <div className="flex items-center gap-2 text-sm font-semibold text-red-400">
-        <AlertTriangle className="h-4 w-4" /> Hubo un error. Intenta de nuevo.
-      </div>
+      <motion.div
+        initial={{ opacity: 0, y: -10 }}
+        animate={{ opacity: 1, y: 0 }}
+        exit={{ opacity: 0 }}
+        className="flex items-center gap-2 rounded-lg bg-red-500/10 border border-red-500/20 px-3 py-2 text-sm font-semibold text-red-400"
+      >
+        <AlertTriangle className="h-4 w-4" /> Error al enviar. Inténtalo de nuevo.
+      </motion.div>
     );
   }
   return null;
@@ -61,10 +96,12 @@ type BaseInputProps<T extends FieldValues> = {
   register: UseFormRegister<T>;
   error?: string;
   type?: string;
+  autoComplete?: string;
+  maxLength?: number;
 };
 
 function TextInput<T extends FieldValues>(props: BaseInputProps<T>) {
-  const { label, name, placeholder, register, error, type = "text" } = props;
+  const { label, name, placeholder, register, error, type = "text", autoComplete, maxLength } = props;
   return (
     <label className="space-y-2">
       <span className="text-sm text-white/80">
@@ -74,6 +111,8 @@ function TextInput<T extends FieldValues>(props: BaseInputProps<T>) {
         type={type}
         {...register(name)}
         placeholder={placeholder}
+        {...(autoComplete && { autoComplete })}
+        {...(maxLength && { maxLength })}
         className="w-full rounded-xl border border-white/10 bg-black/50 px-3 py-3 text-sm text-white outline-none transition focus:border-[#d4b200] focus:ring-2 focus:ring-[#d4b200]/40"
       />
       {error && <p className="text-xs text-red-400">{error}</p>}
@@ -88,10 +127,11 @@ type TextAreaProps<T extends FieldValues> = {
   register: UseFormRegister<T>;
   error?: string;
   rows?: number;
+  maxLength?: number;
 };
 
 function TextArea<T extends FieldValues>(props: TextAreaProps<T>) {
-  const { label, name, placeholder, register, error, rows = 4 } = props;
+  const { label, name, placeholder, register, error, rows = 4, maxLength } = props;
   return (
     <label className="space-y-2">
       <span className="text-sm text-white/80">
@@ -101,7 +141,8 @@ function TextArea<T extends FieldValues>(props: TextAreaProps<T>) {
         {...register(name)}
         placeholder={placeholder}
         rows={rows}
-        className="w-full rounded-xl border border-white/10 bg-black/50 px-3 py-3 text-sm text-white outline-none transition focus:border-[#d4b200] focus:ring-2 focus:ring-[#d4b200]/40"
+        maxLength={maxLength}
+        className="w-full rounded-xl border border-white/10 bg-black/50 px-3 py-3 text-sm text-white outline-none transition focus:border-[#d4b200] focus:ring-2 focus:ring-[#d4b200]/40 resize-none"
       />
       {error && <p className="text-xs text-red-400">{error}</p>}
     </label>
@@ -147,6 +188,8 @@ export function LeadForm() {
           register={register}
           error={errors.name?.message}
           placeholder="Nombre y apellido"
+          autoComplete="name"
+          maxLength={100}
         />
         <TextInput<LeadFormData>
           label="Empresa"
@@ -154,6 +197,8 @@ export function LeadForm() {
           register={register}
           error={errors.company?.message}
           placeholder="Nombre de la empresa"
+          autoComplete="organization"
+          maxLength={100}
         />
       </div>
       <div className="grid gap-4 md:grid-cols-2">
@@ -164,13 +209,16 @@ export function LeadForm() {
           error={errors.email?.message}
           placeholder="correo@empresa.com"
           type="email"
+          autoComplete="email"
         />
         <TextInput<LeadFormData>
           label="Teléfono / WhatsApp"
           name="phone"
           register={register}
           error={errors.phone?.message}
-          placeholder="+507 ..."
+          placeholder="+507 6980-1194"
+          autoComplete="tel"
+          maxLength={20}
         />
       </div>
       <div className="grid gap-4 md:grid-cols-2">
@@ -179,14 +227,14 @@ export function LeadForm() {
           name="eventType"
           register={register}
           error={errors.eventType?.message}
-          placeholder="Congreso, feria, lanzamiento..."
+          placeholder="Congreso, feria, lanzamiento, activación..."
         />
         <TextInput<LeadFormData>
-          label="Fecha tentativa"
+          label="Fecha tentativa (opcional)"
           name="date"
           register={register}
           error={errors.date?.message}
-          placeholder="dd/mm/aaaa"
+          placeholder="DD/MM/YYYY"
         />
       </div>
       <TextArea<LeadFormData>
@@ -195,6 +243,7 @@ export function LeadForm() {
         register={register}
         error={errors.message?.message}
         rows={4}
+        maxLength={1000}
         placeholder="Ej: Necesito 4 azafatas bilingües para congreso médico el 15 de marzo, de 9am a 6pm, en Hotel Riu Plaza. Dress code: traje ejecutivo negro. Audiencia internacional."
       />
       <p className="text-xs text-slate-400 italic mt-2">
@@ -261,13 +310,17 @@ export function TalentForm() {
           register={register}
           error={errors.name?.message}
           placeholder="Nombre y apellido"
+          autoComplete="name"
+          maxLength={100}
         />
         <TextInput<TalentFormData>
           label="Teléfono / WhatsApp"
           name="phone"
           register={register}
           error={errors.phone?.message}
-          placeholder="+507 ..."
+          placeholder="+507 6980-1194"
+          autoComplete="tel"
+          maxLength={20}
         />
         <TextInput<TalentFormData>
           label="Email"
@@ -276,35 +329,36 @@ export function TalentForm() {
           error={errors.email?.message}
           placeholder="correo@ejemplo.com"
           type="email"
+          autoComplete="email"
         />
         <TextInput<TalentFormData>
           label="Ciudad"
           name="city"
           register={register}
           error={errors.city?.message}
-          placeholder="Ciudad donde resides"
+          placeholder="Panamá, Colón, David..."
         />
         <TextInput<TalentFormData>
           label="Rol deseado"
           name="role"
           register={register}
           error={errors.role?.message}
-          placeholder="Azafata, host, brand ambassador..."
+          placeholder="Azafata, host, modelo, brand ambassador..."
         />
         <TextInput<TalentFormData>
           label="Idiomas"
           name="languages"
           register={register}
           error={errors.languages?.message}
-          placeholder="Espanol / Ingles / Otros"
+          placeholder="Español / Inglés / Francés..."
         />
       </div>
       <TextInput<TalentFormData>
-        label="Link a portafolio o Instagram"
+        label="Link a portafolio o Instagram (opcional)"
         name="portfolio"
         register={register}
         error={errors.portfolio?.message}
-        placeholder="https://..."
+        placeholder="https://instagram.com/usuario o @usuario"
       />
       <p className="text-xs text-slate-400 italic">
         <span className="text-[#d4b200]">*</span> Campos obligatorios (excepto portafolio)

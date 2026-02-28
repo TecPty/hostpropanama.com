@@ -33,29 +33,13 @@ export default function ModelosMujeresPage() {
                   fill
                   priority={idx < 2}
                   sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-                  className="object-cover group-hover:scale-105 transition-all duration-700"
+                  className="object-contain p-3 md:p-4 transition-all duration-700"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/10 to-transparent" />
               </div>
 
               <div className="absolute left-0 right-0 bottom-0 p-4 space-y-1">
                 <p className="text-white font-black uppercase tracking-[0.08em] text-sm">{model.name}</p>
-                <p className="text-[#d4b200] text-xs uppercase tracking-[0.1em] font-bold">{model.role}</p>
-                <p className="text-white/80 text-xs">{model.languages}{model.physical.height ? ` · ${model.physical.height}` : ""}</p>
-                <p className="text-white/60 text-[11px]">{model.availability.schedule} · Viajes: {model.availability.canTravel ? "Sí" : "No"}</p>
-                <div className="pt-1 flex flex-wrap gap-1.5">
-                  {model.eventTypes.slice(0, 2).map((eventType) => (
-                    <span
-                      key={`${model.slug}-${eventType}`}
-                      className="px-2 py-0.5 text-[10px] uppercase tracking-[0.1em] bg-black/60 border border-white/15 text-white/80"
-                    >
-                      {eventType}
-                    </span>
-                  ))}
-                  <span className="px-2 py-0.5 text-[10px] uppercase tracking-[0.1em] bg-[#d4b200]/20 border border-[#d4b200]/40 text-[#d4b200]">
-                    {model.status}
-                  </span>
-                </div>
               </div>
             </Link>
           ))}

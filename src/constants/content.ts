@@ -166,7 +166,7 @@ export const talent: TalentModel[] = [
     role: "Servicio al cliente y protocolo",
     languages: "Español",
     status: "disponible",
-    updatedAt: "2026-02-27",
+    updatedAt: "2026-03-03",
     city: "Ciudad de Panamá",
     experienceSummary: "Atención al cliente en eventos y apoyo operativo en protocolo.",
     skills: ["Servicio al cliente", "Atención de público", "Adaptación en sitio"],
@@ -176,7 +176,7 @@ export const talent: TalentModel[] = [
       canTravel: true,
     },
     physical: {
-      height: "1.67 m",
+      height: "1.63 m",
       weight: "50 kg",
       hairColor: "Negro",
       eyeColor: "Cafés",
@@ -191,12 +191,12 @@ export const talent: TalentModel[] = [
     },
   },
   {
-    name: "Genesis Gonsales",
+    name: "Genesis Gonzalez",
     slug: "genesis-gonsales",
     role: "Modelo para activaciones y eventos",
-    languages: "Español",
+    languages: "Español, Inglés",
     status: "disponible",
-    updatedAt: "2026-02-27",
+    updatedAt: "2026-03-03",
     city: "Ciudad de Panamá",
     experienceSummary: "Perfil para representación de marca en puntos de alto tráfico.",
     skills: ["Presencia de marca", "Interacción con público"],
@@ -205,7 +205,9 @@ export const talent: TalentModel[] = [
       schedule: "Coordinación por agenda",
       canTravel: true,
     },
-    physical: {},
+    physical: {
+      height: "1.64 m",
+    },
     gender: "mujer",
     photo: "/talent/mujeres/genesis-gonsales.png",
     media: {
@@ -218,7 +220,7 @@ export const talent: TalentModel[] = [
     role: "Modelo para protocolo corporativo",
     languages: "Español",
     status: "disponible",
-    updatedAt: "2026-02-27",
+    updatedAt: "2026-03-03",
     city: "Ciudad de Panamá",
     experienceSummary: "Perfil orientado a protocolo y hospitalidad en eventos ejecutivos.",
     skills: ["Protocolo", "Hospitalidad", "Imagen corporativa"],
@@ -227,7 +229,9 @@ export const talent: TalentModel[] = [
       schedule: "Coordinación por agenda",
       canTravel: true,
     },
-    physical: {},
+    physical: {
+      height: "1.58 m",
+    },
     gender: "mujer",
     photo: "/talent/mujeres/marianne-diaz.png",
     media: {
@@ -260,9 +264,9 @@ export const talent: TalentModel[] = [
     name: "Valeria Ortega",
     slug: "valeria-ortega",
     role: "Modelo para brand experiences",
-    languages: "Español",
+    languages: "Español, Inglés",
     status: "disponible",
-    updatedAt: "2026-02-27",
+    updatedAt: "2026-03-03",
     city: "Ciudad de Panamá",
     experienceSummary: "Perfil comercial para activaciones y experiencias de marca.",
     skills: ["Imagen de marca", "Activaciones", "Protocolo"],
@@ -271,7 +275,9 @@ export const talent: TalentModel[] = [
       schedule: "Coordinación por agenda",
       canTravel: true,
     },
-    physical: {},
+    physical: {
+      height: "1.55 m",
+    },
     gender: "mujer",
     photo: "/talent/mujeres/valeria-ortega.png",
     media: {
@@ -293,11 +299,13 @@ export const talent: TalentModel[] = [
       schedule: "Coordinación por agenda",
       canTravel: true,
     },
-    physical: {},
+    physical: {
+      height: "Por confirmar",
+    },
     gender: "mujer",
     photo: "/talent/mujeres/ana-lorena.png",
     media: {
-      gallery: ["/talent/mujeres/ana-lorena.png", "/talent/ana-lorena-ficha.jpeg"],
+      gallery: ["/talent/mujeres/ana-lorena.png"],
     },
   },
   {
@@ -306,7 +314,7 @@ export const talent: TalentModel[] = [
     role: "Modelo masculino para activaciones y protocolo",
     languages: "Español",
     status: "disponible",
-    updatedAt: "2026-02-27",
+    updatedAt: "2026-03-03",
     city: "Ciudad de Panamá",
     experienceSummary: "Modelo masculino para eventos corporativos y campañas visuales.",
     skills: ["Protocolo", "Presencia comercial", "Atención en eventos"],
@@ -315,7 +323,9 @@ export const talent: TalentModel[] = [
       schedule: "Coordinación por agenda",
       canTravel: true,
     },
-    physical: {},
+    physical: {
+      height: "1.72 m",
+    },
     gender: "hombre",
     photo: "/talent/hombres/irving-rios.png",
     media: {
@@ -337,11 +347,13 @@ export const talent: TalentModel[] = [
       schedule: "Coordinación por agenda",
       canTravel: true,
     },
-    physical: {},
+    physical: {
+      height: "1.80 m",
+    },
     gender: "hombre",
     photo: "/talent/hombres/carlos-wilson.png",
     media: {
-      gallery: ["/talent/hombres/carlos-wilson.png", "/talent/carlo-wilson-ficha.jpeg"],
+      gallery: ["/talent/hombres/carlos-wilson.png"],
     },
   },
 ];

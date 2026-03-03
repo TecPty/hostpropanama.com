@@ -279,6 +279,28 @@ export const talent: TalentModel[] = [
     },
   },
   {
+    name: "Ana Lorena",
+    slug: "ana-lorena",
+    role: "Modelo para protocolo y experiencias de marca",
+    languages: "Español",
+    status: "disponible",
+    updatedAt: "2026-03-03",
+    city: "Ciudad de Panamá",
+    experienceSummary: "Perfil para hospitalidad, protocolo y representación de marca en eventos corporativos.",
+    skills: ["Protocolo", "Atención al cliente", "Imagen de marca"],
+    eventTypes: ["Eventos corporativos", "Experiencias de marca", "Hospitality"],
+    availability: {
+      schedule: "Coordinación por agenda",
+      canTravel: true,
+    },
+    physical: {},
+    gender: "mujer",
+    photo: "/talent/mujeres/ana-lorena.png",
+    media: {
+      gallery: ["/talent/mujeres/ana-lorena.png", "/talent/ana-lorena-ficha.jpeg"],
+    },
+  },
+  {
     name: "Irving Rios",
     slug: "irving-rios",
     role: "Modelo masculino para activaciones y protocolo",
@@ -298,6 +320,28 @@ export const talent: TalentModel[] = [
     photo: "/talent/hombres/irving-rios.png",
     media: {
       gallery: ["/talent/hombres/irving-rios.png"],
+    },
+  },
+  {
+    name: "Carlos Wilson",
+    slug: "carlos-wilson",
+    role: "Modelo masculino para activaciones y protocolo corporativo",
+    languages: "Español",
+    status: "disponible",
+    updatedAt: "2026-03-03",
+    city: "Ciudad de Panamá",
+    experienceSummary: "Perfil comercial para activaciones, eventos ejecutivos y contenido audiovisual.",
+    skills: ["Presencia comercial", "Protocolo", "Atención de público"],
+    eventTypes: ["Activaciones BTL", "Eventos corporativos", "Producción audiovisual"],
+    availability: {
+      schedule: "Coordinación por agenda",
+      canTravel: true,
+    },
+    physical: {},
+    gender: "hombre",
+    photo: "/talent/hombres/carlos-wilson.png",
+    media: {
+      gallery: ["/talent/hombres/carlos-wilson.png", "/talent/carlo-wilson-ficha.jpeg"],
     },
   },
 ];

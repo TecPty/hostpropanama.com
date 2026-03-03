@@ -120,8 +120,9 @@ export default function Home() {
 
   const femaleTalent = getTalentByGender("mujer");
   const maleTalent = getTalentByGender("hombre");
-  const featuredWomen = femaleTalent.filter((model) => model.slug !== "sofia-sanchez").slice(0, 5);
-  const featuredTalent = [...featuredWomen, ...maleTalent.slice(0, 1)];
+  const featuredWomen = femaleTalent.filter((model) => model.slug !== "sofia-sanchez").slice(0, 4);
+  const featuredMan = maleTalent.find((model) => model.slug === "carlos-wilson") ?? maleTalent[0];
+  const featuredTalent = [...featuredWomen, ...(featuredMan ? [featuredMan] : [])];
 
   return (
     <div className="relative overflow-hidden bg-[#0a0a0a] text-white">

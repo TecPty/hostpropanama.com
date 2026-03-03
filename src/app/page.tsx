@@ -120,9 +120,24 @@ export default function Home() {
 
   const femaleTalent = getTalentByGender("mujer");
   const maleTalent = getTalentByGender("hombre");
-  const featuredWomen = femaleTalent.filter((model) => model.slug !== "sofia-sanchez").slice(0, 4);
-  const featuredMan = maleTalent.find((model) => model.slug === "carlos-wilson") ?? maleTalent[0];
-  const featuredTalent = [...featuredWomen, ...(featuredMan ? [featuredMan] : [])];
+  const featuredWomen = femaleTalent
+    .filter((model) => model.slug === "ana-lorena")
+    .concat(
+      femaleTalent.filter(
+        (model) =>
+          model.slug !== "sofia-sanchez" && model.slug !== "marianne-diaz" && model.slug !== "ana-lorena",
+      ),
+    )
+    .slice(0, 4);
+  const featuredMen = maleTalent
+    .filter((model) => model.slug === "carlos-wilson" || model.slug === "irving-rios")
+    .concat(
+      maleTalent.filter(
+        (model) => model.slug !== "carlos-wilson" && model.slug !== "irving-rios",
+      ),
+    )
+    .slice(0, 2);
+  const featuredTalent = [...featuredWomen, ...featuredMen];
 
   return (
     <div className="relative overflow-hidden bg-[#0a0a0a] text-white">
@@ -781,13 +796,13 @@ export default function Home() {
                       />
                     </div>
 
-                    <div className="absolute inset-0 border border-[#d4b200]/40 bg-black/95 p-5 flex flex-col justify-end [transform:rotateY(180deg)] [backface-visibility:hidden]">
+                    <div className="absolute inset-0 border border-[#d4b200]/40 bg-black/95 p-5 flex flex-col items-center justify-center gap-2 text-center [transform:rotateY(180deg)] [backface-visibility:hidden]">
                       <p className="text-white font-black uppercase tracking-[0.08em] text-lg">{model.name}</p>
-                      <p className="text-[#d4b200] text-xs uppercase tracking-[0.1em] font-bold mt-2">{model.languages}</p>
-                      <p className="text-white/80 text-sm mt-1">{model.physical.height ?? "Estatura por confirmar"}</p>
+                      <p className="text-[#d4b200] text-xs uppercase tracking-[0.1em] font-bold">{model.languages}</p>
+                      <p className="text-white/80 text-sm">{model.physical.height ?? "Estatura por confirmar"}</p>
                       <Link
                         href={`/modelos/${model.slug}`}
-                        className="inline-flex mt-5 w-fit bg-[#d4b200] text-black px-4 py-2 text-[11px] uppercase tracking-[0.12em] font-black hover:bg-[#e6c700] transition-colors"
+                        className="inline-flex mt-4 w-fit bg-[#d4b200] text-black px-4 py-2 text-[11px] uppercase tracking-[0.12em] font-black hover:bg-[#e6c700] transition-colors"
                       >
                         Ver portafolio
                       </Link>

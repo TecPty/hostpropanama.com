@@ -1,7 +1,27 @@
-﻿import Image from "next/image";
+﻿import type { Metadata } from "next";
+import Image from "next/image";
 import Link from "next/link";
 import { getTalentByGender } from "@/constants/content";
 import Header from "@/components/Header";
+
+export const metadata: Metadata = {
+  title: "Catálogo de Modelos Mujeres en Panamá | HostPro Panamá",
+  description: "Explora nuestro catálogo de modelos y azafatas femeninas en Panamá. Perfiles verificados para eventos corporativos, activaciones BTL y experiencias de marca.",
+  alternates: {
+    canonical: "https://hostpropanama.com/modelos/mujeres",
+  },
+  openGraph: {
+    title: "Modelos y Azafatas Mujeres en Panamá | HostPro",
+    description: "Catálogo de modelos femeninas verificadas para eventos corporativos, activaciones BTL y experiencias de marca en Panamá.",
+    url: "https://hostpropanama.com/modelos/mujeres",
+    images: [{ url: "/seo/og-image.png", width: 1200, height: 630, alt: "Catálogo Modelos Mujeres HostPro Panamá" }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Modelos y Azafatas Mujeres | HostPro Panamá",
+    description: "Catálogo de modelos femeninas verificadas para eventos en Panamá.",
+  },
+};
 
 export default function ModelosMujeresPage() {
   const modelos = getTalentByGender("mujer");

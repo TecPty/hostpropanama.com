@@ -1,7 +1,27 @@
-﻿import Image from "next/image";
+﻿import type { Metadata } from "next";
+import Image from "next/image";
 import Link from "next/link";
 import { getTalentByGender } from "@/constants/content";
 import Header from "@/components/Header";
+
+export const metadata: Metadata = {
+  title: "Catálogo de Modelos Hombres en Panamá | HostPro Panamá",
+  description: "Explora nuestro catálogo de modelos masculinos en Panamá. Perfiles verificados para eventos corporativos, activaciones BTL y producciones audiovisuales.",
+  alternates: {
+    canonical: "https://hostpropanama.com/modelos/hombres",
+  },
+  openGraph: {
+    title: "Modelos Hombres en Panamá | HostPro",
+    description: "Catálogo de modelos masculinos verificados para eventos corporativos, activaciones BTL y producciones en Panamá.",
+    url: "https://hostpropanama.com/modelos/hombres",
+    images: [{ url: "/seo/og-image.png", width: 1200, height: 630, alt: "Catálogo Modelos Hombres HostPro Panamá" }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Modelos Hombres | HostPro Panamá",
+    description: "Catálogo de modelos masculinos verificados para eventos en Panamá.",
+  },
+};
 
 export default function ModelosHombresPage() {
   const modelos = getTalentByGender("hombre");

@@ -68,12 +68,6 @@ const SpotlightCard = ({ children, className = "", delay = 0, animateFrom = "lef
           background: `radial-gradient(circle 350px at ${mousePos.x}px ${mousePos.y}px, rgba(212,178,0,0.13), transparent 70%)`,
         }}
       />
-      {/* Decorative number */}
-      <div className="pointer-events-none absolute inset-0 z-0 flex items-end justify-end pr-6 pb-4">
-        <span className="text-[120px] font-black leading-none text-white/[0.03] select-none">
-          {animateFrom === "left" ? "01" : "02"}
-        </span>
-      </div>
       {/* Content */}
       <div className="relative z-10">{children}</div>
     </motion.div>

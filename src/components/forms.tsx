@@ -14,24 +14,21 @@ import { motion, AnimatePresence } from "framer-motion";
 
 const leadSchema = z.object({
   name: z.string().min(2, "Nombre debe tener al menos 2 caracteres").max(100, "Nombre muy largo"),
-  company: z.string().min(2, "Empresa debe tener al menos 2 caracteres").max(100, "Nombre muy largo"),
+  company: z.string().max(100, "Nombre muy largo").optional().or(z.literal("")),
   email: z.string().email("Email inválido. Ej: correo@empresa.com"),
   phone: z.string()
     .min(8, "Teléfono debe tener al menos 8 dígitos")
     .max(20, "Teléfono muy largo")
     .regex(/^[\d\s\+\-\(\)]*$/, "Solo números, espacios y símbolos + - ( )"),
-  eventType: z.string().min(3, "Especifica el tipo de evento (mín. 3 caracteres)"),
+  eventType: z.string().max(200).optional().or(z.literal("")),
   date: z.string()
     .optional()
     .refine((val) => {
       if (!val || val === "") return true;
-      // Validar formato fecha DD/MM/YYYY o YYYY-MM-DD
       const dateRegex = /^(\d{2}\/\d{2}\/\d{4})|(\d{4}-\d{2}-\d{2})$/;
       return dateRegex.test(val);
     }, "Formato: DD/MM/YYYY o YYYY-MM-DD"),
-  message: z.string()
-    .min(10, "Cuéntanos más detalles del evento (mín. 10 caracteres)")
-    .max(1000, "Mensaje muy largo (máx. 1000 caracteres)"),
+  message: z.string().max(1000, "Mensaje muy largo (máx. 1000 caracteres)").optional().or(z.literal("")),
 });
 
 const talentSchema = z.object({
@@ -151,6 +148,7 @@ function TextArea<T extends FieldValues>(props: TextAreaProps<T>) {
 
 export function LeadForm() {
   const [state, setState] = useState<FormState>("idle");
+  const [showOptional, setShowOptional] = useState(false);
   const {
     register,
     handleSubmit,
@@ -192,17 +190,6 @@ export function LeadForm() {
           maxLength={100}
         />
         <TextInput<LeadFormData>
-          label="Empresa"
-          name="company"
-          register={register}
-          error={errors.company?.message}
-          placeholder="Nombre de la empresa"
-          autoComplete="organization"
-          maxLength={100}
-        />
-      </div>
-      <div className="grid gap-4 md:grid-cols-2">
-        <TextInput<LeadFormData>
           label="Email"
           name="email"
           register={register}
@@ -211,43 +198,78 @@ export function LeadForm() {
           type="email"
           autoComplete="email"
         />
-        <TextInput<LeadFormData>
-          label="Teléfono / WhatsApp"
-          name="phone"
-          register={register}
-          error={errors.phone?.message}
-          placeholder="+507 6980-1194"
-          autoComplete="tel"
-          maxLength={20}
-        />
       </div>
-      <div className="grid gap-4 md:grid-cols-2">
-        <TextInput<LeadFormData>
-          label="Tipo de evento"
-          name="eventType"
-          register={register}
-          error={errors.eventType?.message}
-          placeholder="Congreso, feria, lanzamiento, activación..."
-        />
-        <TextInput<LeadFormData>
-          label="Fecha tentativa (opcional)"
-          name="date"
-          register={register}
-          error={errors.date?.message}
-          placeholder="DD/MM/YYYY"
-        />
-      </div>
-      <TextArea<LeadFormData>
-        label="Cuéntanos sobre el evento"
-        name="message"
+      <TextInput<LeadFormData>
+        label="Teléfono / WhatsApp"
+        name="phone"
         register={register}
-        error={errors.message?.message}
-        rows={4}
-        maxLength={1000}
-        placeholder="Ej: Necesito 4 azafatas bilingües para congreso médico el 15 de marzo, de 9am a 6pm, en Hotel Riu Plaza. Dress code: traje ejecutivo negro. Audiencia internacional."
+        error={errors.phone?.message}
+        placeholder="+507 6980-1194"
+        autoComplete="tel"
+        maxLength={20}
       />
+
+      {/* Toggle campos opcionales */}
+      <button
+        type="button"
+        onClick={() => setShowOptional(!showOptional)}
+        className="flex items-center gap-2 text-xs text-[#d4b200] font-semibold hover:text-white transition-colors self-start"
+      >
+        <span className={`transition-transform duration-300 ${showOptional ? "rotate-45" : ""}`}>+</span>
+        {showOptional ? "Ocultar detalles" : "Agregar más detalles (opcional)"}
+      </button>
+
+      <AnimatePresence>
+        {showOptional && (
+          <motion.div
+            initial={{ opacity: 0, height: 0 }}
+            animate={{ opacity: 1, height: "auto" }}
+            exit={{ opacity: 0, height: 0 }}
+            transition={{ duration: 0.3 }}
+            className="overflow-hidden"
+          >
+            <div className="flex flex-col gap-4">
+              <div className="grid gap-4 md:grid-cols-2">
+                <TextInput<LeadFormData>
+                  label="Empresa (opcional)"
+                  name="company"
+                  register={register}
+                  error={errors.company?.message}
+                  placeholder="Nombre de la empresa"
+                  autoComplete="organization"
+                  maxLength={100}
+                />
+                <TextInput<LeadFormData>
+                  label="Tipo de evento (opcional)"
+                  name="eventType"
+                  register={register}
+                  error={errors.eventType?.message}
+                  placeholder="Congreso, feria, lanzamiento..."
+                />
+              </div>
+              <TextInput<LeadFormData>
+                label="Fecha tentativa (opcional)"
+                name="date"
+                register={register}
+                error={errors.date?.message}
+                placeholder="DD/MM/YYYY"
+              />
+              <TextArea<LeadFormData>
+                label="Cuéntanos sobre el evento (opcional)"
+                name="message"
+                register={register}
+                error={errors.message?.message}
+                rows={3}
+                maxLength={1000}
+                placeholder="Ej: 4 azafatas bilingües para congreso médico, Hotel Riu Plaza, dress code ejecutivo."
+              />
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+
       <p className="text-xs text-slate-400 italic mt-2">
-        <span className="text-[#d4b200]">*</span> Campos obligatorios
+        <span className="text-[#d4b200]">*</span> Solo nombre, email y teléfono son obligatorios
       </p>
       <div className="mt-auto flex items-center justify-between pt-2">
         <StatusBadge state={state} />

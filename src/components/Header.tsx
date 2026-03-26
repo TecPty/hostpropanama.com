@@ -65,13 +65,13 @@ export default function Header() {
                 </div>
               </div>
             </div>
-            <Link href="/servicios" className="text-xs font-bold uppercase tracking-[0.15em] text-white/70 hover:text-white transition-colors">Servicios</Link>
-            <Link href="/planes" className="text-xs font-bold uppercase tracking-[0.15em] text-white/70 hover:text-white transition-colors">Planes</Link>
-            <Link href="/contacto" className="text-xs font-bold uppercase tracking-[0.15em] text-white/70 hover:text-white transition-colors">Contacto</Link>
+            <Link href="/#servicios" className="text-xs font-bold uppercase tracking-[0.15em] text-white/70 hover:text-white transition-colors">Servicios</Link>
+            <Link href="/#planes" className="text-xs font-bold uppercase tracking-[0.15em] text-white/70 hover:text-white transition-colors">Planes</Link>
+            <Link href="/#contacto" className="text-xs font-bold uppercase tracking-[0.15em] text-white/70 hover:text-white transition-colors">Contacto</Link>
           </nav>
           {/* CTA Button */}
           <Link 
-            href="/contacto"
+            href="/#contacto"
             className="bg-[#d4b200] text-black px-6 py-3 font-black uppercase text-xs tracking-[0.15em] hover:bg-white transition-colors"
           >
             Cotizar

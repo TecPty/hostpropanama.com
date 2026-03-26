@@ -50,8 +50,8 @@ const SpotlightCard = ({ children, className = "", delay = 0, animateFrom = "lef
 
   return (
     <motion.div
-      initial={{ opacity: 0, y: 40, filter: "blur(4px)" }}
-      whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+      initial={{ opacity: 0, x: animateFrom === "left" ? -60 : 60, filter: "blur(4px)" }}
+      whileInView={{ opacity: 1, x: 0, filter: "blur(0px)" }}
       transition={{ duration: 0.8, ease: [0.21, 0.47, 0.32, 0.98], delay }}
       viewport={{ once: true, amount: 0.25 }}
       ref={cardRef}

@@ -24,7 +24,7 @@ import {
 import Image from "next/image";
 import Link from "next/link";
 import { LeadForm, TalentForm } from "@/components/forms";
-import { services, process, faqs, getTalentByGender, plans, stats } from "@/constants/content";
+import { services, process, faqs, getTalentByGender, plans } from "@/constants/content";
 
 const ChevronIcon = () => (
   <ChevronDown className="h-5 w-5 group-open:rotate-180 transition-transform duration-300" />
@@ -311,27 +311,6 @@ export default function HomeClient() {
 
         {/* VISIÓN Y MISIÓN SECTION - TABS */}
         <VisionMisionTabs />
-
-        {/* STATS BANNER */}
-        <section className="bg-[#d4b200] py-12">
-          <div className="max-w-7xl mx-auto px-6 md:px-12">
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-8 md:gap-4">
-              {stats.map((stat, idx) => (
-                <motion.div
-                  key={stat.label}
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true, amount: 0.5 }}
-                  transition={{ duration: 0.5, delay: idx * 0.1 }}
-                  className="text-center"
-                >
-                  <p className="text-3xl md:text-4xl font-black text-black">{stat.value}</p>
-                  <p className="text-xs font-bold uppercase tracking-[0.15em] text-black/70 mt-1">{stat.label}</p>
-                </motion.div>
-              ))}
-            </div>
-          </div>
-        </section>
 
         {/* SERVICIOS SECTION */}
         <section id="servicios" className="py-32 bg-black border-t border-white/10">

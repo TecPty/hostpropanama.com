@@ -6,11 +6,11 @@ import { Menu, X } from "lucide-react";
 import Link from "next/link";
 
 const menuItems = [
-  { href: "#galeria", label: "Experiencias" },
-  { href: "#servicios", label: "Servicios" },
-  { href: "#planes", label: "Planes" },
-  { href: "#talento", label: "Talento" },
-  { href: "#contacto", label: "Contacto" },
+  { href: "/#galeria", label: "Experiencias" },
+  { href: "/#servicios", label: "Servicios" },
+  { href: "/#planes", label: "Planes" },
+  { href: "/#talento", label: "Talento" },
+  { href: "/#contacto", label: "Contacto" },
 ];
 
 export function MobileMenu() {

@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { motion } from "framer-motion";
 import {
   ArrowRight,
@@ -30,21 +30,65 @@ const ChevronIcon = () => (
   <ChevronDown className="h-5 w-5 group-open:rotate-180 transition-transform duration-300" />
 );
 
+type SpotlightCardProps = {
+  children: React.ReactNode;
+  className?: string;
+  delay?: number;
+  animateFrom?: "left" | "right";
+};
+
+const SpotlightCard = ({ children, className = "", delay = 0, animateFrom = "left" }: SpotlightCardProps) => {
+  const cardRef = useRef<HTMLDivElement>(null);
+  const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
+  const [isHovered, setIsHovered] = useState(false);
+
+  const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
+    if (!cardRef.current) return;
+    const rect = cardRef.current.getBoundingClientRect();
+    setMousePos({ x: e.clientX - rect.left, y: e.clientY - rect.top });
+  };
+
+  return (
+    <motion.div
+      initial={{ opacity: 0, x: animateFrom === "left" ? -60 : 60 }}
+      whileInView={{ opacity: 1, x: 0 }}
+      transition={{ duration: 0.6, ease: "easeOut", delay }}
+      viewport={{ once: true, amount: 0.3 }}
+      ref={cardRef}
+      onMouseMove={handleMouseMove}
+      onMouseEnter={() => setIsHovered(true)}
+      onMouseLeave={() => setIsHovered(false)}
+      className={`relative overflow-hidden bg-black/40 border border-white/10 p-8 lg:p-10 transition-colors duration-300 ${isHovered ? "border-[#d4b200]/60" : ""} ${className}`}
+    >
+      {/* Spotlight overlay */}
+      <div
+        className="pointer-events-none absolute inset-0 z-0 transition-opacity duration-300"
+        style={{
+          opacity: isHovered ? 1 : 0,
+          background: `radial-gradient(circle 350px at ${mousePos.x}px ${mousePos.y}px, rgba(212,178,0,0.13), transparent 70%)`,
+        }}
+      />
+      {/* Decorative number */}
+      <div className="pointer-events-none absolute inset-0 z-0 flex items-end justify-end pr-6 pb-4">
+        <span className="text-[120px] font-black leading-none text-white/[0.03] select-none">
+          {animateFrom === "left" ? "01" : "02"}
+        </span>
+      </div>
+      {/* Content */}
+      <div className="relative z-10">{children}</div>
+    </motion.div>
+  );
+};
+
 const VisionMisionTabs = () => {
   return (
     <section className="py-20 bg-slate-900/30 border-y border-white/5">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-12">
           {/* Visión */}
-          <motion.div
-            initial={{ opacity: 0, x: -100 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            transition={{ duration: 1.8, ease: "easeOut" }}
-            viewport={{ once: false, amount: 0.3 }}
-            className="bg-black/40 border border-white/10 rounded-2xl p-8 lg:p-10 hover:border-[#d4b200]/50 transition-all duration-300 hover:shadow-lg hover:shadow-[#d4b200]/10"
-          >
+          <SpotlightCard animateFrom="left" delay={0}>
             <div className="mb-6">
-              <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-[#d4b200]/10 border-2 border-[#d4b200] mb-4">
+              <div className="inline-flex items-center justify-center w-16 h-16 bg-[#d4b200]/10 border-2 border-[#d4b200] mb-4">
                 <Star className="w-8 h-8 text-[#d4b200]" />
               </div>
               <span className="text-[#d4b200] font-bold uppercase tracking-[0.2em] text-xs block mb-3">
@@ -57,18 +101,12 @@ const VisionMisionTabs = () => {
             <p className="text-slate-300 leading-relaxed">
               En eventos, contenido y experiencias de marca. Reconocida por elevar el estándar de representación profesional y por construir relaciones sostenibles entre marcas y talento.
             </p>
-          </motion.div>
+          </SpotlightCard>
 
           {/* Misión */}
-          <motion.div
-            initial={{ opacity: 0, x: 100 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            transition={{ duration: 1.8, ease: "easeOut", delay: 0.3 }}
-            viewport={{ once: false, amount: 0.3 }}
-            className="bg-black/40 border border-white/10 rounded-2xl p-8 lg:p-10 hover:border-[#d4b200]/50 transition-all duration-300 hover:shadow-lg hover:shadow-[#d4b200]/10"
-          >
+          <SpotlightCard animateFrom="right" delay={0.15}>
             <div className="mb-6">
-              <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-[#d4b200]/10 border-2 border-[#d4b200] mb-4">
+              <div className="inline-flex items-center justify-center w-16 h-16 bg-[#d4b200]/10 border-2 border-[#d4b200] mb-4">
                 <Zap className="w-8 h-8 text-[#d4b200]" />
               </div>
               <span className="text-[#d4b200] font-bold uppercase tracking-[0.2em] text-xs block mb-3">
@@ -81,7 +119,7 @@ const VisionMisionTabs = () => {
             <p className="text-slate-300 leading-relaxed">
               En cada punto de contacto con el público, mediante la selección, preparación y gestión de talento operativo alineado a su identidad, mensaje y contexto.
             </p>
-          </motion.div>
+          </SpotlightCard>
         </div>
       </div>
     </section>

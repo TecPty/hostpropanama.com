@@ -372,6 +372,13 @@ export const gallery = [
 ];
 
 // Planes de servicio
+export const stats = [
+  { value: "500+", label: "Eventos exitosos" },
+  { value: "2,000+", label: "Horas de servicio" },
+  { value: "100+", label: "Clientes corporativos" },
+  { value: "<1h", label: "Tiempo de respuesta" },
+];
+
 export const plans = [
   {
     name: "Pack 1",

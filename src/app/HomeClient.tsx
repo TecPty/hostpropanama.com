@@ -24,7 +24,7 @@ import {
 import Image from "next/image";
 import Link from "next/link";
 import { LeadForm, TalentForm } from "@/components/forms";
-import { services, process, faqs, getTalentByGender, plans } from "@/constants/content";
+import { services, process, faqs, getTalentByGender, plans, stats } from "@/constants/content";
 
 const ChevronIcon = () => (
   <ChevronDown className="h-5 w-5 group-open:rotate-180 transition-transform duration-300" />
@@ -312,6 +312,27 @@ export default function HomeClient() {
         {/* VISIÓN Y MISIÓN SECTION - TABS */}
         <VisionMisionTabs />
 
+        {/* STATS BANNER */}
+        <section className="bg-[#d4b200] py-12">
+          <div className="max-w-7xl mx-auto px-6 md:px-12">
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-8 md:gap-4">
+              {stats.map((stat, idx) => (
+                <motion.div
+                  key={stat.label}
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true, amount: 0.5 }}
+                  transition={{ duration: 0.5, delay: idx * 0.1 }}
+                  className="text-center"
+                >
+                  <p className="text-3xl md:text-4xl font-black text-black">{stat.value}</p>
+                  <p className="text-xs font-bold uppercase tracking-[0.15em] text-black/70 mt-1">{stat.label}</p>
+                </motion.div>
+              ))}
+            </div>
+          </div>
+        </section>
+
         {/* SERVICIOS SECTION */}
         <section id="servicios" className="py-32 bg-black border-t border-white/10">
           <div className="max-w-7xl mx-auto px-6 md:px-12">
@@ -392,39 +413,39 @@ export default function HomeClient() {
                 viewport={{ once: true, amount: 0.3 }}
                 className={`relative rounded-3xl p-8 transition-all ${
                   plan.featured
-                    ? "bg-black border-2 border-[#d4b200] shadow-[0_0_25px_rgba(212,178,0,0.15)]"
+                    ? "bg-gradient-to-br from-[#d4b200] via-[#b89a00] to-[#8a7100] border-2 border-[#d4b200] shadow-[0_0_40px_rgba(212,178,0,0.3)]"
                     : "bg-slate-900 border border-white/5 hover:border-white/10"
                 }`}
               >
                 {plan.featured && (
-                  <div className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-[#d4b200] text-black px-4 py-1 rounded-full text-xs font-black uppercase whitespace-nowrap">
+                  <div className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-black text-[#d4b200] px-4 py-1 rounded-full text-xs font-black uppercase whitespace-nowrap">
                     Más Popular
                   </div>
                 )}
 
                 <div className="space-y-5">
                   <div>
-                    <span className="text-slate-500 font-bold text-xs uppercase">{plan.name}</span>
-                    <h3 className="text-lg font-black text-white mt-1">{plan.description}</h3>
+                    <span className={`font-bold text-xs uppercase ${plan.featured ? "text-black/60" : "text-slate-500"}`}>{plan.name}</span>
+                    <h3 className={`text-lg font-black mt-1 ${plan.featured ? "text-black" : "text-white"}`}>{plan.description}</h3>
                   </div>
 
                   <div>
-                    <p className="text-4xl font-black text-white">
+                    <p className={`text-4xl font-black ${plan.featured ? "text-black" : "text-white"}`}>
                       {plan.price}
                     </p>
                   </div>
 
-                  <div className="space-y-2 border-t border-white/10 pt-5">
+                  <div className={`space-y-2 border-t pt-5 ${plan.featured ? "border-black/20" : "border-white/10"}`}>
                     {plan.features.map((feature, i) => (
                       <div key={i} className="flex items-start gap-2">
-                        <div className={`mt-0.5 ${feature.included ? "text-[#d4b200]" : "text-white/30"}`}>
+                        <div className={`mt-0.5 ${feature.included ? (plan.featured ? "text-black" : "text-[#d4b200]") : "text-white/30"}`}>
                           {feature.included ? (
                             <Check className="h-4 w-4" />
                           ) : (
                             <X className="h-4 w-4" />
                           )}
                         </div>
-                        <span className={`text-xs ${feature.included ? "text-white" : "text-white/50"}`}>
+                        <span className={`text-xs ${feature.included ? (plan.featured ? "text-black" : "text-white") : "text-white/50"}`}>
                           {feature.name}
                         </span>
                       </div>
@@ -435,7 +456,7 @@ export default function HomeClient() {
                     href={plan.featured ? "https://wa.me/50769801194" : "#contacto"}
                     className={`w-full rounded-xl py-4 px-4 font-bold text-center transition uppercase tracking-widest block focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#d4b200] focus-visible:ring-offset-2 focus-visible:ring-offset-slate-900 ${
                       plan.featured
-                        ? "bg-[#d4b200] text-black hover:bg-[#e6c700] hover:shadow-lg hover:shadow-[#d4b200]/30"
+                        ? "bg-black text-[#d4b200] hover:bg-black/80 hover:shadow-lg hover:shadow-black/30"
                         : "border border-[#d4b200] text-[#d4b200] hover:bg-[#d4b200]/10"
                     }`}
                   >

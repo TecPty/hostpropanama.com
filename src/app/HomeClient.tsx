@@ -181,7 +181,7 @@ export default function HomeClient() {
           {/* Logo - PNG */}
           <Link href="/" className="flex items-center gap-2">
             <Image 
-              src="/logos/hostpro-logo-horizontal.png" 
+              src="/logos/hostpro-logo-horizontal.webp" 
               alt="HostPro Panamá" 
               width={540} 
               height={135} 
@@ -237,7 +237,7 @@ export default function HomeClient() {
           <div className="absolute inset-0 z-0 md:hidden">
             {/* Background base */}
             <Image
-              src="/images/background-hero.png"
+              src="/images/background-hero.webp"
               alt="Fondo evento corporativo HostPro Panamá"
               fill
               className="object-cover"
@@ -246,7 +246,7 @@ export default function HomeClient() {
             />
             {/* Talento en primer plano - Versión Mobile */}
             <Image
-              src="/images/woman-background-mobile.png"
+              src="/images/woman-background-mobile.webp"
               alt="Talento profesional de HostPro en evento corporativo de lujo en Panamá"
               fill
               className="object-cover object-center"
@@ -259,7 +259,7 @@ export default function HomeClient() {
           <div className="absolute inset-0 z-0 hidden md:block">
             {/* Background base */}
             <Image
-              src="/images/background-hero.png"
+              src="/images/background-hero.webp"
               alt="Fondo evento corporativo HostPro Panamá"
               fill
               className="object-cover"
@@ -268,7 +268,7 @@ export default function HomeClient() {
             />
             {/* Talento en primer plano - Versión Desktop */}
             <Image
-              src="/images/woman-background.png"
+              src="/images/woman-background.webp"
               alt="Talento profesional de HostPro en evento corporativo de lujo en Panamá"
               fill
               className="object-cover object-right"
@@ -783,7 +783,7 @@ export default function HomeClient() {
             <div className="grid grid-cols-2 md:grid-cols-4 gap-8 mb-12">
               <div className="col-span-2 md:col-span-1">
               <Link href="/" className="flex items-center gap-2 mb-6">
-                <Image src="/logos/hostpro-logo.png" alt="HostPro Panamá - Agencia de Talento para Experiencias de Marca" width={96} height={96} className="rounded" />
+                <Image src="/logos/hostpro-logo.webp" alt="HostPro Panamá - Agencia de Talento para Experiencias de Marca" width={96} height={96} className="rounded" />
               </Link>
                 <p className="text-slate-400 text-sm leading-relaxed mb-6">
                   Agencia líder en talento profesional para experiencias de marca, eventos corporativos y producción audiovisual en Panamá.

@@ -2,10 +2,13 @@ import { NextResponse } from "next/server";
 import { Resend } from "resend";
 import { z } from "zod";
 
-const resend = new Resend(process.env.RESEND_API_KEY);
 const fallbackTo = process.env.RESEND_TO ?? "contacto@hostpropanama.com";
 const fromEmail =
   process.env.RESEND_FROM ?? "HostPro Panama <contacto@hostpropanama.com>";
+
+function getResendClient() {
+  return new Resend(process.env.RESEND_API_KEY || "re_123");
+}
 
 // Validación server-side
 // Validación server-side
@@ -158,6 +161,7 @@ export async function POST(request: Request) {
     }
     
     const data = validationResult.data;
+    const resend = getResendClient();
 
     await resend.emails.send({
       from: fromEmail,

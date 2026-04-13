@@ -4,7 +4,7 @@ export const services = [
     title: "Talento para Experiencias de Marca",
     description:
       "Profesionales capacitados para representar tu marca en ferias, congresos, lanzamientos y eventos premium con presencia impecable.",
-    image: "/images/azafatas.png",
+    image: "/images/azafatas.webp",
     benefits: [
       "Profesionales verificados",
       "Perfiles AAA",
@@ -15,7 +15,7 @@ export const services = [
   {
     title: "Eventos Corporativos",
     description: "Perfiles bilingües especializados en protocolo, atención VIP y hospitalidad para invitados internacionales.",
-    image: "/images/staff.png",
+    image: "/images/staff.webp",
     benefits: [
       "Protocolo y hospitalidad",
       "Perfiles bilingües certificados",
@@ -26,7 +26,7 @@ export const services = [
   {
     title: "Activaciones BTL",
     description: "Entendemos que una activación no es solo presencia. Es percepción, experiencia y conversión. Ejecutamos activaciones en supermercados, retail, eventos corporativos, lanzamientos y eventos masivos, garantizando una experiencia coherente, profesional y orientada a objetivos. No improvisamos presencia. Diseñamos impacto.",
-    image: "/images/brand.png",
+    image: "/images/brand.webp",
     benefits: [
       "Ejecución en punto de venta",
       "Brand ambassadors capacitados",
@@ -38,7 +38,7 @@ export const services = [
     title: "Producciones audiovisuales",
     description:
       "Cada talento es previamente evaluado en imagen, actitud, expresión y profesionalismo. Porque en producción audiovisual, la imagen no es un detalle. Es el mensaje. Seleccionamos cuidadosamente cada perfil según el concepto creativo, identidad de marca y requerimientos técnicos de la producción.",
-    image: "/images/register.png",
+    image: "/images/register.webp",
     benefits: [
       "Casting especializado",
       "Derechos de imagen incluidos",
@@ -155,9 +155,9 @@ export const talent: TalentModel[] = [
       tiktok: "@johana.hoyos5",
     },
     gender: "mujer",
-    photo: "/talent/mujeres/johana-hoyos.png",
+    photo: "/talent/mujeres/johana-hoyos.webp",
     media: {
-      gallery: ["/talent/mujeres/johana-hoyos.png"],
+      gallery: ["/talent/mujeres/johana-hoyos.webp"],
     },
   },
   {
@@ -185,9 +185,9 @@ export const talent: TalentModel[] = [
       shoeSize: "36.5",
     },
     gender: "mujer",
-    photo: "/talent/mujeres/isabella-acevedo.png",
+    photo: "/talent/mujeres/isabella-acevedo.webp",
     media: {
-      gallery: ["/talent/mujeres/isabella-acevedo.png"],
+      gallery: ["/talent/mujeres/isabella-acevedo.webp"],
     },
   },
   {
@@ -209,9 +209,9 @@ export const talent: TalentModel[] = [
       height: "1.64 m",
     },
     gender: "mujer",
-    photo: "/talent/mujeres/genesis-gonsales.png",
+    photo: "/talent/mujeres/genesis-gonsales.webp",
     media: {
-      gallery: ["/talent/mujeres/genesis-gonsales.png"],
+      gallery: ["/talent/mujeres/genesis-gonsales.webp"],
     },
   },
   {
@@ -233,9 +233,9 @@ export const talent: TalentModel[] = [
       height: "1.58 m",
     },
     gender: "mujer",
-    photo: "/talent/mujeres/marianne-diaz.png",
+    photo: "/talent/mujeres/marianne-diaz.webp",
     media: {
-      gallery: ["/talent/mujeres/marianne-diaz.png"],
+      gallery: ["/talent/mujeres/marianne-diaz.webp"],
     },
   },
   {
@@ -255,9 +255,9 @@ export const talent: TalentModel[] = [
     },
     physical: {},
     gender: "mujer",
-    photo: "/talent/mujeres/sofia-sanchez.png",
+    photo: "/talent/mujeres/sofia-sanchez.webp",
     media: {
-      gallery: ["/talent/mujeres/sofia-sanchez.png"],
+      gallery: ["/talent/mujeres/sofia-sanchez.webp"],
     },
   },
   {
@@ -279,9 +279,9 @@ export const talent: TalentModel[] = [
       height: "1.55 m",
     },
     gender: "mujer",
-    photo: "/talent/mujeres/valeria-ortega.png",
+    photo: "/talent/mujeres/valeria-ortega.webp",
     media: {
-      gallery: ["/talent/mujeres/valeria-ortega.png"],
+      gallery: ["/talent/mujeres/valeria-ortega.webp"],
     },
   },
   {
@@ -303,9 +303,9 @@ export const talent: TalentModel[] = [
       height: "Por confirmar",
     },
     gender: "mujer",
-    photo: "/talent/mujeres/ana-lorena.png",
+    photo: "/talent/mujeres/ana-lorena.webp",
     media: {
-      gallery: ["/talent/mujeres/ana-lorena.png"],
+      gallery: ["/talent/mujeres/ana-lorena.webp"],
     },
   },
   {
@@ -327,9 +327,9 @@ export const talent: TalentModel[] = [
       height: "1.72 m",
     },
     gender: "hombre",
-    photo: "/talent/hombres/irving-rios.png",
+    photo: "/talent/hombres/irving-rios.webp",
     media: {
-      gallery: ["/talent/hombres/irving-rios.png"],
+      gallery: ["/talent/hombres/irving-rios.webp"],
     },
   },
   {
@@ -351,9 +351,9 @@ export const talent: TalentModel[] = [
       height: "1.80 m",
     },
     gender: "hombre",
-    photo: "/talent/hombres/carlos-wilson.png",
+    photo: "/talent/hombres/carlos-wilson.webp",
     media: {
-      gallery: ["/talent/hombres/carlos-wilson.png"],
+      gallery: ["/talent/hombres/carlos-wilson.webp"],
     },
   },
 ];

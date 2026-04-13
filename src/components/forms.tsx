@@ -21,6 +21,8 @@ const leadSchema = z.object({
     .max(20, "Teléfono muy largo")
     .regex(/^[\d\s\+\-\(\)]*$/, "Solo números, espacios y símbolos + - ( )"),
   eventType: z.string().max(200).optional().or(z.literal("")),
+  location: z.string().max(200).optional().or(z.literal("")),
+  activationType: z.string().max(200).optional().or(z.literal("")),
   date: z.string()
     .optional()
     .refine((val) => {
@@ -101,7 +103,7 @@ function TextInput<T extends FieldValues>(props: BaseInputProps<T>) {
   const { label, name, placeholder, register, error, type = "text", autoComplete, maxLength } = props;
   return (
     <label className="space-y-2">
-      <span className="text-sm text-white/80">
+      <span className="text-xs font-black uppercase tracking-[0.15em] text-black mb-3">
         {label} <span className="text-[#d4b200]">*</span>
       </span>
       <input
@@ -110,9 +112,39 @@ function TextInput<T extends FieldValues>(props: BaseInputProps<T>) {
         placeholder={placeholder}
         {...(autoComplete && { autoComplete })}
         {...(maxLength && { maxLength })}
-        className="w-full rounded-xl border border-white/10 bg-black/50 px-3 py-3 text-sm text-white outline-none transition focus:border-[#d4b200] focus:ring-2 focus:ring-[#d4b200]/40"
+        className="w-full bg-white border-2 border-black/20 px-4 py-3 text-black focus:border-[#d4b200] focus:outline-none transition-colors"
       />
-      {error && <p className="text-xs text-red-400">{error}</p>}
+      {error && <p className="text-xs text-red-600 font-bold mt-1">{error}</p>}
+    </label>
+  );
+}
+
+type SelectInputProps<T extends FieldValues> = {
+  label: string;
+  name: Path<T>;
+  register: UseFormRegister<T>;
+  options: string[];
+  error?: string;
+};
+
+function SelectInput<T extends FieldValues>(props: SelectInputProps<T>) {
+  const { label, name, register, options, error } = props;
+  return (
+    <label className="space-y-2">
+      <span className="text-xs font-black uppercase tracking-[0.15em] text-black mb-3">
+        {label} <span className="text-[#d4b200]">*</span>
+      </span>
+      <select
+        {...register(name)}
+        className="w-full bg-white border-2 border-black/20 px-4 py-3 text-black focus:border-[#d4b200] focus:outline-none transition-colors"
+      >
+        {options.map((opt) => (
+          <option key={opt} value={opt}>
+            {opt}
+          </option>
+        ))}
+      </select>
+      {error && <p className="text-xs text-red-600 font-bold mt-1">{error}</p>}
     </label>
   );
 }
@@ -131,7 +163,7 @@ function TextArea<T extends FieldValues>(props: TextAreaProps<T>) {
   const { label, name, placeholder, register, error, rows = 4, maxLength } = props;
   return (
     <label className="space-y-2">
-      <span className="text-sm text-white/80">
+      <span className="text-xs font-black uppercase tracking-[0.15em] text-black mb-3">
         {label} <span className="text-[#d4b200]">*</span>
       </span>
       <textarea
@@ -139,16 +171,15 @@ function TextArea<T extends FieldValues>(props: TextAreaProps<T>) {
         placeholder={placeholder}
         rows={rows}
         maxLength={maxLength}
-        className="w-full rounded-xl border border-white/10 bg-black/50 px-3 py-3 text-sm text-white outline-none transition focus:border-[#d4b200] focus:ring-2 focus:ring-[#d4b200]/40 resize-none"
+        className="w-full bg-white border-2 border-black/20 px-4 py-3 text-black focus:border-[#d4b200] focus:outline-none transition-colors resize-none"
       />
-      {error && <p className="text-xs text-red-400">{error}</p>}
+      {error && <p className="text-xs text-red-600 font-bold mt-1">{error}</p>}
     </label>
   );
 }
 
-export function LeadForm() {
+export function LeadForm({ mode = 'activaciones' }: { mode?: 'booking' | 'activaciones' }) {
   const [state, setState] = useState<FormState>("idle");
-  const [showOptional, setShowOptional] = useState(false);
   const {
     register,
     handleSubmit,
@@ -164,7 +195,7 @@ export function LeadForm() {
       const res = await fetch("/api/contact", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(data),
+        body: JSON.stringify({ ...data, leadMode: mode }),
       });
       if (!res.ok) throw new Error("Error al enviar");
       setState("success");
@@ -178,19 +209,41 @@ export function LeadForm() {
   };
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)} className="flex min-h-full flex-col gap-4">
-      <div className="grid gap-4 md:grid-cols-2">
+    <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
+      {/* Banner Indicador */}
+      <div className="bg-[#f9f3d9] border-l-4 border-[#d4b200] px-6 py-4 flex items-center gap-3">
+        <div className="bg-black rounded-full p-2">
+          <Send className="w-5 h-5 text-[#d4b200]" />
+        </div>
+        <span className="text-sm font-black uppercase tracking-wide text-black">
+          {mode === 'booking' ? 'COTIZANDO BOOKING DE TALENTO' : 'COTIZANDO ACTIVACIÓN BTL'}
+        </span>
+      </div>
+
+      {/* Fila 1: Nombre + Empresa */}
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
         <TextInput<LeadFormData>
-          label="Nombre completo"
+          label="NOMBRE COMPLETO"
           name="name"
           register={register}
           error={errors.name?.message}
-          placeholder="Nombre y apellido"
-          autoComplete="name"
+          placeholder="Nombre de la persona de contacto"
           maxLength={100}
         />
         <TextInput<LeadFormData>
-          label="Email"
+          label="MARCA / CLIENTE"
+          name="company"
+          register={register}
+          error={errors.company?.message}
+          placeholder="Nombre de la empresa o marca"
+          maxLength={100}
+        />
+      </div>
+
+      {/* Fila 2: Email + Teléfono */}
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <TextInput<LeadFormData>
+          label="EMAIL DE CONTACTO"
           name="email"
           register={register}
           error={errors.email?.message}
@@ -198,89 +251,70 @@ export function LeadForm() {
           type="email"
           autoComplete="email"
         />
+        <TextInput<LeadFormData>
+          label="TELÉFONO / CELULAR"
+          name="phone"
+          register={register}
+          error={errors.phone?.message}
+          placeholder="+507 6980-1194"
+          autoComplete="tel"
+          maxLength={20}
+        />
       </div>
-      <TextInput<LeadFormData>
-        label="Teléfono / WhatsApp"
-        name="phone"
+
+      {/* Fila 3: Tipo de servicio */}
+      <SelectInput<LeadFormData>
+        label={mode === 'booking' ? 'TIPO DE TALENTO' : 'TIPO DE EVENTO'}
+        name="eventType"
         register={register}
-        error={errors.phone?.message}
-        placeholder="+507 6980-1194"
-        autoComplete="tel"
-        maxLength={20}
+        error={errors.eventType?.message}
+        options={mode === 'booking'
+          ? ['Bailarín', 'Moderador', 'Modelo']
+          : ['Lanzamiento de producto', 'Evento corporativo', 'Feria comercial', 'Promoción en punto de venta']
+        }
       />
 
-      {/* Toggle campos opcionales */}
-      <button
-        type="button"
-        onClick={() => setShowOptional(!showOptional)}
-        className="flex items-center gap-2 text-xs text-[#d4b200] font-semibold hover:text-white transition-colors self-start"
-      >
-        <span className={`transition-transform duration-300 ${showOptional ? "rotate-45" : ""}`}>+</span>
-        {showOptional ? "Ocultar detalles" : "Agregar más detalles (opcional)"}
-      </button>
+      {/* Fila 4: Campos solo para Activaciones */}
+      {mode === 'activaciones' && (
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <TextInput<LeadFormData>
+            label="LOCACIÓN"
+            name="location"
+            register={register}
+            error={errors.location?.message}
+            placeholder="Ciudad de Panamá, Colón, etc."
+          />
+          <SelectInput<LeadFormData>
+            label="TIPO DE ACTIVACIÓN"
+            name="activationType"
+            register={register}
+            error={errors.activationType?.message}
+            options={['Sampling', 'Demostración', 'Experiencial', 'Roadshow']}
+          />
+        </div>
+      )}
 
-      <AnimatePresence>
-        {showOptional && (
-          <motion.div
-            initial={{ opacity: 0, height: 0 }}
-            animate={{ opacity: 1, height: "auto" }}
-            exit={{ opacity: 0, height: 0 }}
-            transition={{ duration: 0.3 }}
-            className="overflow-hidden"
-          >
-            <div className="flex flex-col gap-4">
-              <div className="grid gap-4 md:grid-cols-2">
-                <TextInput<LeadFormData>
-                  label="Empresa (opcional)"
-                  name="company"
-                  register={register}
-                  error={errors.company?.message}
-                  placeholder="Nombre de la empresa"
-                  autoComplete="organization"
-                  maxLength={100}
-                />
-                <TextInput<LeadFormData>
-                  label="Tipo de evento (opcional)"
-                  name="eventType"
-                  register={register}
-                  error={errors.eventType?.message}
-                  placeholder="Congreso, feria, lanzamiento..."
-                />
-              </div>
-              <TextInput<LeadFormData>
-                label="Fecha tentativa (opcional)"
-                name="date"
-                register={register}
-                error={errors.date?.message}
-                placeholder="DD/MM/YYYY"
-              />
-              <TextArea<LeadFormData>
-                label="Cuéntanos sobre el evento (opcional)"
-                name="message"
-                register={register}
-                error={errors.message?.message}
-                rows={3}
-                maxLength={1000}
-                placeholder="Ej: 4 azafatas bilingües para congreso médico, Hotel Riu Plaza, dress code ejecutivo."
-              />
-            </div>
-          </motion.div>
-        )}
-      </AnimatePresence>
+      {/* Brief */}
+      <TextArea<LeadFormData>
+        label="BRIEF CREATIVO / VOLUMEN"
+        name="message"
+        register={register}
+        error={errors.message?.message}
+        rows={4}
+        maxLength={1000}
+        placeholder="Describe cantidad de personal, estética buscada, fechas, etc..."
+      />
 
-      <p className="text-xs text-slate-400 italic mt-2">
-        <span className="text-[#d4b200]">*</span> Solo nombre, email y teléfono son obligatorios
-      </p>
-      <div className="mt-auto flex items-center justify-between pt-2">
-        <StatusBadge state={state} />
+      {/* Submit */}
+      <div className="flex flex-col gap-4">
         <button
           type="submit"
           disabled={state === "loading"}
-          className="inline-flex items-center gap-2 rounded-full bg-[#d4b200] px-5 py-3 text-sm font-semibold text-black transition hover:bg-[#e6c700] disabled:opacity-70"
+          className="w-full bg-black text-white py-4 px-8 font-black uppercase text-sm tracking-[0.15em] hover:bg-[#d4b200] hover:text-black transition-all flex items-center justify-center gap-3 disabled:opacity-70"
         >
           {state === "loading" ? (
             <>
-              <Loader2 className="h-4 w-4 animate-spin" /> Enviando...
+              <Loader2 className="h-4 w-4 animate-spin" /> Procesando...
             </>
           ) : (
             <>
@@ -288,10 +322,12 @@ export function LeadForm() {
             </>
           )}
         </button>
+        <StatusBadge state={state} />
       </div>
     </form>
   );
 }
+
 
 export function TalentForm() {
   const [state, setState] = useState<FormState>("idle");

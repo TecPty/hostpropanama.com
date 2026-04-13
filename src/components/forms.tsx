@@ -112,7 +112,7 @@ function TextInput<T extends FieldValues>(props: BaseInputProps<T>) {
         placeholder={placeholder}
         {...(autoComplete && { autoComplete })}
         {...(maxLength && { maxLength })}
-        className="w-full bg-white border-2 border-black/20 px-4 py-3 text-black focus:border-[#d4b200] focus:outline-none transition-colors"
+        className="w-full bg-white border-2 border-black/20 px-4 py-3 text-base text-black focus:border-[#d4b200] focus:outline-none transition-colors"
       />
       {error && <p className="text-xs text-red-600 font-bold mt-1">{error}</p>}
     </label>
@@ -136,7 +136,7 @@ function SelectInput<T extends FieldValues>(props: SelectInputProps<T>) {
       </span>
       <select
         {...register(name)}
-        className="w-full bg-white border-2 border-black/20 px-4 py-3 text-black focus:border-[#d4b200] focus:outline-none transition-colors"
+        className="w-full bg-white border-2 border-black/20 px-4 py-3 text-base text-black focus:border-[#d4b200] focus:outline-none transition-colors"
       >
         {options.map((opt) => (
           <option key={opt} value={opt}>
@@ -171,7 +171,7 @@ function TextArea<T extends FieldValues>(props: TextAreaProps<T>) {
         placeholder={placeholder}
         rows={rows}
         maxLength={maxLength}
-        className="w-full bg-white border-2 border-black/20 px-4 py-3 text-black focus:border-[#d4b200] focus:outline-none transition-colors resize-none"
+        className="w-full bg-white border-2 border-black/20 px-4 py-3 text-base text-black focus:border-[#d4b200] focus:outline-none transition-colors resize-none"
       />
       {error && <p className="text-xs text-red-600 font-bold mt-1">{error}</p>}
     </label>

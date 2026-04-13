@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import Script from "next/script";
 import "@/styles/globals.css";
+import SmoothScroll from "@/components/SmoothScroll";
 
 const inter = Inter({
   variable: "--font-sans",
@@ -69,7 +70,10 @@ export default function RootLayout({
         </Script>
       </head>
       <body className={`${inter.variable} antialiased`}>
-        {children}
+        <div className="grain-overlay" />
+        <SmoothScroll>
+          {children}
+        </SmoothScroll>
       </body>
     </html>
   );

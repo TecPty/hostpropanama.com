@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useEffect, useRef } from "react";
-import { motion } from "framer-motion";
+import { motion, useMotionValue, useTransform } from "framer-motion";
 import {
   ArrowRight,
   Star,
@@ -121,7 +121,7 @@ const VisionMisionTabs = () => {
 };
 
 export default function HomeClient() {
-  const [activeTab, setActiveTab] = useState<'booking' | 'activaciones'>('booking');
+  const [activeTab, setActiveTab] = useState<'booking' | 'activaciones' | 'talento'>('booking');
   const [showNav, setShowNav] = useState(true);
   const [lastScrollY, setLastScrollY] = useState(0);
 
@@ -149,6 +149,22 @@ export default function HomeClient() {
       window.removeEventListener('scroll', handleScroll);
     };
   }, [lastScrollY]);
+
+  // Mouse Parallax Logic
+  const mouseX = useMotionValue(0);
+  const mouseY = useMotionValue(0);
+
+  const handleParallaxMouseMove = (e: React.MouseEvent) => {
+    const { clientX, clientY } = e;
+    const moveX = (clientX - window.innerWidth / 2) / 25;
+    const moveY = (clientY - window.innerHeight / 2) / 25;
+    mouseX.set(moveX);
+    mouseY.set(moveY);
+  };
+
+  // Inverse transforms for background depth (Parallax Inverso)
+  const bgX = useTransform(mouseX, (value) => value * -0.6);
+  const bgY = useTransform(mouseY, (value) => value * -0.6);
 
   const femaleTalent = getTalentByGender("mujer");
   const maleTalent = getTalentByGender("hombre");
@@ -185,7 +201,7 @@ export default function HomeClient() {
               alt="HostPro Panamá" 
               width={540} 
               height={135} 
-              className="h-[108px] md:h-[126px] w-auto"
+              className="h-16 md:h-20 w-auto"
             />
           </Link>
           
@@ -232,49 +248,74 @@ export default function HomeClient() {
 
       <main className="relative">
         {/* HERO SECTION */}
-        <section className="relative h-screen flex items-center justify-center overflow-hidden">
+        <section 
+          className="relative h-screen flex items-center justify-center overflow-hidden"
+          onMouseMove={handleParallaxMouseMove}
+        >
           {/* Background Image - Mobile & Tablet */}
           <div className="absolute inset-0 z-0 md:hidden">
             {/* Background base */}
-            <Image
-              src="/images/background-hero.webp"
-              alt="Fondo evento corporativo HostPro Panamá"
-              fill
-              className="object-cover"
-              priority
-              quality={100}
-            />
+            <motion.div 
+              className="absolute inset-0"
+              style={{ x: bgX, y: bgY, scale: 1.1 }}
+            >
+              <Image
+                src="/images/background-hero.webp"
+                alt="Fondo evento corporativo HostPro Panamá"
+                fill
+                className="object-cover"
+                priority
+                quality={100}
+              />
+            </motion.div>
+
             {/* Talento en primer plano - Versión Mobile */}
-            <Image
-              src="/images/woman-background-mobile.webp"
-              alt="Talento profesional de HostPro en evento corporativo de lujo en Panamá"
-              fill
-              className="object-cover object-center"
-              priority
-              quality={100}
-            />
+            <motion.div 
+              className="absolute inset-0"
+              style={{ x: mouseX, y: mouseY, scale: 1.05 }}
+            >
+              <Image
+                src="/images/woman-background-mobile.webp"
+                alt="Talento profesional de HostPro en evento corporativo de lujo en Panamá"
+                fill
+                className="object-cover object-center contrast-[1.1] brightness-[1.05]"
+                priority
+                quality={100}
+              />
+            </motion.div>
           </div>
 
           {/* Background Image - Desktop */}
           <div className="absolute inset-0 z-0 hidden md:block">
-            {/* Background base */}
-            <Image
-              src="/images/background-hero.webp"
-              alt="Fondo evento corporativo HostPro Panamá"
-              fill
-              className="object-cover"
-              priority
-              quality={100}
-            />
+            {/* Background base - Inverse Parallax */}
+            <motion.div 
+              className="absolute inset-0"
+              style={{ x: bgX, y: bgY, scale: 1.1 }}
+            >
+              <Image
+                src="/images/background-hero.webp"
+                alt="Fondo evento corporativo HostPro Panamá"
+                fill
+                className="object-cover"
+                priority
+                quality={100}
+              />
+            </motion.div>
+
             {/* Talento en primer plano - Versión Desktop */}
-            <Image
-              src="/images/woman-background.webp"
-              alt="Talento profesional de HostPro en evento corporativo de lujo en Panamá"
-              fill
-              className="object-cover object-right"
-              priority
-              quality={100}
-            />
+            <motion.div 
+              className="absolute inset-0"
+              style={{ x: mouseX, y: mouseY, scale: 1.05 }}
+            >
+              <Image
+                src="/images/woman-background.webp"
+                alt="Talento profesional de HostPro en evento corporativo de lujo en Panamá"
+                fill
+                className="object-cover object-right contrast-[1.1] brightness-[1.05]"
+                priority
+                quality={100}
+              />
+            </motion.div>
           </div>
 
           {/* Content - Left Aligned */}
@@ -286,8 +327,8 @@ export default function HomeClient() {
             >
               {/* Main Title - Ultra Bold */}
               <h1 className="font-black uppercase leading-[0.85] mb-12 translate-y-[20%]">
-                <span className="block text-white text-[40px] md:text-[60px] lg:text-[90px] tracking-tight">HOSTPRO</span>
-                <span className="block text-[#d4b200] text-[40px] md:text-[60px] lg:text-[90px] tracking-tight">PANAMÁ</span>
+                <span className="block text-white text-[45px] md:text-[65px] lg:text-[110px] tracking-[-0.05em]">HOSTPRO</span>
+                <span className="block text-[#d4b200] text-[45px] md:text-[65px] lg:text-[110px] tracking-[-0.05em]">PANAMÁ</span>
               </h1>
 
               {/* Subtitle - Bold with spacing */}
@@ -305,7 +346,7 @@ export default function HomeClient() {
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 transition={{ delay: 0.5, duration: 0.8 }}
-                className="text-white/80 text-sm md:text-base max-w-2xl mb-16 leading-relaxed"
+                className="text-white/80 text-sm md:text-base max-w-2xl mb-16 leading-relaxed font-light tracking-wide"
               >
                 Conectamos marcas con profesionales verificados para crear experiencias memorables que generan resultados.
               </motion.p>
@@ -318,7 +359,7 @@ export default function HomeClient() {
               >
                 <Link 
                   href="#contacto" 
-                  className="inline-flex items-center gap-3 bg-[#d4b200] text-black px-10 py-5 font-black uppercase text-xs md:text-sm tracking-[0.15em] hover:scale-105 transition-transform focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-[#d4b200]/50"
+                  className="inline-flex items-center gap-3 bg-[#d4b200] text-black px-10 py-5 font-black uppercase text-xs md:text-sm tracking-[0.15em] hover:scale-105 transition-transform focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-[#d4b200]/50 shadow-[0_20px_50px_rgba(212,178,0,0.2)]"
                 >
                   Cotizar ahora
                   <ArrowRight className="h-5 w-5" />
@@ -578,7 +619,7 @@ export default function HomeClient() {
         <section id="contacto" className="py-32 bg-[#f5f5f5]">
           <div className="max-w-7xl mx-auto px-6 md:px-12">
             {/* Tabs Header */}
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-12">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
               <button
                 onClick={() => setActiveTab('booking')}
                 className={`py-8 px-6 font-black text-xl md:text-2xl uppercase tracking-tight transition-all duration-300 ${
@@ -603,11 +644,27 @@ export default function HomeClient() {
                     : 'bg-black/5 text-black/40 border-2 border-black/10 hover:border-[#d4b200]/50 hover:bg-black/10 scale-100'
                 }`}
               >
-                <span className="block mb-1">ACTIVACIONES BTL</span>
+                <span className="block mb-1">ACTIVACIONES</span>
                 <span className={`block text-xs font-semibold tracking-[0.15em] ${
                   activeTab === 'activaciones' ? 'text-black/80' : 'text-black/30'
                 }`}>
-                  TIPO DE EVENTO, LOCACIÓN, TIPO DE ACTIVACIÓN
+                  BTL, EVENTOS, LANZAMIENTOS
+                </span>
+              </button>
+
+              <button
+                onClick={() => setActiveTab('talento')}
+                className={`py-8 px-6 font-black text-xl md:text-2xl uppercase tracking-tight transition-all duration-300 ${
+                  activeTab === 'talento'
+                    ? 'bg-[#d4b200] text-black border-2 border-[#d4b200] scale-105 shadow-2xl shadow-[#d4b200]/40'
+                    : 'bg-black/5 text-black/40 border-2 border-black/10 hover:border-[#d4b200]/50 hover:bg-black/10 scale-100'
+                }`}
+              >
+                <span className="block mb-1">UNIRSE</span>
+                <span className={`block text-xs font-semibold tracking-[0.15em] ${
+                  activeTab === 'talento' ? 'text-black/80' : 'text-black/30'
+                }`}>
+                  REGÍSTRATE COMO TALENTO
                 </span>
               </button>
             </div>
@@ -659,8 +716,8 @@ export default function HomeClient() {
 
               {/* Right Column - Form */}
               <div className="lg:col-span-2">
-                {/* Lead Form Integration */}
-                <LeadForm mode={activeTab} />
+                {/* Form Integration */}
+                {activeTab === 'talento' ? <TalentForm /> : <LeadForm mode={activeTab} />}
               </div>
             </div>
           </div>
@@ -845,10 +902,10 @@ export default function HomeClient() {
             </div>
 
             <div className="border-t border-white/5 pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
-              <p className="text-xs text-slate-600 uppercase tracking-widest">2024 HOSTPRO PANAMA. TODOS LOS DERECHOS RESERVADOS.</p>
+              <p className="text-xs text-slate-600 uppercase tracking-widest">© {new Date().getFullYear()} HOSTPRO PANAMA. TODOS LOS DERECHOS RESERVADOS.</p>
               <div className="flex gap-6 text-xs text-slate-600 uppercase tracking-widest">
-                <a className="hover:text-[#d4b200] transition-colors focus-visible:outline-none focus-visible:text-[#d4b200] focus-visible:underline" href="#">Términos</a>
-                <a className="hover:text-[#d4b200] transition-colors focus-visible:outline-none focus-visible:text-[#d4b200] focus-visible:underline" href="#">Privacidad</a>
+                <Link className="hover:text-[#d4b200] transition-colors focus-visible:outline-none focus-visible:text-[#d4b200] focus-visible:underline" href="https://wa.me/50769801194?text=Hola,%20deseo%20consultar%20los%20Términos%20y%20Condiciones">Términos</Link>
+                <Link className="hover:text-[#d4b200] transition-colors focus-visible:outline-none focus-visible:text-[#d4b200] focus-visible:underline" href="https://wa.me/50769801194?text=Hola,%20deseo%20consultar%20la%20Política%20de%20Privacidad">Privacidad</Link>
               </div>
             </div>
           </div>

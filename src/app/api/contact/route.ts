@@ -7,7 +7,11 @@ const fromEmail =
   process.env.RESEND_FROM ?? "HostPro Panama <contacto@hostpropanama.com>";
 
 function getResendClient() {
-  return new Resend(process.env.RESEND_API_KEY || "re_123");
+  const apiKey = process.env.RESEND_API_KEY;
+  if (!apiKey) {
+    throw new Error("RESEND_API_KEY is missing in environment variables");
+  }
+  return new Resend(apiKey);
 }
 
 // Validación server-side

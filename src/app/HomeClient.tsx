@@ -275,10 +275,10 @@ export default function HomeClient() {
               style={{ x: mouseX, y: mouseY, scale: 1.05 }}
             >
               <Image
-                src="/images/woman-background-mobile.webp"
+                src="/images/hero.png"
                 alt="Talento profesional de HostPro en evento corporativo de lujo en Panamá"
                 fill
-                className="object-cover object-center contrast-[1.1] brightness-[1.05]"
+                className="object-cover object-center"
                 priority
                 quality={100}
               />
@@ -308,10 +308,10 @@ export default function HomeClient() {
               style={{ x: mouseX, y: mouseY, scale: 1.05 }}
             >
               <Image
-                src="/images/woman-background.webp"
+                src="/images/hero.png"
                 alt="Talento profesional de HostPro en evento corporativo de lujo en Panamá"
                 fill
-                className="object-cover object-right contrast-[1.1] brightness-[1.05]"
+                className="object-cover object-right"
                 priority
                 quality={100}
               />

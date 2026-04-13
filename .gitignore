@@ -50,3 +50,5 @@ node20.zip
 npm.tgz
 pnpm.exe
 *.zip
+node_modules_old/
+scripts/

@@ -6,12 +6,13 @@ import { Menu, X } from "lucide-react";
 import Link from "next/link";
 
 const menuItems = [
-  { href: "/#galeria", label: "Experiencias" },
+  { href: "/modelos/mujeres", label: "Modelos" },
   { href: "/#servicios", label: "Servicios" },
   { href: "/#planes", label: "Planes" },
-  { href: "/#talento", label: "Talento" },
+  { href: "/#galeria", label: "Galería" },
   { href: "/#contacto", label: "Contacto" },
 ];
+
 
 export function MobileMenu() {
   const [isOpen, setIsOpen] = useState(false);
@@ -24,12 +25,13 @@ export function MobileMenu() {
       {/* Hamburger Button */}
       <button
         onClick={toggleMenu}
-        className="md:hidden p-2 text-white hover:text-[#d4b200] transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#d4b200] rounded-md"
+        className="lg:hidden p-2 text-white hover:text-[#d4b200] transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#d4b200] rounded-md"
         aria-label={isOpen ? "Cerrar menú" : "Abrir menú"}
         aria-expanded={isOpen}
       >
         {isOpen ? <X className="h-7 w-7" /> : <Menu className="h-7 w-7" />}
       </button>
+
 
       {/* Overlay */}
       <AnimatePresence>
@@ -40,8 +42,9 @@ export function MobileMenu() {
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
               onClick={closeMenu}
-              className="fixed inset-0 bg-black/80 backdrop-blur-sm z-[60] md:hidden"
+              className="fixed inset-0 bg-black/80 backdrop-blur-sm z-[60] lg:hidden"
             />
+
 
             {/* Menu Panel */}
             <motion.nav
@@ -49,8 +52,9 @@ export function MobileMenu() {
               animate={{ x: 0 }}
               exit={{ x: "100%" }}
               transition={{ type: "spring", damping: 25, stiffness: 200 }}
-              className="fixed top-0 right-0 bottom-0 w-[85%] max-w-sm bg-black border-l border-white/10 z-[70] md:hidden shadow-2xl"
+              className="fixed top-0 right-0 bottom-0 w-[85%] max-w-sm bg-black border-l border-white/10 z-[70] lg:hidden shadow-2xl"
             >
+
               {/* Header */}
               <div className="flex items-center justify-between p-6 border-b border-white/10">
                 <span className="text-lg font-black uppercase text-[#d4b200]">

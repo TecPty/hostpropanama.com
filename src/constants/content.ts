@@ -4,7 +4,7 @@ export const services = [
     title: "Talento para Experiencias de Marca",
     description:
       "Profesionales capacitados para representar tu marca en ferias, congresos, lanzamientos y eventos premium con presencia impecable.",
-    image: "/images/azafatas.webp",
+    image: "/images/talentos.png",
     benefits: [
       "Profesionales verificados",
       "Perfiles AAA",
@@ -15,7 +15,9 @@ export const services = [
   {
     title: "Eventos Corporativos",
     description: "Perfiles bilingües especializados en protocolo, atención VIP y hospitalidad para invitados internacionales.",
-    image: "/images/staff.webp",
+    image: "/images/eventos.png",
+
+
     benefits: [
       "Protocolo y hospitalidad",
       "Perfiles bilingües certificados",
@@ -253,7 +255,10 @@ export const talent: TalentModel[] = [
       schedule: "Coordinación por agenda",
       canTravel: true,
     },
-    physical: {},
+    physical: {
+      height: "1.68 m", // Estimado o dejar vacío si el UI lo maneja
+    },
+
     gender: "mujer",
     photo: "/talent/mujeres/sofia-sanchez.webp",
     media: {
@@ -300,8 +305,9 @@ export const talent: TalentModel[] = [
       canTravel: true,
     },
     physical: {
-      height: "Por confirmar",
+      height: "1.72 m",
     },
+
     gender: "mujer",
     photo: "/talent/mujeres/ana-lorena.webp",
     media: {

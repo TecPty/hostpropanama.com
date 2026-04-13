@@ -198,8 +198,19 @@ export function LeadForm({ mode = 'activaciones' }: { mode?: 'booking' | 'activa
         body: JSON.stringify({ ...data, leadMode: mode }),
       });
       if (!res.ok) throw new Error("Error al enviar");
+      
+      // GA4 Event - Lead Generation
+      if (typeof window !== "undefined" && (window as any).gtag) {
+        (window as any).gtag('event', 'generate_lead', {
+          'event_category': 'engagement',
+          'event_label': mode === 'booking' ? 'Lead Booking' : 'Lead Activaciones',
+          'lead_type': mode
+        });
+      }
+
       setState("success");
       reset();
+
     } catch (error) {
       console.error(error);
       setState("error");
@@ -349,8 +360,18 @@ export function TalentForm() {
         body: JSON.stringify(data),
       });
       if (!res.ok) throw new Error("Error al enviar");
+      
+      // GA4 Event - Talent Application
+      if (typeof window !== "undefined" && (window as any).gtag) {
+        (window as any).gtag('event', 'generate_lead', {
+          'event_category': 'engagement',
+          'event_label': 'Talent Application'
+        });
+      }
+
       setState("success");
       reset();
+
     } catch (error) {
       console.error(error);
       setState("error");

@@ -32,14 +32,15 @@ export default function Header() {
         {/* Logo */}
         <Link href="/" className="flex items-center gap-2">
           <Image 
-            src="/logos/hostpro-logo-horizontal.png" 
+            src="/logos/hostpro-logo-horizontal.webp" 
             alt="HostPro Panamá" 
             width={540} 
             height={135} 
-            className="h-[108px] md:h-[126px] w-auto"
+            className="h-16 md:h-20 w-auto"
             priority
           />
         </Link>
+
         <div className="flex items-center gap-8">
           {/* Desktop Navigation */}
           <nav className="hidden lg:flex items-center gap-8">
@@ -77,9 +78,8 @@ export default function Header() {
             Cotizar
           </Link>
           {/* Mobile Menu */}
-          <div className="lg:hidden">
-            <MobileMenu />
-          </div>
+          <MobileMenu />
+
         </div>
       </div>
     </header>

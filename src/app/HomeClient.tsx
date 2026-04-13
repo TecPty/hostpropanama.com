@@ -1,7 +1,8 @@
 "use client";
 
 import { useState, useEffect, useRef } from "react";
-import { motion, useMotionValue, useTransform } from "framer-motion";
+import { motion, useMotionValue, useTransform, useScroll } from "framer-motion";
+
 import {
   ArrowRight,
   Star,
@@ -24,7 +25,9 @@ import {
 import Image from "next/image";
 import Link from "next/link";
 import { LeadForm, TalentForm } from "@/components/forms";
+import Header from "@/components/Header";
 import { services, process, faqs, getTalentByGender, plans } from "@/constants/content";
+
 
 const ChevronIcon = () => (
   <ChevronDown className="h-5 w-5 group-open:rotate-180 transition-transform duration-300" />
@@ -42,6 +45,21 @@ const SpotlightCard = ({ children, className = "", delay = 0, animateFrom = "lef
   const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
   const [isHovered, setIsHovered] = useState(false);
 
+  const { scrollYProgress } = useScroll({
+    target: cardRef,
+    offset: ["start end", "end start"]
+  });
+
+  const x = useTransform(
+    scrollYProgress,
+    [0, 0.3, 0.7, 1],
+    [animateFrom === "left" ? -150 : 150, 0, 0, animateFrom === "left" ? -150 : 150]
+  );
+
+  const opacity = useTransform(scrollYProgress, [0, 0.3, 0.7, 1], [0, 1, 1, 0]);
+  const blurValue = useTransform(scrollYProgress, [0, 0.3, 0.7, 1], [10, 0, 0, 10]);
+  const filter = useTransform(blurValue, (v) => `blur(${v}px)`);
+
   const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
     if (!cardRef.current) return;
     const rect = cardRef.current.getBoundingClientRect();
@@ -50,15 +68,12 @@ const SpotlightCard = ({ children, className = "", delay = 0, animateFrom = "lef
 
   return (
     <motion.div
-      initial={{ opacity: 0, x: animateFrom === "left" ? -60 : 60, filter: "blur(4px)" }}
-      whileInView={{ opacity: 1, x: 0, filter: "blur(0px)" }}
-      transition={{ duration: 0.8, ease: [0.21, 0.47, 0.32, 0.98], delay }}
-      viewport={{ once: true, amount: 0.25 }}
       ref={cardRef}
+      style={{ x, opacity, filter }}
+      className={`relative overflow-hidden bg-black/40 border border-white/10 p-8 lg:p-10 transition-colors duration-500 ${isHovered ? "border-[#d4b200]/60" : ""} ${className}`}
       onMouseMove={handleMouseMove}
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
-      className={`relative overflow-hidden bg-black/40 border border-white/10 p-8 lg:p-10 transition-colors duration-300 ${isHovered ? "border-[#d4b200]/60" : ""} ${className}`}
     >
       {/* Spotlight overlay */}
       <div
@@ -73,6 +88,72 @@ const SpotlightCard = ({ children, className = "", delay = 0, animateFrom = "lef
     </motion.div>
   );
 };
+
+const ServiceCard = ({ service, index }: { service: typeof services[0], index: number }) => {
+  const cardRef = useRef<HTMLDivElement>(null);
+  const animateFrom = index % 2 === 0 ? "left" : "right";
+
+  const { scrollYProgress } = useScroll({
+    target: cardRef,
+    offset: ["start end", "end start"]
+  });
+
+  const x = useTransform(
+    scrollYProgress,
+    [0, 0.35, 0.65, 1],
+    [animateFrom === "left" ? -120 : 120, 0, 0, animateFrom === "left" ? -120 : 120]
+  );
+
+  const opacity = useTransform(scrollYProgress, [0, 0.3, 0.7, 1], [0, 1, 1, 0]);
+  const blurValue = useTransform(scrollYProgress, [0, 0.3, 0.7, 1], [10, 0, 0, 10]);
+  const filter = useTransform(blurValue, (v) => `blur(${v}px)`);
+
+  return (
+    <motion.div
+      ref={cardRef}
+      style={{ x, opacity, filter }}
+      className="group border-l-2 border-[#d4b200] pl-6 hover:border-white transition-colors"
+    >
+      {/* Number */}
+      <span className="text-white/20 font-black text-5xl md:text-6xl leading-none">
+        {String(index + 1).padStart(2, "0")}
+      </span>
+
+      {/* Title */}
+      <h3 className="text-2xl md:text-3xl font-black text-white uppercase tracking-tight mt-4 mb-4 leading-tight">
+        {service.title}
+      </h3>
+
+      {/* Description */}
+      <p className="text-white/60 text-sm leading-relaxed mb-6">
+        {service.description}
+      </p>
+
+      {/* Benefits - Simplified */}
+      <div className="space-y-2 mb-6">
+        {service.benefits.map((benefit, benefitIdx) => (
+          <div key={benefitIdx} className="flex items-center gap-2 text-white/80 text-xs">
+            <div className="w-1 h-1 bg-[#d4b200]" />
+            {benefit}
+          </div>
+        ))}
+      </div>
+
+      {/* Image - Hidden on mobile for cleaner look */}
+      <div className="hidden md:block aspect-[4/3] relative overflow-hidden bg-white/5 mt-8 group-hover:scale-[1.02] transition-transform duration-500">
+        <Image
+          src={service.image}
+          alt={service.title}
+          fill
+          sizes="(max-width: 768px) 100vw, 50vw"
+          className="object-cover opacity-60 group-hover:opacity-80 transition-opacity"
+        />
+      </div>
+    </motion.div>
+  );
+};
+
+
 
 const VisionMisionTabs = () => {
   return (
@@ -121,34 +202,10 @@ const VisionMisionTabs = () => {
 };
 
 export default function HomeClient() {
-  const [activeTab, setActiveTab] = useState<'booking' | 'activaciones' | 'talento'>('booking');
-  const [showNav, setShowNav] = useState(true);
-  const [lastScrollY, setLastScrollY] = useState(0);
+  const [activeTab, setActiveTab] = useState<'activaciones' | 'talento'>('activaciones');
 
-  useEffect(() => {
-    const handleScroll = () => {
-      const currentScrollY = window.scrollY;
-      
-      if (currentScrollY < 10) {
-        // Always show navbar at the top
-        setShowNav(true);
-      } else if (currentScrollY > lastScrollY) {
-        // Scrolling down - hide navbar
-        setShowNav(false);
-      } else {
-        // Scrolling up - show navbar
-        setShowNav(true);
-      }
-      
-      setLastScrollY(currentScrollY);
-    };
+  const { scrollY } = useScroll();
 
-    window.addEventListener('scroll', handleScroll, { passive: true });
-    
-    return () => {
-      window.removeEventListener('scroll', handleScroll);
-    };
-  }, [lastScrollY]);
 
   // Mouse Parallax Logic
   const mouseX = useMotionValue(0);
@@ -189,62 +246,8 @@ export default function HomeClient() {
 
   return (
     <div className="relative overflow-hidden bg-[#0a0a0a] text-white">
-      {/* HEADER */}
-      <header className={`fixed top-0 left-0 right-0 z-50 transition-transform duration-300 ${
-        showNav ? 'translate-y-0' : '-translate-y-full'
-      }`}>
-        <div className="max-w-7xl mx-auto px-6 md:px-12 h-24 flex items-center justify-between">
-          {/* Logo - PNG */}
-          <Link href="/" className="flex items-center gap-2">
-            <Image 
-              src="/logos/hostpro-logo-horizontal.webp" 
-              alt="HostPro Panamá" 
-              width={540} 
-              height={135} 
-              className="h-16 md:h-20 w-auto"
-            />
-          </Link>
-          
-          <div className="flex items-center gap-8">
-            {/* Navigation */}
-            <nav className="hidden lg:flex items-center gap-8">
-              <div className="relative group">
-                <Link href="/modelos/mujeres" className="inline-flex items-center gap-1 text-xs font-bold uppercase tracking-[0.15em] text-white/70 hover:text-white transition-colors">
-                  Modelos
-                  <ChevronDown className="h-3.5 w-3.5 transition-transform duration-300 group-hover:rotate-180" />
-                </Link>
-                <div className="absolute left-0 top-full pt-3 opacity-0 pointer-events-none group-hover:opacity-100 group-hover:pointer-events-auto group-focus-within:opacity-100 group-focus-within:pointer-events-auto transition-all duration-200">
-                  <div className="w-44 bg-black/95 border border-white/10 backdrop-blur-sm p-2 space-y-1">
-                    <Link
-                      href="/modelos/mujeres"
-                      className="block px-3 py-2 text-xs font-bold uppercase tracking-[0.12em] text-white/70 hover:text-[#d4b200] hover:bg-white/5 transition-colors"
-                    >
-                      Mujeres
-                    </Link>
-                    <Link
-                      href="/modelos/hombres"
-                      className="block px-3 py-2 text-xs font-bold uppercase tracking-[0.12em] text-white/70 hover:text-[#d4b200] hover:bg-white/5 transition-colors"
-                    >
-                      Hombres
-                    </Link>
-                  </div>
-                </div>
-              </div>
-              <Link href="#servicios" className="text-xs font-bold uppercase tracking-[0.15em] text-white/70 hover:text-white transition-colors">Servicios</Link>
-              <Link href="#planes" className="text-xs font-bold uppercase tracking-[0.15em] text-white/70 hover:text-white transition-colors">Planes</Link>
-              <Link href="#contacto" className="text-xs font-bold uppercase tracking-[0.15em] text-white/70 hover:text-white transition-colors">Contacto</Link>
-            </nav>
+      <Header />
 
-            {/* CTA Button */}
-            <Link 
-              href="#contacto"
-              className="bg-[#d4b200] text-black px-6 py-3 font-black uppercase text-xs tracking-[0.15em] hover:bg-white transition-colors"
-            >
-              Cotizar
-            </Link>
-          </div>
-        </div>
-      </header>
 
       <main className="relative">
         {/* HERO SECTION */}
@@ -271,14 +274,14 @@ export default function HomeClient() {
 
             {/* Talento en primer plano - Versión Mobile */}
             <motion.div 
-              className="absolute inset-0"
-              style={{ x: mouseX, y: mouseY, scale: 1.05 }}
+              className="absolute inset-x-0 bottom-0 top-20"
+              style={{ x: mouseX, y: mouseY, scale: 0.85, transformOrigin: "bottom center" }}
             >
               <Image
                 src="/images/hero.png"
                 alt="Talento profesional de HostPro en evento corporativo de lujo en Panamá"
                 fill
-                className="object-cover object-center"
+                className="object-contain object-bottom"
                 priority
                 quality={100}
               />
@@ -304,14 +307,16 @@ export default function HomeClient() {
 
             {/* Talento en primer plano - Versión Desktop */}
             <motion.div 
-              className="absolute inset-0"
-              style={{ x: mouseX, y: mouseY, scale: 1.05 }}
+              className="absolute inset-x-0 bottom-0 top-0"
+              style={{ x: mouseX, y: mouseY, scale: 0.9, transformOrigin: "bottom right" }}
             >
+
               <Image
-                src="/images/hero.png"
+                src="/images/hero.webp"
                 alt="Talento profesional de HostPro en evento corporativo de lujo en Panamá"
                 fill
-                className="object-cover object-right"
+
+                className="object-contain object-right-bottom"
                 priority
                 quality={100}
               />
@@ -400,52 +405,10 @@ export default function HomeClient() {
             {/* Services Grid */}
             <div className="grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-16">
               {services.map((service, idx) => (
-                <motion.div
-                  key={service.title}
-                  initial={{ opacity: 0, y: 30 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true, amount: 0.2 }}
-                  transition={{ duration: 0.6, delay: idx * 0.1 }}
-                  className="group border-l-2 border-[#d4b200] pl-6 hover:border-white transition-colors"
-                >
-                  {/* Number */}
-                  <span className="text-white/20 font-black text-5xl md:text-6xl leading-none">
-                    {String(idx + 1).padStart(2, "0")}
-                  </span>
-
-                  {/* Title */}
-                  <h3 className="text-2xl md:text-3xl font-black text-white uppercase tracking-tight mt-4 mb-4 leading-tight">
-                    {service.title}
-                  </h3>
-
-                  {/* Description */}
-                  <p className="text-white/60 text-sm leading-relaxed mb-6">
-                    {service.description}
-                  </p>
-
-                  {/* Benefits - Simplified */}
-                  <div className="space-y-2 mb-6">
-                    {service.benefits.map((benefit, benefitIdx) => (
-                      <div key={benefitIdx} className="flex items-center gap-2 text-white/80 text-xs">
-                        <div className="w-1 h-1 bg-[#d4b200]" />
-                        {benefit}
-                      </div>
-                    ))}
-                  </div>
-
-                  {/* Image - Hidden on mobile for cleaner look */}
-                  <div className="hidden md:block aspect-[4/3] relative overflow-hidden bg-white/5 mt-8 group-hover:scale-[1.02] transition-transform duration-500">
-                    <Image
-                      src={service.image}
-                      alt={service.title}
-                      fill
-                      sizes="(max-width: 768px) 100vw, 50vw"
-                      className="object-cover opacity-60 group-hover:opacity-80 transition-opacity"
-                    />
-                  </div>
-                </motion.div>
+                <ServiceCard key={service.title} service={service} index={idx} />
               ))}
             </div>
+
           </div>
         </section>
 
@@ -619,23 +582,7 @@ export default function HomeClient() {
         <section id="contacto" className="py-32 bg-[#f5f5f5]">
           <div className="max-w-7xl mx-auto px-6 md:px-12">
             {/* Tabs Header */}
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
-              <button
-                onClick={() => setActiveTab('booking')}
-                className={`py-8 px-6 font-black text-xl md:text-2xl uppercase tracking-tight transition-all duration-300 ${
-                  activeTab === 'booking'
-                    ? 'bg-[#d4b200] text-black border-2 border-[#d4b200] scale-105 shadow-2xl shadow-[#d4b200]/40'
-                    : 'bg-black/5 text-black/40 border-2 border-black/10 hover:border-[#d4b200]/50 hover:bg-black/10 scale-100'
-                }`}
-              >
-                <span className="block mb-1">BOOKING</span>
-                <span className={`block text-xs font-semibold tracking-[0.15em] ${
-                  activeTab === 'booking' ? 'text-black/80' : 'text-black/30'
-                }`}>
-                  BAILARÍN, MODERADOR, MODELO
-                </span>
-              </button>
-
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-12">
               <button
                 onClick={() => setActiveTab('activaciones')}
                 className={`py-8 px-6 font-black text-xl md:text-2xl uppercase tracking-tight transition-all duration-300 ${
@@ -644,11 +591,11 @@ export default function HomeClient() {
                     : 'bg-black/5 text-black/40 border-2 border-black/10 hover:border-[#d4b200]/50 hover:bg-black/10 scale-100'
                 }`}
               >
-                <span className="block mb-1">ACTIVACIONES</span>
-                <span className={`block text-xs font-semibold tracking-[0.15em] ${
+                <span className="block mb-1 text-base md:text-xl">ACTIVACIONES (COTIZA)</span>
+                <span className={`block text-[10px] font-semibold tracking-[0.15em] ${
                   activeTab === 'activaciones' ? 'text-black/80' : 'text-black/30'
                 }`}>
-                  BTL, EVENTOS, LANZAMIENTOS
+                  BTL, EVENTOS, LANZAMIENTOS, MODELOS
                 </span>
               </button>
 
@@ -660,11 +607,11 @@ export default function HomeClient() {
                     : 'bg-black/5 text-black/40 border-2 border-black/10 hover:border-[#d4b200]/50 hover:bg-black/10 scale-100'
                 }`}
               >
-                <span className="block mb-1">UNIRSE</span>
-                <span className={`block text-xs font-semibold tracking-[0.15em] ${
+                <span className="block mb-1 text-base md:text-xl">UNIRSE (TALENTO)</span>
+                <span className={`block text-[10px] font-semibold tracking-[0.15em] ${
                   activeTab === 'talento' ? 'text-black/80' : 'text-black/30'
                 }`}>
-                  REGÍSTRATE COMO TALENTO
+                  BAILARÍN, MODERADOR, MODELO
                 </span>
               </button>
             </div>
@@ -767,9 +714,12 @@ export default function HomeClient() {
                     <div className="absolute inset-0 border border-[#d4b200]/40 bg-black/95 p-5 flex flex-col items-center justify-center gap-2 text-center [transform:rotateY(180deg)] [backface-visibility:hidden]">
                       <p className="text-white font-black uppercase tracking-[0.08em] text-lg">{model.name}</p>
                       <p className="text-[#d4b200] text-xs uppercase tracking-[0.1em] font-bold">{model.languages}</p>
-                      <p className="text-white/80 text-sm">{model.physical.height ?? "Estatura por confirmar"}</p>
+                      {model.physical.height && (
+                        <p className="text-white/80 text-sm">{model.physical.height}</p>
+                      )}
                       <Link
                         href={`/modelos/${model.slug}`}
+
                         className="inline-flex mt-4 w-fit bg-[#d4b200] text-black px-4 py-2 text-[11px] uppercase tracking-[0.12em] font-black hover:bg-[#e6c700] transition-colors"
                       >
                         Ver portafolio
@@ -879,7 +829,8 @@ export default function HomeClient() {
                   <li><a className="hover:text-[#d4b200] transition-colors focus-visible:outline-none focus-visible:text-[#d4b200] focus-visible:underline" href="#servicios">Experiencias de Marca</a></li>
                   <li><a className="hover:text-[#d4b200] transition-colors focus-visible:outline-none focus-visible:text-[#d4b200] focus-visible:underline" href="#servicios">Eventos Corporativos</a></li>
                   <li><a className="hover:text-[#d4b200] transition-colors focus-visible:outline-none focus-visible:text-[#d4b200] focus-visible:underline" href="#servicios">Producción Audiovisual</a></li>
-                  <li><a className="hover:text-[#d4b200] transition-colors focus-visible:outline-none focus-visible:text-[#d4b200] focus-visible:underline" href="#talento">Únete al Equipo</a></li>
+                  <li><a className="hover:text-[#d4b200] transition-colors focus-visible:outline-none focus-visible:text-[#d4b200] focus-visible:underline" href="#contacto">Únete al Equipo</a></li>
+
                 </ul>
               </div>
 
@@ -911,14 +862,6 @@ export default function HomeClient() {
           </div>
         </footer>
 
-        {/* WhatsApp Button */}
-        <Link
-          href="https://wa.me/50769801194"
-          aria-label="Hablar por WhatsApp"
-          className="fixed bottom-6 right-6 z-40 flex h-14 w-14 items-center justify-center rounded-full bg-[#25D366] shadow-[0_12px_30px_rgba(0,0,0,0.35)] transition hover:translate-y-[-2px] hover:bg-[#1ebe5b] focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-[#25D366]/50"
-        >
-          <MessageCircle className="h-7 w-7 text-white" />
-        </Link>
       </main>
     </div>
   );

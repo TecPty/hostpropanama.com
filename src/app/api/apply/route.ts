@@ -9,10 +9,12 @@ const fromEmail =
 function getResendClient() {
   const apiKey = process.env.RESEND_API_KEY;
   if (!apiKey) {
-    throw new Error("RESEND_API_KEY is missing in environment variables");
+    console.warn("⚠️ ALERTA: RESEND_API_KEY no configurada. Los correos no se enviarán.");
+    return null;
   }
   return new Resend(apiKey);
 }
+
 
 // Validación server-side
 const talentSchema = z.object({
@@ -22,8 +24,9 @@ const talentSchema = z.object({
   city: z.string().min(2),
   role: z.string().min(3),
   languages: z.string().min(2),
-  portfolio: z.string().optional(),
+  portfolio: z.string().optional().or(z.literal("")),
 });
+
 
 // Email HTML para el equipo
 function getAdminEmailHTML(data: z.infer<typeof talentSchema>) {
@@ -181,6 +184,14 @@ export async function POST(request: Request) {
     
     const data = validationResult.data;
     const resend = getResendClient();
+
+    if (!resend) {
+      return NextResponse.json(
+        { error: "Error interno de configuración (Email API Key)" },
+        { status: 500 }
+      );
+    }
+
 
     // Enviar email al equipo de HostPro
     await resend.emails.send({

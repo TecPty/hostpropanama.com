@@ -9,25 +9,28 @@ const fromEmail =
 function getResendClient() {
   const apiKey = process.env.RESEND_API_KEY;
   if (!apiKey) {
-    throw new Error("RESEND_API_KEY is missing in environment variables");
+    console.warn("⚠️ ALERTA: RESEND_API_KEY no configurada. Los correos no se enviarán.");
+    return null;
   }
   return new Resend(apiKey);
 }
+
 
 // Validación server-side
 // Validación server-side
 const leadSchema = z.object({
   name: z.string().min(2).max(100),
-  company: z.string().min(2).max(100),
+  company: z.string().max(100).optional().or(z.literal("")),
   email: z.string().email(),
   phone: z.string().min(8).max(20),
-  eventType: z.string().min(3),
+  eventType: z.string().max(200).optional().or(z.literal("")),
   location: z.string().max(200).optional(),
   activationType: z.string().max(200).optional(),
   leadMode: z.string().optional(),
   date: z.string().optional(),
-  message: z.string().min(10).max(1000),
+  message: z.string().max(1000).optional().or(z.literal("")),
 });
+
 
 // Email HTML profesional para el equipo
 function getAdminEmailHTML(data: z.infer<typeof leadSchema>) {
@@ -102,7 +105,8 @@ function getAdminEmailHTML(data: z.infer<typeof leadSchema>) {
           </div>
           
           <div style="text-align: center; margin-top: 24px;">
-            <a href="https://wa.me/${data.phone.replace(/[^0-9]/g, '')}?text=Hola%20${encodeURIComponent(data.name)}%2C%20recibimos%20tu%20solicitud%20para%20${encodeURIComponent(data.eventType)}" style="display: inline-block; background: #d4b200; color: #0a0a0a; padding: 14px 32px; border-radius: 50px; text-decoration: none; font-weight: 700; font-size: 14px;">Responder por WhatsApp</a>
+            <a href="https://wa.me/${data.phone.replace(/[^0-9]/g, '')}?text=Hola%20${encodeURIComponent(data.name)}%2C%20recibimos%20tu%20solicitud%20para%20${encodeURIComponent(data.eventType || 'tu evento')}" style="display: inline-block; background: #d4b200; color: #0a0a0a; padding: 14px 32px; border-radius: 50px; text-decoration: none; font-weight: 700; font-size: 14px;">Responder por WhatsApp</a>
+
           </div>
         </div>
       </div>
@@ -112,7 +116,8 @@ function getAdminEmailHTML(data: z.infer<typeof leadSchema>) {
 }
 
 // Email de confirmación para el cliente
-function getClientConfirmationHTML(name: string, company: string) {
+function getClientConfirmationHTML(name: string, company?: string) {
+  const companyHighlight = company ? ` para <strong>${company}</strong>` : "";
   return `
   <!DOCTYPE html>
   <html>
@@ -132,8 +137,9 @@ function getClientConfirmationHTML(name: string, company: string) {
           </p>
           
           <p style="margin: 0 0 16px; color: #f5f5f5; font-size: 16px; line-height: 1.6;">
-            Gracias por contactar a <strong>HostPro Panamá</strong>. Recibimos tu solicitud de staff para <strong>${company}</strong> y nuestro equipo la está revisando.
+            Gracias por contactar a <strong>HostPro Panamá</strong>. Recibimos tu solicitud de staff${companyHighlight} y nuestro equipo la está revisando.
           </p>
+
           
           <div style="background: rgba(212, 178, 0, 0.1); border-left: 4px solid #d4b200; padding: 16px; margin: 24px 0; border-radius: 8px;">
             <p style="margin: 0; color: #d4b200; font-weight: 600; font-size: 15px;">⚡ Promesa de respuesta:</p>
@@ -167,12 +173,21 @@ export async function POST(request: Request) {
     const data = validationResult.data;
     const resend = getResendClient();
 
+    if (!resend) {
+      return NextResponse.json(
+        { error: "Error interno de configuración (Email API Key)" },
+        { status: 500 }
+      );
+    }
+
+
     await resend.emails.send({
       from: fromEmail,
       to: [fallbackTo],
       replyTo: data.email,
-      subject: `🎯 Solicitud [${data.leadMode?.toUpperCase() || 'LEAD'}]: ${data.company}`,
+      subject: `🎯 Solicitud [${data.leadMode?.toUpperCase() || 'LEAD'}]: ${data.company || 'Nuevo Cliente'}`,
       html: getAdminEmailHTML(data),
+
     });
 
     await resend.emails.send({

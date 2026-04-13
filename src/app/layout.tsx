@@ -3,6 +3,8 @@ import { Inter } from "next/font/google";
 import Script from "next/script";
 import "@/styles/globals.css";
 import SmoothScroll from "@/components/SmoothScroll";
+import WhatsAppFloating from "@/components/WhatsAppFloating";
+
 
 const inter = Inter({
   variable: "--font-sans",
@@ -74,7 +76,9 @@ export default function RootLayout({
         <SmoothScroll>
           {children}
         </SmoothScroll>
+        <WhatsAppFloating />
       </body>
+
     </html>
   );
 }

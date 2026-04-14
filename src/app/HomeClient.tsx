@@ -828,7 +828,7 @@ export default function HomeClient() {
                 <ul className="space-y-4 text-sm text-slate-300">
                   <li><a className="hover:text-[#d4b200] transition-colors focus-visible:outline-none focus-visible:text-[#d4b200] focus-visible:underline" href="#servicios">Experiencias de Marca</a></li>
                   <li><a className="hover:text-[#d4b200] transition-colors focus-visible:outline-none focus-visible:text-[#d4b200] focus-visible:underline" href="#servicios">Eventos Corporativos</a></li>
-                  <li><a className="hover:text-[#d4b200] transition-colors focus-visible:outline-none focus-visible:text-[#d4b200] focus-visible:underline" href="#servicios">Producción Audiovisual</a></li>
+                  <li><a className="hover:text-[#d4b200] transition-colors focus-visible:outline-none focus-visible:text-[#d4b200] focus-visible:underline" href="#servicios">Capacitaciones</a></li>
                   <li><a className="hover:text-[#d4b200] transition-colors focus-visible:outline-none focus-visible:text-[#d4b200] focus-visible:underline" href="#contacto">Únete al Equipo</a></li>
 
                 </ul>

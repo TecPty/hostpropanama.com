@@ -13,11 +13,9 @@ export const services = [
     whatsappContext: "service-experiencias" as const,
   },
   {
-    title: "Eventos Corporativos",
+    title: "Eventos corporativos",
     description: "Perfiles bilingües especializados en protocolo, atención VIP y hospitalidad para invitados internacionales.",
     image: "/images/eventos.png",
-
-
     benefits: [
       "Protocolo y hospitalidad",
       "Perfiles bilingües certificados",
@@ -28,7 +26,7 @@ export const services = [
   {
     title: "Activaciones BTL",
     description: "Entendemos que una activación no es solo presencia. Es percepción, experiencia y conversión. Ejecutamos activaciones en supermercados, retail, eventos corporativos, lanzamientos y eventos masivos, garantizando una experiencia coherente, profesional y orientada a objetivos. No improvisamos presencia. Diseñamos impacto.",
-    image: "/images/brand.webp",
+    image: "/images/activaciones-btl.png",
     benefits: [
       "Ejecución en punto de venta",
       "Brand ambassadors capacitados",
@@ -37,16 +35,16 @@ export const services = [
     whatsappContext: "service-btl" as const,
   },
   {
-    title: "Producciones audiovisuales",
+    title: "Capacitaciones",
     description:
-      "Cada talento es previamente evaluado en imagen, actitud, expresión y profesionalismo. Porque en producción audiovisual, la imagen no es un detalle. Es el mensaje. Seleccionamos cuidadosamente cada perfil según el concepto creativo, identidad de marca y requerimientos técnicos de la producción.",
-    image: "/images/register.webp",
+      "Programa de formación profesional para azafatas y brand ambassadors orientado a resultados en campo. Entrenamos protocolo, comunicación, servicio al cliente, manejo de objeciones, ejecución en activaciones y representación de marca para garantizar equipos más consistentes, seguros y efectivos.",
+    image: "/images/capacitaciones.png",
     benefits: [
-      "Casting especializado",
-      "Derechos de imagen incluidos",
-      "Experiencia en cámara"
+      "Entrenamiento práctico por módulos",
+      "Role play y simulaciones reales",
+      "Evaluación final con certificación"
     ],
-    whatsappContext: "service-audiovisual" as const,
+    whatsappContext: "service-capacitaciones" as const,
   },
 ];
 

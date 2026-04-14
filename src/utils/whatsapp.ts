@@ -16,6 +16,7 @@ export type WhatsAppContext =
   | "service-corporativo"
   | "service-btl"
   | "service-audiovisual"
+  | "service-capacitaciones"
   | "urgente"
   | "cotizacion";
 
@@ -51,6 +52,8 @@ export function getWhatsAppLink(context: WhatsAppContext = "general", customPara
     "service-btl": "Hola, necesito ejecutar una activación BTL. ¿Pueden apoyarme con brand ambassadors capacitados?",
     
     "service-audiovisual": "Hola, estoy produciendo contenido audiovisual y necesito talento profesional. ¿Tienen disponibilidad?",
+
+    "service-capacitaciones": "Hola, me interesa el programa de capacitación para azafatas y brand ambassadors. ¿Podemos revisar temario, modalidad y fechas disponibles?",
     
     urgente: "🚨 URGENTE: Necesito staff para un evento próximo. ¿Pueden responder ahora?",
     

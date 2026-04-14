@@ -52,3 +52,4 @@ pnpm.exe
 *.zip
 node_modules_old/
 scripts/
+.atl/

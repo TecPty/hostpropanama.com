@@ -258,9 +258,17 @@ export const talent: TalentModel[] = [
     },
 
     gender: "mujer",
-    photo: "/talent/mujeres/sofia-sanchez.webp",
+    photo: "/talent/mujeres/sofia-sanchez/sofia-sanchez.webp",
     media: {
-      gallery: ["/talent/mujeres/sofia-sanchez.webp"],
+      gallery: [
+        "/talent/mujeres/sofia-sanchez/1.png",
+        "/talent/mujeres/sofia-sanchez/2.png",
+        "/talent/mujeres/sofia-sanchez/3.png",
+        "/talent/mujeres/sofia-sanchez/4.png",
+        "/talent/mujeres/sofia-sanchez/5.png",
+        "/talent/mujeres/sofia-sanchez/6.png",
+        "/talent/mujeres/sofia-sanchez/7.png",
+      ],
     },
   },
   {
@@ -307,9 +315,28 @@ export const talent: TalentModel[] = [
     },
 
     gender: "mujer",
-    photo: "/talent/mujeres/ana-lorena.webp",
+    photo: "/talent/mujeres/ana-lorena/ana-lorena.webp",
     media: {
-      gallery: ["/talent/mujeres/ana-lorena.webp"],
+      gallery: [
+        "/talent/mujeres/ana-lorena/1.png",
+        "/talent/mujeres/ana-lorena/2.png",
+        "/talent/mujeres/ana-lorena/3.png",
+        "/talent/mujeres/ana-lorena/4.png",
+        "/talent/mujeres/ana-lorena/5.png",
+        "/talent/mujeres/ana-lorena/6.png",
+        "/talent/mujeres/ana-lorena/7.png",
+        "/talent/mujeres/ana-lorena/8.png",
+        "/talent/mujeres/ana-lorena/9.png",
+        "/talent/mujeres/ana-lorena/10.png",
+        "/talent/mujeres/ana-lorena/11.png",
+        "/talent/mujeres/ana-lorena/12.png",
+        "/talent/mujeres/ana-lorena/13.png",
+        "/talent/mujeres/ana-lorena/14.png",
+        "/talent/mujeres/ana-lorena/15.png",
+        "/talent/mujeres/ana-lorena/16.png",
+        "/talent/mujeres/ana-lorena/17.png",
+        "/talent/mujeres/ana-lorena/18.png",
+      ],
     },
   },
   {
@@ -331,9 +358,15 @@ export const talent: TalentModel[] = [
       height: "1.72 m",
     },
     gender: "hombre",
-    photo: "/talent/hombres/irving-rios.webp",
+    photo: "/talent/hombres/irving-rios/irving-rios.webp",
     media: {
-      gallery: ["/talent/hombres/irving-rios.webp"],
+      gallery: [
+        "/talent/hombres/irving-rios/1.png",
+        "/talent/hombres/irving-rios/2.png",
+        "/talent/hombres/irving-rios/3.png",
+        "/talent/hombres/irving-rios/4.png",
+        "/talent/hombres/irving-rios/5.png",
+      ],
     },
   },
   {
@@ -354,10 +387,18 @@ export const talent: TalentModel[] = [
     physical: {
       height: "1.80 m",
     },
+    social: {
+      instagram: "@carloswilsonoficial",
+      tiktok: "@carloswilsonoficial",
+    },
     gender: "hombre",
-    photo: "/talent/hombres/carlos-wilson.webp",
+    photo: "/talent/hombres/carlos-wilson/carlos-wilson.webp",
     media: {
-      gallery: ["/talent/hombres/carlos-wilson.webp"],
+      gallery: [
+        "/talent/hombres/carlos-wilson/1.png",
+        "/talent/hombres/carlos-wilson/2.png",
+        "/talent/hombres/carlos-wilson/3.png",
+      ],
     },
   },
 ];

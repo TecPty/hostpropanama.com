@@ -28,7 +28,7 @@ export default function Header() {
 
   return (
     <header className={`fixed top-0 left-0 right-0 z-50 transition-transform duration-300 ${showNav ? 'translate-y-0' : '-translate-y-full'}`}>
-      <div className="max-w-7xl mx-auto px-6 md:px-12 h-24 flex items-center justify-between">
+      <div className="max-w-7xl mx-auto px-6 md:px-12 h-24 md:h-32 flex items-center justify-between">
         {/* Logo */}
         <Link href="/" className="flex items-center gap-2">
           <Image 
@@ -36,7 +36,7 @@ export default function Header() {
             alt="HostPro Panamá" 
             width={540} 
             height={135} 
-            className="h-16 md:h-20 w-auto"
+            className="h-20 md:h-26 w-auto"
             priority
           />
         </Link>

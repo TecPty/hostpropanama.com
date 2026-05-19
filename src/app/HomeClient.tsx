@@ -140,7 +140,7 @@ const ServiceCard = ({ service, index }: { service: typeof services[0], index: n
       </div>
 
       {/* Image - Visible on all devices */}
-      <div className="block aspect-[16/7] relative overflow-hidden bg-white/5 mt-4 group-hover:scale-[1.01] transition-transform duration-500">
+      <div className="block aspect-[16/9] md:aspect-[16/7] relative overflow-hidden bg-white/5 mt-4 group-hover:scale-[1.01] transition-transform duration-500">
         <Image
           src={service.image}
           alt={service.title}

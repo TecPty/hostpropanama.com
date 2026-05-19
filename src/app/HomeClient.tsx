@@ -307,7 +307,7 @@ export default function HomeClient() {
             <div className="grid grid-cols-1 md:grid-cols-12 gap-8 items-center w-full h-full pt-16">
               
               {/* Left Column: Text Content */}
-              <div className="w-full max-w-[88%] sm:max-w-[70%] md:max-w-none md:col-span-7 lg:col-span-6 flex flex-col justify-center z-10 -translate-y-[15%] md:-translate-y-[20%]">
+              <div className="w-full max-w-[88%] sm:max-w-[70%] md:max-w-none md:col-span-7 lg:col-span-6 flex flex-col justify-center z-10 -translate-y-[15%] md:translate-y-0">
                 <motion.div
                   initial={{ opacity: 0, y: 30 }}
                   animate={{ opacity: 1, y: 0 }}

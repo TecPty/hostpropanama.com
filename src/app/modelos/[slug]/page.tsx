@@ -65,6 +65,48 @@ export default async function ModeloPortfolioPage({ params }: ModelPageProps) {
 
   return (
     <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "BreadcrumbList",
+            "itemListElement": [
+              { "@type": "ListItem", "position": 1, "name": "Inicio", "item": "https://hostpropanama.com" },
+              { "@type": "ListItem", "position": 2, "name": "Catálogo", "item": `https://hostpropanama.com${collectionRoute}` },
+              { "@type": "ListItem", "position": 3, "name": model.name, "item": `https://hostpropanama.com/modelos/${model.slug}` },
+            ],
+          }),
+        }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "Person",
+            "name": model.name,
+            "jobTitle": model.role,
+            "knowsLanguage": model.languages,
+            "address": {
+              "@type": "PostalAddress",
+              "addressLocality": model.city,
+              "addressCountry": "PA",
+            },
+            "worksFor": {
+              "@type": "Organization",
+              "name": "HostPro Panamá",
+              "url": "https://hostpropanama.com",
+            },
+            ...(model.social?.instagram && {
+              sameAs: [
+                `https://instagram.com/${model.social.instagram.replace(/^@/, "")}`,
+                ...(model.social?.tiktok ? [`https://www.tiktok.com/@${model.social.tiktok.replace(/^@/, "")}`] : []),
+              ],
+            }),
+          }),
+        }}
+      />
       <Header />
       <main className="min-h-screen bg-[#0a0a0a] text-white py-28">
         <div className="max-w-7xl mx-auto px-6 md:px-12">

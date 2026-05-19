@@ -439,7 +439,7 @@ export const talent: TalentModel[] = [
   },
   {
     name: "Yeismar Carrillo",
-    slug: "yesmar-carrillo",
+    slug: "yeismar-carrillo",
     role: "Azafata y modelo de protocolo VIP",
     languages: "Español",
     status: "disponible",
@@ -466,14 +466,13 @@ export const talent: TalentModel[] = [
       tiktok: "@YeismarCarrillo",
     },
     gender: "mujer",
-    photo: "/talent/mujeres/yesmar-carrillo/yesmar-carrillo.webp",
+    photo: "/talent/mujeres/yeismar-carrillo/yesmar-carrillo.webp",
     media: {
       gallery: [
-        "/talent/mujeres/yesmar-carrillo/yesmar-carrillo-00.webp",
-        "/talent/mujeres/yesmar-carrillo/yesmar-carrillo-01.webp",
-        "/talent/mujeres/yesmar-carrillo/yesmar-carrillo-02.webp",
-        "/talent/mujeres/yesmar-carrillo/yesmar-carrillo-03.webp",
-        "/talent/mujeres/yesmar-carrillo/yesmar-carrillo-04.webp",
+        "/talent/mujeres/yeismar-carrillo/yeismar-carrillo-01.webp",
+        "/talent/mujeres/yeismar-carrillo/yeismar-carrillo-02.webp",
+        "/talent/mujeres/yeismar-carrillo/yeismar-carrillo-03.webp",
+        "/talent/mujeres/yeismar-carrillo/yeismar-carrillo-04.webp",
       ],
     },
   },

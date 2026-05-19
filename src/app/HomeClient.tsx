@@ -163,9 +163,7 @@ const VisionMisionTabs = () => {
           {/* Visión */}
           <SpotlightCard animateFrom="left" delay={0}>
             <div className="mb-6">
-              <div className="inline-flex items-center justify-center w-16 h-16 bg-[#d4b200]/10 border-2 border-[#d4b200] mb-4">
-                <Star className="w-8 h-8 text-[#d4b200]" strokeWidth={1.5} />
-              </div>
+              <Star className="w-8 h-8 text-[#d4b200] mb-4" strokeWidth={1.5} />
               <span className="text-[#d4b200] font-bold uppercase tracking-[0.2em] text-xs block mb-3">
                 Nuestra Visión
               </span>
@@ -181,9 +179,7 @@ const VisionMisionTabs = () => {
           {/* Misión */}
           <SpotlightCard animateFrom="right" delay={0.15}>
             <div className="mb-6">
-              <div className="inline-flex items-center justify-center w-16 h-16 bg-[#d4b200]/10 border-2 border-[#d4b200] mb-4">
-                <Target className="w-8 h-8 text-[#d4b200]" strokeWidth={1.5} />
-              </div>
+              <Target className="w-8 h-8 text-[#d4b200] mb-4" strokeWidth={1.5} />
               <span className="text-[#d4b200] font-bold uppercase tracking-[0.2em] text-xs block mb-3">
                 Nuestra Misión
               </span>

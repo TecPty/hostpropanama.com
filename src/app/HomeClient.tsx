@@ -146,7 +146,7 @@ const ServiceCard = ({ service, index }: { service: typeof services[0], index: n
           alt={service.title}
           fill
           sizes="(max-width: 768px) 100vw, 50vw"
-          className="object-cover opacity-60 group-hover:opacity-80 transition-opacity"
+          className={`object-cover ${service.objectPosition || "object-center"} opacity-60 group-hover:opacity-80 transition-opacity`}
         />
       </div>
     </motion.div>

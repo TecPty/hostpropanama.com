@@ -274,14 +274,14 @@ export default function HomeClient() {
 
             {/* Talento en primer plano - Versión Mobile */}
             <motion.div 
-              className="absolute inset-x-0 bottom-0 top-20"
-              style={{ x: mouseX, y: mouseY, scale: 0.85, transformOrigin: "bottom center" }}
+              className="absolute inset-y-0 right-0 left-1/4 bottom-0 top-20 flex justify-end"
+              style={{ x: mouseX, y: mouseY, scale: 0.72, transformOrigin: "bottom right" }}
             >
               <Image
                 src="/images/hero.png"
                 alt="Talento profesional de HostPro en evento corporativo de lujo en Panamá"
                 fill
-                className="object-contain object-bottom"
+                className="object-contain object-right-bottom"
                 priority
                 quality={100}
               />
@@ -311,14 +311,14 @@ export default function HomeClient() {
             <div className="grid grid-cols-1 md:grid-cols-12 gap-8 items-center w-full h-full pt-16">
               
               {/* Left Column: Text Content */}
-              <div className="md:col-span-7 lg:col-span-6 flex flex-col justify-center">
+              <div className="w-full max-w-[88%] sm:max-w-[70%] md:max-w-none md:col-span-7 lg:col-span-6 flex flex-col justify-center z-10">
                 <motion.div
                   initial={{ opacity: 0, y: 30 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.8 }}
                 >
                   {/* Main Title - Ultra Bold */}
-                  <h1 className="font-black uppercase leading-[0.95] mb-8 translate-y-[15%]">
+                  <h1 className="font-black uppercase leading-[0.95] mb-4 md:mb-8 translate-y-[5%] md:translate-y-[15%]">
                     <span className="block text-white text-[38px] md:text-[50px] lg:text-[75px] tracking-[-0.04em]">HOSTPRO</span>
                     <span className="block text-[#d4b200] text-[38px] md:text-[50px] lg:text-[75px] tracking-[-0.04em]">PANAMÁ</span>
                   </h1>
@@ -328,7 +328,7 @@ export default function HomeClient() {
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 1 }}
                     transition={{ delay: 0.3, duration: 0.8 }}
-                    className="text-[#d4b200] text-sm md:text-base lg:text-lg font-black uppercase tracking-tight mb-8 max-w-3xl border-l-2 border-[#d4b200] pl-5"
+                    className="text-[#d4b200] text-sm md:text-base lg:text-lg font-black uppercase tracking-tight mb-4 md:mb-8 max-w-3xl border-l-2 border-[#d4b200] pl-5"
                   >
                     Somos una agencia de talento para experiencia de marca, eventos corporativos y producción audiovisual.
                   </motion.p>
@@ -338,7 +338,7 @@ export default function HomeClient() {
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 1 }}
                     transition={{ delay: 0.5, duration: 0.8 }}
-                    className="text-white/80 text-sm md:text-base max-w-xl mb-12 leading-relaxed font-light tracking-wide"
+                    className="text-white/80 text-sm md:text-base max-w-xl mb-6 md:mb-12 leading-relaxed font-light tracking-wide"
                   >
                     Conectamos marcas con profesionales verificados para crear experiencias memorables que generan resultados.
                   </motion.p>

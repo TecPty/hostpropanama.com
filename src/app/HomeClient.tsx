@@ -314,7 +314,7 @@ export default function HomeClient() {
                   transition={{ duration: 0.8 }}
                 >
                   {/* Main Title - Ultra Bold */}
-                  <h1 className="font-black uppercase leading-[0.95] mb-4 md:mb-8">
+                  <h1 className="font-black uppercase leading-[0.95] mb-4 md:mb-8 md:translate-y-[15%]">
                     <span className="block text-white text-[38px] md:text-[50px] lg:text-[75px] tracking-[-0.04em]">HOSTPRO</span>
                     <span className="block text-[#d4b200] text-[38px] md:text-[50px] lg:text-[75px] tracking-[-0.04em]">PANAMÁ</span>
                   </h1>

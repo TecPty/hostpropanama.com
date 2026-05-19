@@ -102,8 +102,8 @@ type BaseInputProps<T extends FieldValues> = {
 function TextInput<T extends FieldValues>(props: BaseInputProps<T>) {
   const { label, name, placeholder, register, error, type = "text", autoComplete, maxLength } = props;
   return (
-    <label className="space-y-2">
-      <span className="text-xs font-black uppercase tracking-[0.15em] text-black mb-3">
+    <label className="space-y-1">
+      <span className="text-[11px] font-black uppercase tracking-[0.12em] text-black block mb-1">
         {label} <span className="text-[#d4b200]">*</span>
       </span>
       <input
@@ -112,7 +112,7 @@ function TextInput<T extends FieldValues>(props: BaseInputProps<T>) {
         placeholder={placeholder}
         {...(autoComplete && { autoComplete })}
         {...(maxLength && { maxLength })}
-        className="w-full bg-white border-2 border-black/20 px-4 py-3 text-base text-black focus:border-[#d4b200] focus:outline-none transition-colors"
+        className="w-full bg-white border-2 border-black/20 px-4 py-2.5 text-base text-black focus:border-[#d4b200] focus:outline-none transition-colors"
       />
       {error && <p className="text-xs text-red-600 font-bold mt-1">{error}</p>}
     </label>
@@ -130,13 +130,13 @@ type SelectInputProps<T extends FieldValues> = {
 function SelectInput<T extends FieldValues>(props: SelectInputProps<T>) {
   const { label, name, register, options, error } = props;
   return (
-    <label className="space-y-2">
-      <span className="text-xs font-black uppercase tracking-[0.15em] text-black mb-3">
+    <label className="space-y-1">
+      <span className="text-[11px] font-black uppercase tracking-[0.12em] text-black block mb-1">
         {label} <span className="text-[#d4b200]">*</span>
       </span>
       <select
         {...register(name)}
-        className="w-full bg-white border-2 border-black/20 px-4 py-3 text-base text-black focus:border-[#d4b200] focus:outline-none transition-colors"
+        className="w-full bg-white border-2 border-black/20 px-4 py-2.5 text-base text-black focus:border-[#d4b200] focus:outline-none transition-colors"
       >
         {options.map((opt) => (
           <option key={opt} value={opt}>
@@ -162,8 +162,8 @@ type TextAreaProps<T extends FieldValues> = {
 function TextArea<T extends FieldValues>(props: TextAreaProps<T>) {
   const { label, name, placeholder, register, error, rows = 4, maxLength } = props;
   return (
-    <label className="space-y-2">
-      <span className="text-xs font-black uppercase tracking-[0.15em] text-black mb-3">
+    <label className="space-y-1">
+      <span className="text-[11px] font-black uppercase tracking-[0.12em] text-black block mb-1">
         {label} <span className="text-[#d4b200]">*</span>
       </span>
       <textarea
@@ -171,7 +171,7 @@ function TextArea<T extends FieldValues>(props: TextAreaProps<T>) {
         placeholder={placeholder}
         rows={rows}
         maxLength={maxLength}
-        className="w-full bg-white border-2 border-black/20 px-4 py-3 text-base text-black focus:border-[#d4b200] focus:outline-none transition-colors resize-none"
+        className="w-full bg-white border-2 border-black/20 px-4 py-2.5 text-base text-black focus:border-[#d4b200] focus:outline-none transition-colors resize-none"
       />
       {error && <p className="text-xs text-red-600 font-bold mt-1">{error}</p>}
     </label>

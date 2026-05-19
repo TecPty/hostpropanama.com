@@ -115,22 +115,22 @@ const ServiceCard = ({ service, index }: { service: typeof services[0], index: n
       className="group border-l-2 border-[#d4b200] pl-6 hover:border-white transition-colors"
     >
       {/* Number */}
-      <span className="text-white/20 font-black text-5xl md:text-6xl leading-none">
+      <span className="text-white/20 font-black text-3xl md:text-4xl leading-none">
         {String(index + 1).padStart(2, "0")}
       </span>
 
       {/* Title */}
-      <h3 className="text-2xl md:text-3xl font-black text-white uppercase tracking-tight mt-4 mb-4 leading-tight">
+      <h3 className="text-lg md:text-xl font-black text-white uppercase tracking-tight mt-2 mb-2 leading-tight">
         {service.title}
       </h3>
 
       {/* Description */}
-      <p className="text-white/60 text-sm leading-relaxed mb-6">
+      <p className="text-white/60 text-sm leading-relaxed mb-3">
         {service.description}
       </p>
 
       {/* Benefits - Simplified */}
-      <div className="space-y-2 mb-6">
+      <div className="space-y-1.5 mb-4">
         {service.benefits.map((benefit, benefitIdx) => (
           <div key={benefitIdx} className="flex items-center gap-2 text-white/80 text-xs">
             <div className="w-1 h-1 bg-[#d4b200]" />
@@ -140,7 +140,7 @@ const ServiceCard = ({ service, index }: { service: typeof services[0], index: n
       </div>
 
       {/* Image - Hidden on mobile for cleaner look */}
-      <div className="hidden md:block aspect-[4/3] relative overflow-hidden bg-white/5 mt-8 group-hover:scale-[1.02] transition-transform duration-500">
+      <div className="hidden md:block aspect-[16/7] relative overflow-hidden bg-white/5 mt-4 group-hover:scale-[1.01] transition-transform duration-500">
         <Image
           src={service.image}
           alt={service.title}
@@ -331,9 +331,9 @@ export default function HomeClient() {
               transition={{ duration: 0.8 }}
             >
               {/* Main Title - Ultra Bold */}
-              <h1 className="font-black uppercase leading-[0.85] mb-12 translate-y-[20%]">
-                <span className="block text-white text-[45px] md:text-[65px] lg:text-[110px] tracking-[-0.05em]">HOSTPRO</span>
-                <span className="block text-[#d4b200] text-[45px] md:text-[65px] lg:text-[110px] tracking-[-0.05em]">PANAMÁ</span>
+              <h1 className="font-black uppercase leading-[0.95] mb-10 translate-y-[15%]">
+                <span className="block text-white text-[38px] md:text-[55px] lg:text-[85px] tracking-[-0.04em]">HOSTPRO</span>
+                <span className="block text-[#d4b200] text-[38px] md:text-[55px] lg:text-[85px] tracking-[-0.04em]">PANAMÁ</span>
               </h1>
 
               {/* Subtitle - Bold with spacing */}
@@ -341,7 +341,7 @@ export default function HomeClient() {
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 transition={{ delay: 0.3, duration: 0.8 }}
-                className="text-[#d4b200] text-base md:text-lg lg:text-xl font-black uppercase tracking-tight mb-12 max-w-3xl border-l-4 border-[#d4b200] pl-6"
+                className="text-[#d4b200] text-sm md:text-base lg:text-lg font-black uppercase tracking-tight mb-10 max-w-3xl border-l-2 border-[#d4b200] pl-5"
               >
                 Somos una agencia de talento para experiencia de marca, eventos corporativos y producción audiovisual.
               </motion.p>
@@ -364,7 +364,7 @@ export default function HomeClient() {
               >
                 <Link 
                   href="#contacto" 
-                  className="inline-flex items-center gap-3 bg-[#d4b200] text-black px-10 py-5 font-black uppercase text-xs md:text-sm tracking-[0.15em] hover:scale-105 transition-transform focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-[#d4b200]/50 shadow-[0_20px_50px_rgba(212,178,0,0.2)]"
+                  className="inline-flex items-center gap-3 bg-[#d4b200] text-black px-8 py-4 font-black uppercase text-xs md:text-sm tracking-[0.15em] hover:scale-105 transition-transform focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-[#d4b200]/50 shadow-[0_20px_50px_rgba(212,178,0,0.2)]"
                 >
                   Cotizar ahora
                   <ArrowRight className="h-5 w-5" />
@@ -391,19 +391,19 @@ export default function HomeClient() {
         <VisionMisionTabs />
 
         {/* SERVICIOS SECTION */}
-        <section id="servicios" className="py-32 bg-black border-t border-white/10">
+        <section id="servicios" className="py-16 bg-black border-t border-white/10">
           <div className="max-w-7xl mx-auto px-6 md:px-12">
             {/* Section Header */}
-            <div className="mb-20">
+            <div className="mb-10">
               <span className="text-[#d4b200] font-bold uppercase tracking-[0.2em] text-xs">Servicios</span>
-              <h2 className="text-4xl md:text-6xl font-black uppercase tracking-tight text-white mt-4 leading-[0.9]">
+              <h2 className="text-2xl md:text-3.5xl font-black uppercase tracking-tight text-white mt-3 leading-[1.0]">
                 SOLUCIÓN INTEGRAL<br />
                 <span className="text-[#d4b200]">360°</span>
               </h2>
             </div>
             
             {/* Services Grid */}
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-16">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-10">
               {services.map((service, idx) => (
                 <ServiceCard key={service.title} service={service} index={idx} />
               ))}
@@ -426,7 +426,7 @@ export default function HomeClient() {
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ delay: idx * 0.1 }}
                 viewport={{ once: true, amount: 0.3 }}
-                className={`relative rounded-3xl p-8 transition-all ${
+                className={`relative rounded-3xl p-6 transition-all ${
                   plan.featured
                     ? "bg-gradient-to-br from-[#d4b200] via-[#b89a00] to-[#8a7100] border-2 border-[#d4b200] shadow-[0_0_40px_rgba(212,178,0,0.3)]"
                     : "bg-slate-900 border border-white/5 hover:border-white/10"
@@ -445,7 +445,7 @@ export default function HomeClient() {
                   </div>
 
                   <div>
-                    <p className={`text-4xl font-black ${plan.featured ? "text-black" : "text-white"}`}>
+                    <p className={`text-3xl font-black ${plan.featured ? "text-black" : "text-white"}`}>
                       {plan.price}
                     </p>
                   </div>
@@ -585,13 +585,13 @@ export default function HomeClient() {
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-12">
               <button
                 onClick={() => setActiveTab('activaciones')}
-                className={`py-8 px-6 font-black text-xl md:text-2xl uppercase tracking-tight transition-all duration-300 ${
+                className={`py-5 px-4 font-black text-lg md:text-xl uppercase tracking-tight transition-all duration-300 ${
                   activeTab === 'activaciones'
                     ? 'bg-[#d4b200] text-black border-2 border-[#d4b200] scale-105 shadow-2xl shadow-[#d4b200]/40'
                     : 'bg-black/5 text-black/40 border-2 border-black/10 hover:border-[#d4b200]/50 hover:bg-black/10 scale-100'
                 }`}
               >
-                <span className="block mb-1 text-base md:text-xl">ACTIVACIONES (COTIZA)</span>
+                <span className="block mb-1 text-sm md:text-lg">ACTIVACIONES (COTIZA)</span>
                 <span className={`block text-[10px] font-semibold tracking-[0.15em] ${
                   activeTab === 'activaciones' ? 'text-black/80' : 'text-black/30'
                 }`}>
@@ -601,13 +601,13 @@ export default function HomeClient() {
 
               <button
                 onClick={() => setActiveTab('talento')}
-                className={`py-8 px-6 font-black text-xl md:text-2xl uppercase tracking-tight transition-all duration-300 ${
+                className={`py-5 px-4 font-black text-lg md:text-xl uppercase tracking-tight transition-all duration-300 ${
                   activeTab === 'talento'
                     ? 'bg-[#d4b200] text-black border-2 border-[#d4b200] scale-105 shadow-2xl shadow-[#d4b200]/40'
                     : 'bg-black/5 text-black/40 border-2 border-black/10 hover:border-[#d4b200]/50 hover:bg-black/10 scale-100'
                 }`}
               >
-                <span className="block mb-1 text-base md:text-xl">UNIRSE (TALENTO)</span>
+                <span className="block mb-1 text-sm md:text-lg">UNIRSE (TALENTO)</span>
                 <span className={`block text-[10px] font-semibold tracking-[0.15em] ${
                   activeTab === 'talento' ? 'text-black/80' : 'text-black/30'
                 }`}>

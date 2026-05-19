@@ -90,10 +90,10 @@ describe("/api/contact route contract", () => {
 
   it("rejects missing required fields with 400", async () => {
     expect.assertions(4);
-    const { company, ...payloadWithoutCompany } = validPayload;
-    void company;
+    const { phone, ...payloadWithoutPhone } = validPayload;
+    void phone;
 
-    const response = await POST(makePostRequest(payloadWithoutCompany));
+    const response = await POST(makePostRequest(payloadWithoutPhone));
     const body = await response.json();
 
     expect(response.status).toBe(400);
@@ -101,7 +101,7 @@ describe("/api/contact route contract", () => {
     expect(body.details).toEqual(
       expect.arrayContaining([
         expect.objectContaining({
-          path: expect.arrayContaining(["company"]),
+          path: expect.arrayContaining(["phone"]),
         }),
       ]),
     );
@@ -179,8 +179,7 @@ describe("/api/contact route contract", () => {
       makePostRequest({
         ...validPayload,
         name: "",
-        company: "",
-        message: "",
+        phone: "",
       }),
     );
     const body = await response.json();
@@ -190,8 +189,7 @@ describe("/api/contact route contract", () => {
     expect(body.details).toEqual(
       expect.arrayContaining([
         expect.objectContaining({ path: expect.arrayContaining(["name"]) }),
-        expect.objectContaining({ path: expect.arrayContaining(["company"]) }),
-        expect.objectContaining({ path: expect.arrayContaining(["message"]) }),
+        expect.objectContaining({ path: expect.arrayContaining(["phone"]) }),
       ]),
     );
     expect(sendMock).not.toHaveBeenCalled();

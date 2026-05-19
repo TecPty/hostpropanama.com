@@ -28,6 +28,19 @@ export default function ModelosHombresPage() {
 
   return (
     <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "BreadcrumbList",
+            "itemListElement": [
+              { "@type": "ListItem", "position": 1, "name": "Inicio", "item": "https://hostpropanama.com" },
+              { "@type": "ListItem", "position": 2, "name": "Catálogo Hombres", "item": "https://hostpropanama.com/modelos/hombres" },
+            ],
+          }),
+        }}
+      />
       <Header />
       <main className="min-h-screen bg-[#0a0a0a] text-white py-28">
         <div className="max-w-7xl mx-auto px-6 md:px-12">

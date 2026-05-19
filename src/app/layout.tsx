@@ -16,7 +16,7 @@ export const metadata: Metadata = {
   title: "Agencia de Talento para Experiencias de Marca y Eventos | HostPro Panamá",
   description:
     "Agencia líder en talento profesional para experiencias de marca, eventos corporativos y producción audiovisual en Panamá. Conectamos tu marca con talento verificado y especializado. Respuesta en 1 hora. ¡Cotiza gratis!",
-  keywords: ["agencia talento panamá", "talento eventos panamá", "experiencias de marca", "producción audiovisual", "eventos corporativos panamá", "modelos profesionales", "brand ambassadors", "casting panamá", "talento corporativo"],
+  keywords: ["agencia talento panamá", "azafatas panamá", "edecanes panamá", "experiencias de marca", "capacitaciones brand ambassadors", "eventos corporativos panamá", "modelos profesionales", "brand ambassadors", "casting panamá", "talento corporativo"],
   metadataBase: new URL("https://hostpropanama.com"),
   icons: {
     icon: "/favicon.ico",
@@ -57,6 +57,27 @@ export default function RootLayout({
   return (
     <html lang="es">
       <head>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "LocalBusiness",
+              "name": "HostPro Panamá",
+              "description": "Agencia de azafatas, modelos y brand ambassadors en Panamá para eventos corporativos, activaciones BTL y experiencias de marca.",
+              "url": "https://hostpropanama.com",
+              "telephone": "+50769801194",
+              "image": "https://hostpropanama.com/seo/og-image.png",
+              "address": {
+                "@type": "PostalAddress",
+                "addressLocality": "Ciudad de Panamá",
+                "addressCountry": "PA",
+              },
+              "areaServed": { "@type": "Country", "name": "Panama" },
+              "priceRange": "$$",
+            }),
+          }}
+        />
         {/* Google Analytics */}
         <Script
           src="https://www.googletagmanager.com/gtag/js?id=G-78GZFZHZY9"

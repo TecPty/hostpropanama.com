@@ -304,73 +304,80 @@ export default function HomeClient() {
                 quality={100}
               />
             </motion.div>
-
-            {/* Talento en primer plano - Versión Desktop */}
-            <motion.div 
-              className="absolute inset-x-0 bottom-0 top-0"
-              style={{ x: mouseX, y: mouseY, scale: 0.9, transformOrigin: "bottom right" }}
-            >
-
-              <Image
-                src="/images/hero.webp"
-                alt="Talento profesional de HostPro en evento corporativo de lujo en Panamá"
-                fill
-
-                className="object-contain object-right-bottom"
-                priority
-                quality={100}
-              />
-            </motion.div>
           </div>
 
-          {/* Content - Left Aligned */}
-          <div className="relative z-10 max-w-7xl mx-auto w-full px-6 md:px-12">
-            <motion.div
-              initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8 }}
-            >
-              {/* Main Title - Ultra Bold */}
-              <h1 className="font-black uppercase leading-[0.95] mb-10 translate-y-[15%]">
-                <span className="block text-white text-[38px] md:text-[55px] lg:text-[85px] tracking-[-0.04em]">HOSTPRO</span>
-                <span className="block text-[#d4b200] text-[38px] md:text-[55px] lg:text-[85px] tracking-[-0.04em]">PANAMÁ</span>
-              </h1>
-
-              {/* Subtitle - Bold with spacing */}
-              <motion.p
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                transition={{ delay: 0.3, duration: 0.8 }}
-                className="text-[#d4b200] text-sm md:text-base lg:text-lg font-black uppercase tracking-tight mb-10 max-w-3xl border-l-2 border-[#d4b200] pl-5"
-              >
-                Somos una agencia de talento para experiencia de marca, eventos corporativos y producción audiovisual.
-              </motion.p>
-
-              {/* Description */}
-              <motion.p
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                transition={{ delay: 0.5, duration: 0.8 }}
-                className="text-white/80 text-sm md:text-base max-w-2xl mb-16 leading-relaxed font-light tracking-wide"
-              >
-                Conectamos marcas con profesionales verificados para crear experiencias memorables que generan resultados.
-              </motion.p>
-
-              {/* CTA Button */}
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.7 }}
-              >
-                <Link 
-                  href="#contacto" 
-                  className="inline-flex items-center gap-3 bg-[#d4b200] text-black px-8 py-4 font-black uppercase text-xs md:text-sm tracking-[0.15em] hover:scale-105 transition-transform focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-[#d4b200]/50 shadow-[0_20px_50px_rgba(212,178,0,0.2)]"
+          {/* Content - Responsive Grid to prevent text overlap */}
+          <div className="relative z-10 max-w-7xl mx-auto w-full px-6 md:px-12 h-full flex items-center">
+            <div className="grid grid-cols-1 md:grid-cols-12 gap-8 items-center w-full h-full pt-16">
+              
+              {/* Left Column: Text Content */}
+              <div className="md:col-span-7 lg:col-span-6 flex flex-col justify-center">
+                <motion.div
+                  initial={{ opacity: 0, y: 30 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.8 }}
                 >
-                  Cotizar ahora
-                  <ArrowRight className="h-5 w-5" />
-                </Link>
-              </motion.div>
-            </motion.div>
+                  {/* Main Title - Ultra Bold */}
+                  <h1 className="font-black uppercase leading-[0.95] mb-8 translate-y-[15%]">
+                    <span className="block text-white text-[38px] md:text-[50px] lg:text-[75px] tracking-[-0.04em]">HOSTPRO</span>
+                    <span className="block text-[#d4b200] text-[38px] md:text-[50px] lg:text-[75px] tracking-[-0.04em]">PANAMÁ</span>
+                  </h1>
+
+                  {/* Subtitle - Bold with spacing */}
+                  <motion.p
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    transition={{ delay: 0.3, duration: 0.8 }}
+                    className="text-[#d4b200] text-sm md:text-base lg:text-lg font-black uppercase tracking-tight mb-8 max-w-3xl border-l-2 border-[#d4b200] pl-5"
+                  >
+                    Somos una agencia de talento para experiencia de marca, eventos corporativos y producción audiovisual.
+                  </motion.p>
+
+                  {/* Description */}
+                  <motion.p
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    transition={{ delay: 0.5, duration: 0.8 }}
+                    className="text-white/80 text-sm md:text-base max-w-xl mb-12 leading-relaxed font-light tracking-wide"
+                  >
+                    Conectamos marcas con profesionales verificados para crear experiencias memorables que generan resultados.
+                  </motion.p>
+
+                  {/* CTA Button */}
+                  <motion.div
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ delay: 0.7 }}
+                  >
+                    <Link 
+                      href="#contacto" 
+                      className="inline-flex items-center gap-3 bg-[#d4b200] text-black px-8 py-4 font-black uppercase text-xs md:text-sm tracking-[0.15em] hover:scale-105 transition-transform focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-[#d4b200]/50 shadow-[0_20px_50px_rgba(212,178,0,0.2)]"
+                    >
+                      Cotizar ahora
+                      <ArrowRight className="h-5 w-5" />
+                    </Link>
+                  </motion.div>
+                </motion.div>
+              </div>
+
+              {/* Right Column: Desktop Talent Image */}
+              <div className="hidden md:block md:col-span-5 lg:col-span-6 h-full relative">
+                <motion.div 
+                  className="absolute inset-0"
+                  style={{ x: mouseX, y: mouseY, scale: 0.95, transformOrigin: "bottom center" }}
+                >
+                  <Image
+                    src="/images/hero.webp"
+                    alt="Talento profesional de HostPro en evento corporativo de lujo en Panamá"
+                    fill
+                    className="object-contain object-bottom"
+                    priority
+                    quality={100}
+                  />
+                </motion.div>
+              </div>
+
+            </div>
           </div>
 
           {/* Scroll Indicator */}

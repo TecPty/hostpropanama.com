@@ -313,7 +313,7 @@ export const talent: TalentModel[] = [
       height: "1.72 m",
     },
     gender: "mujer",
-    photo: "/talent/mujeres/ana-lorena/ana-lorena.webp?v=2",
+    photo: "/talent/mujeres/ana-lorena/ana-lorena-v2.webp",
     media: {
       gallery: [
         "/talent/mujeres/ana-lorena/1.webp",
@@ -415,7 +415,7 @@ export const talent: TalentModel[] = [
     },
     physical: {
       height: "1.50 m",
-      weight: "51 kg",
+      weight: "56 kg",
       hairColor: "Rubio natural",
       eyeColor: "Café claro",
       shirtSize: "S",
@@ -438,7 +438,7 @@ export const talent: TalentModel[] = [
     },
   },
   {
-    name: "Yesmar Carrillo",
+    name: "Yeismar Carrillo",
     slug: "yesmar-carrillo",
     role: "Azafata y modelo de protocolo VIP",
     languages: "Español",

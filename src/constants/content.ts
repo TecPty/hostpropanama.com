@@ -16,6 +16,7 @@ export const services = [
     title: "Eventos corporativos",
     description: "Perfiles bilingües especializados en protocolo, atención VIP y hospitalidad para invitados internacionales.",
     image: "/images/eventos.webp",
+    objectPosition: "object-top",
     benefits: [
       "Protocolo y hospitalidad",
       "Perfiles bilingües certificados",

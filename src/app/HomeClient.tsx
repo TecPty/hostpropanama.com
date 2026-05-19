@@ -139,8 +139,8 @@ const ServiceCard = ({ service, index }: { service: typeof services[0], index: n
         ))}
       </div>
 
-      {/* Image - Hidden on mobile for cleaner look */}
-      <div className="hidden md:block aspect-[16/7] relative overflow-hidden bg-white/5 mt-4 group-hover:scale-[1.01] transition-transform duration-500">
+      {/* Image - Visible on all devices */}
+      <div className="block aspect-[16/7] relative overflow-hidden bg-white/5 mt-4 group-hover:scale-[1.01] transition-transform duration-500">
         <Image
           src={service.image}
           alt={service.title}
@@ -278,7 +278,7 @@ export default function HomeClient() {
               style={{ x: mouseX, y: mouseY, scale: 0.72, transformOrigin: "bottom right" }}
             >
               <Image
-                src="/images/hero.png"
+                src="/images/hero.webp"
                 alt="Talento profesional de HostPro en evento corporativo de lujo en Panamá"
                 fill
                 className="object-contain object-right-bottom"

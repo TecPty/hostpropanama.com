@@ -466,7 +466,7 @@ export const talent: TalentModel[] = [
       tiktok: "@YeismarCarrillo",
     },
     gender: "mujer",
-    photo: "/talent/mujeres/yeismar-carrillo/yesmar-carrillo.webp",
+    photo: "/talent/mujeres/yeismar-carrillo/yeismar-carrillo.webp",
     media: {
       gallery: [
         "/talent/mujeres/yeismar-carrillo/yeismar-carrillo-01.webp",

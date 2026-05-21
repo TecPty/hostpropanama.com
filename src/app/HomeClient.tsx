@@ -557,12 +557,13 @@ export default function HomeClient() {
               <span className="text-[#d4b200] font-bold uppercase tracking-[0.2em] text-xs">Nuestra Metodología</span>
               <h2 className="text-3xl font-black mt-4 uppercase text-white">Cómo Garantizamos el Éxito de tu Evento</h2>
             </div>
-            <div className="grid grid-cols-2 lg:grid-cols-4 gap-6">
+            <div className="grid grid-cols-2 lg:grid-cols-5 gap-6">
               {[
                 { title: "Análisis", desc: "Analizamos tu proyecto para identificar los perfiles ideales que necesitas." },
                 { title: "Casting", desc: "Selección rigurosa de perfiles alineados a tu marca y objetivos." },
                 { title: "Preparación", desc: "Capacitación y briefing personalizado para garantizar excelencia." },
                 { title: "Ejecución", desc: "Gestión completa con supervisión en sitio y seguimiento de resultados." },
+                { title: "Reporte", desc: "Análisis de resultados y feedback post-evento para medir el impacto real." },
               ].map((item, idx) => (
                 <motion.div
                   key={item.title}
@@ -572,7 +573,11 @@ export default function HomeClient() {
                   viewport={{ once: true, amount: 0.3 }}
                   className="bg-slate-900 p-8 rounded-2xl border border-white/10 hover:border-[#d4b200] transition-colors"
                 >
-                  <div className="text-4xl mb-4 text-[#d4b200]">★</div>
+                  <div className="flex gap-0.5 mb-4">
+                    {Array.from({ length: idx + 1 }).map((_, starIdx) => (
+                      <span key={starIdx} className="text-2xl text-[#d4b200]">★</span>
+                    ))}
+                  </div>
                   <h3 className="text-xl font-bold mb-2 text-white">{item.title}</h3>
                   <p className="text-slate-300 text-sm">{item.desc}</p>
                 </motion.div>

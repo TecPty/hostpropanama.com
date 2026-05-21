@@ -146,7 +146,7 @@ const ServiceCard = ({ service, index }: { service: typeof services[0], index: n
           alt={service.title}
           fill
           sizes="(max-width: 768px) 100vw, 50vw"
-          className={`object-cover ${service.objectPosition || "object-center"} opacity-60 group-hover:opacity-80 transition-opacity`}
+          className={`object-contain opacity-60 group-hover:opacity-80 transition-opacity`}
         />
       </div>
     </motion.div>
@@ -514,7 +514,7 @@ export default function HomeClient() {
           {/* Background Image */}
           <div className="absolute inset-0 z-0">
             <Image
-              src="/images/talent-model.avif"
+              src="/images/talent-model.webp"
               alt="Talento profesional HostPro Panamá"
               fill
               className="object-cover opacity-40"
@@ -557,7 +557,7 @@ export default function HomeClient() {
               <span className="text-[#d4b200] font-bold uppercase tracking-[0.2em] text-xs">Nuestra Metodología</span>
               <h2 className="text-3xl font-black mt-4 uppercase text-white">Cómo Garantizamos el Éxito de tu Evento</h2>
             </div>
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+            <div className="grid grid-cols-2 lg:grid-cols-4 gap-6">
               {[
                 { title: "Análisis", desc: "Analizamos tu proyecto para identificar los perfiles ideales que necesitas." },
                 { title: "Casting", desc: "Selección rigurosa de perfiles alineados a tu marca y objetivos." },
@@ -693,7 +693,7 @@ export default function HomeClient() {
               </p>
             </motion.div>
 
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 md:gap-6">
+            <div className="grid grid-cols-2 lg:grid-cols-3 gap-5 md:gap-6">
               {featuredTalent.map((model, idx) => (
                 <motion.div
                   key={model.slug}

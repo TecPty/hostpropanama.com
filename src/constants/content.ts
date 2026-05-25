@@ -79,6 +79,31 @@ export const faqs = [
 
 ];
 
+// Testimoniales
+export const testimonials = [
+  {
+    quote: "Estamos muy satisfechos con el profesionalismo y excelente desempeño del equipo de HostPro durante Expovivienda 2026. Su atención, actitud y compromiso fueron clave para brindar una gran experiencia a nuestros visitantes.",
+    name: "Equipo Provivir Panamá",
+    role: "Expovivienda 2026",
+    company: "Provivir Panamá",
+    image: "/testimonial/testimonial-provivir.webp",
+  },
+  {
+    quote: "Estamos muy satisfechos con el profesionalismo y excelente atención del equipo de HostPro durante Expomobile 2026. Su staff representó nuestra marca de manera impecable durante todo el evento.",
+    name: "Equipo Shield",
+    role: "Expomobile 2026",
+    company: "Shield",
+    image: "/testimonial/testimonial-expomobile.webp",
+  },
+  {
+    quote: "La atención, presencia y profesionalismo de su staff elevaron el ambiente del evento y brindaron una experiencia premium a todos nuestros invitados.",
+    name: "Equipo Sentosa",
+    role: "Evento Premium",
+    company: "Sentosa",
+    image: "/testimonial/testimonial-sentosa.webp",
+  },
+];
+
 // Talento
 export type TalentGender = "mujer" | "hombre";
 export type TalentStatus = "disponible" | "reservada";

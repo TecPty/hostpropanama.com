@@ -68,6 +68,7 @@ export default function Header() {
             </div>
             <Link href="/#servicios" className="text-xs font-bold uppercase tracking-[0.15em] text-white/70 hover:text-white transition-colors">Servicios</Link>
             <Link href="/#planes" className="text-xs font-bold uppercase tracking-[0.15em] text-white/70 hover:text-white transition-colors">Planes</Link>
+            <Link href="/#testimoniales" className="text-xs font-bold uppercase tracking-[0.15em] text-white/70 hover:text-white transition-colors">Testimoniales</Link>
             <Link href="/#contacto" className="text-xs font-bold uppercase tracking-[0.15em] text-white/70 hover:text-white transition-colors">Contacto</Link>
           </nav>
           {/* CTA Button */}

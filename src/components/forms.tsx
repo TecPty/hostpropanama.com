@@ -208,6 +208,11 @@ export function LeadForm({ mode = 'activaciones' }: { mode?: 'booking' | 'activa
         });
       }
 
+      // GTM / Google Ads Conversion Event
+      if (typeof window !== "undefined" && (window as any).dataLayer) {
+        (window as any).dataLayer.push({ event: 'cotizacion_enviada' });
+      }
+
       setState("success");
       reset();
 
@@ -367,6 +372,11 @@ export function TalentForm() {
           'event_category': 'engagement',
           'event_label': 'Talent Application'
         });
+      }
+
+      // GTM / Google Ads Conversion Event
+      if (typeof window !== "undefined" && (window as any).dataLayer) {
+        (window as any).dataLayer.push({ event: 'cotizacion_enviada' });
       }
 
       setState("success");

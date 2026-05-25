@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useEffect, useRef } from "react";
-import { motion, useMotionValue, useTransform, useScroll } from "framer-motion";
+import { motion, AnimatePresence, useMotionValue, useTransform, useScroll } from "framer-motion";
 
 import {
   ArrowRight,
@@ -26,7 +26,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { LeadForm, TalentForm } from "@/components/forms";
 import Header from "@/components/Header";
-import { services, process, faqs, getTalentByGender, plans } from "@/constants/content";
+import { services, process, faqs, testimonials, getTalentByGender, plans } from "@/constants/content";
 
 
 const ChevronIcon = () => (
@@ -112,7 +112,7 @@ const ServiceCard = ({ service, index }: { service: typeof services[0], index: n
     <motion.div
       ref={cardRef}
       style={{ x, opacity, filter }}
-      className="group border-l-2 border-[#d4b200] pl-6 hover:border-white transition-colors"
+      className="group border-l-2 border-[#d4b200] pl-6 hover:border-white transition-colors h-full flex flex-col"
     >
       {/* Number */}
       <span className="text-white/20 font-black text-3xl md:text-4xl leading-none">
@@ -140,7 +140,7 @@ const ServiceCard = ({ service, index }: { service: typeof services[0], index: n
       </div>
 
       {/* Image - Visible on all devices */}
-      <div className="block aspect-[16/9] md:aspect-[16/7] relative overflow-hidden bg-white/5 mt-4 group-hover:scale-[1.01] transition-transform duration-500">
+      <div className="block aspect-[16/9] md:aspect-[16/7] relative overflow-hidden bg-white/5 mt-auto pt-4 group-hover:scale-[1.01] transition-transform duration-500">
         <Image
           src={service.image}
           alt={service.title}
@@ -191,6 +191,105 @@ const VisionMisionTabs = () => {
               En cada punto de contacto con el público, mediante la selección, preparación y gestión de talento operativo alineado a su identidad, mensaje y contexto.
             </p>
           </SpotlightCard>
+        </div>
+      </div>
+    </section>
+  );
+};
+
+const TestimonialsSection = () => {
+  const [current, setCurrent] = useState(0);
+  const [direction, setDirection] = useState(1);
+
+  const prev = () => {
+    setDirection(-1);
+    setCurrent((c) => (c - 1 + testimonials.length) % testimonials.length);
+  };
+  const next = () => {
+    setDirection(1);
+    setCurrent((c) => (c + 1) % testimonials.length);
+  };
+
+  const variants = {
+    enter: (dir: number) => ({ x: dir > 0 ? 60 : -60, opacity: 0 }),
+    center: { x: 0, opacity: 1 },
+    exit: (dir: number) => ({ x: dir > 0 ? -60 : 60, opacity: 0 }),
+  };
+
+  return (
+    <section id="testimoniales" className="py-20 bg-black border-t border-white/10">
+      <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="text-center mb-12">
+          <span className="text-[#d4b200] font-bold uppercase tracking-[0.2em] text-xs">Testimoniales</span>
+          <h2 className="text-3xl font-black mt-4 uppercase text-white">Lo Que Dicen Nuestros Clientes</h2>
+        </div>
+
+        <div className="relative">
+          <div className="overflow-hidden">
+            <AnimatePresence custom={direction} mode="wait">
+              <motion.div
+                key={current}
+                custom={direction}
+                variants={variants}
+                initial="enter"
+                animate="center"
+                exit="exit"
+                transition={{ duration: 0.4, ease: "easeInOut" }}
+                className="grid grid-cols-1 md:grid-cols-[58%_42%] bg-slate-900 border border-white/10 overflow-hidden"
+                style={{ minHeight: "320px" }}
+              >
+                {/* Imagen — izquierda, completa */}
+                <div className="relative min-h-[220px] md:min-h-0 bg-slate-800">
+                  <Image
+                    src={testimonials[current].image}
+                    alt={testimonials[current].company}
+                    fill
+                    sizes="(max-width: 768px) 100vw, 58vw"
+                    className="object-contain opacity-75"
+                  />
+                </div>
+
+                {/* Cita — derecha, ajustada al espacio */}
+                <div className="p-5 md:p-8 flex flex-col justify-center border-t border-white/10 md:border-t-0 md:border-l md:border-white/10">
+                  <span className="text-[#d4b200] text-4xl font-black leading-none select-none mb-1">&#8220;</span>
+                  <p className="text-white/85 text-xs md:text-sm leading-relaxed italic mb-5">
+                    {testimonials[current].quote}
+                  </p>
+                  <div className="border-l-2 border-[#d4b200] pl-3">
+                    <p className="text-white font-bold uppercase tracking-tight text-xs">{testimonials[current].name}</p>
+                  </div>
+                </div>
+              </motion.div>
+            </AnimatePresence>
+          </div>
+
+          {/* Navegación */}
+          <div className="flex items-center justify-between mt-6 px-1">
+            <button
+              onClick={prev}
+              className="text-white/40 hover:text-[#d4b200] transition-colors text-xs font-bold uppercase tracking-[0.15em] py-2"
+            >
+              ← Anterior
+            </button>
+            <div className="flex gap-2 items-center">
+              {testimonials.map((_, i) => (
+                <button
+                  key={i}
+                  title={`Ver testimonio ${i + 1}`}
+                  onClick={() => { setDirection(i > current ? 1 : -1); setCurrent(i); }}
+                  className={`h-1.5 rounded-full transition-all duration-300 ${
+                    i === current ? "bg-[#d4b200] w-6" : "bg-white/20 w-2 hover:bg-white/40"
+                  }`}
+                />
+              ))}
+            </div>
+            <button
+              onClick={next}
+              className="text-white/40 hover:text-[#d4b200] transition-colors text-xs font-bold uppercase tracking-[0.15em] py-2"
+            >
+              Siguiente →
+            </button>
+          </div>
         </div>
       </div>
     </section>
@@ -585,6 +684,9 @@ export default function HomeClient() {
             </div>
           </div>
         </section>
+
+        {/* TESTIMONIALES SECTION */}
+        <TestimonialsSection />
 
         {/* CONTACTO SECTION */}
         <section id="contacto" className="py-32 bg-[#f5f5f5]">

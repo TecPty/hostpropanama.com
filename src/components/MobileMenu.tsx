@@ -28,7 +28,7 @@ export function MobileMenu() {
       <button
         type="button"
         onClick={toggleMenu}
-        className="lg:hidden p-2 text-white hover:text-[#d4b200] transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#d4b200] rounded-md"
+        className="min-[960px]:hidden p-2 text-white hover:text-[#d4b200] transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#d4b200] rounded-md"
         aria-label={isOpen ? "Cerrar menú" : "Abrir menú"}
       >
         {isOpen ? <X className="h-7 w-7" /> : <Menu className="h-7 w-7" />}
@@ -44,7 +44,7 @@ export function MobileMenu() {
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
               onClick={closeMenu}
-              className="fixed inset-0 bg-black/80 backdrop-blur-sm z-[60] lg:hidden"
+              className="fixed inset-0 bg-black/80 backdrop-blur-sm z-[60] min-[960px]:hidden"
             />
 
 
@@ -54,7 +54,7 @@ export function MobileMenu() {
               animate={{ x: 0 }}
               exit={{ x: "100%" }}
               transition={{ type: "spring", damping: 25, stiffness: 200 }}
-              className="fixed top-0 right-0 bottom-0 w-[85%] max-w-sm bg-black border-l border-white/10 z-[70] lg:hidden shadow-2xl"
+              className="fixed top-0 right-0 bottom-0 w-[85%] max-w-sm bg-black border-l border-white/10 z-[70] min-[960px]:hidden shadow-2xl"
             >
 
               {/* Header */}

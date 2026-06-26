@@ -564,7 +564,7 @@ export const talent: TalentModel[] = [
       instagram: "@itzzz_aly",
     },
     gender: "mujer",
-    photo: "/talent/mujeres/alyssa-cordoba/alyssa-01.webp",
+    photo: "/talent/mujeres/alyssa-cordoba/alyssa-cordoba.webp",
     media: {
       gallery: [
         "/talent/mujeres/alyssa-cordoba/alyssa-01.webp",
@@ -603,7 +603,7 @@ export const talent: TalentModel[] = [
       instagram: "@dianamarquez2412",
     },
     gender: "mujer",
-    photo: "/talent/mujeres/diana-victoria/diana-01.webp",
+    photo: "/talent/mujeres/diana-victoria/diana-victoria.webp",
     media: {
       gallery: [
         "/talent/mujeres/diana-victoria/diana-01.webp",
@@ -644,7 +644,7 @@ export const talent: TalentModel[] = [
       tiktok: "@CaroleenWilliams",
     },
     gender: "mujer",
-    photo: "/talent/mujeres/caroleen-williams/caroleen-01.webp",
+    photo: "/talent/mujeres/caroleen-williams/caroleen-williams.webp",
     media: {
       gallery: [
         "/talent/mujeres/caroleen-williams/caroleen-01.webp",

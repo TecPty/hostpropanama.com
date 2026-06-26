@@ -686,7 +686,7 @@ export const talent: TalentModel[] = [
       tiktok: "@samaiordo",
     },
     gender: "mujer",
-    photo: "/talent/mujeres/yera-samai-ordonez/yera-01.webp",
+    photo: "/talent/mujeres/yera-samai-ordonez/yera-samai-ordonez.webp",
     media: {
       gallery: [
         "/talent/mujeres/yera-samai-ordonez/yera-01.webp",

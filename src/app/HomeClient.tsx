@@ -22,11 +22,12 @@ import {
   Phone,
   ChevronDown,
 } from "lucide-react";
+import { getWhatsAppLink, type WhatsAppContext } from "@/utils/whatsapp";
 import Image from "next/image";
 import Link from "next/link";
 import { LeadForm, TalentForm } from "@/components/forms";
 import Header from "@/components/Header";
-import { services, process, faqs, testimonials, getTalentByGender, plans } from "@/constants/content";
+import { services, process, faqs, testimonials, getTalentByGender, plans, plansNote } from "@/constants/content";
 
 
 const ChevronIcon = () => (
@@ -149,6 +150,18 @@ const ServiceCard = ({ service, index }: { service: typeof services[0], index: n
           className={`object-contain opacity-60 group-hover:opacity-80 transition-opacity`}
         />
       </div>
+
+      {/* CTA */}
+      <a
+        href={getWhatsAppLink(service.whatsappContext as WhatsAppContext)}
+        target="_blank"
+        rel="noopener noreferrer"
+        className="mt-4 inline-flex items-center gap-2 text-xs font-black uppercase tracking-[0.12em] text-[#d4b200] hover:text-white transition-colors"
+        aria-label={`Consultar por WhatsApp sobre ${service.title}`}
+      >
+        <MessageCircle className="h-3.5 w-3.5" />
+        Consultar por WhatsApp
+      </a>
     </motion.div>
   );
 };
@@ -266,7 +279,9 @@ const TestimonialsSection = () => {
           {/* Navegación */}
           <div className="flex items-center justify-between mt-6 px-1">
             <button
+              type="button"
               onClick={prev}
+              aria-label="Testimonio anterior"
               className="text-white/40 hover:text-[#d4b200] transition-colors text-xs font-bold uppercase tracking-[0.15em] py-2"
             >
               ← Anterior
@@ -275,7 +290,8 @@ const TestimonialsSection = () => {
               {testimonials.map((_, i) => (
                 <button
                   key={i}
-                  title={`Ver testimonio ${i + 1}`}
+                  type="button"
+                  aria-label={`Ver testimonio ${i + 1}${i === current ? " (activo)" : ""}`}
                   onClick={() => { setDirection(i > current ? 1 : -1); setCurrent(i); }}
                   className={`h-1.5 rounded-full transition-all duration-300 ${
                     i === current ? "bg-[#d4b200] w-6" : "bg-white/20 w-2 hover:bg-white/40"
@@ -284,7 +300,9 @@ const TestimonialsSection = () => {
               ))}
             </div>
             <button
+              type="button"
               onClick={next}
+              aria-label="Testimonio siguiente"
               className="text-white/40 hover:text-[#d4b200] transition-colors text-xs font-bold uppercase tracking-[0.15em] py-2"
             >
               Siguiente →
@@ -413,9 +431,9 @@ export default function HomeClient() {
                   transition={{ duration: 0.8 }}
                 >
                   {/* Main Title - Ultra Bold */}
-                  <h1 className="font-black uppercase leading-[0.95] mb-4 md:mb-8 md:translate-y-[15%]">
-                    <span className="block text-white text-[38px] md:text-[50px] lg:text-[75px] tracking-[-0.04em]">HOSTPRO</span>
-                    <span className="block text-[#d4b200] text-[38px] md:text-[50px] lg:text-[75px] tracking-[-0.04em]">PANAMÁ</span>
+                  <h1 className="font-black uppercase leading-[0.95] mb-4 md:mb-8 md:translate-y-[15%]" aria-label="HostPro Panamá">
+                    <span className="block text-white text-[38px] md:text-[50px] lg:text-[75px] tracking-[-0.04em]" aria-hidden="true">HOSTPRO</span>
+                    <span className="block text-[#d4b200] text-[38px] md:text-[50px] lg:text-[75px] tracking-[-0.04em]" aria-hidden="true">PANAMÁ</span>
                   </h1>
 
                   {/* Subtitle - Bold with spacing */}
@@ -520,6 +538,9 @@ export default function HomeClient() {
             <span className="text-[#d4b200] font-bold uppercase tracking-[0.2em] text-xs">Packs Comerciales</span>
             <h2 className="text-2xl font-black mt-3 uppercase text-white">Planes para Tu Evento Corporativo</h2>
           </div>
+          <div className="max-w-7xl mx-auto px-8 sm:px-12 lg:px-16 mb-4 text-center">
+            <p className="text-xs text-slate-500 uppercase tracking-widest">{plansNote}</p>
+          </div>
           <div className="max-w-7xl mx-auto px-8 sm:px-12 lg:px-16 grid grid-cols-1 md:grid-cols-3 gap-6">
             {plans.map((plan, idx) => (
               <motion.div
@@ -569,19 +590,35 @@ export default function HomeClient() {
                     ))}
                   </div>
 
-                  <Link
-                    href={plan.featured ? "https://wa.me/50769801194" : "#contacto"}
+                  <a
+                    href={getWhatsAppLink(plan.whatsappContext as WhatsAppContext)}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label={`Seleccionar ${plan.name} — ${plan.description} por WhatsApp`}
                     className={`w-full rounded-xl py-4 px-4 font-bold text-center transition uppercase tracking-widest block focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#d4b200] focus-visible:ring-offset-2 focus-visible:ring-offset-slate-900 ${
                       plan.featured
                         ? "bg-black text-[#d4b200] hover:bg-black/80 hover:shadow-lg hover:shadow-black/30"
                         : "border border-[#d4b200] text-[#d4b200] hover:bg-[#d4b200]/10"
                     }`}
                   >
-                    Seleccionar
-                  </Link>
+                    {plan.cta}
+                  </a>
                 </div>
               </motion.div>
             ))}
+          </div>
+          {/* CTA cotización personalizada */}
+          <div className="max-w-7xl mx-auto px-8 sm:px-12 lg:px-16 mt-10 flex flex-col sm:flex-row items-center justify-center gap-4 text-center">
+            <p className="text-slate-400 text-sm">¿Necesitás algo más específico?</p>
+            <a
+              href={getWhatsAppLink("cotizacion")}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-2 bg-white/5 border border-[#d4b200]/40 text-[#d4b200] px-6 py-3 text-xs font-black uppercase tracking-[0.15em] hover:bg-[#d4b200] hover:text-black transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#d4b200]"
+            >
+              <MessageCircle className="h-4 w-4" />
+              Solicitar cotización personalizada
+            </a>
           </div>
         </section>
 
@@ -609,7 +646,7 @@ export default function HomeClient() {
         </section>
 
         {/* CTA SECTION */}
-        <section className="min-h-screen flex items-center justify-center overflow-hidden relative bg-black">
+        <section className="py-24 md:py-36 flex items-center justify-center overflow-hidden relative bg-black">
           {/* Background Image */}
           <div className="absolute inset-0 z-0">
             <Image
@@ -694,7 +731,9 @@ export default function HomeClient() {
             {/* Tabs Header */}
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-12">
               <button
+                type="button"
                 onClick={() => setActiveTab('activaciones')}
+                aria-pressed={activeTab === 'activaciones' ? "true" : "false"}
                 className={`py-5 px-4 font-black text-lg md:text-xl uppercase tracking-tight transition-all duration-300 ${
                   activeTab === 'activaciones'
                     ? 'bg-[#d4b200] text-black border-2 border-[#d4b200] scale-105 shadow-2xl shadow-[#d4b200]/40'
@@ -710,7 +749,9 @@ export default function HomeClient() {
               </button>
 
               <button
+                type="button"
                 onClick={() => setActiveTab('talento')}
+                aria-pressed={activeTab === 'talento' ? "true" : "false"}
                 className={`py-5 px-4 font-black text-lg md:text-xl uppercase tracking-tight transition-all duration-300 ${
                   activeTab === 'talento'
                     ? 'bg-[#d4b200] text-black border-2 border-[#d4b200] scale-105 shadow-2xl shadow-[#d4b200]/40'
@@ -906,19 +947,23 @@ export default function HomeClient() {
                   Agencia líder en talento profesional para experiencias de marca, eventos corporativos y producción audiovisual en Panamá.
                 </p>
                 <div className="flex gap-4">
-                  <Link 
-                    href="https://instagram.com/hostpropanama" 
+                  <Link
+                    href="https://instagram.com/hostpropanama"
+                    target="_blank"
+                    rel="noopener noreferrer"
                     className="w-8 h-8 flex items-center justify-center rounded-full bg-white/5 hover:bg-[#d4b200] hover:text-black transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#d4b200]"
-                    aria-label="Instagram"
+                    aria-label="Seguir a HostPro Panamá en Instagram (abre en nueva pestaña)"
                   >
-                    <Instagram className="h-4 w-4" />
+                    <Instagram className="h-4 w-4" aria-hidden="true" />
                   </Link>
-                  <Link 
-                    href="https://www.tiktok.com/@hostpropanama" 
+                  <Link
+                    href="https://www.tiktok.com/@hostpropanama"
+                    target="_blank"
+                    rel="noopener noreferrer"
                     className="w-8 h-8 flex items-center justify-center rounded-full bg-white/5 hover:bg-[#d4b200] hover:text-black transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#d4b200]"
-                    aria-label="TikTok"
+                    aria-label="Seguir a HostPro Panamá en TikTok (abre en nueva pestaña)"
                   >
-                    <Music2 className="h-4 w-4" />
+                    <Music2 className="h-4 w-4" aria-hidden="true" />
                   </Link>
                 </div>
               </div>
@@ -965,8 +1010,8 @@ export default function HomeClient() {
             <div className="border-t border-white/5 pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
               <p className="text-xs text-slate-600 uppercase tracking-widest">© {new Date().getFullYear()} HOSTPRO PANAMA. TODOS LOS DERECHOS RESERVADOS.</p>
               <div className="flex gap-6 text-xs text-slate-600 uppercase tracking-widest">
-                <Link className="hover:text-[#d4b200] transition-colors focus-visible:outline-none focus-visible:text-[#d4b200] focus-visible:underline" href="https://wa.me/50769801194?text=Hola,%20deseo%20consultar%20los%20Términos%20y%20Condiciones">Términos</Link>
-                <Link className="hover:text-[#d4b200] transition-colors focus-visible:outline-none focus-visible:text-[#d4b200] focus-visible:underline" href="https://wa.me/50769801194?text=Hola,%20deseo%20consultar%20la%20Política%20de%20Privacidad">Privacidad</Link>
+                <Link className="hover:text-[#d4b200] transition-colors focus-visible:outline-none focus-visible:text-[#d4b200] focus-visible:underline" href="/terminos">Términos</Link>
+                <Link className="hover:text-[#d4b200] transition-colors focus-visible:outline-none focus-visible:text-[#d4b200] focus-visible:underline" href="/privacidad">Privacidad</Link>
               </div>
             </div>
           </div>

@@ -30,7 +30,7 @@ export default function Header() {
     <header className={`fixed top-0 left-0 right-0 z-50 transition-transform duration-300 ${showNav ? 'translate-y-0' : '-translate-y-full'}`}>
       <div className="max-w-7xl mx-auto px-6 md:px-12 h-32 md:h-44 flex items-center justify-between">
         {/* Logo */}
-        <Link href="/" className="flex items-center gap-2">
+        <Link href="/" className="flex items-center gap-2" aria-label="Ir al inicio de HostPro Panamá">
           <Image 
             src="/logos/hostpro-logo-horizontal.webp" 
             alt="HostPro Panamá" 

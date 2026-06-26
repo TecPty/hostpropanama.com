@@ -46,9 +46,9 @@ export default function ModelosMujeresPage() {
         <div className="max-w-7xl mx-auto px-6 md:px-12">
           <div className="mb-10 md:mb-14">
             <p className="text-xs uppercase tracking-[0.2em] text-[#d4b200] font-bold mb-3">Modelos</p>
-            <h1 className="text-4xl md:text-6xl font-black uppercase tracking-tight leading-[0.9]">
-              Catálogo
-              <span className="text-[#d4b200] block">Mujeres</span>
+            <h1 className="text-4xl md:text-6xl font-black uppercase tracking-tight leading-[0.9]" aria-label="Catálogo de Modelos Mujeres">
+              Catálogo{" "}
+              <span className="text-[#d4b200] block" aria-hidden="true">Mujeres</span>
             </h1>
             <p className="text-white/60 text-sm mt-6 max-w-2xl">
               Selección activa de perfiles para activaciones, protocolo, hospitality y experiencias de marca.

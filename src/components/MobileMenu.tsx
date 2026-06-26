@@ -6,10 +6,12 @@ import { Menu, X } from "lucide-react";
 import Link from "next/link";
 
 const menuItems = [
-  { href: "/modelos/mujeres", label: "Modelos" },
+  { href: "/modelos/mujeres", label: "Modelos — Mujeres" },
+  { href: "/modelos/hombres", label: "Modelos — Hombres" },
   { href: "/#servicios", label: "Servicios" },
   { href: "/#planes", label: "Planes" },
   { href: "/#galeria", label: "Galería" },
+  { href: "/#testimoniales", label: "Testimoniales" },
   { href: "/#contacto", label: "Contacto" },
 ];
 
@@ -24,10 +26,10 @@ export function MobileMenu() {
     <>
       {/* Hamburger Button */}
       <button
+        type="button"
         onClick={toggleMenu}
         className="lg:hidden p-2 text-white hover:text-[#d4b200] transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#d4b200] rounded-md"
         aria-label={isOpen ? "Cerrar menú" : "Abrir menú"}
-        aria-expanded={isOpen}
       >
         {isOpen ? <X className="h-7 w-7" /> : <Menu className="h-7 w-7" />}
       </button>
@@ -61,6 +63,7 @@ export function MobileMenu() {
                   Menú
                 </span>
                 <button
+                  type="button"
                   onClick={closeMenu}
                   className="p-2 text-white hover:text-[#d4b200] transition-colors rounded-md"
                   aria-label="Cerrar menú"

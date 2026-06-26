@@ -79,9 +79,20 @@ function StatusBadge({ state }: { state: FormState }) {
         initial={{ opacity: 0, y: -10 }}
         animate={{ opacity: 1, y: 0 }}
         exit={{ opacity: 0 }}
-        className="flex items-center gap-2 rounded-lg bg-red-500/10 border border-red-500/20 px-3 py-2 text-sm font-semibold text-red-400"
+        className="flex items-start gap-2 rounded-lg bg-red-500/10 border border-red-500/20 px-3 py-2 text-sm font-semibold text-red-400"
       >
-        <AlertTriangle className="h-4 w-4" /> Error al enviar. Inténtalo de nuevo.
+        <AlertTriangle className="h-4 w-4 mt-0.5 shrink-0" />
+        <span>
+          No pudimos enviar la solicitud. Inténtalo nuevamente o{" "}
+          <a
+            href="https://wa.me/50769801194"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="underline hover:text-red-300"
+          >
+            contáctanos por WhatsApp
+          </a>.
+        </span>
       </motion.div>
     );
   }

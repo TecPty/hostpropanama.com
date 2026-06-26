@@ -175,8 +175,8 @@ export async function POST(request: Request) {
 
     if (!resend) {
       return NextResponse.json(
-        { error: "Error interno de configuración (Email API Key)" },
-        { status: 500 }
+        { error: "Servicio de email no disponible en este momento. Por favor contáctanos por WhatsApp: +507 6980-1194" },
+        { status: 503 }
       );
     }
 

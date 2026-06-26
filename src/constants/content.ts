@@ -525,11 +525,13 @@ export const stats = [
   { value: "<1h", label: "Tiempo de respuesta" },
 ];
 
+export const plansNote = "Precio base en USD. Cotización final según alcance del evento.";
+
 export const plans = [
   {
     name: "Pack 1",
     description: "Evento Corporativo Básico",
-    price: "$280",
+    price: "$280 USD",
     features: [
       { name: "2 talentos profesionales verificados", included: true },
       { name: "Jornada estándar (4-6 horas)", included: true },
@@ -543,7 +545,7 @@ export const plans = [
   {
     name: "Pack 2",
     description: "Activación / BTL",
-    price: "$480",
+    price: "$480 USD",
     featured: true,
     features: [
       { name: "3-4 talentos especializados", included: true },
@@ -558,7 +560,7 @@ export const plans = [
   {
     name: "Pack 3",
     description: "Audiovisual / Spot",
-    price: "$700",
+    price: "$700 USD",
     features: [
       { name: "Casting dirigido personalizado", included: true },
       { name: "1-3 talentos profesionales (modelos/actores)", included: true },

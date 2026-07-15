@@ -18,7 +18,8 @@ export type WhatsAppContext =
   | "service-audiovisual"
   | "service-capacitaciones"
   | "urgente"
-  | "cotizacion";
+  | "cotizacion"
+  | "master-class";
 
 /**
  * Genera un link de WhatsApp con mensaje personalizado según el contexto
@@ -60,6 +61,8 @@ export function getWhatsAppLink(context: WhatsAppContext = "general", customPara
     cotizacion: customParams?.service
       ? `Hola, necesito cotización para ${customParams.service}${customParams.date ? ` el ${customParams.date}` : ''}. ¿Cuándo podemos hablar?`
       : "Hola, necesito una cotización personalizada para un evento. ¿Cuándo podemos hablar?",
+
+    "master-class": "Hola, deseo reservar mi cupo para la Master Class de HostPro Panamá.",
   };
 
   const message = messages[context];

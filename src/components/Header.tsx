@@ -40,15 +40,15 @@ export default function Header() {
 
   return (
     <header className={`fixed top-0 left-0 right-0 z-50 transition-transform duration-300 ${showNav ? 'translate-y-0' : '-translate-y-full'}`}>
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 md:px-10 min-[960px]:px-12 py-3 min-[960px]:py-0 min-[960px]:h-44 flex flex-wrap items-center justify-between gap-x-4 gap-y-3">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 md:px-10 lg:px-12 py-3 lg:py-0 lg:h-44 flex flex-wrap items-center justify-between gap-x-4 gap-y-3">
         {/* Logo */}
         <Link href="/" className="order-1 shrink-0 flex items-center gap-2" aria-label="Ir al inicio de HostPro Panamá">
           <Image
             src="/logos/hostpro-logo-horizontal.webp"
             alt="HostPro Panamá"
-            width={540}
-            height={135}
-            className="h-10 sm:h-12 md:h-16 min-[960px]:h-38 w-auto"
+            width={640}
+            height={640}
+            className="h-16 sm:h-20 md:h-28 lg:h-38 w-auto"
             priority
           />
         </Link>
@@ -56,13 +56,13 @@ export default function Header() {
         {/* CTA Button — junto al logo en mobile/tablet, al final en desktop */}
         <Link
           href={NAV_CTA.href}
-          className="order-2 min-[960px]:order-3 shrink-0 bg-[#d4b200] text-black px-4 py-2.5 sm:px-6 sm:py-3 font-black uppercase text-xs tracking-[0.15em] hover:bg-white transition-colors"
+          className="order-2 lg:order-3 shrink-0 bg-[#d4b200] text-black px-4 py-2.5 sm:px-6 sm:py-3 font-black uppercase text-xs tracking-[0.15em] hover:bg-white transition-colors"
         >
           {NAV_CTA.label}
         </Link>
 
         {/* Navegación — misma estructura en todos los tamaños, se apila debajo del logo/CTA cuando no entra en una sola fila */}
-        <nav className="order-3 min-[960px]:order-2 w-full min-[960px]:w-auto flex flex-wrap items-center justify-center min-[960px]:justify-start gap-x-6 gap-y-2 min-[960px]:gap-8">
+        <nav className="order-3 lg:order-2 w-full lg:w-auto flex flex-wrap items-center justify-center lg:justify-start gap-x-6 gap-y-2 lg:gap-8">
           {/* Dropdown Modelos — hover en desktop, click/touch en cualquier tamaño */}
           <div
             ref={dropdownRef}

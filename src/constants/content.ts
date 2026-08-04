@@ -738,6 +738,46 @@ export const talent: TalentModel[] = [
       ],
     },
   },
+  {
+    name: "Jeanny León",
+    slug: "jeanny-leon",
+    role: "Modelo, promotora de marcas y talento comercial",
+    languages: "Español (nativo), Inglés (C2), Alemán (A2)",
+    status: "disponible",
+    updatedAt: "2026-08-04",
+    city: "Ciudad de Panamá",
+    experienceSummary: "Modelo comercial y promotora de marcas con experiencia en activaciones BTL, congresos, ferias, lanzamientos de producto y eventos corporativos para marcas como Bimbo, Cava15, Hoosh y Caja de Ahorros. Formación internacional (residencia en Malta) orientada a entornos multiculturales.",
+    skills: ["Atención al cliente", "Comunicación efectiva", "Imagen profesional", "Adaptabilidad"],
+    eventTypes: ["Modelaje comercial", "Eventos corporativos", "Activaciones BTL", "Ferias y exposiciones", "Campañas publicitarias"],
+    availability: {
+      schedule: "Coordinación por agenda",
+      canTravel: true,
+    },
+    physical: {
+      height: "1.67 m",
+      weight: "55 kg",
+    },
+    social: {
+      instagram: "@jeannyleonn",
+    },
+    gender: "mujer",
+    photo: "/talent/mujeres/jeanny-leon/jeanny-leon.webp",
+    media: {
+      gallery: [
+        "/talent/mujeres/jeanny-leon/jeanny-01.webp",
+        "/talent/mujeres/jeanny-leon/jeanny-02.webp",
+        "/talent/mujeres/jeanny-leon/jeanny-03.webp",
+        "/talent/mujeres/jeanny-leon/jeanny-04.webp",
+        "/talent/mujeres/jeanny-leon/jeanny-05.webp",
+        "/talent/mujeres/jeanny-leon/jeanny-06.webp",
+        "/talent/mujeres/jeanny-leon/jeanny-07.webp",
+        "/talent/mujeres/jeanny-leon/jeanny-08.webp",
+        "/talent/mujeres/jeanny-leon/jeanny-09.webp",
+        "/talent/mujeres/jeanny-leon/jeanny-10.webp",
+        "/talent/mujeres/jeanny-leon/jeanny-11.webp",
+      ],
+    },
+  },
 ];
 
 export const getTalentByGender = (gender: TalentGender): TalentModel[] => {

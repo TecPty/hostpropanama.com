@@ -778,6 +778,73 @@ export const talent: TalentModel[] = [
       ],
     },
   },
+  {
+    name: "Luciana Riera",
+    slug: "luciana-riera",
+    role: "Modelo",
+    languages: "Inglés",
+    status: "disponible",
+    updatedAt: "2026-08-11",
+    city: "Panamá",
+    experienceSummary: "Perfil de modelo disponible para oportunidades gestionadas por HostPro en Panamá.",
+    skills: [],
+    eventTypes: [],
+    availability: {
+      schedule: "Consultar disponibilidad",
+      canTravel: false,
+    },
+    physical: {
+      height: "1.61 m",
+      weight: "50 kg",
+      hairColor: "Marrón",
+      eyeColor: "Marrones",
+      shirtSize: "S",
+      pantsSize: "4",
+      shoeSize: "36.5",
+    },
+    gender: "mujer",
+    photo: "/talent/mujeres/luciana-riera/luciana-riera.webp",
+    media: {
+      gallery: [
+        "/talent/mujeres/luciana-riera/luciana-riera-01.webp",
+        "/talent/mujeres/luciana-riera/luciana-riera-02.webp",
+        "/talent/mujeres/luciana-riera/luciana-riera-03.webp",
+        "/talent/mujeres/luciana-riera/luciana-riera-04.webp",
+        "/talent/mujeres/luciana-riera/luciana-riera-05.webp",
+      ],
+    },
+  },
+  {
+    name: "Evelyn Feng Qiu",
+    slug: "evelyn-feng-qiu",
+    role: "Modelo",
+    languages: "Castellano, Inglés (nativo), Francés (avanzado), Hakka (A2.2)",
+    status: "disponible",
+    updatedAt: "2026-08-11",
+    city: "Panamá",
+    experienceSummary: "Perfil de modelo disponible para oportunidades gestionadas por HostPro en Panamá, con disponibilidad para viajar.",
+    skills: [],
+    eventTypes: [],
+    availability: {
+      schedule: "Consultar disponibilidad",
+      canTravel: true,
+    },
+    physical: {
+      height: "1.63 m",
+      shirtSize: "S",
+      pantsSize: "S",
+      shoeSize: "6",
+    },
+    gender: "mujer",
+    photo: "/talent/mujeres/evelyn-feng-qiu/evelyn-feng-qiu.webp",
+    media: {
+      gallery: [
+        "/talent/mujeres/evelyn-feng-qiu/evelyn-feng-qiu-01.webp",
+        "/talent/mujeres/evelyn-feng-qiu/evelyn-feng-qiu-02.webp",
+        "/talent/mujeres/evelyn-feng-qiu/evelyn-feng-qiu-03.webp",
+      ],
+    },
+  },
 ];
 
 export const getTalentByGender = (gender: TalentGender): TalentModel[] => {

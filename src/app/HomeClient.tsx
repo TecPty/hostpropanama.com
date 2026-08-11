@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useEffect, useRef } from "react";
-import { motion, AnimatePresence, useMotionValue, useTransform, useScroll } from "framer-motion";
+import { motion, AnimatePresence, useTransform, useScroll } from "framer-motion";
 
 import {
   ArrowRight,
@@ -319,23 +319,6 @@ export default function HomeClient() {
 
   const { scrollY } = useScroll();
 
-
-  // Mouse Parallax Logic
-  const mouseX = useMotionValue(0);
-  const mouseY = useMotionValue(0);
-
-  const handleParallaxMouseMove = (e: React.MouseEvent) => {
-    const { clientX, clientY } = e;
-    const moveX = (clientX - window.innerWidth / 2) / 25;
-    const moveY = (clientY - window.innerHeight / 2) / 25;
-    mouseX.set(moveX);
-    mouseY.set(moveY);
-  };
-
-  // Inverse transforms for background depth (Parallax Inverso)
-  const bgX = useTransform(mouseX, (value) => value * -0.6);
-  const bgY = useTransform(mouseY, (value) => value * -0.6);
-
   const femaleTalent = getTalentByGender("mujer");
   const maleTalent = getTalentByGender("hombre");
   const featuredWomen = femaleTalent
@@ -364,74 +347,40 @@ export default function HomeClient() {
 
       <main className="relative">
         {/* HERO SECTION */}
-        <section 
+        <section
           className="relative h-screen flex items-center justify-center overflow-hidden"
-          onMouseMove={handleParallaxMouseMove}
         >
-          {/* Background Image - Mobile & Tablet */}
-          <div className="absolute inset-0 z-0 md:hidden">
-            {/* Background base */}
-            <motion.div 
-              className="absolute inset-0"
-              style={{ x: bgX, y: bgY, scale: 1.1 }}
-            >
-              <Image
-                src="/images/background-hero.webp"
-                alt="Fondo evento corporativo HostPro Panamá"
-                fill
-                className="object-cover"
-                priority
-                quality={100}
+          {/* Hero Visual — estático, sin parallax. <picture> asegura una sola descarga por viewport.
+              Los <link rel="preload"> con media condicional reemplazan el preload que next/image
+              priority hacía antes, para que el LCP trate la imagen correcta como candidata desde el arranque. */}
+          <link rel="preload" as="image" href="/images/hero-mobile.webp" media="(max-width: 767px), (orientation: portrait)" fetchPriority="high" />
+          <link rel="preload" as="image" href="/images/hero-desktop.webp" media="(min-width: 768px) and (orientation: landscape)" fetchPriority="high" />
+          <div className="absolute inset-0 z-0">
+            <picture className="block h-full w-full">
+              <source media="(min-width: 768px) and (orientation: landscape)" srcSet="/images/hero-desktop.webp" />
+              <img
+                src="/images/hero-mobile.webp"
+                alt=""
+                fetchPriority="high"
+                decoding="async"
+                className="absolute inset-0 h-full w-full object-cover"
               />
-            </motion.div>
-
-            {/* Talento en primer plano - Versión Mobile */}
-            <motion.div 
-              className="absolute inset-y-0 right-0 left-1/4 bottom-0 top-20 flex justify-end"
-              style={{ x: mouseX, y: mouseY, scale: 0.72, transformOrigin: "bottom right" }}
-            >
-              <Image
-                src="/images/hero.webp"
-                alt="Talento profesional de HostPro en evento corporativo de lujo en Panamá"
-                fill
-                className="object-contain object-right-bottom"
-                priority
-                quality={100}
-              />
-            </motion.div>
-          </div>
-
-          {/* Background Image - Desktop */}
-          <div className="absolute inset-0 z-0 hidden md:block">
-            {/* Background base - Inverse Parallax */}
-            <motion.div 
-              className="absolute inset-0"
-              style={{ x: bgX, y: bgY, scale: 1.1 }}
-            >
-              <Image
-                src="/images/background-hero.webp"
-                alt="Fondo evento corporativo HostPro Panamá"
-                fill
-                className="object-cover"
-                priority
-                quality={100}
-              />
-            </motion.div>
+            </picture>
           </div>
 
           {/* Content - Responsive Grid to prevent text overlap */}
           <div className="relative z-10 max-w-7xl mx-auto w-full px-6 md:px-12 h-full flex items-center">
-            <div className="grid grid-cols-1 md:grid-cols-12 gap-8 items-center w-full h-full pt-16">
-              
+            <div className="grid grid-cols-1 md:landscape:grid-cols-12 gap-8 items-center w-full h-full pt-16">
+
               {/* Left Column: Text Content */}
-              <div className="w-full max-w-[88%] sm:max-w-[70%] md:max-w-none md:col-span-7 lg:col-span-6 flex flex-col justify-center z-10 -translate-y-[15%] md:translate-y-0">
+              <div className="w-full max-w-[88%] sm:max-w-[70%] md:landscape:max-w-none md:landscape:col-span-7 lg:landscape:col-span-6 flex flex-col justify-center z-10 -translate-y-[15%] md:landscape:translate-y-0">
                 <motion.div
                   initial={{ opacity: 0, y: 30 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.8 }}
                 >
                   {/* Main Title - Ultra Bold */}
-                  <h1 className="font-black uppercase leading-[0.95] mb-4 md:mb-8 md:translate-y-[15%]" aria-label="HostPro Panamá">
+                  <h1 className="font-black uppercase leading-[0.95] mb-4 md:mb-8 md:landscape:translate-y-[15%]" aria-label="HostPro Panamá">
                     <span className="block text-white text-[38px] md:text-[50px] lg:text-[75px] tracking-[-0.04em]" aria-hidden="true">HOSTPRO</span>
                     <span className="block text-[#d4b200] text-[38px] md:text-[50px] lg:text-[75px] tracking-[-0.04em]" aria-hidden="true">PANAMÁ</span>
                   </h1>
@@ -470,23 +419,6 @@ export default function HomeClient() {
                       <ArrowRight className="h-5 w-5" />
                     </Link>
                   </motion.div>
-                </motion.div>
-              </div>
-
-              {/* Right Column: Desktop Talent Image */}
-              <div className="hidden md:block md:col-span-5 lg:col-span-6 h-full relative">
-                <motion.div 
-                  className="absolute inset-0"
-                  style={{ x: mouseX, y: mouseY, scale: 0.95, transformOrigin: "bottom center" }}
-                >
-                  <Image
-                    src="/images/hero.webp"
-                    alt="Talento profesional de HostPro en evento corporativo de lujo en Panamá"
-                    fill
-                    className="object-contain object-bottom"
-                    priority
-                    quality={100}
-                  />
                 </motion.div>
               </div>
 

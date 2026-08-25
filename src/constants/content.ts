@@ -845,6 +845,45 @@ export const talent: TalentModel[] = [
       ],
     },
   },
+  {
+    name: "Keren Tapia",
+    slug: "keren-tapia",
+    role: "Azafata y Brand Ambassador",
+    languages: "Español nativo, Inglés básico",
+    status: "disponible",
+    updatedAt: "2026-08-25",
+    city: "Ciudad de Panamá",
+    experienceSummary: "Perfil orientado a atención al cliente, representación de marca y experiencias promocionales.",
+    skills: ["Buena comunicación", "Atención al cliente", "Aprendizaje rápido", "Conexión con clientes"],
+    eventTypes: ["Eventos corporativos", "Activaciones BTL", "Promoción de marca", "Hospitality"],
+    availability: {
+      schedule: "Lunes, martes, jueves y domingo: todo el día. Miércoles y viernes: 7:00 a.m. – 5:00 p.m. Sábado: 1:00 p.m. – 10:00 p.m.",
+      canTravel: true,
+    },
+    physical: {
+      height: "1.66 m",
+      weight: "62 kg",
+      hairColor: "Negro",
+      eyeColor: "Marrón",
+      shirtSize: "S",
+      pantsSize: "M",
+      shoeSize: "38",
+    },
+    social: {
+      instagram: "@kerxnx",
+      tiktok: "@kerxnx27",
+    },
+    gender: "mujer",
+    photo: "/talent/mujeres/keren-tapia/keren-tapia.webp",
+    media: {
+      gallery: [
+        "/talent/mujeres/keren-tapia/keren-tapia-01.webp",
+        "/talent/mujeres/keren-tapia/keren-tapia-02.webp",
+        "/talent/mujeres/keren-tapia/keren-tapia-03.webp",
+        "/talent/mujeres/keren-tapia/keren-tapia-04.webp",
+      ],
+    },
+  },
 ];
 
 export const getTalentByGender = (gender: TalentGender): TalentModel[] => {

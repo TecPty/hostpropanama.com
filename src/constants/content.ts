@@ -47,7 +47,100 @@ export const services = [
     ],
     whatsappContext: "service-capacitaciones" as const,
   },
+  {
+    title: "Iluminación y Audio",
+    headline: "Producción técnica para que cada evento se vea, se escuche y se viva a la altura de tu marca.",
+    description:
+      "Integramos sonido, iluminación y entretenimiento profesional para eventos corporativos, lanzamientos y experiencias de marca, coordinando cada elemento técnico para lograr una ejecución consistente y de alto nivel.",
+    image: "/service/audio-iluminacion/cover.webp",
+    subservices: [
+      { title: "DJ Profesional", image: "/service/audio-iluminacion/dj-profesional.webp" },
+      { title: "Audio Profesional", image: "/service/audio-iluminacion/audio-profesional.webp" },
+      { title: "Iluminación para Eventos", image: "/service/audio-iluminacion/iluminacion-eventos.webp" },
+      { title: "Producción Técnica Integral" },
+    ],
+    cta: "Cotizar producción",
+    whatsappContext: "service-lighting-audio" as const,
+  },
+  {
+    title: "Fotografía y Video",
+    headline: "Capturamos la experiencia de tu evento y la transformamos en contenido profesional para tu marca.",
+    description:
+      "Producimos fotografía y video profesional para eventos corporativos, activaciones, campañas y experiencias de marca, generando contenido preparado para comunicación comercial, redes sociales y uso corporativo.",
+    image: "/service/fotografia-video/cover.webp",
+    subservices: [
+      { title: "Fotografía de Eventos", image: "/service/fotografia-video/fotografia-eventos.webp" },
+      { title: "Cobertura de Video", image: "/service/fotografia-video/cobertura-video.webp" },
+      { title: "Sesiones Fotográficas", image: "/service/fotografia-video/sesiones-fotograficas.webp" },
+      { title: "Contenido para Marcas", image: "/service/fotografia-video/contenido-marcas.webp" },
+    ],
+    cta: "Cotizar cobertura",
+    whatsappContext: "service-photography-video" as const,
+  },
+  {
+    title: "Gastronomía",
+    headline: "Experiencias gastronómicas que convierten el servicio en parte del evento.",
+    description:
+      "Combinamos gastronomía, hospitalidad y experiencias especializadas para sorprender a los invitados y elevar cada evento. Desde servicio profesional y propuestas culinarias hasta experiencias de coctelería molecular diseñadas para despertar los sentidos.",
+    image: "/service/gastronomia/cover.webp",
+    fullWidth: true,
+    cta: "Cotizar experiencia",
+    whatsappContext: "service-gastronomy" as const,
+  },
 ];
+
+// Sección premium — Gastronomía (subservicios de "07 — Gastronomía")
+export type MolecularExperience = {
+  title: string;
+  description: string;
+  image: string;
+};
+
+export const gastronomySubservices = {
+  molecularCocktail: {
+    title: "Coctelería Molecular",
+    intro:
+      "Haz de tu evento una experiencia extraordinaria con nuestra Coctelería Molecular, donde la mixología, la creatividad y el espectáculo se encuentran para sorprender a tus invitados.",
+    description:
+      "A través de técnicas como aires, espumas, esferificaciones, aromas, gelificados y texturas, transformamos la coctelería tradicional en una experiencia visual y sensorial. Cada preparación está pensada para sorprender, compartir y convertirse en parte de los recuerdos del evento.",
+    closingLine: "Porque un buen evento se recuerda por cómo te hizo sentir.",
+    whatsappContext: "service-cocteleria" as const,
+    experiences: [
+      {
+        title: "Gelificados",
+        description:
+          "Pequeños bocados de coctelería que reinterpretan un cóctel tradicional a través de nuevas formas y texturas. Una experiencia diferente, elegante y creada para sorprender.",
+        image: "/service/gastronomia/molecular-cocktail/gelificados.webp",
+      },
+      {
+        title: "Esferificaciones",
+        description:
+          "Pequeñas esferas llenas de sabor que explotan suavemente en boca, liberando la esencia del cóctel en un solo momento. Una experiencia visual y sensorial diseñada para sorprender.",
+        image: "/service/gastronomia/molecular-cocktail/esferificaciones.webp",
+      },
+      {
+        title: "Nimbus Martini",
+        description:
+          "Una reinterpretación elegante y aromática del Martini donde el aire molecular transforma la presentación y convierte el servicio en parte del espectáculo.",
+        image: "/service/gastronomia/molecular-cocktail/nimbus-martini.webp",
+      },
+    ] as MolecularExperience[],
+  },
+  staffHospitalidad: {
+    title: "Staff de Servicio y Hospitalidad",
+    description:
+      "Personal preparado para brindar atención profesional a invitados, servicio de alimentos y bebidas y apoyo operativo durante eventos corporativos y experiencias especiales.",
+    complement:
+      "Presencia impecable, atención al detalle y orientación al servicio para acompañar cada momento del evento.",
+    image: "/service/gastronomia/staff-servicio-hospitalidad.webp",
+  },
+  chefEventos: {
+    title: "Chef para Eventos",
+    description:
+      "Profesionales gastronómicos para eventos corporativos, experiencias privadas, demostraciones culinarias y propuestas especiales preparadas frente a los invitados.",
+    image: "/service/gastronomia/chef-eventos.webp",
+  },
+};
 
 // Proceso
 export const process = [

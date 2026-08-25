@@ -27,6 +27,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { LeadForm, TalentForm } from "@/components/forms";
 import Header from "@/components/Header";
+import GastronomyServiceCard from "@/components/GastronomyServiceCard";
 import { services, process, faqs, testimonials, getTalentByGender, plans, plansNote } from "@/constants/content";
 
 
@@ -90,7 +91,7 @@ const SpotlightCard = ({ children, className = "", delay = 0, animateFrom = "lef
   );
 };
 
-const ServiceCard = ({ service, index }: { service: typeof services[0], index: number }) => {
+const ServiceCard = ({ service, index }: { service: typeof services[number], index: number }) => {
   const cardRef = useRef<HTMLDivElement>(null);
   const animateFrom = index % 2 === 0 ? "left" : "right";
 
@@ -125,20 +126,41 @@ const ServiceCard = ({ service, index }: { service: typeof services[0], index: n
         {service.title}
       </h3>
 
+      {/* Headline (opcional) */}
+      {service.headline && (
+        <p className="text-[#d4b200] text-sm font-bold leading-snug mb-2">
+          {service.headline}
+        </p>
+      )}
+
       {/* Description */}
       <p className="text-white/60 text-sm leading-relaxed mb-3">
         {service.description}
       </p>
 
       {/* Benefits - Simplified */}
-      <div className="space-y-1.5 mb-4">
-        {service.benefits.map((benefit, benefitIdx) => (
-          <div key={benefitIdx} className="flex items-center gap-2 text-white/80 text-xs">
-            <div className="w-1 h-1 bg-[#d4b200]" />
-            {benefit}
-          </div>
-        ))}
-      </div>
+      {service.benefits && (
+        <div className="space-y-1.5 mb-4">
+          {service.benefits.map((benefit, benefitIdx) => (
+            <div key={benefitIdx} className="flex items-center gap-2 text-white/80 text-xs">
+              <div className="w-1 h-1 bg-[#d4b200]" />
+              {benefit}
+            </div>
+          ))}
+        </div>
+      )}
+
+      {/* Subservices - lista compacta de títulos (sin fotografías internas) */}
+      {service.subservices && (
+        <ul className="space-y-1.5 mb-4">
+          {service.subservices.map((sub) => (
+            <li key={sub.title} className="flex items-center gap-2 text-white/80 text-xs">
+              <div className="w-1 h-1 bg-[#d4b200]" />
+              {sub.title}
+            </li>
+          ))}
+        </ul>
+      )}
 
       {/* Image - Visible on all devices */}
       <div className="block aspect-[16/9] md:aspect-[16/7] relative overflow-hidden bg-white/5 mt-auto pt-4 group-hover:scale-[1.01] transition-transform duration-500">
@@ -157,10 +179,10 @@ const ServiceCard = ({ service, index }: { service: typeof services[0], index: n
         target="_blank"
         rel="noopener noreferrer"
         className="mt-4 inline-flex items-center gap-2 text-xs font-black uppercase tracking-[0.12em] text-[#d4b200] hover:text-white transition-colors"
-        aria-label={`Consultar por WhatsApp sobre ${service.title}`}
+        aria-label={`${service.cta ?? "Consultar por WhatsApp"} — ${service.title}`}
       >
         <MessageCircle className="h-3.5 w-3.5" />
-        Consultar por WhatsApp
+        {service.cta ?? "Consultar por WhatsApp"}
       </a>
     </motion.div>
   );
@@ -456,9 +478,13 @@ export default function HomeClient() {
             
             {/* Services Grid */}
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-10">
-              {services.map((service, idx) => (
-                <ServiceCard key={service.title} service={service} index={idx} />
-              ))}
+              {services.map((service, idx) =>
+                service.fullWidth ? (
+                  <GastronomyServiceCard key={service.title} service={service} index={idx} />
+                ) : (
+                  <ServiceCard key={service.title} service={service} index={idx} />
+                )
+              )}
             </div>
 
           </div>

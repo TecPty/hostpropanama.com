@@ -17,6 +17,10 @@ export type WhatsAppContext =
   | "service-btl"
   | "service-audiovisual"
   | "service-capacitaciones"
+  | "service-cocteleria"
+  | "service-lighting-audio"
+  | "service-photography-video"
+  | "service-gastronomy"
   | "urgente"
   | "cotizacion";
 
@@ -54,7 +58,15 @@ export function getWhatsAppLink(context: WhatsAppContext = "general", customPara
     "service-audiovisual": "Hola, estoy produciendo contenido audiovisual y necesito talento profesional. ¿Tienen disponibilidad?",
 
     "service-capacitaciones": "Hola, me interesa el programa de capacitación para azafatas y brand ambassadors. ¿Podemos revisar temario, modalidad y fechas disponibles?",
-    
+
+    "service-cocteleria": "Hola, me interesa el servicio de coctelería molecular de HostPro Panamá para un evento. ¿Pueden enviarme información y disponibilidad?",
+
+    "service-lighting-audio": "Hola, me interesa el servicio de Iluminación y Audio de HostPro Panamá para un evento. ¿Pueden enviarme información y disponibilidad?",
+
+    "service-photography-video": "Hola, me interesa el servicio de Fotografía y Video de HostPro Panamá para un evento. ¿Pueden enviarme información y disponibilidad?",
+
+    "service-gastronomy": "Hola, me interesa el servicio de Gastronomía de HostPro Panamá para un evento. ¿Pueden enviarme información sobre las opciones disponibles?",
+
     urgente: "🚨 URGENTE: Necesito staff para un evento próximo. ¿Pueden responder ahora?",
     
     cotizacion: customParams?.service

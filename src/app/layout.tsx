@@ -4,6 +4,7 @@ import Script from "next/script";
 import "@/styles/globals.css";
 import SmoothScroll from "@/components/SmoothScroll";
 import WhatsAppFloating from "@/components/WhatsAppFloating";
+import InstagramFloating from "@/components/InstagramFloating";
 
 
 const inter = Inter({
@@ -121,6 +122,7 @@ export default function RootLayout({
           {children}
         </SmoothScroll>
         <WhatsAppFloating />
+        <InstagramFloating />
       </body>
 
     </html>

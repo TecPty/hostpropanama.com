@@ -6,7 +6,7 @@ export const metadata: Metadata = {
   title: "Política de Privacidad | HostPro Panamá",
   description: "Política de privacidad y manejo de datos de HostPro Panamá.",
   alternates: {
-    canonical: "https://hostpropanama.com/privacidad",
+    canonical: "https://www.hostpropanama.com/privacidad",
   },
 };
 

@@ -6,7 +6,7 @@ export const metadata: Metadata = {
   title: "Términos y Condiciones | HostPro Panamá",
   description: "Términos y condiciones de uso de los servicios de HostPro Panamá.",
   alternates: {
-    canonical: "https://hostpropanama.com/terminos",
+    canonical: "https://www.hostpropanama.com/terminos",
   },
 };
 

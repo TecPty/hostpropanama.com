@@ -8,12 +8,12 @@ export const metadata: Metadata = {
   title: "Catálogo de Modelos Mujeres en Panamá | HostPro Panamá",
   description: "Explora nuestro catálogo de modelos y azafatas femeninas en Panamá. Perfiles verificados para eventos corporativos, activaciones BTL y experiencias de marca.",
   alternates: {
-    canonical: "https://hostpropanama.com/modelos/mujeres",
+    canonical: "https://www.hostpropanama.com/modelos/mujeres",
   },
   openGraph: {
     title: "Modelos y Azafatas Mujeres en Panamá | HostPro",
     description: "Catálogo de modelos femeninas verificadas para eventos corporativos, activaciones BTL y experiencias de marca en Panamá.",
-    url: "https://hostpropanama.com/modelos/mujeres",
+    url: "https://www.hostpropanama.com/modelos/mujeres",
     images: [{ url: "/seo/og-image.png", width: 1200, height: 630, alt: "Catálogo Modelos Mujeres HostPro Panamá" }],
   },
   twitter: {
@@ -35,8 +35,8 @@ export default function ModelosMujeresPage() {
             "@context": "https://schema.org",
             "@type": "BreadcrumbList",
             "itemListElement": [
-              { "@type": "ListItem", "position": 1, "name": "Inicio", "item": "https://hostpropanama.com" },
-              { "@type": "ListItem", "position": 2, "name": "Catálogo Mujeres", "item": "https://hostpropanama.com/modelos/mujeres" },
+              { "@type": "ListItem", "position": 1, "name": "Inicio", "item": "https://www.hostpropanama.com" },
+              { "@type": "ListItem", "position": 2, "name": "Catálogo Mujeres", "item": "https://www.hostpropanama.com/modelos/mujeres" },
             ],
           }),
         }}

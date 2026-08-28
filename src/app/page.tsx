@@ -6,13 +6,13 @@ export const metadata: Metadata = {
   description:
     "Agencia líder de azafatas, modelos y edecanes en Panamá. Talento profesional verificado para eventos corporativos, ferias, activaciones BTL y producciones audiovisuales. Cotiza en 1 hora.",
   alternates: {
-    canonical: "https://hostpropanama.com",
+    canonical: "https://www.hostpropanama.com",
   },
   openGraph: {
     title: "Azafatas y Modelos en Panamá | HostPro Panamá",
     description:
       "Agencia líder de azafatas, modelos y edecanes en Panamá para eventos corporativos, ferias y activaciones BTL. Talento verificado. Cotiza gratis.",
-    url: "https://hostpropanama.com",
+    url: "https://www.hostpropanama.com",
     images: [
       {
         url: "/seo/og-image.png",

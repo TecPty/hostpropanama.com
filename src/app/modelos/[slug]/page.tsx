@@ -29,12 +29,12 @@ export async function generateMetadata({ params }: ModelPageProps): Promise<Meta
     title,
     description,
     alternates: {
-      canonical: `https://hostpropanama.com/modelos/${slug}`,
+      canonical: `https://www.hostpropanama.com/modelos/${slug}`,
     },
     openGraph: {
       title,
       description,
-      url: `https://hostpropanama.com/modelos/${slug}`,
+      url: `https://www.hostpropanama.com/modelos/${slug}`,
       images: [{ url: "/seo/og-image.png", width: 1200, height: 630, alt: `${model.name} - HostPro Panamá` }],
     },
     twitter: {
@@ -72,9 +72,9 @@ export default async function ModeloPortfolioPage({ params }: ModelPageProps) {
             "@context": "https://schema.org",
             "@type": "BreadcrumbList",
             "itemListElement": [
-              { "@type": "ListItem", "position": 1, "name": "Inicio", "item": "https://hostpropanama.com" },
-              { "@type": "ListItem", "position": 2, "name": "Catálogo", "item": `https://hostpropanama.com${collectionRoute}` },
-              { "@type": "ListItem", "position": 3, "name": model.name, "item": `https://hostpropanama.com/modelos/${model.slug}` },
+              { "@type": "ListItem", "position": 1, "name": "Inicio", "item": "https://www.hostpropanama.com" },
+              { "@type": "ListItem", "position": 2, "name": "Catálogo", "item": `https://www.hostpropanama.com${collectionRoute}` },
+              { "@type": "ListItem", "position": 3, "name": model.name, "item": `https://www.hostpropanama.com/modelos/${model.slug}` },
             ],
           }),
         }}
@@ -96,7 +96,7 @@ export default async function ModeloPortfolioPage({ params }: ModelPageProps) {
             "worksFor": {
               "@type": "Organization",
               "name": "HostPro Panamá",
-              "url": "https://hostpropanama.com",
+              "url": "https://www.hostpropanama.com",
             },
             ...(model.social?.instagram && {
               sameAs: [

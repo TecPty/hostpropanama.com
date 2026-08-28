@@ -6,6 +6,6 @@ export default function robots(): MetadataRoute.Robots {
       userAgent: "*",
       allow: "/",
     },
-    sitemap: "https://hostpropanama.com/sitemap.xml",
+    sitemap: "https://www.hostpropanama.com/sitemap.xml",
   };
 }

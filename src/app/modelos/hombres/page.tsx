@@ -8,12 +8,12 @@ export const metadata: Metadata = {
   title: "Catálogo de Modelos Hombres en Panamá | HostPro Panamá",
   description: "Explora nuestro catálogo de modelos masculinos en Panamá. Perfiles verificados para eventos corporativos, activaciones BTL y producciones audiovisuales.",
   alternates: {
-    canonical: "https://hostpropanama.com/modelos/hombres",
+    canonical: "https://www.hostpropanama.com/modelos/hombres",
   },
   openGraph: {
     title: "Modelos Hombres en Panamá | HostPro",
     description: "Catálogo de modelos masculinos verificados para eventos corporativos, activaciones BTL y producciones en Panamá.",
-    url: "https://hostpropanama.com/modelos/hombres",
+    url: "https://www.hostpropanama.com/modelos/hombres",
     images: [{ url: "/seo/og-image.png", width: 1200, height: 630, alt: "Catálogo Modelos Hombres HostPro Panamá" }],
   },
   twitter: {
@@ -35,8 +35,8 @@ export default function ModelosHombresPage() {
             "@context": "https://schema.org",
             "@type": "BreadcrumbList",
             "itemListElement": [
-              { "@type": "ListItem", "position": 1, "name": "Inicio", "item": "https://hostpropanama.com" },
-              { "@type": "ListItem", "position": 2, "name": "Catálogo Hombres", "item": "https://hostpropanama.com/modelos/hombres" },
+              { "@type": "ListItem", "position": 1, "name": "Inicio", "item": "https://www.hostpropanama.com" },
+              { "@type": "ListItem", "position": 2, "name": "Catálogo Hombres", "item": "https://www.hostpropanama.com/modelos/hombres" },
             ],
           }),
         }}

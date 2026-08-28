@@ -18,7 +18,7 @@ export const metadata: Metadata = {
   description:
     "Agencia líder en talento profesional para experiencias de marca, eventos corporativos y producción audiovisual en Panamá. Conectamos tu marca con talento verificado y especializado. Respuesta en 1 hora. ¡Cotiza gratis!",
   keywords: ["agencia talento panamá", "azafatas panamá", "edecanes panamá", "experiencias de marca", "capacitaciones brand ambassadors", "eventos corporativos panamá", "modelos profesionales", "brand ambassadors", "casting panamá", "talento corporativo"],
-  metadataBase: new URL("https://hostpropanama.com"),
+  metadataBase: new URL("https://www.hostpropanama.com"),
   icons: {
     icon: "/favicon.ico",
     shortcut: "/favicon.ico",
@@ -28,7 +28,7 @@ export const metadata: Metadata = {
     title: "Agencia de Talento Profesional en Panamá | HostPro",
     description:
       "Conectamos tu marca con talento profesional para experiencias de marca, eventos corporativos y producción audiovisual. Perfiles verificados y resultados garantizados.",
-    url: "https://hostpropanama.com",
+    url: "https://www.hostpropanama.com",
     siteName: "HostPro Panamá",
     locale: "es_PA",
     type: "website",
@@ -68,9 +68,9 @@ export default function RootLayout({
               "@type": "LocalBusiness",
               "name": "HostPro Panamá",
               "description": "Agencia de azafatas, modelos y brand ambassadors en Panamá para eventos corporativos, activaciones BTL y experiencias de marca.",
-              "url": "https://hostpropanama.com",
+              "url": "https://www.hostpropanama.com",
               "telephone": "+50769801194",
-              "image": "https://hostpropanama.com/seo/og-image.png",
+              "image": "https://www.hostpropanama.com/seo/og-image.png",
               "address": {
                 "@type": "PostalAddress",
                 "addressLocality": "Ciudad de Panamá",

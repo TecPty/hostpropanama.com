@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useEffect, useRef } from "react";
-import { motion, AnimatePresence, useTransform, useScroll } from "framer-motion";
+import { motion, AnimatePresence, useTransform, useScroll, useReducedMotion } from "framer-motion";
 
 import {
   ArrowRight,
@@ -347,6 +347,108 @@ const TestimonialsSection = () => {
   );
 };
 
+/* CameraFlashLayer — deterministic photographic flash bursts for the Hero.
+   Cycle and per-event timing are fixed constants (no Math.random at render)
+   so the sequence stays reproducible and never exceeds 3 flashes/second. */
+const FLASH_CYCLE_SECONDS = 12;
+const FLASH_BUILD_MS = 50;
+const FLASH_DECAY_MS = 90;
+
+type FlashPeak = { time: number; value: number };
+
+const buildKeyframes = (peaks: FlashPeak[], baseline: number) => {
+  const cycleMs = FLASH_CYCLE_SECONDS * 1000;
+  const points: { t: number; v: number }[] = [{ t: 0, v: baseline }];
+
+  peaks.forEach(({ time, value }) => {
+    const peakMs = time * 1000;
+    points.push({ t: Math.max(0, (peakMs - FLASH_BUILD_MS) / cycleMs), v: baseline });
+    points.push({ t: peakMs / cycleMs, v: value });
+    points.push({ t: Math.min(1, (peakMs + FLASH_DECAY_MS) / cycleMs), v: baseline });
+  });
+
+  points.push({ t: 1, v: baseline });
+
+  return { times: points.map((p) => p.t), values: points.map((p) => p.v) };
+};
+
+type FlashSpec = {
+  id: string;
+  top: string;
+  left: string;
+  peakTime: number;
+  peakOpacity: number;
+  size: number;
+};
+
+const HERO_FLASHES: FlashSpec[] = [
+  { id: "A", top: "82%", left: "6%", peakTime: 2.1, peakOpacity: 0.95, size: 220 },
+  { id: "B", top: "38%", left: "92%", peakTime: 4.7, peakOpacity: 0.7, size: 180 },
+  { id: "C", top: "10%", left: "68%", peakTime: 7.3, peakOpacity: 0.45, size: 150 },
+  { id: "D", top: "18%", left: "4%", peakTime: 10.8, peakOpacity: 0.85, size: 200 },
+];
+
+const BLOOM_PEAKS: FlashPeak[] = [
+  { time: 2.1, value: 0.1 },
+  { time: 10.8, value: 0.08 },
+];
+
+const CameraFlashLayer = () => {
+  const prefersReducedMotion = useReducedMotion();
+
+  if (prefersReducedMotion) return null;
+
+  const bloomKeyframes = buildKeyframes(BLOOM_PEAKS, 0);
+
+  return (
+    <div className="pointer-events-none absolute inset-0 z-[1] overflow-hidden" aria-hidden="true">
+      {HERO_FLASHES.map((flash) => {
+        const opacityKeyframes = buildKeyframes([{ time: flash.peakTime, value: flash.peakOpacity }], 0);
+        const scaleKeyframes = buildKeyframes([{ time: flash.peakTime, value: 1.35 }], 0.7);
+        // Scale expands with the halo during each photographic burst.
+
+        return (
+          <motion.div
+            key={flash.id}
+            className="absolute rounded-full"
+            style={{
+              top: flash.top,
+              left: flash.left,
+              width: flash.size,
+              height: flash.size,
+              marginLeft: -flash.size / 2,
+              marginTop: -flash.size / 2,
+              background:
+                "radial-gradient(circle, rgba(255,255,255,0.95) 0%, rgba(255,255,255,0.65) 8%, rgba(255,255,255,0.20) 25%, transparent 65%), radial-gradient(circle, transparent 55%, rgba(255,255,255,0.08) 60%, transparent 68%)",
+            }}
+            animate={{ opacity: opacityKeyframes.values, scale: scaleKeyframes.values }}
+            transition={{
+              duration: FLASH_CYCLE_SECONDS,
+              times: opacityKeyframes.times,
+              repeat: Infinity,
+              repeatType: "loop",
+              ease: "easeOut",
+            }}
+          />
+        );
+      })}
+
+      {/* Subtle hero-wide exposure bloom, synced only to the strongest flashes (A, D) */}
+      <motion.div
+        className="absolute inset-0 bg-white"
+        animate={{ opacity: bloomKeyframes.values }}
+        transition={{
+          duration: FLASH_CYCLE_SECONDS,
+          times: bloomKeyframes.times,
+          repeat: Infinity,
+          repeatType: "loop",
+          ease: "easeOut",
+        }}
+      />
+    </div>
+  );
+};
+
 export default function HomeClient() {
   const [activeTab, setActiveTab] = useState<'activaciones' | 'talento'>('activaciones');
 
@@ -400,6 +502,9 @@ export default function HomeClient() {
               />
             </picture>
           </div>
+
+          {/* Camera Flash Layer — subtle photographic flash bursts, above the photo, below content */}
+          <CameraFlashLayer />
 
           {/* Content - Responsive Grid to prevent text overlap */}
           <div className="relative z-10 max-w-7xl mx-auto w-full px-6 md:px-12 h-full flex items-center">

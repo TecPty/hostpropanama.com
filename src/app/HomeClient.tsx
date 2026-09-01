@@ -350,7 +350,7 @@ const TestimonialsSection = () => {
 /* CameraFlashLayer — deterministic photographic flash bursts for the Hero.
    Cycle and per-event timing are fixed constants (no Math.random at render)
    so the sequence stays reproducible and never exceeds 3 flashes/second. */
-const FLASH_CYCLE_SECONDS = 12;
+const FLASH_CYCLE_SECONDS = 10;
 const FLASH_BUILD_MS = 50;
 const FLASH_DECAY_MS = 90;
 
@@ -382,15 +382,15 @@ type FlashSpec = {
 };
 
 const HERO_FLASHES: FlashSpec[] = [
-  { id: "A", top: "82%", left: "6%", peakTime: 2.1, peakOpacity: 0.95, size: 220 },
-  { id: "B", top: "38%", left: "92%", peakTime: 4.7, peakOpacity: 0.7, size: 180 },
-  { id: "C", top: "10%", left: "68%", peakTime: 7.3, peakOpacity: 0.45, size: 150 },
-  { id: "D", top: "18%", left: "4%", peakTime: 10.8, peakOpacity: 0.85, size: 200 },
+  { id: "A", top: "82%", left: "6%", peakTime: 1.8, peakOpacity: 0.95, size: 220 },
+  { id: "B", top: "38%", left: "92%", peakTime: 3.9, peakOpacity: 0.7, size: 180 },
+  { id: "C", top: "10%", left: "68%", peakTime: 6.1, peakOpacity: 0.45, size: 150 },
+  { id: "D", top: "18%", left: "4%", peakTime: 9.0, peakOpacity: 0.85, size: 200 },
 ];
 
 const BLOOM_PEAKS: FlashPeak[] = [
-  { time: 2.1, value: 0.1 },
-  { time: 10.8, value: 0.08 },
+  { time: 1.8, value: 0.1 },
+  { time: 9.0, value: 0.08 },
 ];
 
 const CameraFlashLayer = () => {

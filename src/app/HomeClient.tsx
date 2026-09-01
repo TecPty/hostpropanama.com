@@ -174,16 +174,27 @@ const ServiceCard = ({ service, index }: { service: typeof services[number], ind
       </div>
 
       {/* CTA */}
-      <a
-        href={getWhatsAppLink(service.whatsappContext as WhatsAppContext)}
-        target="_blank"
-        rel="noopener noreferrer"
-        className="mt-4 inline-flex items-center gap-2 text-xs font-black uppercase tracking-[0.12em] text-[#d4b200] hover:text-white transition-colors"
-        aria-label={`${service.cta ?? "Consultar por WhatsApp"} — ${service.title}`}
-      >
-        <MessageCircle className="h-3.5 w-3.5" />
-        {service.cta ?? "Consultar por WhatsApp"}
-      </a>
+      <div className="mt-4 flex flex-col gap-2">
+        {service.href && (
+          <Link
+            href={service.href}
+            className="inline-flex items-center gap-2 text-xs font-black uppercase tracking-[0.12em] text-white/70 hover:text-white transition-colors"
+          >
+            Ver servicio
+            <ArrowRight className="h-3.5 w-3.5" />
+          </Link>
+        )}
+        <a
+          href={getWhatsAppLink(service.whatsappContext as WhatsAppContext)}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="inline-flex items-center gap-2 text-xs font-black uppercase tracking-[0.12em] text-[#d4b200] hover:text-white transition-colors"
+          aria-label={`${service.cta ?? "Consultar por WhatsApp"} — ${service.title}`}
+        >
+          <MessageCircle className="h-3.5 w-3.5" />
+          {service.cta ?? "Consultar por WhatsApp"}
+        </a>
+      </div>
     </motion.div>
   );
 };

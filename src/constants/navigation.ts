@@ -22,7 +22,7 @@ export const NAV_DROPDOWN: NavDropdown = {
 };
 
 export const NAV_LINKS: NavLink[] = [
-  { label: "Servicios", href: "/#servicios" },
+  { label: "Servicios", href: "/servicios" },
   { label: "Planes", href: "/#planes" },
   { label: "Testimoniales", href: "/#testimoniales" },
   { label: "Contacto", href: "/#contacto" },

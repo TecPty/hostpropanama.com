@@ -23,6 +23,7 @@ export const services = [
       "Atención VIP especializada"
     ],
     whatsappContext: "service-corporativo" as const,
+    href: "/servicios/eventos-corporativos",
   },
   {
     title: "Activaciones BTL",
@@ -34,6 +35,7 @@ export const services = [
       "Conversión medible"
     ],
     whatsappContext: "service-btl" as const,
+    href: "/servicios/activaciones-btl",
   },
   {
     title: "Capacitaciones",
@@ -145,9 +147,9 @@ export const gastronomySubservices = {
 // Proceso
 export const process = [
   "Brief y requerimientos del evento",
-  "Seleccion curada del staff",
-  "Confirmacion y logistica",
-  "Ejecucion y supervision en sitio",
+  "Selección curada del staff",
+  "Confirmación y logística",
+  "Ejecución y supervisión en sitio",
   "Reporte y feedback post-evento",
 ];
 

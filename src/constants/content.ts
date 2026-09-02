@@ -317,7 +317,7 @@ export const talent: TalentModel[] = [
     role: "Modelo para activaciones y eventos",
     languages: "Español, Inglés",
     status: "disponible",
-    updatedAt: "2026-03-03",
+    updatedAt: "2026-09-02",
     city: "Ciudad de Panamá",
     experienceSummary: "Perfil para representación de marca en puntos de alto tráfico.",
     skills: ["Presencia de marca", "Interacción con público"],
@@ -332,7 +332,17 @@ export const talent: TalentModel[] = [
     gender: "mujer",
     photo: "/talent/mujeres/genesis-gonzalez/genesis-gonzalez.webp",
     media: {
-      gallery: ["/talent/mujeres/genesis-gonzalez/genesis-gonzalez.webp"],
+      gallery: [
+        "/talent/mujeres/genesis-gonzalez/genesis-gonzalez.webp",
+        "/talent/mujeres/genesis-gonzalez/genesis-gonzalez-01.webp",
+        "/talent/mujeres/genesis-gonzalez/genesis-gonzalez-02.webp",
+        "/talent/mujeres/genesis-gonzalez/genesis-gonzalez-03.webp",
+        "/talent/mujeres/genesis-gonzalez/genesis-gonzalez-04.webp",
+        "/talent/mujeres/genesis-gonzalez/genesis-gonzalez-05.webp",
+        "/talent/mujeres/genesis-gonzalez/genesis-gonzalez-06.webp",
+        "/talent/mujeres/genesis-gonzalez/genesis-gonzalez-07.webp",
+        "/talent/mujeres/genesis-gonzalez/genesis-gonzalez-08.webp",
+      ],
     },
   },
   {

@@ -66,10 +66,16 @@ export default function RootLayout({
             __html: JSON.stringify({
               "@context": "https://schema.org",
               "@type": "LocalBusiness",
+              "@id": "https://www.hostpropanama.com/#organization",
               "name": "HostPro Panamá",
               "description": "Agencia de azafatas, modelos y brand ambassadors en Panamá para eventos corporativos, activaciones BTL y experiencias de marca.",
               "url": "https://www.hostpropanama.com",
               "telephone": "+50769801194",
+              "email": "contacto@hostpropanama.com",
+              "sameAs": [
+                "https://instagram.com/hostpropanama",
+                "https://www.tiktok.com/@hostpropanama",
+              ],
               "image": "https://www.hostpropanama.com/seo/og-image.png",
               "address": {
                 "@type": "PostalAddress",

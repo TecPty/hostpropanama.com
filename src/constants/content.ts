@@ -49,6 +49,7 @@ export const services = [
       "Evaluación final con certificación"
     ],
     whatsappContext: "service-capacitaciones" as const,
+    href: "/servicios/capacitaciones-azafatas-promotores",
   },
   {
     title: "Iluminación y Audio",

@@ -31,7 +31,7 @@ describe("LeadForm", () => {
     await waitFor(() => {
       expect(fetchMock).toHaveBeenCalledTimes(1);
     });
-    expect(await screen.findByText(/error al enviar/i)).toBeInTheDocument();
+    expect(await screen.findByText(/no pudimos enviar la solicitud/i)).toBeInTheDocument();
     errorSpy.mockRestore();
   });
 

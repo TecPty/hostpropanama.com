@@ -143,7 +143,7 @@ describe("/api/apply route contract", () => {
     expect(body).not.toHaveProperty("details");
   });
 
-  it("returns 500 with stable error contract when RESEND_API_KEY is missing", async () => {
+  it("returns 503 with stable error contract when RESEND_API_KEY is missing", async () => {
     expect.assertions(4);
     delete process.env.RESEND_API_KEY;
 

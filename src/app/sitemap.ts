@@ -26,6 +26,11 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 0.8,
     },
     {
+      url: `${baseUrl}/servicios/azafatas-promotoras`,
+      changeFrequency: "monthly",
+      priority: 0.8,
+    },
+    {
       url: `${baseUrl}/servicios/activaciones-btl`,
       changeFrequency: "monthly",
       priority: 0.7,

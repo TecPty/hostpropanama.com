@@ -11,6 +11,7 @@ export const services = [
       "Resultados garantizados"
     ],
     whatsappContext: "service-experiencias" as const,
+    href: "/servicios/azafatas-promotoras",
   },
   {
     title: "Eventos corporativos",

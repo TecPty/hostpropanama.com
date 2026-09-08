@@ -31,5 +31,21 @@ export const metadata: Metadata = {
 };
 
 export default function Home() {
-  return <HomeClient />;
+  return (
+    <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "WebSite",
+            "@id": "https://www.hostpropanama.com/#website",
+            "url": "https://www.hostpropanama.com/",
+            "name": "HostPro Panamá",
+          }),
+        }}
+      />
+      <HomeClient />
+    </>
+  );
 }

@@ -74,9 +74,7 @@ export default function EventosCorporativosPage() {
             "@type": "Service",
             "name": "Staff para Eventos Corporativos",
             "provider": {
-              "@type": "Organization",
-              "name": "HostPro Panamá",
-              "url": "https://www.hostpropanama.com",
+              "@id": "https://www.hostpropanama.com/#organization",
             },
             "areaServed": "Panama",
             "url": "https://www.hostpropanama.com/servicios/eventos-corporativos",

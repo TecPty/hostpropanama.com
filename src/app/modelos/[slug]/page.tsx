@@ -94,9 +94,7 @@ export default async function ModeloPortfolioPage({ params }: ModelPageProps) {
               "addressCountry": "PA",
             },
             "worksFor": {
-              "@type": "Organization",
-              "name": "HostPro Panamá",
-              "url": "https://www.hostpropanama.com",
+              "@id": "https://www.hostpropanama.com/#organization",
             },
             ...(model.social?.instagram && {
               sameAs: [

@@ -143,14 +143,14 @@ describe("/api/contact route contract", () => {
     expect(body).not.toHaveProperty("details");
   });
 
-  it("returns 500 with stable error contract when RESEND_API_KEY is missing", async () => {
+  it("returns 503 with stable error contract when RESEND_API_KEY is missing", async () => {
     expect.assertions(4);
     delete process.env.RESEND_API_KEY;
 
     const response = await POST(makePostRequest(validPayload));
     const body = await response.json();
 
-    expect(response.status).toBe(500);
+    expect(response.status).toBe(503);
     expect(body).toMatchObject({
       error: expect.any(String),
     });

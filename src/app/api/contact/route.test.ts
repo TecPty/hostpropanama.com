@@ -150,7 +150,7 @@ describe("/api/contact route contract", () => {
     const response = await POST(makePostRequest(validPayload));
     const body = await response.json();
 
-    expect(response.status).toBe(500);
+    expect(response.status).toBe(503);
     expect(body).toMatchObject({
       error: expect.any(String),
     });

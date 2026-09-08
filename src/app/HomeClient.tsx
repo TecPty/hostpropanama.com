@@ -393,6 +393,72 @@ const BLOOM_PEAKS: FlashPeak[] = [
   { time: 9.0, value: 0.08 },
 ];
 
+const TICKER_WORDS = [
+  "MODELOS",
+  "AZAFATAS",
+  "PROMOTORAS",
+  "TALENTO",
+  "CASTING",
+  "EVENTOS",
+  "ACTIVACIONES",
+  "PROTOCOLO",
+  "STAFF",
+  "AUDIOVISUAL",
+  "CAPACITACIONES",
+  "MARCAS",
+  "BILINGÜE",
+  "BTL",
+] as const;
+
+const GoldServiceTicker = () => {
+  const prefersReducedMotion = useReducedMotion();
+
+  const sequence = (
+    <div className="flex shrink-0 items-center whitespace-nowrap">
+      {TICKER_WORDS.map((word) => (
+        <span
+          key={word}
+          className="flex shrink-0 items-center text-[11px] sm:text-xs md:text-sm font-black uppercase tracking-[0.16em] text-black"
+        >
+          <span className="px-4 sm:px-5 md:px-6">{word}</span>
+          <span className="text-black/55" aria-hidden="true">•</span>
+        </span>
+      ))}
+    </div>
+  );
+
+  return (
+    <section
+      className="relative z-20 w-full overflow-hidden border-y border-black/15 bg-[#d4b200] py-3 sm:py-3.5 md:py-4"
+      aria-label="Servicios HostPro"
+    >
+      <motion.div
+        className="flex w-max items-center"
+        aria-hidden="true"
+        animate={prefersReducedMotion ? undefined : { x: ["0%", "-50%"] }}
+        transition={
+          prefersReducedMotion
+            ? undefined
+            : {
+                duration: 34,
+                ease: "linear",
+                repeat: Infinity,
+                repeatType: "loop",
+              }
+        }
+      >
+        {sequence}
+        {sequence}
+      </motion.div>
+
+      <span className="sr-only">
+        MODELOS, AZAFATAS, PROMOTORAS, TALENTO, CASTING, EVENTOS, ACTIVACIONES, PROTOCOLO,
+        STAFF, AUDIOVISUAL, CAPACITACIONES, MARCAS, BILINGÜE, BTL.
+      </span>
+    </section>
+  );
+};
+
 const CameraFlashLayer = () => {
   const prefersReducedMotion = useReducedMotion();
 
@@ -576,6 +642,9 @@ export default function HomeClient() {
             </div>
           </motion.div>
         </section>
+
+        {/* ANIMATED GOLD SERVICE TICKER */}
+        <GoldServiceTicker />
 
         {/* VISIÓN Y MISIÓN SECTION - TABS */}
         <VisionMisionTabs />

@@ -20,8 +20,8 @@ const FOCUSABLE_SELECTOR = 'a[href], button:not([disabled]), [tabindex]:not([tab
  * Navegación principal de HostPro.
  *
  * Una sola estructura DOM sirve a los dos breakpoints:
- * - desktop (lg+): sidebar fijo a la izquierda, 288px, altura completa.
- * - mobile/tablet: barra superior compacta + drawer lateral izquierdo.
+ * - desktop (lg+): sidebar fijo a la derecha, 288px, altura completa.
+ * - mobile/tablet: barra superior compacta + drawer lateral derecho.
  *
  * El offset del contenido en desktop vive en globals.css vía `.hostpro-sidebar ~ main`.
  */
@@ -114,7 +114,7 @@ export default function Header() {
   }, [drawerOpen, closeDrawer]);
 
   return (
-    <header className="hostpro-sidebar fixed top-0 left-0 z-[110] w-full border-b border-white/10 bg-[#0a0a0a] lg:flex lg:h-dvh lg:w-72 lg:flex-col lg:border-r lg:border-b-0">
+    <header className="hostpro-sidebar fixed top-0 right-0 z-[110] w-full border-b border-white/10 bg-[#0a0a0a] lg:flex lg:h-dvh lg:w-72 lg:flex-col lg:border-l lg:border-b-0">
       {/* Barra superior en mobile/tablet · bloque de marca en desktop */}
       <div className="flex items-center justify-between gap-4 px-5 py-3 lg:justify-center lg:px-8 lg:py-10">
         <Link href="/" aria-label="Ir al inicio de HostPro Panamá" className="shrink-0">
@@ -158,8 +158,8 @@ export default function Header() {
         id={NAV_PANEL_ID}
         data-state={drawerOpen ? "open" : "closed"}
         data-lenis-prevent={drawerOpen ? "" : undefined}
-        className={`fixed inset-y-0 left-0 z-20 flex w-[82%] max-w-[320px] flex-col overflow-y-auto border-r border-white/10 bg-[#0a0a0a] transition-transform duration-300 ease-out lg:static lg:z-auto lg:w-auto lg:max-w-none lg:flex-1 lg:visible lg:translate-x-0 lg:border-r-0 ${
-          drawerOpen ? "visible translate-x-0" : "invisible -translate-x-full"
+        className={`fixed inset-y-0 right-0 z-20 flex w-[82%] max-w-[320px] flex-col overflow-y-auto border-l border-white/10 bg-[#0a0a0a] transition-transform duration-300 ease-out lg:static lg:z-auto lg:w-auto lg:max-w-none lg:flex-1 lg:visible lg:translate-x-0 lg:border-l-0 ${
+          drawerOpen ? "visible translate-x-0" : "invisible translate-x-full"
         }`}
       >
         <div className="flex items-center justify-end px-5 py-3 lg:hidden">

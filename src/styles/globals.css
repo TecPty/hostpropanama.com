@@ -262,3 +262,23 @@ button, a, summary {
     font-size: 13px;
   }
 }
+
+/* ==========================================================================
+   HOST-UX-002 — Navegación lateral (sidebar desktop / drawer mobile)
+   ========================================================================== */
+
+/* Bloqueo del scroll de fondo mientras el drawer mobile/tablet está abierto.
+   Se cubre html además de body porque Lenis maneja el scroll del scroller raíz. */
+body.hostpro-nav-open,
+html:has(body.hostpro-nav-open) {
+  overflow: hidden;
+}
+
+/* Offset del contenido en desktop. El sidebar es `fixed`, así que no ocupa flujo:
+   se desplaza <main>, que es hermano directo de <header> en todas las páginas.
+   El <footer> vive dentro de <main>, por lo que hereda el mismo offset. */
+@media (min-width: 1024px) {
+  .hostpro-sidebar ~ main {
+    margin-left: 288px;
+  }
+}

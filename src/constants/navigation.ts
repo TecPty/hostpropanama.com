@@ -1,6 +1,6 @@
 /**
  * Fuente central de navegación del header.
- * Única fuente de verdad para desktop, tablet y mobile.
+ * Única fuente de verdad para el sidebar desktop y el drawer mobile/tablet.
  */
 
 export interface NavLink {
@@ -22,10 +22,9 @@ export const NAV_DROPDOWN: NavDropdown = {
 };
 
 export const NAV_LINKS: NavLink[] = [
-  { label: "Servicios", href: "/servicios" },
-  { label: "Planes", href: "/#planes" },
-  { label: "Testimoniales", href: "/#testimoniales" },
-  { label: "Contacto", href: "/#contacto" },
+  { label: "Eventos", href: "/servicios/eventos-corporativos" },
+  { label: "Precios", href: "/#planes" },
+  { label: "Contactos", href: "/#contacto" },
 ];
 
 export const NAV_CTA: NavLink = { label: "Cotizar", href: "/#contacto" };

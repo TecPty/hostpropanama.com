@@ -646,8 +646,83 @@ export default function HomeClient() {
         {/* ANIMATED GOLD SERVICE TICKER */}
         <GoldServiceTicker />
 
-        {/* VISIÓN Y MISIÓN SECTION - TABS */}
-        <VisionMisionTabs />
+        {/* GALERÍA SECTION */}
+        <section id="galeria" className="py-32 bg-black border-t border-white/10">
+          <div className="max-w-7xl mx-auto px-6 md:px-12">
+            {/* Section Header */}
+            <motion.div
+              className="mb-16"
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+            >
+              <p className="text-xs uppercase tracking-[0.2em] text-[#d4b200] font-bold mb-4">Portfolio</p>
+              <h2 className="text-4xl md:text-6xl font-black text-white uppercase tracking-tight leading-[0.9]">
+                NEW<br />
+                <span className="text-[#d4b200]">FACES</span>
+              </h2>
+              <p className="text-white/60 text-sm mt-6 max-w-2xl">
+                Muestra destacada de perfiles activos. Para ver el catálogo completo por categoría, usa el menú de modelos.
+              </p>
+            </motion.div>
+
+            <div className="grid grid-cols-2 lg:grid-cols-3 gap-5 md:gap-6">
+              {featuredTalent.map((model, idx) => (
+                <motion.div
+                  key={model.slug}
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  transition={{ delay: idx * 0.05, duration: 0.5 }}
+                  viewport={{ once: true, amount: 0.2 }}
+                  className="group relative aspect-[3/4] [perspective:1200px]"
+                >
+                  <div className="relative h-full w-full [transform-style:preserve-3d] transition-transform duration-700 group-hover:[transform:rotateY(180deg)] group-focus-within:[transform:rotateY(180deg)]">
+                    <div className="absolute inset-0 overflow-hidden border border-white/10 bg-white/5 [backface-visibility:hidden]">
+                      <Image
+                        src={model.photo}
+                        alt={`${model.name} - HostPro Panamá`}
+                        fill
+                        sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                        className="object-contain p-3 md:p-4"
+                      />
+                    </div>
+
+                    <div className="absolute inset-0 border border-[#d4b200]/40 bg-black/95 p-5 flex flex-col items-center justify-center gap-2 text-center [transform:rotateY(180deg)] [backface-visibility:hidden]">
+                      <p className="text-white font-black uppercase tracking-[0.08em] text-lg">{model.name}</p>
+                      <p className="text-[#d4b200] text-xs uppercase tracking-[0.1em] font-bold">{model.languages}</p>
+                      {model.physical.height && (
+                        <p className="text-white/80 text-sm">{model.physical.height}</p>
+                      )}
+                      <Link
+                        href={`/modelos/${model.slug}`}
+
+                        className="inline-flex mt-4 w-fit bg-[#d4b200] text-black px-4 py-2 text-[11px] uppercase tracking-[0.12em] font-black hover:bg-[#e6c700] transition-colors"
+                      >
+                        Ver portafolio
+                      </Link>
+                    </div>
+                  </div>
+                </motion.div>
+              ))}
+            </div>
+
+            {/* View All Link */}
+            <motion.div
+              initial={{ opacity: 0 }}
+              whileInView={{ opacity: 1 }}
+              viewport={{ once: true }}
+              className="mt-12 text-center"
+            >
+              <Link
+                href="/modelos/mujeres"
+                className="inline-flex items-center gap-3 text-white/60 hover:text-white uppercase text-xs tracking-[0.15em] font-bold transition-colors"
+              >
+                Ver catálogo por categoría
+                <ArrowRight className="h-4 w-4" />
+              </Link>
+            </motion.div>
+          </div>
+        </section>
 
         {/* SERVICIOS SECTION */}
         <section id="servicios" className="py-16 bg-black border-t border-white/10">
@@ -765,109 +840,6 @@ export default function HomeClient() {
           </div>
         </section>
 
-        {/* VALUE PROPOSITION SECTION */}
-        <section className="py-20 bg-gradient-to-br from-slate-900 to-black border-y border-white/10">
-          <div className="max-w-6xl mx-auto px-4 text-center">
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, amount: 0.3 }}
-              className="space-y-8"
-            >
-              <div className="inline-flex items-center gap-2 bg-[#d4b200]/10 px-6 py-3 rounded-full border border-[#d4b200]/20">
-                <Shield className="h-5 w-5 text-[#d4b200]" />
-                <span className="text-[#d4b200] font-bold uppercase tracking-wider text-sm">Garantía de Excelencia</span>
-              </div>
-              <h2 className="text-3xl md:text-5xl font-black text-white leading-tight max-w-4xl mx-auto">
-                Si <span className="text-[#d4b200]">HostPro</span> está en tu proyecto,
-              </h2>
-              <p className="text-2xl md:text-3xl text-slate-300 font-medium max-w-3xl mx-auto italic">
-                la experiencia humana no será un problema, todo fluirá con excelencia.
-              </p>
-            </motion.div>
-          </div>
-        </section>
-
-        {/* CTA SECTION */}
-        <section className="py-24 md:py-36 flex items-center justify-center overflow-hidden relative bg-black">
-          {/* Background Image */}
-          <div className="absolute inset-0 z-0">
-            <Image
-              src="/images/talent-model.webp"
-              alt="Talento profesional HostPro Panamá"
-              fill
-              className="object-cover opacity-40"
-            />
-          </div>
-
-          {/* Content - Centered with space distribution */}
-          <div className="relative z-10 max-w-6xl mx-auto px-6 md:px-12 text-center">
-            <motion.div
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, amount: 0.3 }}
-              transition={{ duration: 0.8 }}
-            >
-              {/* Main CTA Title - Ultra Bold */}
-              <h2 className="text-2xl md:text-4xl lg:text-5xl font-black text-white uppercase leading-[1.1] mb-16 tracking-tight">
-                No uses a tus colaboradores. <br className="hidden md:block" />
-                Usa los modelos de <span className="text-[#d4b200]">HostPro Panamá</span> y conectarás mejor con tu consumidor.
-              </h2>
-
-              {/* CTA Button - Premium Style */}
-              <Link 
-                href="#contacto"
-                className="inline-flex items-center gap-4 bg-[#d4b200] text-black px-12 py-6 font-black uppercase text-xs md:text-sm tracking-[0.2em] hover:bg-white transition-colors mt-8"
-              >
-                Agendemos una reunión estratégica
-                <ArrowRight className="h-5 w-5" />
-              </Link>
-            </motion.div>
-          </div>
-
-          {/* Decorative Line */}
-          <div className="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-[#d4b200] to-transparent" />
-        </section>
-
-        {/* METODOLOGÍA SECTION */}
-        <section id="metodologia" className="py-16 bg-black">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="text-center mb-12">
-              <span className="text-[#d4b200] font-bold uppercase tracking-[0.2em] text-xs">Nuestra Metodología</span>
-              <h2 className="text-3xl font-black mt-4 uppercase text-white">Cómo Garantizamos el Éxito de tu Evento</h2>
-            </div>
-            <div className="grid grid-cols-2 lg:grid-cols-5 gap-6">
-              {[
-                { title: "Análisis", desc: "Analizamos tu proyecto para identificar los perfiles ideales que necesitas." },
-                { title: "Casting", desc: "Selección rigurosa de perfiles alineados a tu marca y objetivos." },
-                { title: "Preparación", desc: "Capacitación y briefing personalizado para garantizar excelencia." },
-                { title: "Ejecución", desc: "Gestión completa con supervisión en sitio y seguimiento de resultados." },
-                { title: "Reporte", desc: "Análisis de resultados y feedback post-evento para medir el impacto real." },
-              ].map((item, idx) => (
-                <motion.div
-                  key={item.title}
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  transition={{ delay: idx * 0.1 }}
-                  viewport={{ once: true, amount: 0.3 }}
-                  className="bg-slate-900 p-8 rounded-2xl border border-white/10 hover:border-[#d4b200] transition-colors"
-                >
-                  <div className="flex gap-0.5 mb-4">
-                    {Array.from({ length: idx + 1 }).map((_, starIdx) => (
-                      <span key={starIdx} className="text-2xl text-[#d4b200]">★</span>
-                    ))}
-                  </div>
-                  <h3 className="text-xl font-bold mb-2 text-white">{item.title}</h3>
-                  <p className="text-slate-300 text-sm">{item.desc}</p>
-                </motion.div>
-              ))}
-            </div>
-          </div>
-        </section>
-
-        {/* TESTIMONIALES SECTION */}
-        <TestimonialsSection />
-
         {/* CONTACTO SECTION */}
         <section id="contacto" className="py-32 bg-[#f5f5f5]">
           <div className="max-w-7xl mx-auto px-6 md:px-12">
@@ -923,7 +895,7 @@ export default function HomeClient() {
                     <p className="text-xs uppercase tracking-[0.2em] text-[#a0a0a0] font-bold mb-2">
                       BOOKING DESK
                     </p>
-                    <a 
+                    <a
                       href="mailto:contacto@hostpropanama.com"
                       className="text-base font-black text-black hover:text-[#d4b200] transition-colors"
                     >
@@ -964,83 +936,111 @@ export default function HomeClient() {
           </div>
         </section>
 
-        {/* GALERÍA SECTION */}
-        <section id="galeria" className="py-32 bg-black border-t border-white/10">
-          <div className="max-w-7xl mx-auto px-6 md:px-12">
-            {/* Section Header */}
-            <motion.div 
-              className="mb-16"
+        {/* VISIÓN Y MISIÓN SECTION - TABS */}
+        <VisionMisionTabs />
+
+        {/* VALUE PROPOSITION SECTION */}
+        <section className="py-20 bg-gradient-to-br from-slate-900 to-black border-y border-white/10">
+          <div className="max-w-6xl mx-auto px-4 text-center">
+            <motion.div
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
+              viewport={{ once: true, amount: 0.3 }}
+              className="space-y-8"
             >
-              <p className="text-xs uppercase tracking-[0.2em] text-[#d4b200] font-bold mb-4">Portfolio</p>
-              <h2 className="text-4xl md:text-6xl font-black text-white uppercase tracking-tight leading-[0.9]">
-                NEW<br />
-                <span className="text-[#d4b200]">FACES</span>
+              <div className="inline-flex items-center gap-2 bg-[#d4b200]/10 px-6 py-3 rounded-full border border-[#d4b200]/20">
+                <Shield className="h-5 w-5 text-[#d4b200]" />
+                <span className="text-[#d4b200] font-bold uppercase tracking-wider text-sm">Garantía de Excelencia</span>
+              </div>
+              <h2 className="text-3xl md:text-5xl font-black text-white leading-tight max-w-4xl mx-auto">
+                Si <span className="text-[#d4b200]">HostPro</span> está en tu proyecto,
               </h2>
-              <p className="text-white/60 text-sm mt-6 max-w-2xl">
-                Muestra destacada de perfiles activos. Para ver el catálogo completo por categoría, usa el menú de modelos.
+              <p className="text-2xl md:text-3xl text-slate-300 font-medium max-w-3xl mx-auto italic">
+                la experiencia humana no será un problema, todo fluirá con excelencia.
               </p>
-            </motion.div>
-
-            <div className="grid grid-cols-2 lg:grid-cols-3 gap-5 md:gap-6">
-              {featuredTalent.map((model, idx) => (
-                <motion.div
-                  key={model.slug}
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  transition={{ delay: idx * 0.05, duration: 0.5 }}
-                  viewport={{ once: true, amount: 0.2 }}
-                  className="group relative aspect-[3/4] [perspective:1200px]"
-                >
-                  <div className="relative h-full w-full [transform-style:preserve-3d] transition-transform duration-700 group-hover:[transform:rotateY(180deg)] group-focus-within:[transform:rotateY(180deg)]">
-                    <div className="absolute inset-0 overflow-hidden border border-white/10 bg-white/5 [backface-visibility:hidden]">
-                      <Image
-                        src={model.photo}
-                        alt={`${model.name} - HostPro Panamá`}
-                        fill
-                        sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-                        className="object-contain p-3 md:p-4"
-                      />
-                    </div>
-
-                    <div className="absolute inset-0 border border-[#d4b200]/40 bg-black/95 p-5 flex flex-col items-center justify-center gap-2 text-center [transform:rotateY(180deg)] [backface-visibility:hidden]">
-                      <p className="text-white font-black uppercase tracking-[0.08em] text-lg">{model.name}</p>
-                      <p className="text-[#d4b200] text-xs uppercase tracking-[0.1em] font-bold">{model.languages}</p>
-                      {model.physical.height && (
-                        <p className="text-white/80 text-sm">{model.physical.height}</p>
-                      )}
-                      <Link
-                        href={`/modelos/${model.slug}`}
-
-                        className="inline-flex mt-4 w-fit bg-[#d4b200] text-black px-4 py-2 text-[11px] uppercase tracking-[0.12em] font-black hover:bg-[#e6c700] transition-colors"
-                      >
-                        Ver portafolio
-                      </Link>
-                    </div>
-                  </div>
-                </motion.div>
-              ))}
-            </div>
-
-            {/* View All Link */}
-            <motion.div
-              initial={{ opacity: 0 }}
-              whileInView={{ opacity: 1 }}
-              viewport={{ once: true }}
-              className="mt-12 text-center"
-            >
-              <Link 
-                href="/modelos/mujeres"
-                className="inline-flex items-center gap-3 text-white/60 hover:text-white uppercase text-xs tracking-[0.15em] font-bold transition-colors"
-              >
-                Ver catálogo por categoría
-                <ArrowRight className="h-4 w-4" />
-              </Link>
             </motion.div>
           </div>
         </section>
+
+        {/* CTA SECTION */}
+        <section className="py-24 md:py-36 flex items-center justify-center overflow-hidden relative bg-black">
+          {/* Background Image */}
+          <div className="absolute inset-0 z-0">
+            <Image
+              src="/images/talent-model.webp"
+              alt="Talento profesional HostPro Panamá"
+              fill
+              className="object-cover opacity-40"
+            />
+          </div>
+
+          {/* Content - Centered with space distribution */}
+          <div className="relative z-10 max-w-6xl mx-auto px-6 md:px-12 text-center">
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, amount: 0.3 }}
+              transition={{ duration: 0.8 }}
+            >
+              {/* Main CTA Title - Ultra Bold */}
+              <h2 className="text-2xl md:text-4xl lg:text-5xl font-black text-white uppercase leading-[1.1] mb-16 tracking-tight">
+                No uses a tus colaboradores. <br className="hidden md:block" />
+                Usa los modelos de <span className="text-[#d4b200]">HostPro Panamá</span> y conectarás mejor con tu consumidor.
+              </h2>
+
+              {/* CTA Button - Premium Style */}
+              <Link
+                href="#contacto"
+                className="inline-flex items-center gap-4 bg-[#d4b200] text-black px-12 py-6 font-black uppercase text-xs md:text-sm tracking-[0.2em] hover:bg-white transition-colors mt-8"
+              >
+                Agendemos una reunión estratégica
+                <ArrowRight className="h-5 w-5" />
+              </Link>
+            </motion.div>
+          </div>
+
+          {/* Decorative Line */}
+          <div className="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-[#d4b200] to-transparent" />
+        </section>
+
+        {/* METODOLOGÍA SECTION */}
+        <section id="metodologia" className="py-16 bg-black">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="text-center mb-12">
+              <span className="text-[#d4b200] font-bold uppercase tracking-[0.2em] text-xs">Nuestra Metodología</span>
+              <h2 className="text-3xl font-black mt-4 uppercase text-white">Cómo Garantizamos el Éxito de tu Evento</h2>
+            </div>
+            <div className="grid grid-cols-2 lg:grid-cols-5 gap-6">
+              {[
+                { title: "Análisis", desc: "Analizamos tu proyecto para identificar los perfiles ideales que necesitas." },
+                { title: "Casting", desc: "Selección rigurosa de perfiles alineados a tu marca y objetivos." },
+                { title: "Preparación", desc: "Capacitación y briefing personalizado para garantizar excelencia." },
+                { title: "Ejecución", desc: "Gestión completa con supervisión en sitio y seguimiento de resultados." },
+                { title: "Reporte", desc: "Análisis de resultados y feedback post-evento para medir el impacto real." },
+              ].map((item, idx) => (
+                <motion.div
+                  key={item.title}
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  transition={{ delay: idx * 0.1 }}
+                  viewport={{ once: true, amount: 0.3 }}
+                  className="bg-slate-900 p-8 rounded-2xl border border-white/10 hover:border-[#d4b200] transition-colors"
+                >
+                  <div className="flex gap-0.5 mb-4">
+                    {Array.from({ length: idx + 1 }).map((_, starIdx) => (
+                      <span key={starIdx} className="text-2xl text-[#d4b200]">★</span>
+                    ))}
+                  </div>
+                  <h3 className="text-xl font-bold mb-2 text-white">{item.title}</h3>
+                  <p className="text-slate-300 text-sm">{item.desc}</p>
+                </motion.div>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* TESTIMONIALES SECTION */}
+        <TestimonialsSection />
 
         {/* FAQ SECTION */}
         <section className="py-16 px-6 bg-black">

@@ -279,6 +279,6 @@ html:has(body.hostpro-nav-open) {
    El <footer> vive dentro de <main>, por lo que hereda el mismo offset. */
 @media (min-width: 1024px) {
   .hostpro-sidebar ~ main {
-    margin-left: 288px;
+    margin-right: 288px;
   }
 }

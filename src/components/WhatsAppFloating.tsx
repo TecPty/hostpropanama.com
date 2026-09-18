@@ -17,7 +17,7 @@ export default function WhatsAppFloating() {
       animate={{ opacity: 1, scale: 1, y: 0 }}
       whileHover={{ scale: 1.1, rotate: 5 }}
       whileTap={{ scale: 0.9 }}
-      className="fixed bottom-8 right-8 z-[100] group"
+      className="fixed bottom-8 right-8 lg:right-80 z-[100] group"
       aria-label="Contactar por WhatsApp"
     >
       {/* Tooltip */}

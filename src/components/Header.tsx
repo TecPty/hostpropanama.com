@@ -11,6 +11,11 @@ const BODY_LOCK_CLASS = "hostpro-nav-open";
 const NAV_PANEL_ID = "hostpro-nav-panel";
 const NAV_SUBMENU_ID = "hostpro-nav-modelos";
 
+/** Mismo umbral que el `lg:` de Tailwind y que el offset de globals.css. */
+const DESKTOP_MEDIA_QUERY = "(min-width: 1024px)";
+
+const FOCUSABLE_SELECTOR = 'a[href], button:not([disabled]), [tabindex]:not([tabindex="-1"])';
+
 /**
  * Navegación principal de HostPro.
  *
@@ -24,10 +29,31 @@ export default function Header() {
   const [drawerOpen, setDrawerOpen] = useState(false);
   const [modelosOpen, setModelosOpen] = useState(false);
   const menuButtonRef = useRef<HTMLButtonElement>(null);
+  const closeButtonRef = useRef<HTMLButtonElement>(null);
+  const panelRef = useRef<HTMLDivElement>(null);
 
   const closeDrawer = useCallback(() => {
     setDrawerOpen(false);
     menuButtonRef.current?.focus();
+  }, []);
+
+  // El drawer es una interfaz exclusiva de mobile/tablet. Si el viewport cruza a
+  // desktop con el drawer abierto, todo el estado mobile sobrevive invisible: body
+  // bloqueado, Lenis frenado sobre el sidebar y el drawer todavía abierto al volver.
+  //
+  // El reset es directo y NO pasa por closeDrawer: en desktop el botón hamburguesa
+  // es display:none, así que devolverle el foco sería mover el foco a la nada.
+  //
+  // No hace falta sincronizar al montar: `drawerOpen` arranca en false y sólo puede
+  // abrirse desde la hamburguesa, que es `lg:hidden`. El único caso real es cruzar
+  // el breakpoint con el drawer ya abierto, y de eso se encarga el listener.
+  useEffect(() => {
+    const desktop = window.matchMedia(DESKTOP_MEDIA_QUERY);
+    const handleChange = (event: MediaQueryListEvent) => {
+      if (event.matches) setDrawerOpen(false);
+    };
+    desktop.addEventListener("change", handleChange);
+    return () => desktop.removeEventListener("change", handleChange);
   }, []);
 
   // Bloquea el scroll de fondo mientras el drawer está abierto. El cleanup garantiza
@@ -45,11 +71,44 @@ export default function Header() {
     return () => document.body.classList.remove(BODY_LOCK_CLASS);
   }, [drawerOpen]);
 
+  // Al abrir, el foco entra al drawer. Sin esto queda en la hamburguesa, que el
+  // overlay tapa, y el lector de pantalla sigue anunciando el contenido de fondo.
   useEffect(() => {
     if (!drawerOpen) return;
+    closeButtonRef.current?.focus();
+  }, [drawerOpen]);
+
+  // Escape cierra; Tab y Shift+Tab quedan contenidos dentro del drawer. El drawer es
+  // modal: mientras está abierto, el contenido de fondo no debe recibir foco.
+  useEffect(() => {
+    if (!drawerOpen) return;
+
     const handleKeyDown = (event: KeyboardEvent) => {
-      if (event.key === "Escape") closeDrawer();
+      if (event.key === "Escape") {
+        closeDrawer();
+        return;
+      }
+      if (event.key !== "Tab") return;
+
+      const panel = panelRef.current;
+      if (!panel) return;
+
+      const focusables = Array.from(panel.querySelectorAll<HTMLElement>(FOCUSABLE_SELECTOR));
+      if (focusables.length === 0) return;
+
+      const first = focusables[0];
+      const last = focusables[focusables.length - 1];
+      const inside = panel.contains(document.activeElement);
+
+      if (event.shiftKey && (!inside || document.activeElement === first)) {
+        event.preventDefault();
+        last.focus();
+      } else if (!event.shiftKey && (!inside || document.activeElement === last)) {
+        event.preventDefault();
+        first.focus();
+      }
     };
+
     document.addEventListener("keydown", handleKeyDown);
     return () => document.removeEventListener("keydown", handleKeyDown);
   }, [drawerOpen, closeDrawer]);
@@ -95,6 +154,7 @@ export default function Header() {
 
       {/* Panel de navegación — drawer en mobile/tablet, columna del sidebar en desktop */}
       <div
+        ref={panelRef}
         id={NAV_PANEL_ID}
         data-state={drawerOpen ? "open" : "closed"}
         data-lenis-prevent={drawerOpen ? "" : undefined}
@@ -104,6 +164,7 @@ export default function Header() {
       >
         <div className="flex items-center justify-end px-5 py-3 lg:hidden">
           <button
+            ref={closeButtonRef}
             type="button"
             onClick={closeDrawer}
             aria-label="Cerrar menú"

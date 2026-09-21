@@ -14,7 +14,7 @@ export default function InstagramFloating() {
       animate={{ opacity: 1, scale: 1, y: 0 }}
       whileHover={{ scale: 1.1, rotate: 5 }}
       whileTap={{ scale: 0.9 }}
-      className="fixed bottom-28 right-8 lg:right-80 z-[100] group"
+      className="fixed bottom-28 right-8 hostpro-floating-control z-[100] group"
       aria-label="Visitar Instagram de HostPro Panamá"
     >
       {/* Tooltip */}

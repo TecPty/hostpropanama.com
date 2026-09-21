@@ -93,6 +93,32 @@ describe("Header — HOST-UX-002 responsive sidebar navigation", () => {
     document.body.classList.remove(BODY_LOCK_CLASS);
   });
 
+  describe("right-side orientation contract", () => {
+    it("anchors the sidebar and drawer to the right", () => {
+      render(<Header />);
+
+      const header = document.querySelector("header.hostpro-sidebar");
+      expect(header).toHaveClass("right-0");
+      expect(header).not.toHaveClass("left-0");
+
+      const panel = navPanel();
+      expect(panel).toHaveClass("right-0", "border-l");
+      expect(panel).not.toHaveClass("left-0", "border-r");
+      expect(panel).toHaveClass("translate-x-full");
+      expect(panel).not.toHaveClass("-translate-x-full");
+    });
+
+    it("uses the open right-side drawer state", async () => {
+      const user = userEvent.setup();
+      render(<Header />);
+
+      await openDrawer(user);
+
+      expect(navPanel()).toHaveClass("right-0", "translate-x-0");
+      expect(navPanel()).not.toHaveClass("translate-x-full");
+    });
+  });
+
   describe("frozen navigation contract", () => {
     it("renders the approved primary order: Modelos, Eventos, Precios, Contactos", () => {
       render(<Header />);

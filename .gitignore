@@ -53,3 +53,9 @@ pnpm.exe
 node_modules_old/
 scripts/
 .atl/
+
+# Datos de personal y parches
+docs/*.csv
+!docs/*.example.csv
+!docs/TAREAS_GTM_SEO.csv
+*.patch

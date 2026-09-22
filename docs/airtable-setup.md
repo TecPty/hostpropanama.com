@@ -56,7 +56,7 @@
   - Evento, Fecha, Staff asignado, Feedback cliente, Incidencias, Calificación del staff.
 
 ## Datos ejemplo (Sofía) para importar
-Ver `docs/staff-template.csv` con una fila prellenada. Puedes importar el CSV a la tabla Staff y luego subir las fotos en el campo adjunto.
+Ver `docs/staff-template.example.csv` con una fila prellenada. Puedes importar el CSV a la tabla Staff y luego subir las fotos en el campo adjunto.
 
 ## Checklist de operación
 - Revisar Candidatos semanal, mover a Aprobado o Baja.

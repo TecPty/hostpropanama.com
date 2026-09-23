@@ -19,6 +19,10 @@ const nextConfig: NextConfig = {
         pathname: "/talent/mujeres/**",
         search: "?v=host-talent-002",
       },
+      {
+        pathname: "/talent/mujeres/**",
+        search: "?v=host-talent-001b",
+      },
     ],
     remotePatterns: [
       {

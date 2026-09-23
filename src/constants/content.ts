@@ -366,7 +366,7 @@ export const talent: TalentModel[] = [
       height: "1.58 m",
     },
     gender: "mujer",
-    photo: "/talent/mujeres/marianne-diaz/marianne-diaz.webp",
+    photo: "/talent/mujeres/marianne-diaz/marianne-diaz.webp?v=host-talent-002",
     media: {
       gallery: ["/talent/mujeres/marianne-diaz/marianne-diaz.webp"],
     },
@@ -390,7 +390,7 @@ export const talent: TalentModel[] = [
       height: "1.68 m",
     },
     gender: "mujer",
-    photo: "/talent/mujeres/sofia-sanchez/sofia-sanchez.webp",
+    photo: "/talent/mujeres/sofia-sanchez/sofia-sanchez.webp?v=host-talent-002",
     media: {
       gallery: [
         "/talent/mujeres/sofia-sanchez/1.webp",
@@ -422,7 +422,7 @@ export const talent: TalentModel[] = [
       height: "1.55 m",
     },
     gender: "mujer",
-    photo: "/talent/mujeres/valeria-ortega/valeria-ortega.webp",
+    photo: "/talent/mujeres/valeria-ortega/valeria-ortega.webp?v=host-talent-002",
     media: {
       gallery: ["/talent/mujeres/valeria-ortega/valeria-ortega.webp"],
     },
@@ -446,7 +446,7 @@ export const talent: TalentModel[] = [
       height: "1.72 m",
     },
     gender: "mujer",
-    photo: "/talent/mujeres/ana-lorena/ana-lorena-v2.webp",
+    photo: "/talent/mujeres/ana-lorena/ana-lorena-v2.webp?v=host-talent-002",
     media: {
       gallery: [
         "/talent/mujeres/ana-lorena/1.webp",
@@ -599,7 +599,7 @@ export const talent: TalentModel[] = [
       tiktok: "@lorena_gc23",
     },
     gender: "mujer",
-    photo: "/talent/mujeres/dania-gonzalez/dania-gonzalez.webp",
+    photo: "/talent/mujeres/dania-gonzalez/dania-gonzalez.webp?v=host-talent-002",
     media: {
       gallery: [
         "/talent/mujeres/dania-gonzalez/dania-gonzalez-01.webp",
@@ -631,7 +631,7 @@ export const talent: TalentModel[] = [
       shirtSize: "M",
     },
     gender: "mujer",
-    photo: "/talent/mujeres/yivelis-rodriguez/yivelis-rodriguez.webp",
+    photo: "/talent/mujeres/yivelis-rodriguez/yivelis-rodriguez.webp?v=host-talent-002",
     media: {
       gallery: [
         "/talent/mujeres/yivelis-rodriguez/yivelis-01.webp",
@@ -671,7 +671,7 @@ export const talent: TalentModel[] = [
       instagram: "@itzzz_aly",
     },
     gender: "mujer",
-    photo: "/talent/mujeres/alyssa-cordoba/alyssa-cordoba.webp",
+    photo: "/talent/mujeres/alyssa-cordoba/alyssa-cordoba.webp?v=host-talent-002",
     media: {
       gallery: [
         "/talent/mujeres/alyssa-cordoba/alyssa-01.webp",
@@ -710,7 +710,7 @@ export const talent: TalentModel[] = [
       instagram: "@dianamarquez2412",
     },
     gender: "mujer",
-    photo: "/talent/mujeres/diana-victoria/diana-victoria.webp",
+    photo: "/talent/mujeres/diana-victoria/diana-victoria.webp?v=host-talent-002",
     media: {
       gallery: [
         "/talent/mujeres/diana-victoria/diana-01.webp",
@@ -751,7 +751,7 @@ export const talent: TalentModel[] = [
       tiktok: "@CaroleenWilliams",
     },
     gender: "mujer",
-    photo: "/talent/mujeres/caroleen-williams/caroleen-williams.webp",
+    photo: "/talent/mujeres/caroleen-williams/caroleen-williams.webp?v=host-talent-002",
     media: {
       gallery: [
         "/talent/mujeres/caroleen-williams/caroleen-01.webp",
@@ -793,7 +793,7 @@ export const talent: TalentModel[] = [
       tiktok: "@samaiordo",
     },
     gender: "mujer",
-    photo: "/talent/mujeres/yera-samai-ordonez/yera-samai-ordonez.webp",
+    photo: "/talent/mujeres/yera-samai-ordonez/yera-samai-ordonez.webp?v=host-talent-002",
     media: {
       gallery: [
         "/talent/mujeres/yera-samai-ordonez/yera-01.webp",
@@ -835,7 +835,7 @@ export const talent: TalentModel[] = [
       tiktok: "@YeismarCarrillo",
     },
     gender: "mujer",
-    photo: "/talent/mujeres/yeismar-carrillo/yeismar-carrillo.webp",
+    photo: "/talent/mujeres/yeismar-carrillo/yeismar-carrillo.webp?v=host-talent-002",
     media: {
       gallery: [
         "/talent/mujeres/yeismar-carrillo/yeismar-carrillo-01.webp",
@@ -868,7 +868,7 @@ export const talent: TalentModel[] = [
       instagram: "@jeannyleonn",
     },
     gender: "mujer",
-    photo: "/talent/mujeres/jeanny-leon/jeanny-leon.webp",
+    photo: "/talent/mujeres/jeanny-leon/jeanny-leon.webp?v=host-talent-002",
     media: {
       gallery: [
         "/talent/mujeres/jeanny-leon/jeanny-01.webp",
@@ -943,7 +943,7 @@ export const talent: TalentModel[] = [
       shoeSize: "6",
     },
     gender: "mujer",
-    photo: "/talent/mujeres/evelyn-feng-qiu/evelyn-feng-qiu.webp",
+    photo: "/talent/mujeres/evelyn-feng-qiu/evelyn-feng-qiu.webp?v=host-talent-002",
     media: {
       gallery: [
         "/talent/mujeres/evelyn-feng-qiu/evelyn-feng-qiu-01.webp",
@@ -981,7 +981,7 @@ export const talent: TalentModel[] = [
       tiktok: "@kerxnx27",
     },
     gender: "mujer",
-    photo: "/talent/mujeres/keren-tapia/keren-tapia.webp",
+    photo: "/talent/mujeres/keren-tapia/keren-tapia.webp?v=host-talent-002",
     media: {
       gallery: [
         "/talent/mujeres/keren-tapia/keren-tapia-01.webp",

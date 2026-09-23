@@ -10,6 +10,16 @@ const nextConfig: NextConfig = {
     imageSizes: [16, 32, 48, 64, 96, 128, 256, 384],
     minimumCacheTTL: 2678400, // 31 days
     qualities: [75, 100],
+    localPatterns: [
+      {
+        pathname: "/**",
+        search: "",
+      },
+      {
+        pathname: "/talent/mujeres/**",
+        search: "?v=host-talent-002",
+      },
+    ],
     remotePatterns: [
       {
         protocol: "https",

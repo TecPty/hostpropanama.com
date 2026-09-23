@@ -1043,6 +1043,44 @@ export const talent: TalentModel[] = [
       ],
     },
   },
+  {
+    name: "Jennifer Aneth Poveda",
+    slug: "jennifer-aneth-poveda",
+    role: "Azafata y modelo para eventos corporativos y activaciones",
+    languages: "Español",
+    status: "disponible",
+    updatedAt: "2026-09-23",
+    city: "Ciudad de Panamá",
+    experienceSummary: "Perfil disponible para eventos corporativos, activaciones, protocolo, recepción y representación de marca.",
+    skills: ["Presencia profesional", "Atención al público", "Imagen de marca"],
+    eventTypes: ["Eventos corporativos", "Activaciones BTL", "Protocolo", "Experiencias de marca"],
+    availability: {
+      schedule: "Coordinación por agenda",
+      canTravel: true,
+    },
+    physical: {
+      height: "1.67 m",
+      weight: "68 kg",
+      hairColor: "Castaño con mechas rubias",
+      eyeColor: "Marrón",
+      shirtSize: "M",
+      pantsSize: "S / M stretch · L sin stretch",
+      shoeSize: "38 EUR",
+    },
+    social: {
+      instagram: "@Aneth.pv07",
+    },
+    gender: "mujer",
+    photo: "/talent/mujeres/jennifer-aneth-poveda/jennifer-aneth-poveda.webp",
+    media: {
+      gallery: [
+        "/talent/mujeres/jennifer-aneth-poveda/jennifer-aneth-poveda.webp",
+        "/talent/mujeres/jennifer-aneth-poveda/jennifer-02.webp",
+        "/talent/mujeres/jennifer-aneth-poveda/jennifer-03.webp",
+        "/talent/mujeres/jennifer-aneth-poveda/jennifer-04.webp",
+      ],
+    },
+  },
 ];
 
 export const getTalentByGender = (gender: TalentGender): TalentModel[] => {

@@ -250,6 +250,54 @@ export type TalentModel = {
 
 export const talent: TalentModel[] = [
   {
+    name: "Alanis Suarez",
+    slug: "alanis-suarez",
+    role: "Azafata, modelo y promotora para eventos y activaciones de marca",
+    languages: "Inglés y Español",
+    status: "disponible",
+    updatedAt: "2026-09-24",
+    city: "Ciudad de Panamá",
+    experienceSummary: "Perfil bilingüe disponible para eventos corporativos, activaciones BTL, protocolo, promociones y representación de marca.",
+    skills: [
+      "Atención al cliente",
+      "Comunicación",
+      "Presencia de marca",
+      "Protocolo",
+    ],
+    eventTypes: [
+      "Eventos corporativos",
+      "Activaciones BTL",
+      "Protocolo y promociones",
+    ],
+    availability: {
+      schedule: "Coordinación por agenda",
+      canTravel: true,
+    },
+    physical: {
+      height: "1.70 m",
+      weight: "120 lb",
+      hairColor: "Castaño oscuro",
+      eyeColor: "Chocolate",
+      shirtSize: "M",
+      pantsSize: "M",
+      shoeSize: "37",
+    },
+    social: {
+      instagram: "@a.edith_martinez",
+    },
+    gender: "mujer",
+    photo: "/talent/mujeres/alanis-suarez/alanis-suarez.webp",
+    media: {
+      gallery: [
+        "/talent/mujeres/alanis-suarez/alanis-01.webp",
+        "/talent/mujeres/alanis-suarez/alanis-02.webp",
+        "/talent/mujeres/alanis-suarez/alanis-03.webp",
+        "/talent/mujeres/alanis-suarez/alanis-04.webp",
+        "/talent/mujeres/alanis-suarez/alanis-05.webp",
+      ],
+    },
+  },
+  {
     name: "Johana Hoyos",
     slug: "johana-hoyos",
     role: "Azafata protocolo y contenido comercial",

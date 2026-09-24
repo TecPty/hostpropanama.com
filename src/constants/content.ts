@@ -573,36 +573,6 @@ export const talent: TalentModel[] = [
     },
   },
   {
-    name: "Irving Rios",
-    slug: "irving-rios",
-    role: "Modelo masculino para activaciones y protocolo",
-    languages: "Español",
-    status: "disponible",
-    updatedAt: "2026-03-03",
-    city: "Ciudad de Panamá",
-    experienceSummary: "Modelo masculino para eventos corporativos y campañas visuales.",
-    skills: ["Protocolo", "Presencia comercial", "Atención en eventos"],
-    eventTypes: ["Eventos corporativos", "Activaciones", "Audiovisual"],
-    availability: {
-      schedule: "Coordinación por agenda",
-      canTravel: true,
-    },
-    physical: {
-      height: "1.72 m",
-    },
-    gender: "hombre",
-    photo: "/talent/hombres/irving-rios/irving-rios.webp",
-    media: {
-      gallery: [
-        "/talent/hombres/irving-rios/1.webp",
-        "/talent/hombres/irving-rios/2.webp",
-        "/talent/hombres/irving-rios/3.webp",
-        "/talent/hombres/irving-rios/4.webp",
-        "/talent/hombres/irving-rios/5.webp",
-      ],
-    },
-  },
-  {
     name: "Nicolas Guiral",
     slug: "nicolas-guiral",
     role: "Host, promotor y modelo comercial para eventos y activaciones de marca",

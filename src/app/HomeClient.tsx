@@ -532,10 +532,10 @@ export default function HomeClient() {
     )
     .slice(0, 4);
   const featuredMen = maleTalent
-    .filter((model) => model.slug === "carlos-wilson" || model.slug === "irving-rios")
+    .filter((model) => model.slug === "carlos-wilson" || model.slug === "jean-paul-moreno")
     .concat(
       maleTalent.filter(
-        (model) => model.slug !== "carlos-wilson" && model.slug !== "irving-rios",
+        (model) => model.slug !== "carlos-wilson" && model.slug !== "jean-paul-moreno",
       ),
     )
     .slice(0, 2);

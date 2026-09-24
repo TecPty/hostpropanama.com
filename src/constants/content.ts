@@ -278,9 +278,17 @@ export const talent: TalentModel[] = [
       tiktok: "@johana.hoyos5",
     },
     gender: "mujer",
-    photo: "/talent/mujeres/johana-hoyos/johana-hoyos.webp",
+    photo: "/talent/mujeres/johana-hoyos/johana-hoyos.webp?v=host-talent-003",
     media: {
-      gallery: ["/talent/mujeres/johana-hoyos/johana-hoyos.webp"],
+      gallery: [
+        "/talent/mujeres/johana-hoyos/johana-01.webp",
+        "/talent/mujeres/johana-hoyos/johana-02.webp",
+        "/talent/mujeres/johana-hoyos/johana-03.webp",
+        "/talent/mujeres/johana-hoyos/johana-04.webp",
+        "/talent/mujeres/johana-hoyos/johana-05.webp",
+        "/talent/mujeres/johana-hoyos/johana-06.webp",
+        "/talent/mujeres/johana-hoyos/johana-07.webp",
+      ],
     },
   },
   {

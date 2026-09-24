@@ -250,6 +250,53 @@ export type TalentModel = {
 
 export const talent: TalentModel[] = [
   {
+    name: "Pamela Gonzalez Reyes",
+    slug: "pamela-gonzalez-reyes",
+    role: "Azafata, modelo y promotora para eventos corporativos y activaciones de marca",
+    languages: "Español nativo / Inglés avanzado",
+    status: "disponible",
+    updatedAt: "2026-09-24",
+    city: "Ciudad de Panamá",
+    experienceSummary: "Perfil bilingüe con presencia profesional para eventos corporativos, activaciones BTL, protocolo, promociones y representación de marca.",
+    skills: [
+      "Atención al cliente",
+      "Comunicación",
+      "Protocolo",
+      "Presencia de marca",
+    ],
+    eventTypes: [
+      "Eventos corporativos",
+      "Activaciones BTL",
+      "Protocolo y promociones",
+    ],
+    availability: {
+      schedule: "Coordinación por agenda",
+      canTravel: true,
+    },
+    physical: {
+      height: "1.67 m",
+      weight: "125 lb",
+      hairColor: "Castaño oscuro",
+      eyeColor: "Chocolate",
+      shirtSize: "Small",
+      pantsSize: "26",
+    },
+    social: {
+      instagram: "@pamelapgreyes",
+    },
+    gender: "mujer",
+    photo: "/talent/mujeres/pamela-gonzalez-reyes/pamela-gonzalez-reyes.webp",
+    media: {
+      gallery: [
+        "/talent/mujeres/pamela-gonzalez-reyes/pamela-01.webp",
+        "/talent/mujeres/pamela-gonzalez-reyes/pamela-02.webp",
+        "/talent/mujeres/pamela-gonzalez-reyes/pamela-03.webp",
+        "/talent/mujeres/pamela-gonzalez-reyes/pamela-04.webp",
+        "/talent/mujeres/pamela-gonzalez-reyes/pamela-05.webp",
+      ],
+    },
+  },
+  {
     name: "Alanis Suarez",
     slug: "alanis-suarez",
     role: "Azafata, modelo y promotora para eventos y activaciones de marca",

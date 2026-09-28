@@ -1,6 +1,12 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
+  async redirects() {
+    return [
+      // Perfiles retirados del catálogo: se envían a su categoría para no dejar 404.
+      { source: "/modelos/irving-rios", destination: "/modelos/hombres", permanent: true },
+    ];
+  },
   images: {
     formats: ["image/avif", "image/webp"],
     dangerouslyAllowSVG: true,

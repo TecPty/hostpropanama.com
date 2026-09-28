@@ -532,12 +532,8 @@ export default function HomeClient() {
     )
     .slice(0, 4);
   const featuredMen = maleTalent
-    .filter((model) => model.slug === "carlos-wilson" || model.slug === "irving-rios")
-    .concat(
-      maleTalent.filter(
-        (model) => model.slug !== "carlos-wilson" && model.slug !== "irving-rios",
-      ),
-    )
+    .filter((model) => model.slug === "carlos-wilson")
+    .concat(maleTalent.filter((model) => model.slug !== "carlos-wilson"))
     .slice(0, 2);
   const featuredTalent = [...featuredWomen, ...featuredMen];
 

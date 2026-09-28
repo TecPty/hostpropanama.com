@@ -27,6 +27,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { LeadForm, TalentForm } from "@/components/forms";
 import Header from "@/components/Header";
+import LanguageBadges from "@/components/LanguageBadges";
 import GastronomyServiceCard from "@/components/GastronomyServiceCard";
 import { services, process, faqs, testimonials, getTalentByGender, plans, plansNote } from "@/constants/content";
 
@@ -685,7 +686,7 @@ export default function HomeClient() {
 
                     <div className="absolute inset-0 border border-[#d4b200]/40 bg-black/95 p-5 flex flex-col items-center justify-center gap-2 text-center [transform:rotateY(180deg)] [backface-visibility:hidden]">
                       <p className="text-white font-black uppercase tracking-[0.08em] text-lg">{model.name}</p>
-                      <p className="text-[#d4b200] text-xs uppercase tracking-[0.1em] font-bold">{model.languages}</p>
+                      <LanguageBadges languages={model.languages} variant="full" className="justify-center" />
                       {model.physical.height && (
                         <p className="text-white/80 text-sm">{model.physical.height}</p>
                       )}
@@ -707,13 +708,20 @@ export default function HomeClient() {
               initial={{ opacity: 0 }}
               whileInView={{ opacity: 1 }}
               viewport={{ once: true }}
-              className="mt-12 text-center"
+              className="mt-12 flex flex-col items-center justify-center gap-6 sm:flex-row sm:gap-10"
             >
               <Link
                 href="/modelos/mujeres"
                 className="inline-flex items-center gap-3 text-white/60 hover:text-white uppercase text-xs tracking-[0.15em] font-bold transition-colors"
               >
                 Ver catálogo por categoría
+                <ArrowRight className="h-4 w-4" />
+              </Link>
+              <Link
+                href="/modelos/bilingues"
+                className="inline-flex items-center gap-3 border border-[#d4b200]/60 px-5 py-3 text-[#d4b200] hover:bg-[#d4b200] hover:text-black uppercase text-xs tracking-[0.15em] font-bold transition-colors"
+              >
+                Ver staff bilingüe
                 <ArrowRight className="h-4 w-4" />
               </Link>
             </motion.div>

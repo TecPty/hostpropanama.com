@@ -18,6 +18,7 @@ export const NAV_DROPDOWN: NavDropdown = {
   items: [
     { label: "Mujeres", href: "/modelos/mujeres" },
     { label: "Hombres", href: "/modelos/hombres" },
+    { label: "Bilingües", href: "/modelos/bilingues" },
   ],
 };
 

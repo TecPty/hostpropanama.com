@@ -1,0 +1,23 @@
+/*
+ * Tokens de diseño — Clínica Dental Pro
+ * Para cambiar la paleta del cliente, edita solo este bloque.
+ * Contrastes verificados (WCAG AA): primary/bg 5.98:1, muted/bg 6.32:1, footer-text/footer-bg 12.77:1.
+ */
+[data-template="clinica-dental-pro"] {
+  --tpl-primary: #0b6e77;
+  --tpl-primary-hover: #08555c;
+  --tpl-primary-soft: #e6f4f5;
+  --tpl-on-primary: #ffffff;
+  --tpl-bg: #ffffff;
+  --tpl-surface: #f4f9f9;
+  --tpl-text: #102a2d;
+  --tpl-muted: #4b6468;
+  --tpl-border: #d5e5e6;
+  --tpl-star: #c27c0e;
+  --tpl-footer-bg: #0c2326;
+  --tpl-footer-text: #d8e6e7;
+  --tpl-footer-muted: #9fb8bb;
+
+  --tpl-radius: 1rem;
+  --tpl-radius-lg: 1.75rem;
+}

@@ -5,6 +5,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { getTalentBySlug, talent } from "@/constants/content";
 import Header from "@/components/Header";
+import LanguageBadges from "@/components/LanguageBadges";
 
 type ModelPageProps = {
   params: Promise<{ slug: string }>;
@@ -119,7 +120,8 @@ export default async function ModeloPortfolioPage({ params }: ModelPageProps) {
             <p className="text-xs uppercase tracking-[0.2em] text-[#d4b200] font-bold mb-3">Portafolio Personal</p>
             <h1 className="text-4xl md:text-6xl font-black uppercase tracking-tight leading-[0.9]">{model.name}</h1>
             <p className="text-[#d4b200] text-sm md:text-base font-bold uppercase tracking-[0.12em] mt-4">{model.role}</p>
-            <p className="text-white/70 text-sm mt-3">{model.languages}{model.physical.height ? ` · ${model.physical.height}` : ""}</p>
+            <LanguageBadges languages={model.languages} variant="full" className="mt-4" />
+            {model.physical.height && <p className="text-white/70 text-sm mt-3">{model.physical.height}</p>}
             <div className="flex flex-wrap gap-2">
               <span className={`px-3 py-1 text-[11px] uppercase tracking-[0.12em] border ${statusClassName}`}>
                 {statusLabel}

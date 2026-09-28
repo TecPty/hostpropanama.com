@@ -126,6 +126,12 @@ export default function EventosCorporativosPage() {
                 Contamos con perfiles bilingües con experiencia en protocolo, hospitality y marcas
                 premium, útiles cuando tu evento recibe invitados o delegaciones internacionales.
               </p>
+              <Link
+                href="/modelos/bilingues"
+                className="mt-4 inline-flex items-center gap-2 text-xs font-black uppercase tracking-[0.12em] text-[#d4b200] hover:text-white transition-colors"
+              >
+                Ver staff bilingüe por idioma →
+              </Link>
             </section>
 
             <section>

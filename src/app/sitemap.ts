@@ -1,6 +1,5 @@
 import type { MetadataRoute } from "next";
 import { talent } from "@/constants/content";
-import { templates } from "@/templates/registry";
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const baseUrl = "https://www.hostpropanama.com";
@@ -65,14 +64,5 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: 0.7,
   }));
 
-  const templateRoutes: MetadataRoute.Sitemap = [
-    { url: `${baseUrl}/plantillas`, changeFrequency: "monthly", priority: 0.6 },
-    ...templates.map((template) => ({
-      url: `${baseUrl}/plantillas/${template.slug}`,
-      changeFrequency: "monthly" as const,
-      priority: 0.5,
-    })),
-  ];
-
-  return [...staticRoutes, ...modelRoutes, ...templateRoutes];
+  return [...staticRoutes, ...modelRoutes];
 }

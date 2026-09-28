@@ -1,26 +1,4 @@
 @import "tailwindcss";
-@import "../templates/_shared/template-base.css";
-@import "../templates/clinica-dental-pro/tokens.css";
-
-/* Tokens de plantillas del catálogo (ver src/templates/_shared/template-base.css) */
-@theme inline {
-  --color-tpl-primary: var(--tpl-primary);
-  --color-tpl-primary-hover: var(--tpl-primary-hover);
-  --color-tpl-primary-soft: var(--tpl-primary-soft);
-  --color-tpl-on-primary: var(--tpl-on-primary);
-  --color-tpl-bg: var(--tpl-bg);
-  --color-tpl-surface: var(--tpl-surface);
-  --color-tpl-text: var(--tpl-text);
-  --color-tpl-muted: var(--tpl-muted);
-  --color-tpl-border: var(--tpl-border);
-  --color-tpl-star: var(--tpl-star);
-  --color-tpl-footer-bg: var(--tpl-footer-bg);
-  --color-tpl-footer-text: var(--tpl-footer-text);
-  --color-tpl-footer-muted: var(--tpl-footer-muted);
-  --color-hostpro-yellow: var(--hostpro-yellow);
-  --radius-tpl: var(--tpl-radius);
-  --radius-tpl-lg: var(--tpl-radius-lg);
-}
 
 :root {
   --background: #0a0a0a;

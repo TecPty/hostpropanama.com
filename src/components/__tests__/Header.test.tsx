@@ -167,6 +167,18 @@ describe("Header — compact mobile navigation", () => {
       expect(menuTrigger()).toHaveFocus();
     });
 
+    it("keeps keyboard navigation available from the trigger into the panel", async () => {
+      const user = userEvent.setup();
+      render(<Header />);
+
+      await openMenu(user);
+      expect(menuTrigger()).toHaveFocus();
+
+      await user.keyboard("{Tab}");
+
+      expect(modelosTrigger()).toHaveFocus();
+    });
+
     it.each(["Eventos", "Precios", "Contactos", "Cotizar"])(
       "closes when selecting %s",
       async (label) => {
@@ -177,6 +189,11 @@ describe("Header — compact mobile navigation", () => {
         await user.click(linkTo(label));
 
         expect(navPanel()).toHaveAttribute("data-state", "closed");
+
+        await act(async () => {
+          await new Promise((resolve) => requestAnimationFrame(resolve));
+        });
+        expect(menuTrigger()).toHaveFocus();
       }
     );
   });

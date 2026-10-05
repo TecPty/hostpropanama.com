@@ -136,7 +136,7 @@ export default function Header() {
                     <li key={item.href}>
                       <Link
                         href={item.href}
-                        onClick={() => closeMenu(false)}
+                        onClick={() => closeMenu()}
                         className="block min-h-10 rounded-md px-2 py-2.5 text-xs font-bold uppercase tracking-[0.12em] text-white/65 transition-colors hover:bg-white/5 hover:text-[#d4b200]"
                       >
                         {item.label}
@@ -151,7 +151,7 @@ export default function Header() {
               <li key={link.href} data-nav-entry={link.label.toLowerCase()}>
                 <Link
                   href={link.href}
-                  onClick={() => closeMenu(false)}
+                  onClick={() => closeMenu()}
                   className="flex min-h-11 items-center rounded-md px-2 py-2.5 text-xs font-bold uppercase tracking-[0.15em] text-white/80 transition-colors hover:bg-white/5 hover:text-white"
                 >
                   {link.label}
@@ -164,7 +164,7 @@ export default function Header() {
         <div className="border-t border-[#d4b200]/20 p-4 lg:mt-auto lg:border-white/10 lg:px-8 lg:py-8">
           <Link
             href={NAV_CTA.href}
-            onClick={() => closeMenu(false)}
+            onClick={() => closeMenu()}
             className="block rounded-md bg-[#d4b200] px-6 py-3 text-center text-xs font-black uppercase tracking-[0.15em] text-black transition-colors hover:bg-white"
           >
             {NAV_CTA.label}

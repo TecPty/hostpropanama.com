@@ -627,13 +627,6 @@ export default function HomeClient() {
             </div>
           </div>
 
-          <div className="hostpro-hero-mobile-cta">
-            <Link href="#contacto" className="inline-flex min-h-11 items-center justify-center gap-3 bg-[#d4b200] px-6 py-3 text-xs font-black uppercase tracking-[0.15em] text-black focus-visible:ring-4 focus-visible:ring-[#d4b200]/50">
-              Cotizar ahora
-              <ArrowRight className="h-5 w-5" />
-            </Link>
-          </div>
-
           {/* Scroll Indicator */}
           <motion.div
             initial={{ opacity: 0 }}

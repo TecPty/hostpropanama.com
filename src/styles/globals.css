@@ -295,10 +295,6 @@ html:has(body.hostpro-nav-open) {
 }
 
 /* Mobile homepage: keep the service ticker visible in the first viewport. */
-.hostpro-hero-mobile-cta {
-  display: none;
-}
-
 @media (max-width: 767px) {
   .hostpro-sidebar > div:first-child {
     height: 76px;
@@ -309,6 +305,10 @@ html:has(body.hostpro-nav-open) {
   .hostpro-sidebar > div:first-child img {
     height: 52px;
     width: auto;
+    transform: scale(2.05);
+    transform-origin: left center;
+    transition: none;
+    animation: none;
   }
 
   .hostpro-home-hero {
@@ -319,7 +319,7 @@ html:has(body.hostpro-nav-open) {
   }
 
   .hostpro-hero-photo {
-    bottom: 72px;
+    bottom: 0;
   }
 
   .hostpro-hero-content {
@@ -328,7 +328,7 @@ html:has(body.hostpro-nav-open) {
   }
 
   .hostpro-hero-grid {
-    padding-top: 24px;
+    padding-top: 40px;
     align-items: flex-start;
   }
 
@@ -348,19 +348,6 @@ html:has(body.hostpro-nav-open) {
   .hostpro-hero-desktop-cta,
   .hostpro-hero-scroll {
     display: none;
-  }
-
-  .hostpro-hero-mobile-cta {
-    display: flex;
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    height: 72px;
-    align-items: center;
-    padding: 12px 24px;
-    background: #0a0a0a;
-    z-index: 20;
   }
 
   .hostpro-service-ticker {

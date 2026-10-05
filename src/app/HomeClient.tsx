@@ -430,7 +430,7 @@ const GoldServiceTicker = () => {
 
   return (
     <section
-      className="relative z-20 w-full overflow-hidden border-y border-black/15 bg-[#d4b200] py-3 sm:py-3.5 md:py-4"
+      className="hostpro-service-ticker relative z-20 w-full overflow-hidden border-y border-black/15 bg-[#d4b200] py-3 sm:py-3.5 md:py-4"
       aria-label="Servicios HostPro"
     >
       <motion.div
@@ -546,14 +546,14 @@ export default function HomeClient() {
       <main className="relative">
         {/* HERO SECTION */}
         <section
-          className="relative h-screen flex items-center justify-center overflow-hidden"
+          className="hostpro-home-hero relative h-screen flex items-center justify-center overflow-hidden"
         >
           {/* Hero Visual — estático, sin parallax. <picture> asegura una sola descarga por viewport.
               Los <link rel="preload"> con media condicional reemplazan el preload que next/image
               priority hacía antes, para que el LCP trate la imagen correcta como candidata desde el arranque. */}
           <link rel="preload" as="image" href="/images/hero-mobile.webp" media="(max-width: 767px), (orientation: portrait)" fetchPriority="high" />
           <link rel="preload" as="image" href="/images/hero-desktop.webp" media="(min-width: 768px) and (orientation: landscape)" fetchPriority="high" />
-          <div className="absolute inset-0 z-0">
+          <div className="hostpro-hero-photo absolute inset-0 z-0">
             <picture className="block h-full w-full">
               <source media="(min-width: 768px) and (orientation: landscape)" srcSet="/images/hero-desktop.webp" />
               <img
@@ -570,11 +570,11 @@ export default function HomeClient() {
           <CameraFlashLayer />
 
           {/* Content - Responsive Grid to prevent text overlap */}
-          <div className="relative z-10 max-w-7xl mx-auto w-full px-6 md:px-12 h-full flex items-center">
-            <div className="grid grid-cols-1 md:landscape:grid-cols-12 gap-8 items-center w-full h-full pt-16">
+          <div className="hostpro-hero-content relative z-10 max-w-7xl mx-auto w-full px-6 md:px-12 h-full flex items-center">
+            <div className="hostpro-hero-grid grid grid-cols-1 md:landscape:grid-cols-12 gap-8 items-center w-full h-full pt-16">
 
               {/* Left Column: Text Content */}
-              <div className="w-full max-w-[88%] sm:max-w-[70%] md:landscape:max-w-none md:landscape:col-span-7 lg:landscape:col-span-6 flex flex-col justify-center z-10 -translate-y-[15%] md:landscape:translate-y-0">
+              <div className="hostpro-hero-copy w-full max-w-[88%] sm:max-w-[70%] md:landscape:max-w-none md:landscape:col-span-7 lg:landscape:col-span-6 flex flex-col justify-center z-10 -translate-y-[15%] md:landscape:translate-y-0">
                 <motion.div
                   initial={{ opacity: 0, y: 30 }}
                   animate={{ opacity: 1, y: 0 }}
@@ -608,6 +608,7 @@ export default function HomeClient() {
 
                   {/* CTA Button */}
                   <motion.div
+                    className="hostpro-hero-desktop-cta"
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ delay: 0.7 }}
@@ -631,7 +632,7 @@ export default function HomeClient() {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ delay: 1.2 }}
-            className="absolute bottom-8 left-1/2 -translate-x-1/2 z-10"
+            className="hostpro-hero-scroll absolute bottom-8 left-1/2 -translate-x-1/2 z-10"
           >
             <div className="flex flex-col items-center gap-2">
               <span className="text-white/60 text-xs uppercase tracking-widest">Scroll</span>

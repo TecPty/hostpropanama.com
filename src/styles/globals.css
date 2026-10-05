@@ -293,3 +293,81 @@ html:has(body.hostpro-nav-open) {
     right: 320px;
   }
 }
+
+/* Mobile homepage: keep the service ticker visible in the first viewport. */
+.hostpro-hero-mobile-cta {
+  display: none;
+}
+
+@media (max-width: 767px) {
+  .hostpro-sidebar > div:first-child {
+    height: 76px;
+    padding-top: 0;
+    padding-bottom: 0;
+  }
+
+  .hostpro-sidebar > div:first-child img {
+    height: 52px;
+    width: auto;
+  }
+
+  .hostpro-home-hero {
+    margin-top: 76px;
+    height: calc(100svh - 76px - 40px);
+    min-height: 430px;
+    align-items: flex-start;
+  }
+
+  .hostpro-hero-photo {
+    bottom: 72px;
+  }
+
+  .hostpro-hero-content {
+    align-items: flex-start;
+    pointer-events: none;
+  }
+
+  .hostpro-hero-grid {
+    padding-top: 24px;
+    align-items: flex-start;
+  }
+
+  .hostpro-hero-copy {
+    transform: none;
+    max-width: 100%;
+  }
+
+  .hostpro-hero-copy h1 {
+    margin-bottom: 12px;
+  }
+
+  .hostpro-hero-copy p {
+    margin-bottom: 12px;
+  }
+
+  .hostpro-hero-desktop-cta,
+  .hostpro-hero-scroll {
+    display: none;
+  }
+
+  .hostpro-hero-mobile-cta {
+    display: flex;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 72px;
+    align-items: center;
+    padding: 12px 24px;
+    background: #0a0a0a;
+    z-index: 20;
+  }
+
+  .hostpro-service-ticker {
+    height: 40px;
+    padding-top: 0;
+    padding-bottom: 0;
+    display: flex;
+    align-items: center;
+  }
+}

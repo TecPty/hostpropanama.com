@@ -7,12 +7,14 @@ import { useChristmasSeason } from "@/hooks/useChristmasSeason";
 import { getWhatsAppLink } from "@/utils/whatsapp";
 
 const DISMISS_KEY = "hostpro-navidad-promo-cerrado";
-const SHOW_DELAY_MS = 2500;
+const SHOW_DELAY_MS = 1500;
+/** Sale cuando el visitante ya pasó la portada, para no tapar su botón "Cotizar ahora". */
+const SCROLL_TRIGGER_RATIO = 0.6;
 
 /**
  * Tarjeta flotante de temporada: invita a cotizar staff para fiestas de fin de año.
  * - Solo en temporada navideña (se apaga sola con las fechas de `utils/season.ts`).
- * - Aparece a los 2,5 s, abajo a la izquierda, sin tapar WhatsApp/Instagram.
+ * - Aparece al bajar más allá de la portada, abajo a la izquierda, sin tapar WhatsApp/Instagram.
  * - Si el visitante la cierra, no vuelve a salir durante esa visita.
  */
 export default function ChristmasPromo() {
@@ -30,8 +32,19 @@ export default function ChristmasPromo() {
     }
     if (dismissed) return;
 
-    const timer = window.setTimeout(() => setVisible(true), SHOW_DELAY_MS);
-    return () => window.clearTimeout(timer);
+    let timer: number | undefined;
+    const handleScroll = () => {
+      if (window.scrollY < window.innerHeight * SCROLL_TRIGGER_RATIO) return;
+      window.removeEventListener("scroll", handleScroll);
+      timer = window.setTimeout(() => setVisible(true), SHOW_DELAY_MS);
+    };
+
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    handleScroll();
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+      window.clearTimeout(timer);
+    };
   }, [season]);
 
   const dismiss = () => {
@@ -53,7 +66,7 @@ export default function ChristmasPromo() {
           animate={{ opacity: 1, y: 0 }}
           exit={{ opacity: 0, y: 40 }}
           transition={{ duration: 0.35, ease: "easeOut" }}
-          className="fixed bottom-6 left-4 right-28 z-[100] max-w-sm rounded-xl border border-[#d4b200]/60 bg-[#0a0a0a]/95 p-4 text-white shadow-[0_16px_40px_rgba(0,0,0,0.5)] backdrop-blur-md md:bottom-8 md:left-8 md:right-auto md:p-5"
+          className="fixed bottom-6 left-4 right-28 z-[106] max-w-sm rounded-xl border border-[#d4b200]/60 bg-[#0a0a0a]/95 p-4 text-white shadow-[0_16px_40px_rgba(0,0,0,0.5)] backdrop-blur-md md:bottom-8 md:left-8 md:right-auto md:p-5"
         >
           <button
             type="button"

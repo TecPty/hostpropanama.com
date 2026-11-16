@@ -6,7 +6,23 @@ const setSearch = (search: string) => {
   window.history.replaceState({}, "", `/${search}`);
 };
 
+const scrollPastHero = () => {
+  act(() => {
+    Object.defineProperty(window, "scrollY", { value: 2000, configurable: true });
+    window.dispatchEvent(new Event("scroll"));
+  });
+};
+
 describe("ChristmasPromo", () => {
+  it("waits until the visitor scrolls past the hero", () => {
+    vi.setSystemTime(new Date("2026-12-10T12:00:00-05:00"));
+    render(<ChristmasPromo />);
+    act(() => {
+      vi.advanceTimersByTime(5000);
+    });
+    expect(screen.queryByText(/fiesta de fin de año/i)).not.toBeInTheDocument();
+  });
+
   beforeEach(() => {
     sessionStorage.clear();
     vi.useFakeTimers({ shouldAdvanceTime: true });
@@ -14,12 +30,14 @@ describe("ChristmasPromo", () => {
 
   afterEach(() => {
     vi.useRealTimers();
+    Object.defineProperty(window, "scrollY", { value: 0, configurable: true });
     setSearch("");
   });
 
   it("stays hidden outside the season", () => {
     vi.setSystemTime(new Date("2027-02-01T12:00:00-05:00"));
     render(<ChristmasPromo />);
+    scrollPastHero();
     act(() => {
       vi.advanceTimersByTime(5000);
     });
@@ -29,6 +47,7 @@ describe("ChristmasPromo", () => {
   it("appears during the season with a Christmas WhatsApp message", () => {
     vi.setSystemTime(new Date("2026-12-10T12:00:00-05:00"));
     render(<ChristmasPromo />);
+    scrollPastHero();
     act(() => {
       vi.advanceTimersByTime(3000);
     });
@@ -41,6 +60,7 @@ describe("ChristmasPromo", () => {
     vi.setSystemTime(new Date("2027-02-01T12:00:00-05:00"));
     setSearch("?navidad=1");
     render(<ChristmasPromo />);
+    scrollPastHero();
     act(() => {
       vi.advanceTimersByTime(3000);
     });
@@ -51,6 +71,7 @@ describe("ChristmasPromo", () => {
     vi.setSystemTime(new Date("2026-12-10T12:00:00-05:00"));
     const user = userEvent.setup({ advanceTimers: vi.advanceTimersByTime });
     const { unmount } = render(<ChristmasPromo />);
+    scrollPastHero();
     act(() => {
       vi.advanceTimersByTime(3000);
     });
@@ -60,6 +81,7 @@ describe("ChristmasPromo", () => {
     unmount();
 
     render(<ChristmasPromo />);
+    scrollPastHero();
     act(() => {
       vi.advanceTimersByTime(5000);
     });

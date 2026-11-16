@@ -20,13 +20,13 @@ const DESKTOP_MEDIA_QUERY = "(min-width: 1024px)";
  */
 export default function Header() {
   const [menuOpen, setMenuOpen] = useState(false);
-  const [modelosOpen, setModelosOpen] = useState(false);
+  // El submenú de Modelos (Mujeres / Hombres / Bilingües) se muestra abierto por defecto.
+  const [modelosOpen, setModelosOpen] = useState(true);
   const menuButtonRef = useRef<HTMLButtonElement>(null);
   const panelRef = useRef<HTMLDivElement>(null);
 
   const closeMenu = useCallback((restoreFocus = true) => {
     setMenuOpen(false);
-    setModelosOpen(false);
 
     if (restoreFocus) {
       requestAnimationFrame(() => menuButtonRef.current?.focus());

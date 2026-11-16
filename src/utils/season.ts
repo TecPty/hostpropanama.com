@@ -1,20 +1,13 @@
 /**
- * Temporada navideña de HostPro: del 1 de diciembre al 6 de enero (inclusive),
- * según la hora de Panamá. Fuera de esas fechas los adornos no se muestran.
+ * Temporada navideña de HostPro (hora de Panamá, UTC-5).
+ * Activa desde el 16 de noviembre de 2026 y se apaga sola el 3 de enero de 2027
+ * a las 00:00. Para otro año, solo cambia estas dos fechas.
  */
-const PANAMA_TZ = "America/Panama";
+export const CHRISTMAS_START = new Date("2026-11-16T00:00:00-05:00");
+export const CHRISTMAS_END = new Date("2027-01-03T00:00:00-05:00");
 
 export function isChristmasSeason(date: Date = new Date()): boolean {
-  const parts = new Intl.DateTimeFormat("en-US", {
-    timeZone: PANAMA_TZ,
-    month: "numeric",
-    day: "numeric",
-  }).formatToParts(date);
-
-  const month = Number(parts.find((p) => p.type === "month")?.value);
-  const day = Number(parts.find((p) => p.type === "day")?.value);
-
-  return month === 12 || (month === 1 && day <= 6);
+  return date >= CHRISTMAS_START && date < CHRISTMAS_END;
 }
 
 /** Permite previsualizar los adornos en cualquier fecha con `?navidad=1`. */

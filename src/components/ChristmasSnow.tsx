@@ -3,12 +3,62 @@
 import { useEffect, useRef, useSyncExternalStore } from "react";
 import { isChristmasPreview, isChristmasSeason } from "@/utils/season";
 
-const GOLD = "212, 178, 0"; // #d4b200, color de marca HostPro
+const SPRITE_SIZE = 64; // px del copo dibujado una vez y reutilizado
+
+/** Dibuja un copo de nieve de 6 puntas con ramitas, en blanco. */
+function createFlakeSprite(dpr: number): HTMLCanvasElement {
+  const sprite = document.createElement("canvas");
+  const size = SPRITE_SIZE * dpr;
+  sprite.width = size;
+  sprite.height = size;
+  const c = sprite.getContext("2d");
+  if (!c) return sprite;
+
+  c.scale(dpr, dpr);
+  c.translate(SPRITE_SIZE / 2, SPRITE_SIZE / 2);
+  c.strokeStyle = "#ffffff";
+  c.lineCap = "round";
+  c.lineWidth = 2.6;
+  // Sombra suave para que el copo se vea también sobre fondos claros.
+  c.shadowColor = "rgba(0, 0, 0, 0.35)";
+  c.shadowBlur = 3;
+
+  const arm = SPRITE_SIZE * 0.42;
+  for (let i = 0; i < 6; i++) {
+    c.save();
+    c.rotate((Math.PI / 3) * i);
+    c.beginPath();
+    c.moveTo(0, 0);
+    c.lineTo(0, -arm);
+    // Dos pares de ramitas por brazo
+    for (const [pos, len] of [
+      [0.45, 0.28],
+      [0.72, 0.2],
+    ]) {
+      const y = -arm * pos;
+      const l = arm * len;
+      c.moveTo(0, y);
+      c.lineTo(-l * 0.8, y - l);
+      c.moveTo(0, y);
+      c.lineTo(l * 0.8, y - l);
+    }
+    c.stroke();
+    c.restore();
+  }
+  // Centro
+  c.beginPath();
+  c.arc(0, 0, 2.5, 0, Math.PI * 2);
+  c.fillStyle = "#ffffff";
+  c.fill();
+  return sprite;
+}
 
 type Flake = {
   x: number;
   y: number;
-  r: number;
+  size: number;
+  rotation: number;
+  spin: number;
   speed: number;
   drift: number;
   phase: number;
@@ -24,8 +74,8 @@ function getSnowEnabled(): boolean {
 }
 
 /**
- * Nieve dorada navideña: copos suaves que caen sobre la página.
- * - Solo aparece del 1 dic al 6 ene (o con `?navidad=1` para previsualizar).
+ * Nieve navideña: copos blancos de 6 puntas que caen girando sobre la página.
+ * - Solo aparece en las fechas de `season.ts` (o con `?navidad=1` para previsualizar).
  * - No bloquea clics (pointer-events: none).
  * - Se desactiva si el usuario prefiere menos animaciones.
  * - Se pausa cuando la pestaña no está visible.
@@ -45,15 +95,18 @@ export default function ChristmasSnow() {
     let height = 0;
     let flakes: Flake[] = [];
     let frame = 0;
+    let sprite: HTMLCanvasElement | null = null;
 
     const makeFlake = (randomY: boolean): Flake => ({
       x: Math.random() * width,
       y: randomY ? Math.random() * height : -10,
-      r: 1 + Math.random() * 2.5,
-      speed: 0.3 + Math.random() * 0.8,
+      size: 10 + Math.random() * 16,
+      rotation: Math.random() * Math.PI * 2,
+      spin: (Math.random() - 0.5) * 0.02,
+      speed: 0.4 + Math.random() * 0.9,
       drift: 0.3 + Math.random() * 0.7,
       phase: Math.random() * Math.PI * 2,
-      alpha: 0.35 + Math.random() * 0.5,
+      alpha: 0.6 + Math.random() * 0.4,
     });
 
     const resize = () => {
@@ -65,9 +118,10 @@ export default function ChristmasSnow() {
       canvas.style.width = `${width}px`;
       canvas.style.height = `${height}px`;
       ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+      sprite = createFlakeSprite(dpr);
 
       // Menos copos en pantallas pequeñas.
-      const count = width < 768 ? 35 : 70;
+      const count = width < 768 ? 22 : 45;
       flakes = Array.from({ length: count }, () => makeFlake(true));
     };
 
@@ -82,13 +136,14 @@ export default function ChristmasSnow() {
         if (f.x > width + 10) f.x = -10;
         if (f.x < -10) f.x = width + 10;
 
-        const glow = ctx.createRadialGradient(f.x, f.y, 0, f.x, f.y, f.r * 2);
-        glow.addColorStop(0, `rgba(${GOLD}, ${f.alpha})`);
-        glow.addColorStop(1, `rgba(${GOLD}, 0)`);
-        ctx.fillStyle = glow;
-        ctx.beginPath();
-        ctx.arc(f.x, f.y, f.r * 2, 0, Math.PI * 2);
-        ctx.fill();
+        f.rotation += f.spin;
+        if (!sprite) continue;
+        ctx.save();
+        ctx.globalAlpha = f.alpha;
+        ctx.translate(f.x, f.y);
+        ctx.rotate(f.rotation);
+        ctx.drawImage(sprite, -f.size / 2, -f.size / 2, f.size, f.size);
+        ctx.restore();
       }
       frame = requestAnimationFrame(draw);
     };

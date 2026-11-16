@@ -199,25 +199,26 @@ describe("Header — compact mobile navigation", () => {
   });
 
   describe("Modelos accordion", () => {
-    it("starts collapsed", () => {
+    it("starts expanded with all submenu destinations visible", () => {
       render(<Header />);
-
-      expect(modelosTrigger()).toHaveAttribute("aria-expanded", "false");
-      expect(screen.queryByRole("link", { name: /^mujeres$/i })).not.toBeInTheDocument();
-      expect(screen.queryByRole("link", { name: /^hombres$/i })).not.toBeInTheDocument();
-      expect(screen.queryByRole("link", { name: /^bilingües$/i })).not.toBeInTheDocument();
-    });
-
-    it("expands and preserves all submenu destinations", async () => {
-      const user = userEvent.setup();
-      render(<Header />);
-
-      await user.click(modelosTrigger());
 
       expect(modelosTrigger()).toHaveAttribute("aria-expanded", "true");
       expect(linkTo("Mujeres")).toHaveAttribute("href", "/modelos/mujeres");
       expect(linkTo("Hombres")).toHaveAttribute("href", "/modelos/hombres");
       expect(linkTo("Bilingües")).toHaveAttribute("href", "/modelos/bilingues");
+    });
+
+    it("can still be collapsed and re-expanded", async () => {
+      const user = userEvent.setup();
+      render(<Header />);
+
+      await user.click(modelosTrigger());
+      expect(modelosTrigger()).toHaveAttribute("aria-expanded", "false");
+      expect(screen.queryByRole("link", { name: /^mujeres$/i })).not.toBeInTheDocument();
+
+      await user.click(modelosTrigger());
+      expect(modelosTrigger()).toHaveAttribute("aria-expanded", "true");
+      expect(linkTo("Mujeres")).toBeInTheDocument();
     });
 
     it.each(["Mujeres", "Hombres", "Bilingües"])(
@@ -227,7 +228,6 @@ describe("Header — compact mobile navigation", () => {
         render(<Header />);
 
         await openMenu(user);
-        await user.click(modelosTrigger());
         await user.click(linkTo(label));
 
         expect(navPanel()).toHaveAttribute("data-state", "closed");

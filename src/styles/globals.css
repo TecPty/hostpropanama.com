@@ -274,26 +274,6 @@ html:has(body.hostpro-nav-open) {
   overflow: hidden;
 }
 
-/* Offset del contenido en desktop. El sidebar es `fixed`, así que no ocupa flujo:
-   se desplaza <main>, que es hermano directo de <header> en todas las páginas.
-   El <footer> vive dentro de <main>, por lo que hereda el mismo offset. */
-@media (min-width: 1024px) {
-  .hostpro-sidebar ~ main {
-    margin-right: 288px;
-  }
-}
-
-/* Botones flotantes (WhatsApp / Instagram) en desktop. layout.tsx los monta en todas
-   las rutas, pero el sidebar sólo existe donde se renderiza <Header />. Por eso el
-   corrimiento es condicional: si el documento contiene el sidebar, se apartan
-   288px de sidebar + 32px de separación. En rutas sin sidebar (p. ej. el 404) quedan
-   en su `right-8` original, pegados al borde del viewport. */
-@media (min-width: 1024px) {
-  body:has(.hostpro-sidebar) .hostpro-floating-control {
-    right: 320px;
-  }
-}
-
 /* Mobile homepage: keep the service ticker visible in the first viewport. */
 @media (max-width: 767px) {
   .hostpro-sidebar > div:first-child {

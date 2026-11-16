@@ -1,44 +1,8 @@
 import { act, fireEvent, render, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
-import { beforeEach, describe, expect, it } from "vitest";
+import { describe, expect, it } from "vitest";
 
 import Header from "@/components/Header";
-
-type MediaListener = (event: MediaQueryListEvent) => void;
-
-const installDesktopMedia = () => {
-  let matches = false;
-  const listeners = new Set<MediaListener>();
-
-  const mql = {
-    get matches() {
-      return matches;
-    },
-    media: "(min-width: 1024px)",
-    onchange: null,
-    addEventListener: (_type: string, listener: MediaListener) => listeners.add(listener),
-    removeEventListener: (_type: string, listener: MediaListener) => listeners.delete(listener),
-    addListener: (listener: MediaListener) => listeners.add(listener),
-    removeListener: (listener: MediaListener) => listeners.delete(listener),
-    dispatchEvent: () => true,
-  } as unknown as MediaQueryList;
-
-  window.matchMedia = (() => mql) as typeof window.matchMedia;
-
-  const emit = (next: boolean) => {
-    matches = next;
-    act(() => {
-      listeners.forEach((listener) => listener({ matches: next } as MediaQueryListEvent));
-    });
-  };
-
-  return {
-    enterDesktop: () => emit(true),
-    enterMobile: () => emit(false),
-  };
-};
-
-let media: ReturnType<typeof installDesktopMedia>;
 
 const menuTrigger = () =>
   screen.getByRole("button", { name: /menú de navegación/i });
@@ -60,10 +24,7 @@ const openMenu = async (user: ReturnType<typeof userEvent.setup>) => {
   expect(navPanel()).toHaveAttribute("data-state", "open");
 };
 
-describe("Header — compact mobile navigation", () => {
-  beforeEach(() => {
-    media = installDesktopMedia();
-  });
+describe("Header — compact dropdown navigation", () => {
 
   describe("frozen navigation contract", () => {
     it("renders the approved primary order: Modelos, Eventos, Precios, Contactos", () => {
@@ -235,43 +196,36 @@ describe("Header — compact mobile navigation", () => {
     );
   });
 
-  describe("desktop preservation", () => {
-    it("keeps desktop sidebar classes intact", () => {
+  describe("desktop dropdown (sin sidebar fijo)", () => {
+    it("no longer renders a fixed desktop sidebar", () => {
       render(<Header />);
 
       const header = document.querySelector("header.hostpro-sidebar");
-      expect(header).toHaveClass("lg:w-72", "lg:flex-col", "lg:border-l");
-
-      expect(navPanel()).toHaveClass(
-        "lg:static",
-        "lg:flex-1",
-        "lg:rounded-none",
-        "lg:border-0"
-      );
+      expect(header).not.toHaveClass("lg:w-72", "lg:h-dvh", "lg:border-l");
+      expect(navPanel()).not.toHaveClass("lg:static", "lg:visible", "lg:opacity-100");
     });
 
-    it("clears mobile menu state when entering desktop without moving focus", async () => {
-      const user = userEvent.setup();
+    it("keeps the menu button available at every width", () => {
       render(<Header />);
-
-      await openMenu(user);
-      media.enterDesktop();
-
-      expect(navPanel()).toHaveAttribute("data-state", "closed");
-      expect(menuTrigger()).toHaveAttribute("aria-expanded", "false");
-      expect(menuTrigger()).not.toHaveFocus();
+      expect(menuTrigger()).not.toHaveClass("lg:hidden");
     });
 
-    it("stays closed after a desktop/mobile round trip", async () => {
-      const user = userEvent.setup();
+    it("starts transparent over the hero and turns solid after scrolling", () => {
       render(<Header />);
+      const header = document.querySelector("header.hostpro-sidebar");
+      expect(header).toHaveAttribute("data-scrolled", "false");
 
-      await openMenu(user);
-      media.enterDesktop();
-      media.enterMobile();
+      act(() => {
+        Object.defineProperty(window, "scrollY", { value: 300, configurable: true });
+        window.dispatchEvent(new Event("scroll"));
+      });
+      expect(header).toHaveAttribute("data-scrolled", "true");
 
-      expect(navPanel()).toHaveAttribute("data-state", "closed");
-      expect(menuTrigger()).toHaveAttribute("aria-expanded", "false");
+      act(() => {
+        Object.defineProperty(window, "scrollY", { value: 0, configurable: true });
+        window.dispatchEvent(new Event("scroll"));
+      });
+      expect(header).toHaveAttribute("data-scrolled", "false");
     });
   });
 });

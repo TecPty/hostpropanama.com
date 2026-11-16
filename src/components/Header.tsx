@@ -8,20 +8,23 @@ import { NAV_DROPDOWN, NAV_LINKS, NAV_CTA } from "@/constants/navigation";
 
 const NAV_PANEL_ID = "hostpro-nav-panel";
 const NAV_SUBMENU_ID = "hostpro-nav-modelos";
-const DESKTOP_MEDIA_QUERY = "(min-width: 1024px)";
+const SCROLL_SOLID_THRESHOLD = 40;
 
 /**
  * Navegación principal de HostPro.
  *
- * - desktop (lg+): sidebar fijo a la derecha, 288px, altura completa.
- * - mobile/tablet: barra superior + panel compacto desplegable bajo el botón.
+ * Barra superior con logo + botón de menú, y panel desplegable bajo el botón en
+ * todos los tamaños de pantalla (antes, en desktop era un sidebar fijo que tapaba
+ * parte de la foto de portada).
  *
- * El offset del contenido en desktop vive en globals.css vía `.hostpro-sidebar ~ main`.
+ * - mobile/tablet: barra negra sólida.
+ * - desktop (lg+): barra transparente sobre la portada; se vuelve sólida al hacer scroll.
  */
 export default function Header() {
   const [menuOpen, setMenuOpen] = useState(false);
   // El submenú de Modelos (Mujeres / Hombres / Bilingües) se muestra abierto por defecto.
   const [modelosOpen, setModelosOpen] = useState(true);
+  const [scrolled, setScrolled] = useState(false);
   const menuButtonRef = useRef<HTMLButtonElement>(null);
   const panelRef = useRef<HTMLDivElement>(null);
 
@@ -34,14 +37,11 @@ export default function Header() {
   }, []);
 
   useEffect(() => {
-    const desktop = window.matchMedia(DESKTOP_MEDIA_QUERY);
-    const handleChange = (event: MediaQueryListEvent) => {
-      if (event.matches) closeMenu(false);
-    };
-
-    desktop.addEventListener("change", handleChange);
-    return () => desktop.removeEventListener("change", handleChange);
-  }, [closeMenu]);
+    const handleScroll = () => setScrolled(window.scrollY > SCROLL_SOLID_THRESHOLD);
+    handleScroll();
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
 
   useEffect(() => {
     if (!menuOpen) return;
@@ -71,16 +71,23 @@ export default function Header() {
   }, [menuOpen, closeMenu]);
 
   return (
-    <header className="hostpro-sidebar fixed top-0 right-0 z-[110] w-full border-b border-white/10 bg-[#0a0a0a] lg:flex lg:h-dvh lg:w-72 lg:flex-col lg:border-l lg:border-b-0">
-      {/* Barra superior en mobile/tablet · bloque de marca en desktop */}
-      <div className="relative flex items-center justify-between gap-4 px-5 py-3 lg:justify-center lg:px-8 lg:py-10">
+    <header
+      data-scrolled={scrolled ? "true" : "false"}
+      className={`hostpro-sidebar fixed top-0 right-0 z-[110] w-full border-b bg-[#0a0a0a] transition-colors duration-300 ${
+        scrolled || menuOpen
+          ? "border-white/10 lg:bg-[#0a0a0a]/95 lg:backdrop-blur-md"
+          : "border-white/10 lg:border-transparent lg:bg-transparent lg:bg-gradient-to-b lg:from-black/70 lg:to-transparent"
+      }`}
+    >
+      {/* Barra superior: logo + botón de menú */}
+      <div className="relative flex items-center justify-between gap-4 px-5 py-3 lg:px-10 lg:py-4">
         <Link href="/" aria-label="Ir al inicio de HostPro Panamá" className="shrink-0">
           <Image
             src="/logos/hostpro-logo-horizontal.webp"
             alt="HostPro Panamá"
             width={640}
             height={640}
-            className="h-12 w-auto lg:h-32"
+            className="h-12 w-auto lg:h-16"
             priority
           />
         </Link>
@@ -92,24 +99,24 @@ export default function Header() {
           aria-label={menuOpen ? "Cerrar menú de navegación" : "Abrir menú de navegación"}
           aria-expanded={menuOpen}
           aria-controls={NAV_PANEL_ID}
-          className="inline-flex h-11 w-11 items-center justify-center rounded-lg border border-[#d4b200]/80 bg-[#0a0a0a] text-[#d4b200] shadow-sm transition-colors hover:border-[#d4b200] hover:bg-[#d4b200]/10 focus-visible:outline-offset-4 lg:hidden"
+          className="inline-flex h-11 w-11 items-center justify-center rounded-lg border border-[#d4b200]/80 bg-[#0a0a0a] text-[#d4b200] shadow-sm transition-colors hover:border-[#d4b200] hover:bg-[#d4b200]/10 focus-visible:outline-offset-4 lg:h-12 lg:w-12"
         >
           {menuOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
         </button>
       </div>
 
-      {/* Panel móvil compacto / sidebar desktop */}
+      {/* Panel desplegable bajo el botón de menú */}
       <div
         ref={panelRef}
         id={NAV_PANEL_ID}
         data-state={menuOpen ? "open" : "closed"}
-        className={`absolute top-[calc(100%+8px)] right-4 z-30 flex max-h-[calc(100dvh-96px)] w-[min(82vw,300px)] flex-col overflow-y-auto overscroll-contain rounded-xl border border-[#d4b200]/55 bg-[#0a0a0a] shadow-[0_16px_40px_rgba(0,0,0,0.45)] transition-[opacity,transform,visibility] duration-200 ease-out lg:static lg:z-auto lg:w-auto lg:max-w-none lg:flex-1 lg:visible lg:translate-y-0 lg:overflow-y-auto lg:rounded-none lg:border-0 lg:bg-transparent lg:opacity-100 lg:shadow-none ${
+        className={`absolute top-[calc(100%+8px)] right-4 z-30 flex max-h-[calc(100dvh-96px)] w-[min(82vw,300px)] flex-col overflow-y-auto overscroll-contain rounded-xl border border-[#d4b200]/55 bg-[#0a0a0a] shadow-[0_16px_40px_rgba(0,0,0,0.45)] transition-[opacity,transform,visibility] duration-200 ease-out lg:right-10 ${
           menuOpen
             ? "visible translate-y-0 opacity-100"
-            : "invisible -translate-y-2 opacity-0 lg:visible"
+            : "invisible -translate-y-2 opacity-0"
         }`}
       >
-        <nav aria-label="Navegación principal" className="px-4 py-3 lg:flex-1 lg:px-8 lg:py-0">
+        <nav aria-label="Navegación principal" className="px-4 py-3">
           <ul className="space-y-1">
             <li data-nav-entry="modelos">
               <button
@@ -161,7 +168,7 @@ export default function Header() {
           </ul>
         </nav>
 
-        <div className="border-t border-[#d4b200]/20 p-4 lg:mt-auto lg:border-white/10 lg:px-8 lg:py-8">
+        <div className="border-t border-[#d4b200]/20 p-4">
           <Link
             href={NAV_CTA.href}
             onClick={() => closeMenu()}

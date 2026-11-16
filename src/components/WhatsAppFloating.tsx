@@ -2,11 +2,17 @@
 
 import { motion } from "framer-motion";
 import { MessageCircle } from "lucide-react";
+import { useChristmasSeason } from "@/hooks/useChristmasSeason";
+import { getWhatsAppLink } from "@/utils/whatsapp";
 
 export default function WhatsAppFloating() {
+  const christmas = useChristmasSeason();
   const phoneNumber = "50769801194";
   const message = encodeURIComponent("Hola HostPro Panamá, necesito información sobre staff para mi evento.");
-  const whatsappUrl = `https://wa.me/${phoneNumber}?text=${message}`;
+  // En temporada navideña el chat abre con el mensaje de fiestas de fin de año.
+  const whatsappUrl = christmas
+    ? getWhatsAppLink("navidad")
+    : `https://wa.me/${phoneNumber}?text=${message}`;
 
   return (
     <motion.a

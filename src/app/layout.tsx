@@ -6,6 +6,7 @@ import SmoothScroll from "@/components/SmoothScroll";
 import WhatsAppFloating from "@/components/WhatsAppFloating";
 import InstagramFloating from "@/components/InstagramFloating";
 import ChristmasSnow from "@/components/ChristmasSnow";
+import ChristmasPromo from "@/components/ChristmasPromo";
 
 
 const inter = Inter({
@@ -131,6 +132,7 @@ export default function RootLayout({
         <WhatsAppFloating />
         <InstagramFloating />
         <ChristmasSnow />
+        <ChristmasPromo />
       </body>
 
     </html>

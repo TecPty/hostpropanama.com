@@ -23,7 +23,8 @@ export type WhatsAppContext =
   | "service-gastronomy"
   | "staff-bilingue"
   | "urgente"
-  | "cotizacion";
+  | "cotizacion"
+  | "navidad";
 
 /**
  * Genera un link de WhatsApp con mensaje personalizado según el contexto
@@ -74,6 +75,8 @@ export function getWhatsAppLink(context: WhatsAppContext = "general", customPara
 
     urgente: "🚨 URGENTE: Necesito staff para un evento próximo. ¿Pueden responder ahora?",
     
+    navidad: "Hola HostPro Panamá 🎄, quiero cotizar staff para mi fiesta de fin de año. ¿Tienen disponibilidad en diciembre?",
+
     cotizacion: customParams?.service
       ? `Hola, necesito cotización para ${customParams.service}${customParams.date ? ` el ${customParams.date}` : ''}. ¿Cuándo podemos hablar?`
       : "Hola, necesito una cotización personalizada para un evento. ¿Cuándo podemos hablar?",

@@ -274,6 +274,15 @@ html:has(body.hostpro-nav-open) {
   overflow: hidden;
 }
 
+/* Logo en la barra superior (tablet/desktop). El archivo es cuadrado con margen,
+   así que se escala desde la izquierda igual que en mobile para que se lea bien. */
+@media (min-width: 768px) {
+  .hostpro-sidebar > div:first-child img {
+    transform: scale(2.05);
+    transform-origin: left center;
+  }
+}
+
 /* Mobile homepage: keep the service ticker visible in the first viewport. */
 @media (max-width: 767px) {
   .hostpro-sidebar > div:first-child {

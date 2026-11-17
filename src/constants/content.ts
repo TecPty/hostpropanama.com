@@ -1155,6 +1155,39 @@ export const talent: TalentModel[] = [
       ],
     },
   },
+  {
+    name: "Alejandra Herrera",
+    slug: "alejandra-herrera",
+    role: "Azafata y modelo para eventos corporativos y activaciones de marca",
+    languages: "Español nativo, Inglés básico",
+    status: "disponible",
+    updatedAt: "2026-11-17",
+    city: "Ciudad de Panamá",
+    experienceSummary: "Perfil con presencia profesional para eventos corporativos, activaciones BTL, protocolo y representación de marca.",
+    skills: ["Atención al cliente", "Presencia de marca", "Imagen profesional"],
+    eventTypes: ["Eventos corporativos", "Activaciones BTL", "Protocolo", "Promoción de marca"],
+    availability: {
+      schedule: "Coordinación por agenda",
+      canTravel: true,
+    },
+    physical: {
+      height: "1.58 m",
+      weight: "55 kg",
+      hairColor: "Castaño",
+      shirtSize: "S",
+      shoeSize: "36",
+    },
+    gender: "mujer",
+    photo: "/talent/mujeres/alejandra-herrera/alejandra-herrera.webp",
+    media: {
+      gallery: [
+        "/talent/mujeres/alejandra-herrera/alejandra-01.webp",
+        "/talent/mujeres/alejandra-herrera/alejandra-02.webp",
+        "/talent/mujeres/alejandra-herrera/alejandra-03.webp",
+        "/talent/mujeres/alejandra-herrera/alejandra-04.webp",
+      ],
+    },
+  },
 ];
 
 export const getTalentByGender = (gender: TalentGender): TalentModel[] => {

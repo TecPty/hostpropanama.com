@@ -1184,7 +1184,6 @@ export const talent: TalentModel[] = [
         "/talent/mujeres/alejandra-herrera/alejandra-01.webp",
         "/talent/mujeres/alejandra-herrera/alejandra-02.webp",
         "/talent/mujeres/alejandra-herrera/alejandra-03.webp",
-        "/talent/mujeres/alejandra-herrera/alejandra-04.webp",
       ],
     },
   },

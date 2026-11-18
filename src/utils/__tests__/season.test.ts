@@ -4,19 +4,24 @@ import { isChristmasPreview, isChristmasSeason } from "../season";
 const panama = (iso: string) => new Date(`${iso}T17:00:00Z`);
 
 describe("isChristmasSeason", () => {
-  it.each(["2026-11-16", "2026-12-01", "2026-12-25", "2026-12-31", "2027-01-02"])(
+  it.each(["2026-11-30", "2026-12-01", "2026-12-25", "2026-12-31", "2027-01-02"])(
     "is active on %s",
     (day) => {
       expect(isChristmasSeason(panama(day))).toBe(true);
     }
   );
 
-  it.each(["2026-11-15", "2027-01-03", "2027-01-06", "2027-12-25"])(
+  it.each(["2026-11-16", "2026-11-18", "2026-11-29", "2027-01-03", "2027-01-06", "2027-12-25"])(
     "is inactive on %s",
     (day) => {
       expect(isChristmasSeason(panama(day))).toBe(false);
     }
   );
+
+  it("turns on at midnight Panama time on November 30", () => {
+    expect(isChristmasSeason(new Date("2026-11-29T23:59:00-05:00"))).toBe(false);
+    expect(isChristmasSeason(new Date("2026-11-30T00:00:00-05:00"))).toBe(true);
+  });
 
   it("turns off at midnight Panama time on January 3", () => {
     expect(isChristmasSeason(new Date("2027-01-02T23:59:00-05:00"))).toBe(true);
